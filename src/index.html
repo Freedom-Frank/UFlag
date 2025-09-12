@@ -27,29 +27,63 @@
                 </div>
 
                 <div class="filter-section">
-                    <div class="filter-group">
-                        <div class="filter-title">大洲筛选</div>
-                        <div class="filter-buttons">
-                            <button class="filter-btn active" data-continent="all">全部</button>
-                            <button class="filter-btn" data-continent="亚洲">亚洲</button>
-                            <button class="filter-btn" data-continent="欧洲">欧洲</button>
-                            <button class="filter-btn" data-continent="非洲">非洲</button>
-                            <button class="filter-btn" data-continent="北美洲">北美洲</button>
-                            <button class="filter-btn" data-continent="南美洲">南美洲</button>
-                            <button class="filter-btn" data-continent="大洋洲">大洋洲</button>
-                            <button class="filter-btn" data-continent="南极洲">南极洲</button>
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <div class="filter-title">数据来源</div>
+                            <select class="filter-select" id="dataSourceSelect">
+                                <option value="all" selected>全部国家</option>
+                                <option value="un">联合国成员国</option>
+                                <option value="g20">二十国集团</option>
+                                <option value="eu">欧洲联盟</option>
+                                <option value="china_diplomatic">与中华人民共和国建交国家</option>
+                                <option value="asiasim">亚洲仿真联盟</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <div class="filter-title">大洲筛选</div>
+                            <select class="filter-select" id="continentSelect">
+                                <option value="all" selected>全部</option>
+                                <option value="亚洲">亚洲</option>
+                                <option value="欧洲">欧洲</option>
+                                <option value="非洲">非洲</option>
+                                <option value="北美洲">北美洲</option>
+                                <option value="南美洲">南美洲</option>
+                                <option value="大洋洲">大洋洲</option>
+                                <option value="南极洲">南极洲</option>
+                            </select>
                         </div>
                     </div>
 
-                    <div class="filter-group" id="styleFilterGroup" style="display: none;">
-                        <div class="filter-title">设计风格（可多选）</div>
-                        <div class="style-filters" id="styleFilters"></div>
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <div class="filter-title">设计风格筛选（可多选）</div>
+                            <select class="filter-select" id="styleSelect" multiple>
+                                <option value="星星">星星</option>
+                                <option value="十字">十字</option>
+                                <option value="月牙">月牙</option>
+                                <option value="太阳">太阳</option>
+                                <option value="动物">动物</option>
+                                <option value="植物">植物</option>
+                                <option value="几何图形">几何图形</option>
+                                <option value="水平条纹">水平条纹</option>
+                                <option value="垂直条纹">垂直条纹</option>
+                                <option value="对角条纹">对角条纹</option>
+                                <option value="联合杰克">联合杰克</option>
+                                <option value="泛非色彩">泛非色彩</option>
+                                <option value="泛阿拉伯色彩">泛阿拉伯色彩</option>
+                                <option value="北欧十字">北欧十字</option>
+                                <option value="纯色">纯色</option>
+                                <option value="复杂徽章">复杂徽章</option>
+                            </select>
+                            <div class="select-hint">按住 Ctrl/Cmd 键可多选</div>
+                        </div>
                     </div>
 
                     <div class="filter-group">
                         <div class="filter-title">排序方式</div>
                         <div class="filter-buttons">
-                            <button class="filter-btn active" data-sort="name">名称</button>
+                            <button class="filter-btn active" data-sort="name">默认</button>
                             <button class="filter-btn" data-sort="continent">大洲</button>
                             <button class="filter-btn" data-sort="random">随机</button>
                         </div>
@@ -59,7 +93,7 @@
                 <div class="stats">
                     <div class="stat-card">
                         <div class="stat-number" id="totalCount">0</div>
-                        <div class="stat-label">总数</div>
+                        <div class="stat-label">数据来源总数</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-number" id="filteredCount">0</div>
@@ -149,6 +183,15 @@
                                     <div class="stat-label">用时</div>
                                 </div>
                             </div>
+                            
+                            <!-- 错题详情区域 -->
+                            <div id="wrong-answers-section" style="display: none;">
+                                <h3 style="color: var(--danger-color); margin-bottom: 20px; text-align: center;">错题详情</h3>
+                                <div id="wrong-answers-container" class="wrong-answers-container">
+                                    <!-- 错题详情将在这里动态生成 -->
+                                </div>
+                            </div>
+                            
                             <div style="display: flex; gap: 10px; justify-content: center;">
                                 <button class="btn btn-primary" id="retryBtn">再测一次</button>
                                 <button class="btn btn-secondary" id="backBtn">返回首页</button>

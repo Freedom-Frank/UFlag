@@ -6,6 +6,36 @@ let selectedContinent = 'all';
 let selectedStyles = new Set();
 let sortMethod = 'name';
 let searchTerm = '';
+let selectedDataSource = 'all';
+
+// 数据来源配置
+const dataSources = {
+    all: { 
+        name: '全部国家', 
+        countries: null 
+    },
+    un: { 
+    name: '联合国成员国', 
+    countries: [
+        "af", "al", "dz", "ad", "ao", "ag", "ar", "am", "au", "at", "az", "bs", "bh", "bd", "bb", "by", "be", "bz", "bj", "bt", "bo", "ba", "bw", "br", "bn", "bg", "bf", "bi", "cv", "kh", "cm", "ca", "cf", "td", "cl", "cn", "co", "km", "cg", "cd", "cr", "ci", "hr", "cu", "cy", "cz", "dk", "dj", "dm", "do", "ec", "eg", "sv", "gq", "er", "ee", "sz", "et", "fj", "fi", "fr", "ga", "gm", "ge", "de", "gh", "gr", "gd", "gt", "gn", "gw", "gy", "ht", "hn", "hu", "is", "in", "id", "ir", "iq", "ie", "il", "it", "jm", "jp", "jo", "kz", "ke", "ki", "kw", "kg", "la", "lv", "lb", "ls", "lr", "ly", "li", "lt", "lu", "mg", "mw", "my", "mv", "ml", "mt", "mh", "mr", "mu", "mx", "fm", "md", "mc", "mn", "me", "ma", "mz", "mm", "na", "nr", "np", "nl", "nz", "ni", "ne", "ng", "kp", "mk", "no", "om", "pk", "pw", "pa", "pg", "py", "pe", "ph", "pl", "pt", "qa", "ro", "ru", "rw", "kn", "lc", "vc", "ws", "sm", "st", "sa", "sn", "rs", "sc", "sl", "sg", "sk", "si", "sb", "so", "za", "kr", "ss", "es", "lk", "sd", "sr", "se", "ch", "sy", "tj", "tz", "th", "tl", "tg", "to", "tt", "tn", "tr", "tm", "tv", "ug", "ua", "ae", "gb", "us", "uy", "uz", "vu", "ve", "vn", "ye", "zm", "zw"]
+    },
+    g20: { 
+        name: '二十国集团', 
+        countries: ["cn", "ar", "au", "br", "ca", "fr", "de", "in", "id", "it", "jp", "kr", "mx", "ru", "sa", "za", "tr", "gb", "us"] 
+    },
+    eu: { 
+        name: '欧洲联盟', 
+        countries: ["at", "be", "bg", "cy", "cz", "hr", "dk", "ee", "fi", "fr", "de", "gr", "hu", "ie", "it", "lv", "ro", "lt", "lu", "mt", "nl", "pl", "pt", "sk", "si", "es", "se"] 
+    },
+    china_diplomatic: { 
+        name: '与中华人民共和国建交国家', 
+        countries: ["af", "am", "az", "bh", "bd", "bn", "kh", "kp", "tl", "ge", "in", "id", "ir", "iq", "il", "jp", "jo", "kz", "kw", "kg", "la", "lb", "my", "mv", "mn", "mm", "np", "om", "pk", "ps", "ph", "qa", "kr", "sa", "sg", "lk", "sy", "tj", "th", "tr", "tm", "ae", "uz", "vn", "ye", "dz", "ao", "bj", "bw", "bf", "bi", "cm", "cv", "cf", "td", "km", "cd", "cg", "ci", "dj", "eg", "gq", "er", "et", "ga", "gm", "gh", "gn", "gw", "ke", "ls", "lr", "ly", "mg", "mw", "ml", "mr", "mu", "ma", "mz", "na", "ne", "ng", "rw", "st", "sn", "sc", "sl", "so", "za", "ss", "sd", "tz", "tg", "tn", "ug", "zm", "zw", "al", "ad", "at", "by", "be", "ba", "bg", "hr", "cy", "cz", "dk", "ee", "fi", "fr", "de", "gr", "hu", "is", "ie", "it", "lv", "li", "lt", "lu", "mt", "md", "mc", "me", "nl", "mk", "no", "pl", "pt", "ro", "ru", "sm", "rs", "sk", "si", "es", "se", "ch", "ua", "gb", "ag", "ar", "bs", "bb", "bo", "br", "ca", "cl", "co", "cr", "cu", "dm", "do", "ec", "sv", "gd", "gy", "hn", "jm", "mx", "ni", "pa", "pe", "sr", "tt", "us", "uy", "ve", "au", "ck", "fj", "ki", "fm", "nr", "nz", "nu", "pg", "ws", "sb", "to", "vu"] 
+    },
+    asiasim: {
+        name: '亚洲仿真联盟',
+        countries: ["cn","jp","kr","sg","my"]
+    }
+};
 
 // 测试相关变量
 let quizType = '';
@@ -15,6 +45,7 @@ let currentQuestion = 0;
 let score = 0;
 let startTime = null;
 let timerInterval = null;
+let wrongAnswers = []; // 存储错题信息
 
 // 统计数据
 let stats = {
@@ -36,7 +67,6 @@ async function init() {
     loadStats();
     await loadCountriesData();
     setupEventListeners();
-    generateStyleFilters();
     displayFlags();
 }
 
@@ -100,15 +130,6 @@ function generateSampleData() {
     ];
 }
 
-// 生成风格筛选器
-function generateStyleFilters() {
-    const container = document.getElementById('styleFilters');
-    if (!container) return;
-    
-    container.innerHTML = stylesList.map(style => `
-        <button class="style-tag-btn" data-style="${style}">${style}</button>
-    `).join('');
-}
 
 // 设置事件监听
 function setupEventListeners() {
@@ -124,14 +145,13 @@ function setupEventListeners() {
     });
 
     // 大洲筛选
-    document.querySelectorAll('[data-continent]').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('[data-continent]').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            selectedContinent = btn.dataset.continent;
+    const continentSelect = document.getElementById('continentSelect');
+    if (continentSelect) {
+        continentSelect.addEventListener('change', (e) => {
+            selectedContinent = e.target.value;
             applyFilters();
         });
-    });
+    }
 
     // 排序方式
     document.querySelectorAll('[data-sort]').forEach(btn => {
@@ -139,33 +159,35 @@ function setupEventListeners() {
             document.querySelectorAll('[data-sort]').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             sortMethod = btn.dataset.sort;
-            
-            // 显示/隐藏风格筛选
-            const styleGroup = document.getElementById('styleFilterGroup');
-            if (sortMethod === 'style') {
-                styleGroup.style.display = 'block';
-            } else {
-                styleGroup.style.display = 'none';
-            }
-            
             applyFilters();
         });
     });
 
-    // 风格筛选（事件委托）
-    document.getElementById('styleFilters')?.addEventListener('click', (e) => {
-        if (e.target.classList.contains('style-tag-btn')) {
-            const style = e.target.dataset.style;
-            e.target.classList.toggle('active');
+    // 设计风格筛选
+    const styleSelect = document.getElementById('styleSelect');
+    if (styleSelect) {
+        styleSelect.addEventListener('change', (e) => {
+            // 清空之前的选择
+            selectedStyles.clear();
             
-            if (selectedStyles.has(style)) {
-                selectedStyles.delete(style);
-            } else {
-                selectedStyles.add(style);
-            }
+            // 获取选中的选项
+            const selectedOptions = Array.from(e.target.selectedOptions);
+            selectedOptions.forEach(option => {
+                selectedStyles.add(option.value);
+            });
+            
             applyFilters();
-        }
-    });
+        });
+    }
+
+    // 数据来源筛选
+    const dataSourceSelect = document.getElementById('dataSourceSelect');
+    if (dataSourceSelect) {
+        dataSourceSelect.addEventListener('change', (e) => {
+            selectedDataSource = e.target.value;
+            applyFilters();
+        });
+    }
 
     // 测试类型选择
     document.querySelectorAll('.quiz-type-card').forEach(card => {
@@ -224,6 +246,16 @@ function showSection(section) {
 function applyFilters() {
     filteredCountries = [...allCountries];
     
+    // 数据来源筛选
+    if (selectedDataSource !== 'all') {
+        const sourceCountries = dataSources[selectedDataSource].countries;
+        if (sourceCountries) {
+            filteredCountries = filteredCountries.filter(c => 
+                sourceCountries.includes(c.code)
+            );
+        }
+    }
+    
     // 搜索筛选
     if (searchTerm) {
         filteredCountries = filteredCountries.filter(c => 
@@ -256,7 +288,7 @@ function applyFilters() {
 function sortCountries() {
     switch (sortMethod) {
         case 'name':
-            filteredCountries.sort((a, b) => a.nameCN.localeCompare(b.nameCN));
+            filteredCountries.sort((a, b) => a.nameEN.localeCompare(b.nameEN));
             break;
         case 'continent':
             filteredCountries.sort((a, b) => {
@@ -274,7 +306,18 @@ function sortCountries() {
 
 // 更新统计
 function updateStats() {
-    document.getElementById('totalCount').textContent = allCountries.length;
+    // 根据当前数据来源计算总数
+    let totalCount = allCountries.length;
+    if (selectedDataSource !== 'all') {
+        const sourceCountries = dataSources[selectedDataSource].countries;
+        if (sourceCountries) {
+            totalCount = allCountries.filter(c => 
+                sourceCountries.includes(c.code)
+            ).length;
+        }
+    }
+    
+    document.getElementById('totalCount').textContent = totalCount;
     document.getElementById('filteredCount').textContent = filteredCountries.length;
 }
 
@@ -336,6 +379,9 @@ function startQuiz() {
     currentQuestion = 0;
     score = 0;
     startTime = Date.now();
+    
+    // 清空错题记录
+    wrongAnswers = [];
     
     // 显示游戏界面
     document.getElementById('quiz-start').style.display = 'none';
@@ -444,6 +490,18 @@ function checkAnswer(selected, correct) {
     
     if (selected === correct) {
         score++;
+    } else {
+        // 记录错题信息
+        const currentQ = questions[currentQuestion];
+        const selectedCountry = currentQ.options.find(opt => opt.code === selected);
+        
+        wrongAnswers.push({
+            questionIndex: currentQuestion + 1,
+            questionType: quizType,
+            correctCountry: currentQ.correct,
+            selectedCountry: selectedCountry,
+            options: currentQ.options
+        });
     }
     
     // 1.5秒后显示下一题
@@ -497,6 +555,9 @@ function endQuiz() {
         message = '没关系，学习需要时间，继续努力！🌟';
     }
     document.getElementById('resultMessage').textContent = message;
+    
+    // 显示错题详情
+    displayWrongAnswers();
 }
 
 // 计时器
@@ -528,6 +589,85 @@ function updateStatsDisplay() {
 
 // 将checkAnswer暴露到全局
 window.checkAnswer = checkAnswer;
+
+// 显示错题详情
+function displayWrongAnswers() {
+    const wrongSection = document.getElementById('wrong-answers-section');
+    const container = document.getElementById('wrong-answers-container');
+    
+    if (wrongAnswers.length === 0) {
+        wrongSection.style.display = 'none';
+        return;
+    }
+    
+    wrongSection.style.display = 'block';
+    container.innerHTML = wrongAnswers.map(wrong => {
+        if (wrong.questionType === 'flag-to-country') {
+            return generateFlagToCountryWrongHTML(wrong);
+        } else {
+            return generateCountryToFlagWrongHTML(wrong);
+        }
+    }).join('');
+}
+
+// 生成"看国旗选国家"类型错题的HTML
+function generateFlagToCountryWrongHTML(wrong) {
+    return `
+        <div class="wrong-answer-item">
+            <div class="wrong-question-header">
+                <span class="wrong-question-number">第 ${wrong.questionIndex} 题</span>
+                <span class="wrong-question-type">看国旗选国家</span>
+            </div>
+            <div class="wrong-question-content">
+                <img src="../pics/${wrong.correctCountry.code}.png" 
+                     class="wrong-flag"
+                     alt="国旗"
+                     onerror="this.src='https://via.placeholder.com/200x120/f0f0f0/999?text=${wrong.correctCountry.code.toUpperCase()}'">
+                <div class="wrong-answer-info">
+                    <div class="correct-answer">
+                        <span class="answer-label">正确答案：</span>
+                        <span class="answer-text correct">${wrong.correctCountry.nameCN}</span>
+                    </div>
+                    <div class="wrong-answer">
+                        <span class="answer-label">你的答案：</span>
+                        <span class="answer-text wrong">${wrong.selectedCountry.nameCN}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// 生成"看国家选国旗"类型错题的HTML
+function generateCountryToFlagWrongHTML(wrong) {
+    return `
+        <div class="wrong-answer-item">
+            <div class="wrong-question-header">
+                <span class="wrong-question-number">第 ${wrong.questionIndex} 题</span>
+                <span class="wrong-question-type">看国家选国旗</span>
+            </div>
+            <div class="wrong-question-content">
+                <div class="country-name">${wrong.correctCountry.nameCN}</div>
+                <div class="flags-comparison">
+                    <div class="flag-option correct">
+                        <div class="flag-label">正确答案</div>
+                        <img src="../pics/${wrong.correctCountry.code}.png" 
+                             class="comparison-flag"
+                             alt="正确国旗"
+                             onerror="this.src='https://via.placeholder.com/150x100/f0f0f0/999?text=${wrong.correctCountry.code.toUpperCase()}'">
+                    </div>
+                    <div class="flag-option wrong">
+                        <div class="flag-label">你的选择</div>
+                        <img src="../pics/${wrong.selectedCountry.code}.png" 
+                             class="comparison-flag"
+                             alt="错误国旗"
+                             onerror="this.src='https://via.placeholder.com/150x100/f0f0f0/999?text=${wrong.selectedCountry.code.toUpperCase()}'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
 
 // 初始化应用
 window.addEventListener('DOMContentLoaded', init);
