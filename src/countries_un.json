@@ -1,0 +1,1359 @@
+{
+  "countries": [
+    {
+      "code": "al",
+      "nameCN": "阿尔巴尼亚",
+      "nameEN": "Albania",
+      "continent": "欧洲",
+      "styles": ["纯色"]
+    },
+    {
+      "code": "dz",
+      "nameCN": "阿尔及利亚",
+      "nameEN": "Algeria",
+      "continent": "非洲",
+      "styles": ["月牙", "星星", "垂直条纹", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "af",
+      "nameCN": "阿富汗",
+      "nameEN": "Afghanistan",
+      "continent": "亚洲",
+      "styles": ["复杂徽章", "垂直条纹", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "ar",
+      "nameCN": "阿根廷",
+      "nameEN": "Argentina",
+      "continent": "南美洲",
+      "styles": ["水平条纹", "太阳"]
+    },
+    {
+      "code": "ae",
+      "nameCN": "阿联酋",
+      "nameEN": "United Arab Emirates",
+      "continent": "亚洲",
+      "styles": ["水平条纹", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "om",
+      "nameCN": "阿曼",
+      "nameEN": "Oman",
+      "continent": "亚洲",
+      "styles": ["水平条纹", "复杂徽章", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "az",
+      "nameCN": "阿塞拜疆",
+      "nameEN": "Azerbaijan",
+      "continent": "亚洲",
+      "styles": ["水平条纹", "月牙", "星星", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "eg",
+      "nameCN": "埃及",
+      "nameEN": "Egypt",
+      "continent": "非洲",
+      "styles": ["水平条纹", "复杂徽章", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "et",
+      "nameCN": "埃塞俄比亚",
+      "nameEN": "Ethiopia",
+      "continent": "非洲",
+      "styles": ["水平条纹", "星星", "泛非色彩"]
+    },
+    {
+      "code": "sz",
+      "nameCN": "斯威士兰",
+      "nameEN": "Eswatini",
+      "continent": "非洲",
+      "styles": ["水平条纹", "泛非色彩"]
+    },
+    {
+      "code": "ie",
+      "nameCN": "爱尔兰",
+      "nameEN": "Ireland",
+      "continent": "欧洲",
+      "styles": ["垂直条纹", "纯色"]
+    },
+    {
+      "code": "ee",
+      "nameCN": "爱沙尼亚",
+      "nameEN": "Estonia",
+      "continent": "欧洲",
+      "styles": ["水平条纹", "纯色"]
+    },
+    {
+      "code": "ad",
+      "nameCN": "安道尔",
+      "nameEN": "Andorra",
+      "continent": "欧洲",
+      "styles": ["垂直条纹", "复杂徽章"]
+    },
+    {
+      "code": "ao",
+      "nameCN": "安哥拉",
+      "nameEN": "Angola",
+      "continent": "非洲",
+      "styles": ["水平条纹", "星星", "泛非色彩"]
+    },
+    {
+      "code": "ag",
+      "nameCN": "安提瓜和巴布达",
+      "nameEN": "Antigua and Barbuda",
+      "continent": "北美洲",
+      "styles": ["太阳", "水平条纹", "几何图形"]
+    },
+    {
+      "code": "at",
+      "nameCN": "奥地利",
+      "nameEN": "Austria",
+      "continent": "欧洲",
+      "styles": ["水平条纹", "纯色"]
+    },
+    {
+      "code": "au",
+      "nameCN": "澳大利亚",
+      "nameEN": "Australia",
+      "continent": "大洋洲",
+      "styles": ["联合杰克", "星星"]
+    },
+    {
+      "code": "bb",
+      "nameCN": "巴巴多斯",
+      "nameEN": "Barbados",
+      "continent": "北美洲",
+      "styles": ["垂直条纹"]
+    },
+    {
+      "code": "pg",
+      "nameCN": "巴布亚新几内亚",
+      "nameEN": "Papua New Guinea",
+      "continent": "大洋洲",
+      "styles": ["星星", "对角条纹"]
+    },
+    {
+      "code": "bs",
+      "nameCN": "巴哈马",
+      "nameEN": "Bahamas",
+      "continent": "北美洲",
+      "styles": ["水平条纹"]
+    },
+    {
+      "code": "pk",
+      "nameCN": "巴基斯坦",
+      "nameEN": "Pakistan",
+      "continent": "亚洲",
+      "styles": ["月牙", "星星", "垂直条纹", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "py",
+      "nameCN": "巴拉圭",
+      "nameEN": "Paraguay",
+      "continent": "南美洲",
+      "styles": ["水平条纹", "复杂徽章"]
+    },
+    {
+      "code": "bh",
+      "nameCN": "巴林",
+      "nameEN": "Bahrain",
+      "continent": "亚洲",
+      "styles": ["水平条纹", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "pa",
+      "nameCN": "巴拿马",
+      "nameEN": "Panama",
+      "continent": "北美洲",
+      "styles": ["星星", "水平条纹", "几何图形"]
+    },
+    {
+      "code": "br",
+      "nameCN": "巴西",
+      "nameEN": "Brazil",
+      "continent": "南美洲",
+      "styles": ["星星", "几何图形", "复杂徽章"]
+    },
+    {
+      "code": "by",
+      "nameCN": "白俄罗斯",
+      "nameEN": "Belarus",
+      "continent": "欧洲",
+      "styles": ["水平条纹", "几何图形"]
+    },
+    {
+      "code": "bg",
+      "nameCN": "保加利亚",
+      "nameEN": "Bulgaria",
+      "continent": "欧洲",
+      "styles": ["水平条纹", "纯色"]
+    },
+    {
+      "code": "mk",
+      "nameCN": "北马其顿",
+      "nameEN": "North Macedonia",
+      "continent": "欧洲",
+      "styles": ["太阳", "几何图形"]
+    },
+    {
+      "code": "bj",
+      "nameCN": "贝宁",
+      "nameEN": "Benin",
+      "continent": "非洲",
+      "styles": ["水平条纹", "垂直条纹", "泛非色彩"]
+    },
+    {
+      "code": "be",
+      "nameCN": "比利时",
+      "nameEN": "Belgium",
+      "continent": "欧洲",
+      "styles": ["垂直条纹", "纯色"]
+    },
+    {
+      "code": "is",
+      "nameCN": "冰岛",
+      "nameEN": "Iceland",
+      "continent": "欧洲",
+      "styles": ["北欧十字", "水平条纹"]
+    },
+    {
+      "code": "pl",
+      "nameCN": "波兰",
+      "nameEN": "Poland",
+      "continent": "欧洲",
+      "styles": ["水平条纹", "纯色"]
+    },
+    {
+      "code": "ba",
+      "nameCN": "波黑",
+      "nameEN": "Bosnia and Herzegovina",
+      "continent": "欧洲",
+      "styles": ["星星", "几何图形", "对角条纹"]
+    },
+    {
+      "code": "bo",
+      "nameCN": "玻利维亚",
+      "nameEN": "Bolivia",
+      "continent": "南美洲",
+      "styles": ["水平条纹", "复杂徽章"]
+    },
+    {
+      "code": "bz",
+      "nameCN": "伯利兹",
+      "nameEN": "Belize",
+      "continent": "北美洲",
+      "styles": ["复杂徽章", "水平条纹"]
+    },
+    {
+      "code": "bw",
+      "nameCN": "博茨瓦纳",
+      "nameEN": "Botswana",
+      "continent": "非洲",
+      "styles": ["水平条纹", "几何图形"]
+    },
+    {
+      "code": "bt",
+      "nameCN": "不丹",
+      "nameEN": "Bhutan",
+      "continent": "亚洲",
+      "styles": ["对角条纹", "几何图形"]
+    },
+    {
+      "code": "bf",
+      "nameCN": "布基纳法索",
+      "nameEN": "Burkina Faso",
+      "continent": "非洲",
+      "styles": ["水平条纹", "星星", "泛非色彩"]
+    },
+    {
+      "code": "bi",
+      "nameCN": "布隆迪",
+      "nameEN": "Burundi",
+      "continent": "非洲",
+      "styles": ["星星", "几何图形", "泛非色彩"]
+    },
+    {
+      "code": "kp",
+      "nameCN": "朝鲜",
+      "nameEN": "North Korea",
+      "continent": "亚洲",
+      "styles": ["星星", "水平条纹"]
+    },
+    {
+      "code": "gq",
+      "nameCN": "赤道几内亚",
+      "nameEN": "Equatorial Guinea",
+      "continent": "非洲",
+      "styles": ["水平条纹", "星星", "复杂徽章"]
+    },
+    {
+      "code": "gb",
+      "nameCN": "英国",
+      "nameEN": "United Kingdom",
+      "continent": "欧洲",
+      "styles": ["联合杰克", "十字"]
+    },
+    {
+      "code": "kr",
+      "nameCN": "韩国",
+      "nameEN": "South Korea",
+      "continent": "亚洲",
+      "styles": ["水平条纹"]
+    },
+    {
+      "code": "dk",
+      "nameCN": "丹麦",
+      "nameEN": "Denmark",
+      "continent": "欧洲",
+      "styles": ["北欧十字", "水平条纹"]
+    },
+    {
+      "code": "de",
+      "nameCN": "德国",
+      "nameEN": "Germany",
+      "continent": "欧洲",
+      "styles": ["水平条纹", "纯色"]
+    },
+    {
+      "code": "tl",
+      "nameCN": "东帝汶",
+      "nameEN": "Timor-Leste",
+      "continent": "亚洲",
+      "styles": ["水平条纹", "星星"]
+    },
+    {
+      "code": "tg",
+      "nameCN": "多哥",
+      "nameEN": "Togo",
+      "continent": "非洲",
+      "styles": ["水平条纹", "星星", "泛非色彩"]
+    },
+    {
+      "code": "do",
+      "nameCN": "多米尼加",
+      "nameEN": "Dominican Republic",
+      "continent": "北美洲",
+      "styles": ["十字", "复杂徽章", "水平条纹"]
+    },
+    {
+      "code": "dm",
+      "nameCN": "多米尼克",
+      "nameEN": "Dominica",
+      "continent": "北美洲",
+      "styles": ["水平条纹", "星星", "植物"]
+    },
+    {
+      "code": "ru",
+      "nameCN": "俄罗斯",
+      "nameEN": "Russia",
+      "continent": "欧洲",
+      "styles": ["水平条纹", "纯色"]
+    },
+    {
+      "code": "ec",
+      "nameCN": "厄瓜多尔",
+      "nameEN": "Ecuador",
+      "continent": "南美洲",
+      "styles": ["水平条纹", "复杂徽章", "太阳"]
+    },
+    {
+      "code": "er",
+      "nameCN": "厄立特里亚",
+      "nameEN": "Eritrea",
+      "continent": "非洲",
+      "styles": ["水平条纹", "几何图形", "泛非色彩"]
+    },
+    {
+      "code": "fr",
+      "nameCN": "法国",
+      "nameEN": "France",
+      "continent": "欧洲",
+      "styles": ["垂直条纹", "纯色"]
+    },
+    {
+      "code": "ph",
+      "nameCN": "菲律宾",
+      "nameEN": "Philippines",
+      "continent": "亚洲",
+      "styles": ["星星", "太阳", "水平条纹"]
+    },
+    {
+      "code": "fj",
+      "nameCN": "斐济",
+      "nameEN": "Fiji",
+      "continent": "大洋洲",
+      "styles": ["联合杰克", "复杂徽章", "水平条纹"]
+    },
+    {
+      "code": "fi",
+      "nameCN": "芬兰",
+      "nameEN": "Finland",
+      "continent": "欧洲",
+      "styles": ["北欧十字", "水平条纹"]
+    },
+    {
+      "code": "cv",
+      "nameCN": "佛得角",
+      "nameEN": "Cape Verde",
+      "continent": "非洲",
+      "styles": ["水平条纹", "星星"]
+    },
+    {
+      "code": "gm",
+      "nameCN": "冈比亚",
+      "nameEN": "Gambia",
+      "continent": "非洲",
+      "styles": ["水平条纹", "泛非色彩"]
+    },
+    {
+      "code": "cg",
+      "nameCN": "刚果(布)",
+      "nameEN": "Republic of the Congo",
+      "continent": "非洲",
+      "styles": ["对角条纹", "泛非色彩"]
+    },
+    {
+      "code": "cd",
+      "nameCN": "刚果(金)",
+      "nameEN": "Democratic Republic of the Congo",
+      "continent": "非洲",
+      "styles": ["星星", "对角条纹", "泛非色彩"]
+    },
+    {
+      "code": "co",
+      "nameCN": "哥伦比亚",
+      "nameEN": "Colombia",
+      "continent": "南美洲",
+      "styles": ["水平条纹", "纯色"]
+    },
+    {
+      "code": "cr",
+      "nameCN": "哥斯达黎加",
+      "nameEN": "Costa Rica",
+      "continent": "北美洲",
+      "styles": ["水平条纹", "复杂徽章"]
+    },
+    {
+      "code": "gd",
+      "nameCN": "格林纳达",
+      "nameEN": "Grenada",
+      "continent": "北美洲",
+      "styles": ["星星", "植物", "几何图形"]
+    },
+    {
+      "code": "ge",
+      "nameCN": "格鲁吉亚",
+      "nameEN": "Georgia",
+      "continent": "亚洲",
+      "styles": ["十字", "几何图形"]
+    },
+    {
+      "code": "cu",
+      "nameCN": "古巴",
+      "nameEN": "Cuba",
+      "continent": "北美洲",
+      "styles": ["水平条纹", "星星"]
+    },
+    {
+      "code": "gf",
+      "nameCN": "圭亚那",
+      "nameEN": "French Guiana",
+      "continent": "南美洲",
+      "styles": [
+        "水平条纹",
+        "星星",
+        "几何图形"
+      ]
+    },
+    {
+      "code": "kz",
+      "nameCN": "哈萨克斯坦",
+      "nameEN": "Kazakhstan",
+      "continent": "亚洲",
+      "styles": ["太阳", "垂直条纹", "几何图形"]
+    },
+    {
+      "code": "ht",
+      "nameCN": "海地",
+      "nameEN": "Haiti",
+      "continent": "北美洲",
+      "styles": ["水平条纹", "复杂徽章"]
+    },
+    {
+      "code": "nl",
+      "nameCN": "荷兰",
+      "nameEN": "Netherlands",
+      "continent": "欧洲",
+      "styles": ["水平条纹", "纯色"]
+    },
+    {
+      "code": "me",
+      "nameCN": "黑山",
+      "nameEN": "Montenegro",
+      "continent": "欧洲",
+      "styles": ["水平条纹", "纯色"]
+    },
+    {
+      "code": "hn",
+      "nameCN": "洪都拉斯",
+      "nameEN": "Honduras",
+      "continent": "北美洲",
+      "styles": ["水平条纹", "星星"]
+    },
+    {
+      "code": "ki",
+      "nameCN": "基里巴斯",
+      "nameEN": "Kiribati",
+      "continent": "大洋洲",
+      "styles": ["太阳", "水平条纹"]
+    },
+    {
+      "code": "dj",
+      "nameCN": "吉布提",
+      "nameEN": "Djibouti",
+      "continent": "非洲",
+      "styles": ["水平条纹", "星星", "几何图形"]
+    },
+    {
+      "code": "kg",
+      "nameCN": "吉尔吉斯斯坦",
+      "nameEN": "Kyrgyzstan",
+      "continent": "亚洲",
+      "styles": ["太阳", "垂直条纹"]
+    },
+    {
+      "code": "gn",
+      "nameCN": "几内亚",
+      "nameEN": "Guinea",
+      "continent": "非洲",
+      "styles": ["垂直条纹", "泛非色彩"]
+    },
+    {
+      "code": "gw",
+      "nameCN": "几内亚比绍",
+      "nameEN": "Guinea-Bissau",
+      "continent": "非洲",
+      "styles": ["水平条纹", "垂直条纹", "星星", "泛非色彩"]
+    },
+    {
+      "code": "ca",
+      "nameCN": "加拿大",
+      "nameEN": "Canada",
+      "continent": "北美洲",
+      "styles": ["植物", "垂直条纹"]
+    },
+    {
+      "code": "gh",
+      "nameCN": "加纳",
+      "nameEN": "Ghana",
+      "continent": "非洲",
+      "styles": ["水平条纹", "星星", "泛非色彩"]
+    },
+    {
+      "code": "ga",
+      "nameCN": "加蓬",
+      "nameEN": "Gabon",
+      "continent": "非洲",
+      "styles": ["水平条纹", "泛非色彩"]
+    },
+    {
+      "code": "kh",
+      "nameCN": "柬埔寨",
+      "nameEN": "Cambodia",
+      "continent": "亚洲",
+      "styles": ["复杂徽章", "水平条纹"]
+    },
+    {
+      "code": "cz",
+      "nameCN": "捷克",
+      "nameEN": "Czech Republic",
+      "continent": "欧洲",
+      "styles": ["水平条纹"]
+    },
+    {
+      "code": "zw",
+      "nameCN": "津巴布韦",
+      "nameEN": "Zimbabwe",
+      "continent": "非洲",
+      "styles": ["星星", "水平条纹", "几何图形", "泛非色彩"]
+    },
+    {
+      "code": "cm",
+      "nameCN": "喀麦隆",
+      "nameEN": "Cameroon",
+      "continent": "非洲",
+      "styles": ["星星", "垂直条纹", "泛非色彩"]
+    },
+    {
+      "code": "qa",
+      "nameCN": "卡塔尔",
+      "nameEN": "Qatar",
+      "continent": "亚洲",
+      "styles": ["水平条纹", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "km",
+      "nameCN": "科摩罗",
+      "nameEN": "Comoros",
+      "continent": "非洲",
+      "styles": ["月牙", "星星", "垂直条纹", "泛非色彩"]
+    },
+    {
+      "code": "ci",
+      "nameCN": "科特迪瓦",
+      "nameEN": "Côte d'Ivoire",
+      "continent": "非洲",
+      "styles": ["垂直条纹", "泛非色彩"]
+    },
+    {
+      "code": "kw",
+      "nameCN": "科威特",
+      "nameEN": "Kuwait",
+      "continent": "亚洲",
+      "styles": ["水平条纹", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "hr",
+      "nameCN": "克罗地亚",
+      "nameEN": "Croatia",
+      "continent": "欧洲",
+      "styles": ["水平条纹", "复杂徽章"]
+    },
+    {
+      "code": "ke",
+      "nameCN": "肯尼亚",
+      "nameEN": "Kenya",
+      "continent": "非洲",
+      "styles": ["水平条纹", "泛非色彩"]
+    },
+    {
+      "code": "lv",
+      "nameCN": "拉脱维亚",
+      "nameEN": "Latvia",
+      "continent": "欧洲",
+      "styles": ["水平条纹", "纯色"]
+    },
+    {
+      "code": "la",
+      "nameCN": "老挝",
+      "nameEN": "Laos",
+      "continent": "亚洲",
+      "styles": ["水平条纹"]
+    },
+    {
+      "code": "ls",
+      "nameCN": "莱索托",
+      "nameEN": "Lesotho",
+      "continent": "非洲",
+      "styles": ["水平条纹", "泛非色彩"]
+    },
+    {
+      "code": "lb",
+      "nameCN": "黎巴嫩",
+      "nameEN": "Lebanon",
+      "continent": "亚洲",
+      "styles": ["水平条纹", "垂直条纹", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "lt",
+      "nameCN": "立陶宛",
+      "nameEN": "Lithuania",
+      "continent": "欧洲",
+      "styles": ["水平条纹", "纯色"]
+    },
+    {
+      "code": "lr",
+      "nameCN": "利比里亚",
+      "nameEN": "Liberia",
+      "continent": "非洲",
+      "styles": ["水平条纹", "星星", "泛非色彩"]
+    },
+    {
+      "code": "ly",
+      "nameCN": "利比亚",
+      "nameEN": "Libya",
+      "continent": "非洲",
+      "styles": ["月牙", "星星", "水平条纹", "泛阿拉伯色彩", "纯色"]
+    },
+    {
+      "code": "li",
+      "nameCN": "列支敦士登",
+      "nameEN": "Liechtenstein",
+      "continent": "欧洲",
+      "styles": ["水平条纹", "复杂徽章"]
+    },
+    {
+      "code": "lu",
+      "nameCN": "卢森堡",
+      "nameEN": "Luxembourg",
+      "continent": "欧洲",
+      "styles": ["水平条纹", "纯色"]
+    },
+    {
+      "code": "rw",
+      "nameCN": "卢旺达",
+      "nameEN": "Rwanda",
+      "continent": "非洲",
+      "styles": ["太阳", "水平条纹", "泛非色彩"]
+    },
+    {
+      "code": "ro",
+      "nameCN": "罗马尼亚",
+      "nameEN": "Romania",
+      "continent": "欧洲",
+      "styles": ["垂直条纹", "纯色"]
+    },
+    {
+      "code": "mg",
+      "nameCN": "马达加斯加",
+      "nameEN": "Madagascar",
+      "continent": "非洲",
+      "styles": ["垂直条纹", "水平条纹", "泛非色彩"]
+    },
+    {
+      "code": "mv",
+      "nameCN": "马尔代夫",
+      "nameEN": "Maldives",
+      "continent": "亚洲",
+      "styles": ["月牙", "星星", "垂直条纹", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "mt",
+      "nameCN": "马耳他",
+      "nameEN": "Malta",
+      "continent": "欧洲",
+      "styles": ["十字", "复杂徽章", "纯色"]
+    },
+    {
+      "code": "mw",
+      "nameCN": "马拉维",
+      "nameEN": "Malawi",
+      "continent": "非洲",
+      "styles": ["太阳", "水平条纹", "泛非色彩"]
+    },
+    {
+      "code": "my",
+      "nameCN": "马来西亚",
+      "nameEN": "Malaysia",
+      "continent": "亚洲",
+      "styles": ["月牙", "星星", "水平条纹"]
+    },
+    {
+      "code": "ml",
+      "nameCN": "马里",
+      "nameEN": "Mali",
+      "continent": "非洲",
+      "styles": ["垂直条纹", "泛非色彩"]
+    },
+    {
+      "code": "mh",
+      "nameCN": "马绍尔群岛",
+      "nameEN": "Marshall Islands",
+      "continent": "大洋洲",
+      "styles": ["星星", "太阳", "对角条纹"]
+    },
+    {
+      "code": "mr",
+      "nameCN": "毛里塔尼亚",
+      "nameEN": "Mauritania",
+      "continent": "非洲",
+      "styles": ["月牙", "星星", "纯色", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "mu",
+      "nameCN": "毛里求斯",
+      "nameEN": "Mauritius",
+      "continent": "非洲",
+      "styles": ["水平条纹", "泛非色彩"]
+    },
+    {
+      "code": "us",
+      "nameCN": "美国",
+      "nameEN": "United States",
+      "continent": "北美洲",
+      "styles": ["星星", "水平条纹", "纯色"]
+    },
+    {
+      "code": "mn",
+      "nameCN": "蒙古",
+      "nameEN": "Mongolia",
+      "continent": "亚洲",
+      "styles": ["垂直条纹", "复杂徽章"]
+    },
+    {
+      "code": "bd",
+      "nameCN": "孟加拉国",
+      "nameEN": "Bangladesh",
+      "continent": "亚洲",
+      "styles": ["纯色"]
+    },
+    {
+      "code": "pe",
+      "nameCN": "秘鲁",
+      "nameEN": "Peru",
+      "continent": "南美洲",
+      "styles": ["垂直条纹", "纯色"]
+    },
+    {
+      "code": "fm",
+      "nameCN": "密克罗尼西亚",
+      "nameEN": "Micronesia",
+      "continent": "大洋洲",
+      "styles": ["星星", "几何图形"]
+    },
+    {
+      "code": "mm",
+      "nameCN": "缅甸",
+      "nameEN": "Myanmar",
+      "continent": "亚洲",
+      "styles": ["星星", "水平条纹"]
+    },
+    {
+      "code": "md",
+      "nameCN": "摩尔多瓦",
+      "nameEN": "Moldova",
+      "continent": "欧洲",
+      "styles": ["垂直条纹", "几何图形"]
+    },
+    {
+      "code": "ma",
+      "nameCN": "摩洛哥",
+      "nameEN": "Morocco",
+      "continent": "非洲",
+      "styles": ["纯色"]
+    },
+    {
+      "code": "mc",
+      "nameCN": "摩纳哥",
+      "nameEN": "Monaco",
+      "continent": "欧洲",
+      "styles": ["水平条纹", "纯色"]
+    },
+    {
+      "code": "mz",
+      "nameCN": "莫桑比克",
+      "nameEN": "Mozambique",
+      "continent": "非洲",
+      "styles": ["水平条纹", "星星", "泛非色彩"]
+    },
+    {
+      "code": "mx",
+      "nameCN": "墨西哥",
+      "nameEN": "Mexico",
+      "continent": "北美洲",
+      "styles": ["垂直条纹", "复杂徽章", "动物", "植物"]
+    },
+    {
+      "code": "na",
+      "nameCN": "纳米比亚",
+      "nameEN": "Namibia",
+      "continent": "非洲",
+      "styles": ["太阳", "水平条纹", "几何图形", "泛非色彩"]
+    },
+    {
+      "code": "za",
+      "nameCN": "南非",
+      "nameEN": "South Africa",
+      "continent": "非洲",
+      "styles": ["水平条纹", "垂直条纹", "几何图形", "泛非色彩"]
+    },
+    {
+      "code": "ss",
+      "nameCN": "南苏丹",
+      "nameEN": "South Sudan",
+      "continent": "非洲",
+      "styles": ["星星", "水平条纹", "泛非色彩"]
+    },
+    {
+      "code": "nr",
+      "nameCN": "瑙鲁",
+      "nameEN": "Nauru",
+      "continent": "大洋洲",
+      "styles": ["星星", "水平条纹", "太阳"]
+    },
+    {
+      "code": "np",
+      "nameCN": "尼泊尔",
+      "nameEN": "Nepal",
+      "continent": "亚洲",
+      "styles": ["太阳", "月牙", "几何图形"]
+    },
+    {
+      "code": "ni",
+      "nameCN": "尼加拉瓜",
+      "nameEN": "Nicaragua",
+      "continent": "北美洲",
+      "styles": ["水平条纹", "复杂徽章"]
+    },
+    {
+      "code": "ne",
+      "nameCN": "尼日尔",
+      "nameEN": "Niger",
+      "continent": "非洲",
+      "styles": ["水平条纹", "星星", "泛非色彩"]
+    },
+    {
+      "code": "ng",
+      "nameCN": "尼日利亚",
+      "nameEN": "Nigeria",
+      "continent": "非洲",
+      "styles": ["垂直条纹", "泛非色彩"]
+    },
+    {
+      "code": "no",
+      "nameCN": "挪威",
+      "nameEN": "Norway",
+      "continent": "欧洲",
+      "styles": ["北欧十字", "水平条纹"]
+    },
+    {
+      "code": "pw",
+      "nameCN": "帕劳",
+      "nameEN": "Palau",
+      "continent": "大洋洲",
+      "styles": ["纯色"]
+    },
+    {
+      "code": "pt",
+      "nameCN": "葡萄牙",
+      "nameEN": "Portugal",
+      "continent": "欧洲",
+      "styles": ["垂直条纹", "复杂徽章"]
+    },
+    {
+      "code": "jp",
+      "nameCN": "日本",
+      "nameEN": "Japan",
+      "continent": "亚洲",
+      "styles": ["太阳", "纯色"]
+    },
+    {
+      "code": "se",
+      "nameCN": "瑞典",
+      "nameEN": "Sweden",
+      "continent": "欧洲",
+      "styles": ["北欧十字", "水平条纹"]
+    },
+    {
+      "code": "ch",
+      "nameCN": "瑞士",
+      "nameEN": "Switzerland",
+      "continent": "欧洲",
+      "styles": ["十字", "纯色"]
+    },
+    {
+      "code": "sv",
+      "nameCN": "萨尔瓦多",
+      "nameEN": "El Salvador",
+      "continent": "北美洲",
+      "styles": ["水平条纹", "复杂徽章"]
+    },
+    {
+      "code": "ws",
+      "nameCN": "萨摩亚",
+      "nameEN": "Samoa",
+      "continent": "大洋洲",
+      "styles": ["水平条纹"]
+    },
+    {
+      "code": "rs",
+      "nameCN": "塞尔维亚",
+      "nameEN": "Serbia",
+      "continent": "欧洲",
+      "styles": ["水平条纹"]
+    },
+    {
+      "code": "sl",
+      "nameCN": "塞拉利昂",
+      "nameEN": "Sierra Leone",
+      "continent": "非洲",
+      "styles": ["水平条纹", "泛非色彩"]
+    },
+    {
+      "code": "sn",
+      "nameCN": "塞内加尔",
+      "nameEN": "Senegal",
+      "continent": "非洲",
+      "styles": ["星星", "垂直条纹", "泛非色彩"]
+    },
+    {
+      "code": "cy",
+      "nameCN": "塞浦路斯",
+      "nameEN": "Cyprus",
+      "continent": "欧洲",
+      "styles": ["水平条纹"]
+    },
+    {
+      "code": "sc",
+      "nameCN": "塞舌尔",
+      "nameEN": "Seychelles",
+      "continent": "非洲",
+      "styles": ["几何图形", "泛非色彩"]
+    },
+    {
+      "code": "sa",
+      "nameCN": "沙特阿拉伯",
+      "nameEN": "Saudi Arabia",
+      "continent": "亚洲",
+      "styles": ["水平条纹", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "kn",
+      "nameCN": "圣基茨和尼维斯",
+      "nameEN": "Saint Kitts and Nevis",
+      "continent": "北美洲",
+      "styles": ["星星", "对角条纹"]
+    },
+    {
+      "code": "st",
+      "nameCN": "圣多美和普林西比",
+      "nameEN": "São Tomé and Príncipe",
+      "continent": "非洲",
+      "styles": ["水平条纹", "星星", "泛非色彩"]
+    },
+    {
+      "code": "lc",
+      "nameCN": "圣卢西亚",
+      "nameEN": "Saint Lucia",
+      "continent": "北美洲",
+      "styles": ["垂直条纹", "几何图形"]
+    },
+    {
+      "code": "sm",
+      "nameCN": "圣马力诺",
+      "nameEN": "San Marino",
+      "continent": "欧洲",
+      "styles": ["水平条纹", "复杂徽章"]
+    },
+    {
+      "code": "vc",
+      "nameCN": "圣文森特和格林纳丁斯",
+      "nameEN": "Saint Vincent and the Grenadines",
+      "continent": "北美洲",
+      "styles": ["垂直条纹", "泛非色彩"]
+    },
+    {
+      "code": "lk",
+      "nameCN": "斯里兰卡",
+      "nameEN": "Sri Lanka",
+      "continent": "亚洲",
+      "styles": ["垂直条纹", "复杂徽章", "植物"]
+    },
+    {
+      "code": "sk",
+      "nameCN": "斯洛伐克",
+      "nameEN": "Slovakia",
+      "continent": "欧洲",
+      "styles": ["水平条纹", "复杂徽章"]
+    },
+    {
+      "code": "si",
+      "nameCN": "斯洛文尼亚",
+      "nameEN": "Slovenia",
+      "continent": "欧洲",
+      "styles": ["水平条纹", "复杂徽章"]
+    },
+    {
+      "code": "sd",
+      "nameCN": "苏丹",
+      "nameEN": "Sudan",
+      "continent": "非洲",
+      "styles": ["水平条纹", "星星", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "sr",
+      "nameCN": "苏里南",
+      "nameEN": "Suriname",
+      "continent": "南美洲",
+      "styles": ["星星", "水平条纹", "泛非色彩"]
+    },
+    {
+      "code": "sb",
+      "nameCN": "所罗门群岛",
+      "nameEN": "Solomon Islands",
+      "continent": "大洋洲",
+      "styles": ["星星", "对角条纹"]
+    },
+    {
+      "code": "so",
+      "nameCN": "索马里",
+      "nameEN": "Somalia",
+      "continent": "非洲",
+      "styles": ["星星", "纯色", "泛非色彩"]
+    },
+    {
+      "code": "tj",
+      "nameCN": "塔吉克斯坦",
+      "nameEN": "Tajikistan",
+      "continent": "亚洲",
+      "styles": ["水平条纹", "星星", "复杂徽章", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "th",
+      "nameCN": "泰国",
+      "nameEN": "Thailand",
+      "continent": "亚洲",
+      "styles": ["水平条纹", "纯色"]
+    },
+    {
+      "code": "tz",
+      "nameCN": "坦桑尼亚",
+      "nameEN": "Tanzania",
+      "continent": "非洲",
+      "styles": ["对角条纹", "水平条纹", "泛非色彩"]
+    },
+    {
+      "code": "to",
+      "nameCN": "汤加",
+      "nameEN": "Tonga",
+      "continent": "大洋洲",
+      "styles": ["十字", "纯色"]
+    },
+    {
+      "code": "tt",
+      "nameCN": "特立尼达和多巴哥",
+      "nameEN": "Trinidad and Tobago",
+      "continent": "北美洲",
+      "styles": ["对角条纹", "水平条纹", "几何图形"]
+    },
+    {
+      "code": "tn",
+      "nameCN": "突尼斯",
+      "nameEN": "Tunisia",
+      "continent": "非洲",
+      "styles": ["月牙", "星星", "纯色", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "tv",
+      "nameCN": "图瓦卢",
+      "nameEN": "Tuvalu",
+      "continent": "大洋洲",
+      "styles": ["联合杰克", "星星"]
+    },
+    {
+      "code": "tr",
+      "nameCN": "土耳其",
+      "nameEN": "Turkey",
+      "continent": "亚洲",
+      "styles": ["月牙", "星星", "纯色"]
+    },
+    {
+      "code": "tm",
+      "nameCN": "土库曼斯坦",
+      "nameEN": "Turkmenistan",
+      "continent": "亚洲",
+      "styles": ["垂直条纹", "复杂徽章", "星星", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "vu",
+      "nameCN": "瓦努阿图",
+      "nameEN": "Vanuatu",
+      "continent": "大洋洲",
+      "styles": ["水平条纹", "动物", "几何图形"]
+    },
+    {
+      "code": "gt",
+      "nameCN": "危地马拉",
+      "nameEN": "Guatemala",
+      "continent": "北美洲",
+      "styles": ["垂直条纹", "复杂徽章"]
+    },
+    {
+      "code": "ve",
+      "nameCN": "委内瑞拉",
+      "nameEN": "Venezuela",
+      "continent": "南美洲",
+      "styles": ["水平条纹", "星星", "复杂徽章"]
+    },
+    {
+      "code": "bn",
+      "nameCN": "文莱",
+      "nameEN": "Brunei",
+      "continent": "亚洲",
+      "styles": ["水平条纹", "复杂徽章"]
+    },
+    {
+      "code": "ug",
+      "nameCN": "乌干达",
+      "nameEN": "Uganda",
+      "continent": "非洲",
+      "styles": ["水平条纹", "动物", "泛非色彩"]
+    },
+    {
+      "code": "ua",
+      "nameCN": "乌克兰",
+      "nameEN": "Ukraine",
+      "continent": "欧洲",
+      "styles": ["水平条纹", "纯色"]
+    },
+    {
+      "code": "uy",
+      "nameCN": "乌拉圭",
+      "nameEN": "Uruguay",
+      "continent": "南美洲",
+      "styles": ["水平条纹", "太阳"]
+    },
+    {
+      "code": "uz",
+      "nameCN": "乌兹别克斯坦",
+      "nameEN": "Uzbekistan",
+      "continent": "亚洲",
+      "styles": ["水平条纹", "星星", "月牙", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "es",
+      "nameCN": "西班牙",
+      "nameEN": "Spain",
+      "continent": "欧洲",
+      "styles": ["水平条纹", "复杂徽章"]
+    },
+    {
+      "code": "gr",
+      "nameCN": "希腊",
+      "nameEN": "Greece",
+      "continent": "欧洲",
+      "styles": ["水平条纹", "十字"]
+    },
+    {
+      "code": "sg",
+      "nameCN": "新加坡",
+      "nameEN": "Singapore",
+      "continent": "亚洲",
+      "styles": ["月牙", "星星", "水平条纹"]
+    },
+    {
+      "code": "nz",
+      "nameCN": "新西兰",
+      "nameEN": "New Zealand",
+      "continent": "大洋洲",
+      "styles": ["联合杰克", "星星"]
+    },
+    {
+      "code": "hu",
+      "nameCN": "匈牙利",
+      "nameEN": "Hungary",
+      "continent": "欧洲",
+      "styles": ["水平条纹", "纯色"]
+    },
+    {
+      "code": "sy",
+      "nameCN": "叙利亚",
+      "nameEN": "Syria",
+      "continent": "亚洲",
+      "styles": ["水平条纹", "星星", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "jm",
+      "nameCN": "牙买加",
+      "nameEN": "Jamaica",
+      "continent": "北美洲",
+      "styles": ["对角条纹", "几何图形"]
+    },
+    {
+      "code": "am",
+      "nameCN": "亚美尼亚",
+      "nameEN": "Armenia",
+      "continent": "亚洲",
+      "styles": ["水平条纹", "纯色"]
+    },
+    {
+      "code": "ye",
+      "nameCN": "也门",
+      "nameEN": "Yemen",
+      "continent": "亚洲",
+      "styles": ["水平条纹", "纯色", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "iq",
+      "nameCN": "伊拉克",
+      "nameEN": "Iraq",
+      "continent": "亚洲",
+      "styles": ["水平条纹", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "ir",
+      "nameCN": "伊朗",
+      "nameEN": "Iran",
+      "continent": "亚洲",
+      "styles": ["水平条纹", "复杂徽章", "月牙", "星星"]
+    },
+    {
+      "code": "il",
+      "nameCN": "以色列",
+      "nameEN": "Israel",
+      "continent": "亚洲",
+      "styles": ["水平条纹"]
+    },
+    {
+      "code": "it",
+      "nameCN": "意大利",
+      "nameEN": "Italy",
+      "continent": "欧洲",
+      "styles": ["垂直条纹", "纯色"]
+    },
+    {
+      "code": "in",
+      "nameCN": "印度",
+      "nameEN": "India",
+      "continent": "亚洲",
+      "styles": ["垂直条纹", "纯色"]
+    },
+    {
+      "code": "id",
+      "nameCN": "印度尼西亚",
+      "nameEN": "Indonesia",
+      "continent": "亚洲",
+      "styles": ["水平条纹", "纯色"]
+    },
+    {
+      "code": "jo",
+      "nameCN": "约旦",
+      "nameEN": "Jordan",
+      "continent": "亚洲",
+      "styles": ["水平条纹", "星星", "泛阿拉伯色彩"]
+    },
+    {
+      "code": "vn",
+      "nameCN": "越南",
+      "nameEN": "Vietnam",
+      "continent": "亚洲",
+      "styles": ["星星", "纯色"]
+    },
+    {
+      "code": "zm",
+      "nameCN": "赞比亚",
+      "nameEN": "Zambia",
+      "continent": "非洲",
+      "styles": ["垂直条纹", "泛非色彩"]
+    },
+    {
+      "code": "td",
+      "nameCN": "乍得",
+      "nameEN": "Chad",
+      "continent": "非洲",
+      "styles": ["垂直条纹", "纯色"]
+    },
+    {
+      "code": "cl",
+      "nameCN": "智利",
+      "nameEN": "Chile",
+      "continent": "南美洲",
+      "styles": ["水平条纹", "星星"]
+    },
+    {
+      "code": "cf",
+      "nameCN": "中非共和国",
+      "nameEN": "Central African Republic",
+      "continent": "非洲",
+      "styles": ["水平条纹", "垂直条纹", "星星"]
+    },
+    {
+      "code": "cn",
+      "nameCN": "中国",
+      "nameEN": "China",
+      "continent": "亚洲",
+      "styles": ["星星", "纯色"]
+    }
+  ]
+}

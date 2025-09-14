@@ -86,7 +86,7 @@ function saveStats() {
 // 加载国家数据
 async function loadCountriesData() {
     try {
-        const response = await fetch('countries.json');
+        const response = await fetch('countries_un.json');
         if (response.ok) {
             const data = await response.json();
             allCountries = data.countries;
