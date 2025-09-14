@@ -163,22 +163,25 @@ function setupEventListeners() {
         });
     });
 
-    // 设计风格筛选
-    const styleSelect = document.getElementById('styleSelect');
-    if (styleSelect) {
-        styleSelect.addEventListener('change', (e) => {
-            // 清空之前的选择
-            selectedStyles.clear();
+    // 设计风格筛选 - 按钮多选
+    document.querySelectorAll('.style-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const style = btn.dataset.style;
             
-            // 获取选中的选项
-            const selectedOptions = Array.from(e.target.selectedOptions);
-            selectedOptions.forEach(option => {
-                selectedStyles.add(option.value);
-            });
+            if (selectedStyles.has(style)) {
+                // 如果已选中，则取消选中
+                selectedStyles.delete(style);
+                btn.classList.remove('selected');
+            } else {
+                // 如果未选中，则添加选中
+                selectedStyles.add(style);
+                btn.classList.add('selected');
+            }
             
+            // 应用筛选
             applyFilters();
         });
-    }
+    });
 
     // 数据来源筛选
     const dataSourceSelect = document.getElementById('dataSourceSelect');
@@ -211,7 +214,7 @@ function setupEventListeners() {
     // 开始测试
     document.getElementById('startQuizBtn')?.addEventListener('click', startQuiz);
     document.getElementById('retryBtn')?.addEventListener('click', startQuiz);
-    document.getElementById('backBtn')?.addEventListener('click', () => showSection('browse'));
+    document.getElementById('backBtn')?.addEventListener('click', () => showSection('quiz'));
 
     // 清除统计
     document.getElementById('clearStatsBtn')?.addEventListener('click', () => {
@@ -240,6 +243,42 @@ function showSection(section) {
     document.getElementById('browse-section').style.display = section === 'browse' ? 'block' : 'none';
     document.getElementById('quiz-section').style.display = section === 'quiz' ? 'block' : 'none';
     document.getElementById('stats-section').style.display = section === 'stats' ? 'block' : 'none';
+    
+    // 如果切换到知识测试界面，重置测试状态
+    if (section === 'quiz') {
+        // 重置测试界面状态
+        document.getElementById('quiz-start').style.display = 'block';
+        document.getElementById('quiz-game').style.display = 'none';
+        document.getElementById('quiz-result').style.display = 'none';
+        
+        // 重置测试变量
+        quizType = '';
+        difficulty = 'easy';
+        questions = [];
+        currentQuestion = 0;
+        score = 0;
+        wrongAnswers = [];
+        
+        // 重置测试类型选择
+        document.querySelectorAll('.quiz-type-card').forEach(card => {
+            card.classList.remove('selected');
+        });
+        
+        // 重置难度选择
+        document.querySelectorAll('.difficulty-btn').forEach(btn => {
+            btn.classList.remove('selected');
+        });
+        document.querySelector('.difficulty-btn[data-difficulty="easy"]').classList.add('selected');
+        
+        // 隐藏开始测试按钮
+        document.getElementById('startQuizBtn').style.display = 'none';
+        
+        // 清除计时器
+        if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+    }
 }
 
 // 应用筛选
