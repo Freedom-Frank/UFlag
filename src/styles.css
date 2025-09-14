@@ -462,14 +462,26 @@ nav {
     75% { transform: translateX(5px); }
 }
 
-.option-flag {
+/* 国旗选项容器 - 使用固定宽高比 */
+.option-flag-container {
+    position: relative;
     width: 100%;
-    height: 60px;
-    object-fit: contain;
-    border-radius: 6px;
+    padding-bottom: 66.67%; /* 3:2 宽高比 */
     margin-bottom: 10px;
     background: #f8f9fa;
     border: 1px solid #e9ecef;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.option-flag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 4px;
 }
 
 /* Results */

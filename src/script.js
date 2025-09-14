@@ -501,10 +501,12 @@ function showQuestion() {
         
         optionsContainer.innerHTML = q.options.map(opt => `
             <button class="option-btn" onclick="checkAnswer('${opt.code}', '${q.correct.code}')">
-                <img src="../pics/${opt.code}.png" 
-                        class="option-flag"
-                        alt="${opt.nameCN}"
-                        onerror="this.src='https://via.placeholder.com/200x80/f0f0f0/999?text= ${opt.code.toUpperCase()}'">
+                <div class="option-flag-container">
+                    <img src="../pics/${opt.code}.png" 
+                            class="option-flag"
+                            alt="${opt.nameCN}"
+                            onerror="this.src='https://via.placeholder.com/200x120/f0f0f0/999?text= ${opt.code.toUpperCase()}'">
+                </div>
             </button>
         `).join('');
     }
