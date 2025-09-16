@@ -382,7 +382,7 @@ function displayFlags() {
         
         return `
             <div class="flag-card">
-                <img src="../pics/${country.code}.png" 
+                <img src="pics/${country.code}.png" 
                         alt="${country.nameCN}" 
                         class="flag-img"
                         onerror="this.src='https://via.placeholder.com/200x140/f0f0f0/999?text= ${country.code.toUpperCase()}'">
@@ -481,7 +481,7 @@ function showQuestion() {
     if (quizType === 'flag-to-country') {
         // 显示国旗，选择国家
         questionContent.innerHTML = `
-            <img src="../pics/${q.correct.code}.png" 
+            <img src="pics/${q.correct.code}.png" 
                     class="question-flag"
                     alt="国旗"
                     onerror="this.src='https://via.placeholder.com/360x240/f0f0f0/999?text= ${q.correct.code.toUpperCase()}'">
@@ -502,7 +502,7 @@ function showQuestion() {
         optionsContainer.innerHTML = q.options.map(opt => `
             <button class="option-btn" onclick="checkAnswer('${opt.code}', '${q.correct.code}')">
                 <div class="option-flag-container">
-                    <img src="../pics/${opt.code}.png" 
+                    <img src="pics/${opt.code}.png" 
                             class="option-flag"
                             alt="${opt.nameCN}"
                             onerror="this.src='https://via.placeholder.com/200x120/f0f0f0/999?text= ${opt.code.toUpperCase()}'">
