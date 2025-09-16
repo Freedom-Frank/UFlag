@@ -92,7 +92,7 @@ async function loadCountriesData() {
             allCountries = data.countries;
             console.log(`成功加载 ${allCountries.length} 个国家数据`);
         } else {
-            throw new Error('无法加载countries.json');
+            throw new Error('无法加载countries_un.json');
         }
     } catch (error) {
         console.log('使用示例数据:', error.message);

@@ -1,0 +1,8 @@
+{
+  "build": {
+    "files": ["src/**", "pics/**"]
+  },
+  "routes": [
+    { "src": "/(.*)", "dest": "/src/$1" }
+  ]
+}

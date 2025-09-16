@@ -1354,6 +1354,26 @@
       "nameEN": "China",
       "continent": "亚洲",
       "styles": ["星星", "纯色"]
+    },
+    {
+      "code": "va",
+      "nameCN": "梵蒂冈",
+      "nameEN": "Vatican City",
+      "continent": "欧洲",
+      "styles": [
+        "垂直条纹",
+        "复杂徽章"
+      ]
+    },
+    {
+      "code": "ps",
+      "nameCN": "巴勒斯坦",
+      "nameEN": "Palestine",
+      "continent": "亚洲",
+      "styles": [
+        "水平条纹",
+        "泛阿拉伯色彩"
+      ]
     }
   ]
 }
