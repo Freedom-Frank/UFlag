@@ -15,9 +15,29 @@ const dataSources = {
         countries: null 
     },
     un: { 
-        name: '联合国成员国', 
-        countries: [
-            "af", "al", "dz", "ad", "ao", "ag", "ar", "am", "au", "at", "az", "bs", "bh", "bd", "bb", "by", "be", "bz", "bj", "bt", "bo", "ba", "bw", "br", "bn", "bg", "bf", "bi", "cv", "kh", "cm", "ca", "cf", "td", "cl", "cn", "co", "km", "cg", "cd", "cr", "ci", "hr", "cu", "cy", "cz", "dk", "dj", "dm", "do", "ec", "eg", "sv", "gq", "er", "ee", "sz", "et", "fj", "fi", "fr", "ga", "gm", "ge", "de", "gh", "gr", "gd", "gt", "gn", "gw", "gy", "ht", "hn", "hu", "is", "in", "id", "ir", "iq", "ie", "il", "it", "jm", "jp", "jo", "kz", "ke", "ki", "kw", "kg", "la", "lv", "lb", "ls", "lr", "ly", "li", "lt", "lu", "mg", "mw", "my", "mv", "ml", "mt", "mh", "mr", "mu", "mx", "fm", "md", "mc", "mn", "me", "ma", "mz", "mm", "na", "nr", "np", "nl", "nz", "ni", "ne", "ng", "kp", "mk", "no", "om", "pk", "pw", "pa", "pg", "py", "pe", "ph", "pl", "pt", "qa", "ro", "ru", "rw", "kn", "lc", "vc", "ws", "sm", "st", "sa", "sn", "rs", "sc", "sl", "sg", "sk", "si", "sb", "so", "za", "kr", "ss", "es", "lk", "sd", "sr", "se", "ch", "sy", "tj", "tz", "th", "tl", "tg", "to", "tt", "tn", "tr", "tm", "tv", "ug", "ua", "ae", "gb", "us", "uy", "uz", "vu", "ve", "vn", "ye", "zm", "zw"]
+    name: '联合国成员国', 
+    countries: [
+        "al", "dz", "af", "ar", "ae", "sy", "om", "az", "eg", "et", 
+        "ie", "ee", "ad", "ao", "ag", "at", "au", "bb", "pg", "bs", 
+        "pk", "py", "bh", "pa", "br", "by", "bg", "mk", "bj", "be", 
+        "pe", "is", "pl", "ba", "bz", "bw", "bt", "bf", "bi", "kp", 
+        "gq", "gb", "kr", "dk", "de", "tl", "tg", "do", "dm", "bo", 
+        "ru", "ec", "er", "fr", "ph", "fj", "fi", "cv", "gm", "cg", 
+        "cd", "co", "cr", "gd", "ge", "cu", "gy", "kz", "ht", "nl", 
+        "me", "hn", "ki", "dj", "kg", "gn", "gw", "ca", "gh", "ga", 
+        "kh", "cz", "zw", "cm", "qa", "km", "ci", "kw", "hr", "ke", 
+        "lv", "ls", "la", "lb", "lt", "lr", "ly", "li", "lu", "rw", 
+        "ro", "mg", "mv", "mt", "mw", "my", "ml", "mh", "mu", "mr", 
+        "us", "mn", "bd", "fm", "mm", "md", "ma", "mc", "mz", "mx", 
+        "na", "za", "ss", "nr", "np", "ni", "ne", "ng", "no", "pw", 
+        "pt", "jp", "se", "ch", "sv", "ws", "rs", "sl", "sn", "cy", 
+        "sc", "sa", "st", "kn", "lc", "sm", "vc", "lk", "sk", "si", 
+        "sz", "sd", "sr", "sb", "so", "tj", "th", "tz", "to", "tt", 
+        "tn", "tv", "tr", "tm", "vu", "gt", "ve", "bn", "ug", "ua", 
+        "uy", "uz", "es", "gr", "sg", "nz", "hu", "jm", "am", "ye", 
+        "iq", "ir", "il", "it", "in", "id", "jo", "vn", "zm", "td", 
+        "cl", "cf", "cn"
+        ]
     },
     g20: { 
         name: '二十国集团', 
