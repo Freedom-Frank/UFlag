@@ -488,6 +488,7 @@ function setupEventListeners() {
     // 导航按钮
     safeAddEventListener('browseBtn', 'click', () => showSection('browse'));
     safeAddEventListener('quizBtn', 'click', () => showSection('quiz'));
+    safeAddEventListener('memoryBtn', 'click', () => showSection('memory'));
     safeAddEventListener('statsBtn', 'click', () => showSection('stats'));
 
     // 搜索框
@@ -566,11 +567,6 @@ function setupEventListeners() {
             updateStatsDisplay();
         }
     });
-
-    // 记忆按钮事件
-    safeAddEventListener('memoryBtn', 'click', () => {
-        EnhancedMemorySystem.showMemory();
-    });
 }
 
 // 安全添加事件监听器
@@ -589,6 +585,7 @@ function showSection(section) {
     document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
     if (section === 'browse') safeSetClass('browseBtn', 'active');
     if (section === 'quiz') safeSetClass('quizBtn', 'active');
+    if (section === 'memory') safeSetClass('memoryBtn', 'active');
     if (section === 'stats') {
         safeSetClass('statsBtn', 'active');
         updateStatsDisplay();
@@ -597,12 +594,17 @@ function showSection(section) {
     // 显示对应区域
     safeSetDisplay('browse-section', section === 'browse' ? 'block' : 'none');
     safeSetDisplay('quiz-section', section === 'quiz' ? 'block' : 'none');
+    safeSetDisplay('memory-section', section === 'memory' ? 'block' : 'none');
     safeSetDisplay('stats-section', section === 'stats' ? 'block' : 'none');
-    safeSetDisplay('memory-section', 'none'); // 隐藏记忆训练页面
     
     // 重置测试状态
     if (section === 'quiz') {
         resetQuizState();
+    }
+    
+    // 处理记忆训练区域
+    if (section === 'memory') {
+        EnhancedMemorySystem.showMemory();
     }
 }
 
@@ -737,38 +739,61 @@ function displayFlags() {
     if (!container) return;
     
     if (filteredCountries.length === 0) {
-        container.innerHTML = `
-            <div class="empty-state" style="grid-column: 1/-1;">
-                <div class="empty-icon">🔍</div>
-                <h3>没有找到匹配的国旗</h3>
-                <p>请尝试调整筛选条件</p>
-            </div>
-        `;
+        const emptyTemplate = document.getElementById('empty-state-template');
+        if (emptyTemplate) {
+            container.innerHTML = '';
+            container.appendChild(emptyTemplate.content.cloneNode(true));
+        }
         return;
     }
     
-    container.innerHTML = filteredCountries.map(country => {
-        const styleTags = country.styles ? country.styles.slice(0, 3).map(s => 
-            `<span class="flag-tag">${s}</span>`
-        ).join('') : '';
+    const flagTemplate = document.getElementById('flag-card-template');
+    if (!flagTemplate) return;
+    
+    container.innerHTML = '';
+    
+    filteredCountries.forEach(country => {
+        const flagCard = flagTemplate.content.cloneNode(true);
         
-        return `
-            <div class="flag-card">
-                <img src="pics/${country.code}.png" 
-                        alt="${country.nameCN}" 
-                        class="flag-img"
-                        onerror="this.src='https://via.placeholder.com/200x140/f0f0f0/999?text=${country.code.toUpperCase()}'">
-                <div class="flag-info">
-                    <div class="flag-name-cn">${country.nameCN}</div>
-                    <div class="flag-name-en">${country.nameEN}</div>
-                    <div class="flag-tags">
-                        <span class="flag-tag">${country.continent}</span>
-                        ${styleTags}
-                    </div>
-                </div>
-            </div>
-        `;
-    }).join('');
+        // 设置图片
+        const img = flagCard.querySelector('.flag-img');
+        if (img) {
+            img.src = `pics/${country.code}.png`;
+            img.alt = country.nameCN;
+            img.onerror = function() {
+                this.src = `https://via.placeholder.com/200x140/f0f0f0/999?text=${country.code.toUpperCase()}`;
+            };
+        }
+        
+        // 设置国家名称
+        const nameCN = flagCard.querySelector('.flag-name-cn');
+        if (nameCN) nameCN.textContent = country.nameCN;
+        
+        const nameEN = flagCard.querySelector('.flag-name-en');
+        if (nameEN) nameEN.textContent = country.nameEN;
+        
+        // 设置标签
+        const continentTag = flagCard.querySelector('.continent-tag');
+        if (continentTag) {
+            continentTag.textContent = country.continent;
+        }
+        
+        // 设置风格标签
+        const styleTag = flagCard.querySelector('.style-tag');
+        if (styleTag && country.styles && country.styles.length > 0) {
+            styleTag.textContent = country.styles[0];
+            // 添加更多风格标签
+            for (let i = 1; i < Math.min(country.styles.length, 3); i++) {
+                const newStyleTag = styleTag.cloneNode();
+                newStyleTag.textContent = country.styles[i];
+                styleTag.parentNode.appendChild(newStyleTag);
+            }
+        } else if (styleTag) {
+            styleTag.style.display = 'none';
+        }
+        
+        container.appendChild(flagCard);
+    });
 }
 
 // 开始测试
@@ -844,34 +869,71 @@ function showQuestion() {
     if (!questionContent || !optionsContainer) return;
     
     if (quizType === 'flag-to-country') {
-        questionContent.innerHTML = `
-            <img src="pics/${q.correct.code}.png" 
-                    class="question-flag"
-                    alt="国旗"
-                    onerror="this.src='https://via.placeholder.com/360x240/f0f0f0/999?text=${q.correct.code.toUpperCase()}'">
-            <p class="question-text">这是哪个国家的国旗？</p>
-        `;
+        // 使用国旗到国家模板
+        const flagTemplate = document.getElementById('question-flag-template');
+        if (flagTemplate) {
+            questionContent.innerHTML = '';
+            const templateContent = flagTemplate.content.cloneNode(true);
+            const img = templateContent.querySelector('.question-flag');
+            if (img) {
+                img.src = `pics/${q.correct.code}.png`;
+                img.alt = '国旗';
+                img.onerror = function() {
+                    this.src = `https://via.placeholder.com/360x240/f0f0f0/999?text=${q.correct.code.toUpperCase()}`;
+                };
+            }
+            questionContent.appendChild(templateContent);
+        }
         
-        optionsContainer.innerHTML = q.options.map(opt => `
-            <button class="option-btn" onclick="checkAnswer('${opt.code}', '${q.correct.code}')">
-                ${opt.nameCN}
-            </button>
-        `).join('');
+        // 使用选项按钮模板
+        const buttonTemplate = document.getElementById('option-button-template');
+        if (buttonTemplate) {
+            optionsContainer.innerHTML = '';
+            q.options.forEach(opt => {
+                const buttonContent = buttonTemplate.content.cloneNode(true);
+                const button = buttonContent.querySelector('.option-btn');
+                const textSpan = buttonContent.querySelector('.option-text');
+                
+                if (button && textSpan) {
+                    button.onclick = () => checkAnswer(opt.code, q.correct.code);
+                    textSpan.textContent = opt.nameCN;
+                    optionsContainer.appendChild(buttonContent);
+                }
+            });
+        }
     } else {
-        questionContent.innerHTML = `
-            <p class="question-text">请选择 ${q.correct.nameCN} 的国旗</p>
-        `;
+        // 使用国家到国旗模板
+        const countryTemplate = document.getElementById('question-country-template');
+        if (countryTemplate) {
+            questionContent.innerHTML = '';
+            const templateContent = countryTemplate.content.cloneNode(true);
+            const countryName = templateContent.querySelector('.country-name');
+            if (countryName) {
+                countryName.textContent = q.correct.nameCN;
+            }
+            questionContent.appendChild(templateContent);
+        }
         
-        optionsContainer.innerHTML = q.options.map(opt => `
-            <button class="option-btn" onclick="checkAnswer('${opt.code}', '${q.correct.code}')">
-                <div class="option-flag-container">
-                    <img src="pics/${opt.code}.png" 
-                            class="option-flag"
-                            alt="${opt.nameCN}"
-                            onerror="this.src='https://via.placeholder.com/200x120/f0f0f0/999?text=${opt.code.toUpperCase()}'">
-                </div>
-            </button>
-        `).join('');
+        // 使用国旗选项模板
+        const flagTemplate = document.getElementById('option-flag-template');
+        if (flagTemplate) {
+            optionsContainer.innerHTML = '';
+            q.options.forEach(opt => {
+                const templateContent = flagTemplate.content.cloneNode(true);
+                const button = templateContent.querySelector('.option-btn');
+                const img = templateContent.querySelector('.option-flag');
+                
+                if (button && img) {
+                    button.onclick = () => checkAnswer(opt.code, q.correct.code);
+                    img.src = `pics/${opt.code}.png`;
+                    img.alt = opt.nameCN;
+                    img.onerror = function() {
+                        this.src = `https://via.placeholder.com/200x120/f0f0f0/999?text=${opt.code.toUpperCase()}`;
+                    };
+                    optionsContainer.appendChild(templateContent);
+                }
+            });
+        }
     }
 }
 
@@ -1013,72 +1075,77 @@ function displayWrongAnswers() {
     }
     
     wrongSection.style.display = 'block';
-    container.innerHTML = wrongAnswers.map(wrong => {
+    container.innerHTML = '';
+    
+    wrongAnswers.forEach(wrong => {
         if (wrong.questionType === 'flag-to-country') {
-            return generateFlagToCountryWrongHTML(wrong);
+            // 使用国旗到国家错题模板
+            const flagTemplate = document.getElementById('wrong-answer-flag-template');
+            if (flagTemplate) {
+                const templateContent = flagTemplate.content.cloneNode(true);
+                
+                // 设置题号
+                const questionNumber = templateContent.querySelector('.wrong-question-number');
+                if (questionNumber) questionNumber.textContent = `第 ${wrong.questionIndex} 题`;
+                
+                // 设置国旗图片
+                const flagImg = templateContent.querySelector('.wrong-flag');
+                if (flagImg) {
+                    flagImg.src = `pics/${wrong.correctCountry.code}.png`;
+                    flagImg.alt = '国旗';
+                    flagImg.onerror = function() {
+                        this.src = `https://via.placeholder.com/200x120/f0f0f0/999?text=${wrong.correctCountry.code.toUpperCase()}`;
+                    };
+                }
+                
+                // 设置正确答案
+                const correctText = templateContent.querySelector('.answer-text.correct');
+                if (correctText) correctText.textContent = wrong.correctCountry.nameCN;
+                
+                // 设置错误答案
+                const wrongText = templateContent.querySelector('.answer-text.wrong');
+                if (wrongText) wrongText.textContent = wrong.selectedCountry.nameCN;
+                
+                container.appendChild(templateContent);
+            }
         } else {
-            return generateCountryToFlagWrongHTML(wrong);
+            // 使用国家到国旗错题模板
+            const countryTemplate = document.getElementById('wrong-answer-country-template');
+            if (countryTemplate) {
+                const templateContent = countryTemplate.content.cloneNode(true);
+                
+                // 设置题号
+                const questionNumber = templateContent.querySelector('.wrong-question-number');
+                if (questionNumber) questionNumber.textContent = `第 ${wrong.questionIndex} 题`;
+                
+                // 设置国家名称
+                const countryName = templateContent.querySelector('.country-name');
+                if (countryName) countryName.textContent = wrong.correctCountry.nameCN;
+                
+                // 设置正确国旗
+                const correctFlag = templateContent.querySelector('.flag-option.correct .comparison-flag');
+                if (correctFlag) {
+                    correctFlag.src = `pics/${wrong.correctCountry.code}.png`;
+                    correctFlag.alt = '正确国旗';
+                    correctFlag.onerror = function() {
+                        this.src = `https://via.placeholder.com/150x100/f0f0f0/999?text=${wrong.correctCountry.code.toUpperCase()}`;
+                    };
+                }
+                
+                // 设置错误国旗
+                const wrongFlag = templateContent.querySelector('.flag-option.wrong .comparison-flag');
+                if (wrongFlag) {
+                    wrongFlag.src = `pics/${wrong.selectedCountry.code}.png`;
+                    wrongFlag.alt = '错误国旗';
+                    wrongFlag.onerror = function() {
+                        this.src = `https://via.placeholder.com/150x100/f0f0f0/999?text=${wrong.selectedCountry.code.toUpperCase()}`;
+                    };
+                }
+                
+                container.appendChild(templateContent);
+            }
         }
-    }).join('');
-}
-
-// 生成"看国旗选国家"类型错题的HTML
-function generateFlagToCountryWrongHTML(wrong) {
-    return `
-        <div class="wrong-answer-item">
-            <div class="wrong-question-header">
-                <span class="wrong-question-number">第 ${wrong.questionIndex} 题</span>
-                <span class="wrong-question-type">看国旗选国家</span>
-            </div>
-            <div class="wrong-question-content">
-                <img src="pics/${wrong.correctCountry.code}.png" 
-                     class="wrong-flag"
-                     alt="国旗"
-                     onerror="this.src='https://via.placeholder.com/200x120/f0f0f0/999?text=${wrong.correctCountry.code.toUpperCase()}'">
-                <div class="wrong-answer-info">
-                    <div class="correct-answer">
-                        <span class="answer-label">正确答案：</span>
-                        <span class="answer-text correct">${wrong.correctCountry.nameCN}</span>
-                    </div>
-                    <div class="wrong-answer">
-                        <span class="answer-label">你的答案：</span>
-                        <span class="answer-text wrong">${wrong.selectedCountry.nameCN}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-// 生成"看国家选国旗"类型错题的HTML
-function generateCountryToFlagWrongHTML(wrong) {
-    return `
-        <div class="wrong-answer-item">
-            <div class="wrong-question-header">
-                <span class="wrong-question-number">第 ${wrong.questionIndex} 题</span>
-                <span class="wrong-question-type">看国家选国旗</span>
-            </div>
-            <div class="wrong-question-content">
-                <div class="country-name">${wrong.correctCountry.nameCN}</div>
-                <div class="flags-comparison">
-                    <div class="flag-option correct">
-                        <div class="flag-label">正确答案</div>
-                        <img src="pics/${wrong.correctCountry.code}.png" 
-                             class="comparison-flag"
-                             alt="正确国旗"
-                             onerror="this.src='https://via.placeholder.com/150x100/f0f0f0/999?text=${wrong.correctCountry.code.toUpperCase()}'">
-                    </div>
-                    <div class="flag-option wrong">
-                        <div class="flag-label">你的选择</div>
-                        <img src="pics/${wrong.selectedCountry.code}.png" 
-                             class="comparison-flag"
-                             alt="错误国旗"
-                             onerror="this.src='https://via.placeholder.com/150x100/f0f0f0/999?text=${wrong.selectedCountry.code.toUpperCase()}'">
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
+    });
 }
 
 // 增强版记忆训练系统
@@ -1099,7 +1166,7 @@ const EnhancedMemorySystem = {
         },
         '✝️ 十字设计': {
             description: '包含十字图案的国旗，体现宗教和文化传统',
-            countries: ['gb', 'dk', 'no', 'se', 'fi', 'is', 'ch', 'gr', 'ge', 'to', 'mt'],
+            countries: ['dk', 'no', 'se', 'fi', 'is', 'ch', 'gr', 'ge', 'to', 'mt'],
             difficulty: 'medium',
             tips: '北欧十字（丹麦风格）vs 居中十字（瑞士风格）要区分清楚'
         },
@@ -1132,13 +1199,22 @@ const EnhancedMemorySystem = {
     // 用户数据
     progress: JSON.parse(localStorage.getItem('enhancedMemoryProgress') || '{}'),
     achievements: JSON.parse(localStorage.getItem('memoryAchievements') || '[]'),
-    dailyGoal: parseInt(localStorage.getItem('dailyGoal') || '10'),
-
+    
+    // 分类进度数据
+    categoryProgress: JSON.parse(localStorage.getItem('categoryProgress') || '{}'),
+    
     // 当前学习会话
     currentSession: {
         startTime: null,
         flagsStudied: 0,
         sessionType: null
+    },
+    
+    // 学习状态管理
+    learningState: {
+        currentCategory: null,
+        lastStudiedCategory: null,
+        sessionHistory: JSON.parse(localStorage.getItem('sessionHistory') || '[]')
     },
 
     init() {
@@ -1147,73 +1223,6 @@ const EnhancedMemorySystem = {
     },
 
     showMemory() {
-        // 隐藏其他界面
-        ['browse-section', 'quiz-section', 'stats-section'].forEach(id => {
-            safeSetDisplay(id, 'none');
-        });
-
-        // 显示记忆界面
-        safeSetDisplay('memory-section', 'block');
-        this.render();
-
-        // 更新导航
-        document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-        safeSetClass('memoryBtn', 'active');
-        
-        // 更新当前区域状态
-        currentSection = 'memory';
-    },
-
-    showStudyPage() {
-        // 隐藏其他所有界面
-        ['browse-section', 'quiz-section', 'stats-section', 'memory-section'].forEach(id => {
-            safeSetDisplay(id, 'none');
-        });
-
-        // 创建或显示学习页面
-        let studySection = document.getElementById('study-section');
-        if (!studySection) {
-            studySection = document.createElement('div');
-            studySection.id = 'study-section';
-            studySection.style.display = 'none';
-            document.body.appendChild(studySection);
-        }
-
-        studySection.style.display = 'block';
-        
-        // 清空导航激活状态
-        document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-        
-        // 更新当前区域状态
-        currentSection = 'study';
-        
-        // 渲染学习界面
-        this.renderStudyPage(studySection);
-    },
-
-    renderStudyPage(container) {
-        container.innerHTML = `
-            <div style="max-width: 800px; margin: 0 auto; padding: 20px;">
-                <!-- 返回按钮 -->
-                <div style="margin-bottom: 20px;">
-                    <button onclick="EnhancedMemorySystem.showMemory()" 
-                            style="background: #6b7280; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px;">
-                        ← 返回记忆训练
-                    </button>
-                </div>
-                
-                <div id="studyContent" style="min-height: 400px;"></div>
-            </div>
-        `;
-        
-        // 将学习内容渲染到新容器
-        const studyContent = document.getElementById('studyContent');
-        if (studyContent && this.currentFlags && this.currentIndex < this.currentFlags.length) {
-            this.showFlag(studyContent);
-        }
-    },
-
-    render() {
         const container = document.getElementById('simpleMemoryContainer');
         if (!container) return;
 
@@ -1222,208 +1231,211 @@ const EnhancedMemorySystem = {
         const overallProgress = Math.round((learned.length / allFlags.length) * 100);
         const todayStudied = this.getTodayStudiedCount();
 
-        container.innerHTML = `
-            <div style="max-width: 900px; margin: 0 auto;">
-                <!-- 头部统计 -->
-                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 15px; margin-bottom: 25px; text-align: center;">
-                    <h2 style="margin: 0 0 15px 0; font-size: 1.8rem;">🧠 国旗记忆大师</h2>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 15px; margin-bottom: 20px;">
-                        <div>
-                            <div style="font-size: 1.5rem; font-weight: bold;">${learned.length}</div>
-                            <div style="font-size: 0.9rem; opacity: 0.9;">已学习</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 1.5rem; font-weight: bold;">${allFlags.length}</div>
-                            <div style="font-size: 0.9rem; opacity: 0.9;">总数量</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 1.5rem; font-weight: bold;">${overallProgress}%</div>
-                            <div style="font-size: 0.9rem; opacity: 0.9;">完成度</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 1.5rem; font-weight: bold;">${todayStudied}</div>
-                            <div style="font-size: 0.9rem; opacity: 0.9;">今日学习</div>
-                        </div>
-                    </div>
-                    
-                    <!-- 今日目标进度 -->
-                    <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                            <span>今日学习目标</span>
-                            <span>${todayStudied}/${this.dailyGoal}</span>
-                        </div>
-                        <div style="background: rgba(255,255,255,0.3); height: 8px; border-radius: 4px; overflow: hidden;">
-                            <div style="background: #10b981; height: 100%; width: ${Math.min((todayStudied / this.dailyGoal) * 100, 100)}%; transition: width 0.3s;"></div>
-                        </div>
-                        ${todayStudied >= this.dailyGoal ? '<div style="margin-top: 8px; font-size: 0.9rem;">🎉 今日目标已完成</div>' : ''}
-                    </div>
-                </div>
-                
-                <!-- 快捷操作 -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 25px;">
-                    <button style="background: #10b981; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer; transition: all 0.3s;" 
-                            onclick="EnhancedMemorySystem.quickStudy('random')" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-                        <div style="font-size: 1.2rem; margin-bottom: 5px;">🎲</div>
-                        <div style="font-weight: bold;">随机学习</div>
-                        <div style="font-size: 0.9rem; opacity: 0.9;">混合练习</div>
-                    </button>
-                    <button style="background: #3b82f6; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer; transition: all 0.3s;" 
-                            onclick="EnhancedMemorySystem.quickStudy('new')" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-                        <div style="font-size: 1.2rem; margin-bottom: 5px;">📚</div>
-                        <div style="font-weight: bold;">学习新知</div>
-                        <div style="font-size: 0.9rem; opacity: 0.9;">未学内容</div>
-                    </button>
-                    <button style="background: #f59e0b; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer; transition: all 0.3s;" 
-                            onclick="EnhancedMemorySystem.quickStudy('review')" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-                        <div style="font-size: 1.2rem; margin-bottom: 5px;">🔄</div>
-                        <div style="font-weight: bold;">复习模式</div>
-                        <div style="font-size: 0.9rem; opacity: 0.9;">巩固记忆</div>
-                    </button>
-                    <button style="background: #ef4444; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer; transition: all 0.3s;" 
-                            onclick="EnhancedMemorySystem.speedChallenge()" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-                        <div style="font-size: 1.2rem; margin-bottom: 5px;">⚡</div>
-                        <div style="font-weight: bold;">速度挑战</div>
-                        <div style="font-size: 0.9rem; opacity: 0.9;">测试反应</div>
-                    </button>
-                </div>
-                
-                <!-- 分类学习 -->
-                <h3 style="margin-bottom: 20px; color: #1f2937;">📂 分类学习</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 30px;">
-                    ${Object.entries(this.categories).map(([name, data]) => {
-                        const categoryLearned = data.countries.filter(code => this.progress[code]?.learned).length;
-                        const progress = Math.round((categoryLearned / data.countries.length) * 100);
-                        
-                        const difficultyColor = {
-                            'easy': '#10b981',
-                            'medium': '#f59e0b', 
-                            'hard': '#ef4444'
-                        }[data.difficulty] || '#6b7280';
-                        
-                        const difficultyText = {
-                            'easy': '简单',
-                            'medium': '中等',
-                            'hard': '困难'
-                        }[data.difficulty] || '一般';
-                        
-                        return `
-                            <div style="background: white; border: 2px solid #e5e7eb; border-radius: 12px; padding: 20px; cursor: pointer; transition: all 0.3s;" 
-                                 onclick="EnhancedMemorySystem.startCategoryStudy('${name}')"
-                                 onmouseover="this.style.borderColor='#3b82f6'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 25px rgba(0,0,0,0.1)'" 
-                                 onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
-                                    <h4 style="margin: 0; color: #1f2937; line-height: 1.3;">${name}</h4>
-                                    <span style="background: ${difficultyColor}; color: white; padding: 3px 8px; border-radius: 12px; font-size: 11px;">${difficultyText}</span>
-                                </div>
-                                <p style="color: #6b7280; font-size: 14px; line-height: 1.4; margin-bottom: 15px;">${data.description}</p>
-                                <div style="background: #f3f4f6; height: 6px; border-radius: 3px; margin-bottom: 10px; overflow: hidden;">
-                                    <div style="background: #3b82f6; height: 100%; width: ${progress}%; border-radius: 3px; transition: width 0.3s;"></div>
-                                </div>
-                                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #6b7280;">
-                                    <span>${categoryLearned}/${data.countries.length} 已学习</span>
-                                    <span>${progress}%</span>
-                                </div>
-                                ${data.tips ? `<div style="background: #fef3c7; padding: 8px; border-radius: 6px; margin-top: 10px; border-left: 3px solid #f59e0b;">
-                                    <div style="font-size: 11px; font-weight: bold; color: #92400e; margin-bottom: 2px;">💡 学习技巧</div>
-                                    <div style="font-size: 11px; color: #92400e; line-height: 1.3;">${data.tips}</div>
-                                </div>` : ''}
-                            </div>
-                        `;
-                    }).join('')}
-                </div>
-                
-                <!-- 设置区域 -->
-                <div style="background: #f9fafb; border-radius: 12px; padding: 20px;">
-                    <h4 style="margin: 0 0 15px 0; color: #1f2937;">⚙️ 学习设置</h4>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                        <div>
-                            <label style="display: block; font-size: 14px; color: #374151; margin-bottom: 5px;">每日学习目标</label>
-                            <input type="number" value="${this.dailyGoal}" min="5" max="50" 
-                                   style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 6px;"
-                                   onchange="EnhancedMemorySystem.updateDailyGoal(this.value)">
-                        </div>
-                        <div style="display: flex; align-items: end; gap: 10px;">
-                            <button onclick="EnhancedMemorySystem.exportProgress()" 
-                                    style="background: #6b7280; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px;">
-                                📤 导出数据
-                            </button>
-                            <button onclick="EnhancedMemorySystem.resetProgress()" 
-                                    style="background: #ef4444; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px;">
-                                🗑️ 重置进度
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 学习区域移除，因为已经独立成页面 -->
-                <div id="studyArea" style="display: none;"></div>
-            </div>
-        `;
-    },
-
-    quickStudy(mode) {
-        const allFlags = Object.values(this.categories).flatMap(cat => cat.countries);
-        let studyFlags = [];
-
-        switch(mode) {
-            case 'random':
-                studyFlags = this.shuffle([...allFlags]).slice(0, 10);
-                this.currentSession.sessionType = '随机学习';
-                break;
-            case 'new':
-                const unlearnedFlags = allFlags.filter(code => !this.progress[code]?.learned);
-                if (unlearnedFlags.length === 0) {
-                    this.showMessage('🎉 太棒了！您已经学习了所有国旗！可以开始复习模式巩固记忆。');
-                    return;
-                }
-                studyFlags = this.shuffle(unlearnedFlags).slice(0, Math.min(8, unlearnedFlags.length));
-                this.currentSession.sessionType = '新知学习';
-                break;
-            case 'review':
-                const learnedFlags = allFlags.filter(code => this.progress[code]?.learned);
-                if (learnedFlags.length === 0) {
-                    this.showMessage('📚 还没有学习过的国旗，先学习一些吧！');
-                    return;
-                }
-                studyFlags = this.shuffle(learnedFlags).slice(0, Math.min(10, learnedFlags.length));
-                this.currentSession.sessionType = '复习模式';
-                break;
+        // 使用记忆训练主界面模板
+        const mainTemplate = document.getElementById('memory-main-template');
+        if (mainTemplate) {
+            container.innerHTML = '';
+            const templateContent = mainTemplate.content.cloneNode(true);
+            container.appendChild(templateContent);
         }
 
-        this.currentFlags = studyFlags;
-        this.currentIndex = 0;
-        this.startSession();
-        this.showStudyPage(); // 进入学习页面
+        // 更新统计数据
+        this.updateMemoryStats();
+        this.renderCategories();
+        this.setupMemoryEventListeners();
+        
+        // 更新开始学习按钮状态
+        this.updateStartLearningButton();
     },
 
-    speedChallenge() {
+    updateMemoryStats() {
         const allFlags = Object.values(this.categories).flatMap(cat => cat.countries);
-        const learnedFlags = allFlags.filter(code => this.progress[code]?.learned);
-        
-        if (learnedFlags.length < 10) {
-            this.showMessage('📚 速度挑战需要至少掌握10个国旗，继续学习吧！');
-            return;
+        const learned = allFlags.filter(code => this.progress[code]?.learned);
+        const overallProgress = Math.round((learned.length / allFlags.length) * 100);
+        const todayStudied = this.getTodayStudiedCount();
+
+        // 更新头部统计
+        const learnedCount = document.querySelector('.learned-count');
+        if (learnedCount) learnedCount.textContent = learned.length;
+
+        const totalCount = document.querySelector('.total-count');
+        if (totalCount) totalCount.textContent = allFlags.length;
+
+        const progressPercent = document.querySelector('.progress-percent');
+        if (progressPercent) progressPercent.textContent = `${overallProgress}%`;
+
+        const todayCount = document.querySelector('.today-count');
+        if (todayCount) todayCount.textContent = todayStudied;
+
+        // 更新总体进度条
+        const totalProgressText = document.querySelector('.total-progress-text');
+        if (totalProgressText) totalProgressText.textContent = `${learned.length}/${allFlags.length}`;
+
+        const totalProgressFill = document.querySelector('.total-progress-fill');
+        if (totalProgressFill) totalProgressFill.style.width = `${overallProgress}%`;
+
+        const overallComplete = document.querySelector('.overall-complete');
+        if (overallComplete) {
+            if (overallProgress === 100) {
+                overallComplete.style.display = 'block';
+            } else {
+                overallComplete.style.display = 'none';
+            }
         }
-        
-        this.showMessage('⚡ 速度挑战功能即将推出，敬请期待！');
     },
+
+    renderCategories() {
+        const categoriesContainer = document.querySelector('.categories-container');
+        if (!categoriesContainer) return;
+
+        categoriesContainer.innerHTML = '';
+
+        Object.entries(this.categories).forEach(([name, data]) => {
+            const categoryLearned = data.countries.filter(code => this.progress[code]?.learned).length;
+            const progress = Math.round((categoryLearned / data.countries.length) * 100);
+            const categoryProgress = this.getCategoryProgress(name);
+
+            const categoryCard = document.createElement('div');
+            categoryCard.className = 'category-card';
+            
+            // 添加悬停效果
+            categoryCard.onmouseenter = () => {
+                categoryCard.style.transform = 'translateY(-2px)';
+                categoryCard.style.boxShadow = '0 8px 16px rgba(0,0,0,0.1)';
+            };
+            
+            categoryCard.onmouseleave = () => {
+                categoryCard.style.transform = 'translateY(0)';
+                categoryCard.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+            };
+
+            const difficultyColor = {
+                'easy': '#10b981',
+                'medium': '#f59e0b', 
+                'hard': '#ef4444'
+            }[data.difficulty] || '#6b7280';
+
+            const difficultyText = {
+                'easy': '简单',
+                'medium': '中等',
+                'hard': '困难'
+            }[data.difficulty] || '一般';
+
+            // 根据进度状态添加不同的视觉样式
+            let statusIcon = '';
+            let statusClass = '';
+            if (progress === 100) {
+                statusIcon = '✅';
+                statusClass = 'completed';
+            } else if (progress > 0) {
+                statusIcon = '📖';
+                statusClass = 'in-progress';
+            } else {
+                statusIcon = '🆕';
+                statusClass = 'new';
+            }
+
+            categoryCard.innerHTML = `
+                <div class="category-header">
+                    <div class="category-title-wrapper">
+                        <span class="category-status ${statusClass}">${statusIcon}</span>
+                        <h4 class="category-title">${name}</h4>
+                    </div>
+                    <span class="difficulty-tag ${data.difficulty}">${difficultyText}</span>
+                </div>
+                <p class="category-description">${data.description}</p>
+                <div class="category-progress">
+                    <div class="category-progress-fill" style="width: ${progress}%;"></div>
+                </div>
+                <div class="category-stats">
+                    <span class="stats-learned">${categoryLearned}/${data.countries.length} 已学习</span>
+                    <span class="stats-percent">${progress}%</span>
+                </div>
+                ${data.tips ? `
+                    <div class="category-tips">
+                        <div class="tips-title">💡 学习技巧</div>
+                        <div class="tips-content">${data.tips}</div>
+                    </div>
+                ` : ''}
+                ${categoryProgress.lastStudied ? `
+                    <div class="last-studied">
+                        上次学习: ${this.formatLastStudied(categoryProgress.lastStudied)}
+                    </div>
+                ` : ''}
+            `;
+
+            // 添加点击事件
+            categoryCard.onclick = () => {
+                // 添加点击动画效果
+                categoryCard.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    categoryCard.style.transform = '';
+                    this.startCategoryStudy(name);
+                }, 150);
+            };
+
+            categoriesContainer.appendChild(categoryCard);
+        });
+    },
+
+    // 格式化上次学习时间
+    formatLastStudied(dateString) {
+        const date = new Date(dateString);
+        const now = new Date();
+        const diffMs = now - date;
+        const diffMins = Math.floor(diffMs / 60000);
+        const diffHours = Math.floor(diffMs / 3600000);
+        const diffDays = Math.floor(diffMs / 86400000);
+
+        if (diffMins < 1) return '刚刚';
+        if (diffMins < 60) return `${diffMins}分钟前`;
+        if (diffHours < 24) return `${diffHours}小时前`;
+        if (diffDays < 7) return `${diffDays}天前`;
+        
+        return date.toLocaleDateString('zh-CN');
+    },
+
+    setupMemoryEventListeners() {
+        // 快捷学习按钮
+        document.querySelectorAll('.quick-study-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                this.quickStudy(btn.dataset.mode);
+            });
+        });
+
+        // 开始学习按钮
+        const startLearningBtn = document.getElementById('startLearningBtn');
+        if (startLearningBtn) {
+            startLearningBtn.addEventListener('click', () => {
+                this.startSmartLearning();
+            });
+        }
+
+        // 清除学习进度按钮
+        const clearMemoryProgressBtn = document.getElementById('clearMemoryProgressBtn');
+        if (clearMemoryProgressBtn) {
+            clearMemoryProgressBtn.addEventListener('click', () => {
+                this.clearMemoryProgress();
+            });
+        }
+    },
+
 
     startCategoryStudy(categoryName) {
         const category = this.categories[categoryName];
         if (!category) return;
 
-        // 优先选择未学习的国旗
+        // 一次学习完整个分类：未学习的优先，然后是已学习的（均打乱顺序），不再截取数量
         const unlearned = category.countries.filter(code => !this.progress[code]?.learned);
-        const studyFlags = unlearned.length > 0 ? 
-            this.shuffle(unlearned).slice(0, Math.min(8, unlearned.length)) :
-            this.shuffle([...category.countries]).slice(0, 8);
+        const learned = category.countries.filter(code => this.progress[code]?.learned);
+        const orderedAll = this.shuffle(unlearned).concat(this.shuffle(learned));
 
-        this.currentFlags = studyFlags;
+        this.currentFlags = orderedAll;
         this.currentIndex = 0;
         this.currentCategory = categoryName;
         this.currentSession.sessionType = `分类学习: ${categoryName}`;
-        this.startSession();
-        this.showStudyPage(); // 进入学习页面
+        // 先展示预览页，用户点击“开始测试”后再开始会话
+        this.showPreviewPage();
     },
 
     startSession() {
@@ -1431,255 +1443,488 @@ const EnhancedMemorySystem = {
         this.currentSession.flagsStudied = 0;
     },
 
-    showFlag(container = null) {
+    showStudyPage() {
+        // 隐藏记忆训练主界面
+        const memorySection = document.getElementById('memory-section');
+        if (memorySection) memorySection.style.display = 'none';
+
+        // 创建学习页面
+        let studySection = document.getElementById('study-section');
+        if (!studySection) {
+            studySection = document.createElement('div');
+            studySection.id = 'study-section';
+            studySection.style.display = 'none';
+            document.querySelector('.content').appendChild(studySection);
+        }
+
+        studySection.style.display = 'block';
+        studySection.innerHTML = `
+            <div style="max-width: 1100px; margin: 0 auto; padding: 20px;">
+                <!-- 返回按钮 -->
+                <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+                    <button id="returnToMemoryBtn" 
+                            style="background: #6b7280; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px;">
+                        ← 返回记忆训练
+                    </button>
+                    <div id="studyHeaderRight" style="display: none;"></div>
+                </div>
+                
+                <div id="studyContent" style="min-height: 400px;"></div>
+            </div>
+        `;
+
+        // 更新当前区域状态
+        currentSection = 'study';
+        
+        // 绑定返回按钮事件
+        const returnBtn = document.getElementById('returnToMemoryBtn');
+        if (returnBtn) {
+            returnBtn.onclick = () => {
+                this.returnToMemory();
+            };
+        }
+        
+        // 默认进入预览页由上游控制，这里仅在需要时渲染单卡界面
+        this.showFlag();
+    },
+
+    // 预览页：平铺展示该分类所有国旗 + 学习提示 + 开始测试按钮
+    showPreviewPage() {
+        // 搭建学习页容器
+        this.showStudyPage();
+
+        const studyContent = document.getElementById('studyContent');
+        if (!studyContent) return;
+
+        const categoryName = this.currentCategory;
+        const cat = this.categories[categoryName];
+        // 预览按分类定义的原始顺序展示
+        const previewList = Array.isArray(cat?.countries) ? [...cat.countries] : [];
+        const total = previewList.length;
+        const learnedCount = previewList.filter(code => this.progress[code]?.learned).length;
+        const unlearnedCount = total - learnedCount;
+
+        // 平铺网格
+        const gridItems = previewList.map(code => {
+            const country = allCountries.find(c => c.code === code);
+            const titleCN = country?.nameCN || code.toUpperCase();
+            const titleEN = country?.nameEN || '';
+            return `
+                <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px;">
+                    <div style="width:100%;height:90px;background:#f8f9fa;border:1px solid #e9ecef;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+                        <img src="pics/${code}.png" alt="${titleCN}" style="max-width:100%;max-height:100%;object-fit:contain;" onerror="this.src='https://via.placeholder.com/160x100/f0f0f0/999?text=${code.toUpperCase()}'" />
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="font-size:13px;color:#1f2937;font-weight:600;">${titleCN}</div>
+                        <div style="font-size:11px;color:#6b7280;">${titleEN}</div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        studyContent.innerHTML = `
+            <div style="display:grid; grid-template-columns: 1.6fr 1fr; gap: 20px; align-items: start;">
+                <div>
+                    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px;">
+                        ${gridItems}
+                    </div>
+                </div>
+                <div style="background:#ffffff;border-radius:12px;border:1px solid #e5e7eb;padding:18px;position:sticky; top:10px;">
+                    <h3 style="margin:0 0 10px 0;color:#1f2937;">准备学习：${categoryName}</h3>
+                    <div style="color:#6b7280;font-size:14px;line-height:1.5;margin-bottom:12px;">${cat?.description || ''}</div>
+                    ${cat?.tips ? `<div style="background:#fef3c7;border-left:3px solid #f59e0b;border-radius:6px;padding:10px;margin-bottom:12px;color:#92400e;font-size:13px;">
+                        <div style="font-weight:600;margin-bottom:4px;">学习提示</div>
+                        <div>${cat.tips}</div>
+                    </div>` : ''}
+                    <div style="display:flex;gap:10px;margin:12px 0 16px 0;">
+                        <div style="flex:1;background:#f3f4f6;border-radius:8px;padding:10px;text-align:center;">
+                            <div style="font-size:20px;font-weight:700;color:#111827;">${total}</div>
+                            <div style="font-size:12px;color:#6b7280;">本分类总数</div>
+                        </div>
+                        <div style="flex:1;background:#ecfeff;border-radius:8px;padding:10px;text-align:center;border:1px solid #cffafe;">
+                            <div style="font-size:20px;font-weight:700;color:#0e7490;">${unlearnedCount}</div>
+                            <div style="font-size:12px;color:#0e7490;">未学习</div>
+                        </div>
+                        <div style="flex:1;background:#ecfdf5;border-radius:8px;padding:10px;text-align:center;border:1px solid #d1fae5;">
+                            <div style="font-size:20px;font-weight:700;color:#065f46;">${learnedCount}</div>
+                            <div style="font-size:12px;color:#065f46;">已学习</div>
+                        </div>
+                    </div>
+                    <button id="beginStudyBtn" class="start-learning-btn" style="width:100%;background:linear-gradient(135deg,#10b981 0%, #059669 100%);color:#fff;border:none;padding:12px 20px;border-radius:10px;cursor:pointer;font-size:16px;font-weight:700;">开始测试</button>
+                    <div style="font-size:12px;color:#6b7280;margin-top:8px;">点击开始后将按顺序展示每面国旗</div>
+                </div>
+            </div>
+        `;
+
+        const btn = document.getElementById('beginStudyBtn');
+        if (btn) {
+            btn.onclick = () => {
+                // 真正开始会话与单卡学习
+                this.startSession();
+                this.currentIndex = 0;
+                this.showFlag();
+            };
+        }
+    },
+
+    // 添加返回记忆训练的方法
+    returnToMemory() {
+        // 隐藏学习页面
+        const studySection = document.getElementById('study-section');
+        if (studySection) studySection.style.display = 'none';
+
+        // 显示记忆训练主界面
+        const memorySection = document.getElementById('memory-section');
+        if (memorySection) memorySection.style.display = 'block';
+
+        // 更新当前区域状态
+        currentSection = 'memory';
+
+        // 更新导航按钮状态
+        document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+        const memoryBtn = document.getElementById('memoryBtn');
+        if (memoryBtn) memoryBtn.classList.add('active');
+
+        // 重新显示记忆训练内容
+        this.showMemory();
+    },
+
+    showFlag() {
         if (this.currentIndex >= this.currentFlags.length) {
             this.showComplete();
             return;
         }
 
         const flagCode = this.currentFlags[this.currentIndex];
-        const countryInfo = allCountries?.find(c => c.code === flagCode);
+        
+        // 确保allCountries已加载
+        if (!allCountries || allCountries.length === 0) {
+            console.warn('国家数据未加载，尝试重新加载...');
+            // 重新加载国家数据
+            this.loadCountriesData().then(() => {
+                this.showFlag(); // 重新尝试显示
+            });
+            return;
+        }
+        
+        const countryInfo = allCountries.find(c => c.code === flagCode);
         const flagProgress = this.progress[flagCode] || {};
 
-        // 如果指定了容器，使用指定容器，否则使用默认的studyArea
-        const targetContainer = container || document.getElementById('studyArea');
-        if (!targetContainer) return;
+        const studyContent = document.getElementById('studyContent');
+        if (!studyContent) return;
 
-        targetContainer.innerHTML = `
-            <div style="background: white; border-radius: 15px; padding: 30px; text-align: center; box-shadow: 0 8px 25px rgba(0,0,0,0.1); max-width: 600px; margin: 0 auto;">
-                <!-- 进度指示器 -->
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 12px; background: #f8fafc; border-radius: 10px;">
-                    <div style="font-size: 14px; color: #6b7280;">
-                        ${this.currentSession.sessionType} | 进度: ${this.currentIndex + 1}/${this.currentFlags.length}
-                    </div>
-                    <div style="font-size: 14px; color: #6b7280;">
-                        ⏱️ ${this.getSessionTime()}
-                    </div>
-                </div>
-                
-                <!-- 进度条 -->
-                <div style="background: #e5e7eb; height: 8px; border-radius: 4px; overflow: hidden; margin-bottom: 25px;">
-                    <div style="background: linear-gradient(90deg, #3b82f6, #10b981); height: 100%; width: ${((this.currentIndex + 1) / this.currentFlags.length) * 100}%; transition: width 0.3s;"></div>
-                </div>
-                
-                <!-- 国旗图片 -->
-                <div style="margin-bottom: 25px; position: relative;">
-                    <img src="pics/${flagCode}.png" alt="${flagCode}" 
-                         style="max-width: 300px; width: 100%; height: auto; max-height: 200px; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); object-fit: contain; background: #f8f9fa;"
-                         onerror="this.src='https://via.placeholder.com/300x200/f0f0f0/999?text=${flagCode.toUpperCase()}'">
-                    
-                    <!-- 学习状态指示 -->
-                    ${flagProgress.learned ? `
-                        <div style="position: absolute; top: -8px; right: -8px; background: #10b981; color: white; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; border: 3px solid white;">
-                            ✓
-                        </div>
-                    ` : ''}
-                </div>
-                
-                <!-- 国旗信息 -->
-                <div style="margin-bottom: 25px;">
-                    <h3 style="margin: 0 0 8px 0; font-size: 1.5rem; color: #1f2937;">${countryInfo ? countryInfo.nameCN : flagCode.toUpperCase()}</h3>
-                    <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 1rem;">${countryInfo ? countryInfo.nameEN : ''}</p>
-                    <p style="margin: 0; color: #3b82f6; font-weight: 500;">${countryInfo ? countryInfo.continent : ''}</p>
-                </div>
-                
-                <!-- 操作按钮 -->
-                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                    <button onclick="EnhancedMemorySystem.markLearned('${flagCode}', 'easy')" 
-                            style="background: #10b981; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.3s;"
-                            onmouseover="this.style.background='#059669'" onmouseout="this.style.background='#10b981'">
-                        ✅ 很容易记住
-                    </button>
-                    <button onclick="EnhancedMemorySystem.markLearned('${flagCode}', 'normal')" 
-                            style="background: #3b82f6; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.3s;"
-                            onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#3b82f6'">
-                        👍 记住了
-                    </button>
-                    <button onclick="EnhancedMemorySystem.markLearned('${flagCode}', 'hard')" 
-                            style="background: #f59e0b; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.3s;"
-                            onmouseover="this.style.background='#d97706'" onmouseout="this.style.background='#f59e0b'">
-                        🤔 有点困难
-                    </button>
-                    <button onclick="EnhancedMemorySystem.nextFlag()" 
-                            style="background: #6b7280; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.3s;"
-                            onmouseover="this.style.background='#4b5563'" onmouseout="this.style.background='#6b7280'">
-                        ⏭️ 跳过
-                    </button>
-                </div>
-                
-                <!-- 快捷键提示 -->
-                <div style="margin-top: 20px; padding: 10px; background: #f9fafb; border-radius: 8px; font-size: 12px; color: #6b7280;">
-                    💡 快捷键：数字 1-3 快速选择难度，空格键跳过
-                </div>
-            </div>
-        `;
-        
-        // 绑定键盘快捷键
-        this.bindKeyboardShortcuts(flagCode);
-    },
+        // 使用学习国旗模板
+        const studyTemplate = document.getElementById('study-flag-template');
+        if (studyTemplate) {
+            const templateContent = studyTemplate.content.cloneNode(true);
 
-    bindKeyboardShortcuts(flagCode) {
-        const keyHandler = (e) => {
-            if (e.target.tagName === 'INPUT') return;
-            
-            switch(e.key) {
-                case '1':
-                    e.preventDefault();
-                    this.markLearned(flagCode, 'easy');
-                    break;
-                case '2':
-                    e.preventDefault();
-                    this.markLearned(flagCode, 'normal');
-                    break;
-                case '3':
-                    e.preventDefault();
-                    this.markLearned(flagCode, 'hard');
-                    break;
-                case ' ':
-                case 'ArrowRight':
-                    e.preventDefault();
-                    this.nextFlag();
-                    break;
+            // 先设置模板内容，再插入 DOM（避免DocumentFragment被清空后无法查询）
+            const sessionType = templateContent.querySelector('.session-type');
+            if (sessionType) sessionType.textContent = this.currentSession.sessionType;
+
+            const progressText = templateContent.querySelector('.progress-text');
+            if (progressText) progressText.textContent = `${this.currentIndex + 1}/${this.currentFlags.length}`;
+
+            const sessionTime = templateContent.querySelector('.session-time');
+            if (sessionTime) sessionTime.textContent = this.getSessionTime();
+
+            const progressFill = templateContent.querySelector('.progress-fill');
+            if (progressFill) progressFill.style.width = `${((this.currentIndex + 1) / this.currentFlags.length) * 100}%`;
+
+            const flagImg = templateContent.querySelector('.study-flag-img');
+            if (flagImg) {
+                flagImg.src = `pics/${flagCode}.png`;
+                flagImg.alt = countryInfo?.nameCN || flagCode.toUpperCase();
+                flagImg.onerror = function() {
+                    this.src = `https://via.placeholder.com/300x200/f0f0f0/999?text=${flagCode.toUpperCase()}`;
+                };
             }
-        };
-        
-        document.removeEventListener('keydown', this.currentKeyHandler);
-        this.currentKeyHandler = keyHandler;
-        document.addEventListener('keydown', keyHandler);
-    },
 
-    markLearned(flagCode, difficulty = 'normal') {
-        if (!this.progress[flagCode]) {
-            this.progress[flagCode] = {
-                learned: false,
-                reviewCount: 0,
-                lastReview: null,
-                difficulty: 'normal',
-                firstLearnedAt: null
-            };
-        }
-        
-        const now = new Date().toISOString();
-        const flagProgress = this.progress[flagCode];
-        
-        if (!flagProgress.learned) {
-            flagProgress.firstLearnedAt = now;
-            this.currentSession.flagsStudied++;
-        }
-        
-        flagProgress.learned = true;
-        flagProgress.lastReview = now;
-        flagProgress.reviewCount = (flagProgress.reviewCount || 0) + 1;
-        flagProgress.difficulty = difficulty;
-        
-        this.saveProgress();
-        this.showLearningFeedback(difficulty);
-        
-        setTimeout(() => {
-            this.nextFlag();
-        }, 1500);
-    },
+            const learnedIndicator = templateContent.querySelector('.learned-indicator');
+            if (learnedIndicator && flagProgress.learned) {
+                learnedIndicator.classList.add('show');
+            }
 
-    showLearningFeedback(difficulty) {
-        const messages = {
-            'easy': ['太棒了！🎉', '轻松掌握！⭐', '学习之星！🌟'],
-            'normal': ['很好！👍', '继续加油！💪', '进步神速！🚀'],
-            'hard': ['没关系，多练习！📚', '慢慢来！🐌', '坚持就是胜利！💪']
-        };
-        
-        const colors = {
-            'easy': '#10b981',
-            'normal': '#3b82f6', 
-            'hard': '#f59e0b'
-        };
-        
-        const message = messages[difficulty][Math.floor(Math.random() * messages[difficulty].length)];
-        const color = colors[difficulty];
-        
-        const feedback = document.createElement('div');
-        feedback.innerHTML = `
-            <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: ${color}; color: white; padding: 20px 30px; border-radius: 12px; font-size: 1.2rem; font-weight: bold; z-index: 10000; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); animation: feedbackPop 1.5s ease-out;">
-                ${message}
-            </div>
-            <style>
-                @keyframes feedbackPop {
-                    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
-                    20% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
-                    80% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-                    100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0; }
+            const countryNameCN = templateContent.querySelector('.country-name-cn');
+            if (countryNameCN) {
+                if (countryInfo) {
+                    countryNameCN.textContent = countryInfo.nameCN;
+                } else {
+                    countryNameCN.textContent = flagCode.toUpperCase();
+                    console.warn(`未找到国家信息: ${flagCode}`);
                 }
-            </style>
-        `;
-        
-        document.body.appendChild(feedback);
-        
-        setTimeout(() => {
-            document.body.removeChild(feedback);
-        }, 1500);
+                // 初始隐藏国家中文名
+                countryNameCN.style.display = 'none';
+                // 占位灰色框
+                const placeholderCN = document.createElement('div');
+                placeholderCN.className = 'name-placeholder-cn';
+                placeholderCN.style.cssText = 'background:#e5e7eb; border-radius:6px; margin: 4px 0; margin-left:auto; margin-right:auto;';
+                countryNameCN.parentNode.insertBefore(placeholderCN, countryNameCN.nextSibling);
+            }
+
+            const countryNameEN = templateContent.querySelector('.country-name-en');
+            if (countryNameEN) {
+                if (countryInfo) {
+                    countryNameEN.textContent = countryInfo.nameEN;
+                } else {
+                    countryNameEN.textContent = '';
+                }
+                // 初始隐藏国家英文名
+                countryNameEN.style.display = 'none';
+                // 占位灰色框（英文）
+                const placeholderEN = document.createElement('div');
+                placeholderEN.className = 'name-placeholder-en';
+                placeholderEN.style.cssText = 'background:#f3f4f6; border-radius:6px; margin: 2px 0 6px; margin-left:auto; margin-right:auto;';
+                countryNameEN.parentNode.insertBefore(placeholderEN, countryNameEN.nextSibling);
+            }
+
+            // 固定名称区域高度，避免显示/隐藏时按钮位置跳动
+            const namesContainer = countryNameCN ? countryNameCN.parentNode : null;
+            if (namesContainer && namesContainer.style) {
+                // 保留足够空间容纳两行文字
+                namesContainer.style.minHeight = '64px';
+            }
+
+            const countryContinent = templateContent.querySelector('.country-continent');
+            if (countryContinent) {
+                if (countryInfo) {
+                    countryContinent.textContent = countryInfo.continent;
+                } else {
+                    countryContinent.textContent = '';
+                }
+            }
+
+            // 绑定按钮事件（不认识 / 认识）
+            const prevBtn = templateContent.querySelector('.study-btn-prev');
+            const nextBtn = templateContent.querySelector('.study-btn-next');
+
+            // 修改按钮文本
+            if (prevBtn) prevBtn.textContent = '不认识';
+            if (nextBtn) nextBtn.textContent = '认识';
+
+            const revealAndAdvance = (recognized) => {
+                // 防止重复点击
+                if (prevBtn) prevBtn.disabled = true;
+                // 显示名称
+                if (countryNameCN) {
+                    countryNameCN.style.display = '';
+                    const plc = countryNameCN.parentNode.querySelector('.name-placeholder-cn');
+                    if (plc) plc.style.display = 'none';
+                }
+                if (countryNameEN) {
+                    countryNameEN.style.display = '';
+                    const ple = countryNameEN.parentNode.querySelector('.name-placeholder-en');
+                    if (ple) ple.style.display = 'none';
+                }
+                // 仅当认识时记录为已学习，并隐藏“不认识”按钮
+                if (recognized) {
+                    if (prevBtn) prevBtn.style.display = 'none';
+                    this.markCurrentFlagLearned();
+                }
+                // 跳转逻辑：两种情况都改为手动点击“下一个”
+                if (nextBtn) {
+                    nextBtn.disabled = false;
+                    nextBtn.textContent = '下一个 →';
+                    nextBtn.onclick = () => {
+                        nextBtn.disabled = true;
+                        this.currentIndex++;
+                        this.showFlag();
+                    };
+                }
+            };
+
+            if (prevBtn) prevBtn.onclick = () => revealAndAdvance(false);
+            if (nextBtn) nextBtn.onclick = () => revealAndAdvance(true);
+
+            // 在“不认识”后只保留“下一个 →”按钮的样式处理
+            const hideDontKnowButton = () => {
+                if (prevBtn) {
+                    prevBtn.style.display = 'none';
+                }
+            };
+            // 当用户点击“不认识”后隐藏左侧按钮
+            if (prevBtn) {
+                const originalHandler = prevBtn.onclick;
+                prevBtn.onclick = () => {
+                    originalHandler && originalHandler();
+                    hideDontKnowButton();
+                };
+            }
+
+            // 最后插入到页面
+            studyContent.innerHTML = '';
+            studyContent.appendChild(templateContent);
+
+            // 调整占位条的尺寸以匹配名称的字体大小和宽度
+            const adjustPlaceholder = (nameEl, placeholderSelector) => {
+                if (!nameEl) return;
+                const placeholder = nameEl.parentNode.querySelector(placeholderSelector);
+                if (!placeholder) return;
+                // 暂时显示但不可见以测量宽度
+                const prevDisplay = nameEl.style.display;
+                const prevVisibility = nameEl.style.visibility;
+                nameEl.style.visibility = 'hidden';
+                nameEl.style.display = 'block';
+                // 强制回流
+                void nameEl.offsetWidth;
+                const cs = window.getComputedStyle(nameEl);
+                const widthPx = nameEl.offsetWidth || nameEl.scrollWidth || 0;
+                const fontSize = cs.fontSize || '16px';
+                // 还原
+                nameEl.style.display = prevDisplay || 'none';
+                nameEl.style.visibility = prevVisibility || '';
+                // 应用到占位条
+                placeholder.style.height = fontSize;
+                if (widthPx > 0) {
+                    const shortened = Math.max(40, Math.round(widthPx * 0.6));
+                    placeholder.style.width = shortened + 'px';
+                } else {
+                    // 回退宽度
+                    placeholder.style.width = '60%';
+                }
+            };
+            adjustPlaceholder(countryNameCN, '.name-placeholder-cn');
+            adjustPlaceholder(countryNameEN, '.name-placeholder-en');
+        }
     },
+
+    // 添加加载国家数据的方法
+    async loadCountriesData() {
+        try {
+            const response = await fetch('countries_and_oganizations.json');
+            if (response.ok) {
+                const data = await response.json();
+                allCountries = data.countries;
+                console.log(`成功加载 ${allCountries.length} 个国家数据`);
+                return true;
+            } else {
+                throw new Error('无法加载countries_and_oganizations.json');
+            }
+        } catch (error) {
+            console.log('使用示例数据:', error.message);
+            allCountries = this.generateSampleData();
+            return true;
+        }
+    },
+
+    // 生成示例数据的方法
+    generateSampleData() {
+        return [
+            { code: "cn", nameCN: "中国", nameEN: "China", continent: "亚洲", styles: ["星星", "纯色"] },
+            { code: "us", nameCN: "美国", nameEN: "United States", continent: "北美洲", styles: ["星星", "水平条纹"] },
+            { code: "gb", nameCN: "英国", nameEN: "United Kingdom", continent: "欧洲", styles: ["联合杰克", "十字"] },
+            { code: "jp", nameCN: "日本", nameEN: "Japan", continent: "亚洲", styles: ["太阳", "纯色"] },
+            { code: "de", nameCN: "德国", nameEN: "Germany", continent: "欧洲", styles: ["水平条纹", "纯色"] },
+            { code: "fr", nameCN: "法国", nameEN: "France", continent: "欧洲", styles: ["垂直条纹", "纯色"] },
+            { code: "br", nameCN: "巴西", nameEN: "Brazil", continent: "南美洲", styles: ["星星", "几何图形", "复杂徽章"] },
+            { code: "au", nameCN: "澳大利亚", nameEN: "Australia", continent: "大洋洲", styles: ["联合杰克", "星星"] },
+            { code: "za", nameCN: "南非", nameEN: "South Africa", continent: "非洲", styles: ["水平条纹", "几何图形", "泛非色彩"] },
+            { code: "eg", nameCN: "埃及", nameEN: "Egypt", continent: "非洲", styles: ["水平条纹", "复杂徽章", "泛阿拉伯色彩"] },
+            { code: "in", nameCN: "印度", nameEN: "India", continent: "亚洲", styles: ["水平条纹", "纯色"] },
+            { code: "ca", nameCN: "加拿大", nameEN: "Canada", continent: "北美洲", styles: ["植物", "垂直条纹"] },
+            { code: "mx", nameCN: "墨西哥", nameEN: "Mexico", continent: "北美洲", styles: ["垂直条纹", "复杂徽章", "动物", "植物"] },
+            { code: "ar", nameCN: "阿根廷", nameEN: "Argentina", continent: "南美洲", styles: ["水平条纹", "太阳"] },
+            { code: "it", nameCN: "意大利", nameEN: "Italy", continent: "欧洲", styles: ["垂直条纹", "纯色"] },
+            { code: "es", nameCN: "西班牙", nameEN: "Spain", continent: "欧洲", styles: ["水平条纹", "复杂徽章"] },
+            { code: "ru", nameCN: "俄罗斯", nameEN: "Russia", continent: "欧洲", styles: ["水平条纹", "纯色"] },
+            { code: "kr", nameCN: "韩国", nameEN: "South Korea", continent: "亚洲", styles: ["水平条纹"] },
+            { code: "sa", nameCN: "沙特阿拉伯", nameEN: "Saudi Arabia", continent: "亚洲", styles: ["水平条纹", "泛阿拉伯色彩"] },
+            { code: "nz", nameCN: "新西兰", nameEN: "New Zealand", continent: "大洋洲", styles: ["联合杰克", "星星"] }
+        ];
+    },
+
+
 
     nextFlag() {
+        // 在切到下一张之前，记录当前国旗为已学习
+        this.markCurrentFlagLearned();
         this.currentIndex++;
-        // 根据当前页面状态决定使用哪个容器
-        if (currentSection === 'study') {
-            const studyContent = document.getElementById('studyContent');
-            this.showFlag(studyContent);
-        } else {
-            this.showFlag();
+        this.showFlag();
+    },
+
+    previousFlag() {
+        this.currentIndex--;
+        if (this.currentIndex < 0) {
+            this.currentIndex = 0;
         }
+        this.showFlag();
+    },
+
+    // 标记当前展示的国旗为“已学习”，并更新概览
+    markCurrentFlagLearned() {
+        if (!this.currentFlags || this.currentIndex < 0 || this.currentIndex >= this.currentFlags.length) return;
+        const code = this.currentFlags[this.currentIndex];
+        const now = new Date().toISOString();
+
+        const existing = this.progress[code] || {};
+        const wasLearned = !!existing.learned;
+
+        this.progress[code] = {
+            learned: true,
+            firstLearnedAt: existing.firstLearnedAt || now,
+            lastLearnedAt: now,
+            learnCount: (existing.learnCount || 0) + 1
+        };
+
+        // 会话内统计仅在首次学会时+1
+        if (!wasLearned) {
+            this.currentSession.flagsStudied = (this.currentSession.flagsStudied || 0) + 1;
+        }
+
+        // 保存并更新概览/分类进度
+        this.saveProgress();
+        if (this.currentCategory) {
+            this.updateCategoryProgress(this.currentCategory);
+        }
+        this.updateMemoryStats();
     },
 
     showComplete() {
-        document.removeEventListener('keydown', this.currentKeyHandler);
+        const studyContent = document.getElementById('studyContent');
+        if (!studyContent) return;
         
-        const studyArea = document.getElementById('studyArea');
-        if (!studyArea) return;
-        
+        // 在结束前对最后一张进行学习标记（若用户停在最后一张直接结束）
+        this.markCurrentFlagLearned();
+
         const sessionTime = this.getSessionTime();
         const studiedCount = this.currentSession.flagsStudied;
-        
-        studyArea.innerHTML = `
-            <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border-radius: 20px; padding: 40px; text-align: center; box-shadow: 0 15px 35px rgba(16, 185, 129, 0.3); max-width: 600px; margin: 0 auto;">
-                <div style="font-size: 4rem; margin-bottom: 20px; animation: bounce 1s ease-in-out;">🎊</div>
-                <h3 style="margin: 0 0 15px 0; font-size: 2rem;">学习完成！</h3>
-                <p style="margin: 0 0 30px 0; font-size: 1.1rem; opacity: 0.95;">太棒了！你完成了 ${this.currentSession.sessionType}</p>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 20px; margin-bottom: 30px;">
-                    <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 12px;">
-                        <div style="font-size: 2rem; font-weight: bold; margin-bottom: 5px;">${this.currentFlags.length}</div>
-                        <div style="font-size: 0.9rem; opacity: 0.9;">学习数量</div>
-                    </div>
-                    <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 12px;">
-                        <div style="font-size: 2rem; font-weight: bold; margin-bottom: 5px;">${studiedCount}</div>
-                        <div style="font-size: 0.9rem; opacity: 0.9;">新掌握</div>
-                    </div>
-                    <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 12px;">
-                        <div style="font-size: 2rem; font-weight: bold; margin-bottom: 5px;">${sessionTime}</div>
-                        <div style="font-size: 0.9rem; opacity: 0.9;">用时</div>
-                    </div>
-                </div>
-                
-                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                    <button onclick="EnhancedMemorySystem.render()" 
-                            style="background: rgba(255,255,255,0.9); color: #059669; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: bold;">
-                        🏠 返回首页
-                    </button>
-                    <button onclick="EnhancedMemorySystem.quickStudy('random')" 
-                            style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: bold;">
-                        🎲 继续学习
-                    </button>
-                </div>
-                
-                <style>
-                    @keyframes bounce {
-                        0%, 100% { transform: translateY(0); }
-                        50% { transform: translateY(-10px); }
-                    }
-                </style>
-            </div>
-        `;
-        
-        setTimeout(() => this.render(), 1000);
+
+        // 更新分类进度
+        if (this.currentCategory) {
+            this.updateCategoryProgress(this.currentCategory);
+        }
+
+        // 使用学习完成模板
+        const completeTemplate = document.getElementById('study-complete-template');
+        if (completeTemplate) {
+            const templateContent = completeTemplate.content.cloneNode(true);
+
+            // 先设置模板内容，再插入 DOM
+            const sessionTypeText = templateContent.querySelector('.session-type-text');
+            if (sessionTypeText) sessionTypeText.textContent = `太棒了！你完成了${this.currentSession.sessionType}`;
+
+            const totalLearned = templateContent.querySelector('.total-learned');
+            if (totalLearned) totalLearned.textContent = this.currentFlags.length;
+
+            const newLearned = templateContent.querySelector('.new-learned');
+            if (newLearned) newLearned.textContent = studiedCount;
+
+            const sessionTimeEl = templateContent.querySelector('.session-time');
+            if (sessionTimeEl) sessionTimeEl.textContent = sessionTime;
+
+            // 绑定按钮事件
+            const returnHomeBtn = templateContent.querySelector('.return-home-btn');
+            const continueStudyBtn = templateContent.querySelector('.continue-study-btn');
+
+            if (returnHomeBtn) returnHomeBtn.onclick = () => this.returnToMemory();
+            if (continueStudyBtn) continueStudyBtn.onclick = () => this.continueToNextCategory();
+
+            // 最后插入
+            studyContent.innerHTML = '';
+            studyContent.appendChild(templateContent);
+        }
+
+        // 移除自动返回，等待用户操作
     },
 
     getSessionTime() {
@@ -1698,68 +1943,283 @@ const EnhancedMemorySystem = {
         ).length;
     },
 
-    checkDailyProgress() {
-        const todayStudied = this.getTodayStudiedCount();
-        if (todayStudied >= this.dailyGoal) {
-            console.log('今日学习目标已完成！');
+    // 智能学习系统
+    startSmartLearning() {
+        const selectedCategory = this.selectBestCategory();
+        if (!selectedCategory) {
+            this.showMessage('🎉 恭喜！您已经完成了所有分类的学习！');
+            return;
+        }
+
+        this.currentCategory = selectedCategory;
+        this.learningState.currentCategory = selectedCategory;
+        this.learningState.lastStudiedCategory = selectedCategory;
+        
+        // 记录学习历史
+        this.recordLearningSession(selectedCategory);
+        
+        // 开始学习
+        this.startCategoryStudy(selectedCategory);
+    },
+
+    // 智能选择最佳分类
+    selectBestCategory() {
+        const categories = Object.entries(this.categories);
+        
+        // 1. 优先选择未完成的分类
+        const incompleteCategories = categories.filter(([name, data]) => {
+            const progress = this.getCategoryProgress(name);
+            return progress.status !== 'completed';
+        });
+
+        if (incompleteCategories.length > 0) {
+            // 按难度和进度排序，优先选择简单且进度较低的分类
+            incompleteCategories.sort((a, b) => {
+                const aProgress = this.getCategoryProgress(a[0]);
+                const bProgress = this.getCategoryProgress(b[0]);
+                const aDifficulty = this.categories[a[0]].difficulty;
+                const bDifficulty = this.categories[b[0]].difficulty;
+                
+                // 优先简单难度
+                const difficultyOrder = { 'easy': 0, 'medium': 1, 'hard': 2 };
+                if (difficultyOrder[aDifficulty] !== difficultyOrder[bDifficulty]) {
+                    return difficultyOrder[aDifficulty] - difficultyOrder[bDifficulty];
+                }
+                
+                // 相同难度则选择进度较低的
+                const aProgressPercent = aProgress.learnedCount / a[1].countries.length;
+                const bProgressPercent = bProgress.learnedCount / b[1].countries.length;
+                return aProgressPercent - bProgressPercent;
+            });
+            
+            return incompleteCategories[0][0];
+        }
+
+        // 2. 所有分类都已完成，选择需要复习的分类
+        const reviewCategories = categories.filter(([name, data]) => {
+            const progress = this.getCategoryProgress(name);
+            const daysSinceLastStudy = this.getDaysSinceLastStudy(name);
+            return daysSinceLastStudy > 7; // 超过7天未学习需要复习
+        });
+
+        if (reviewCategories.length > 0) {
+            // 选择最久未学习的分类
+            reviewCategories.sort((a, b) => {
+                const aDays = this.getDaysSinceLastStudy(a[0]);
+                const bDays = this.getDaysSinceLastStudy(b[0]);
+                return bDays - aDays;
+            });
+            
+            return reviewCategories[0][0];
+        }
+
+        // 3. 所有分类都已完成且无需复习，返回null
+        return null;
+    },
+
+    // 继续到下一个推荐分类（排除当前分类）
+    continueToNextCategory() {
+        const current = this.currentCategory;
+        const categories = Object.entries(this.categories);
+
+        // 1) 未完成的分类，排除当前
+        const incomplete = categories.filter(([name]) => {
+            if (name === current) return false;
+            const progress = this.getCategoryProgress(name);
+            return progress.status !== 'completed';
+        });
+
+        if (incomplete.length > 0) {
+            // 复用与 selectBestCategory 相同的排序逻辑：简单优先，进度低优先
+            incomplete.sort((a, b) => {
+                const aProgress = this.getCategoryProgress(a[0]);
+                const bProgress = this.getCategoryProgress(b[0]);
+                const aDifficulty = this.categories[a[0]].difficulty;
+                const bDifficulty = this.categories[b[0]].difficulty;
+                const difficultyOrder = { 'easy': 0, 'medium': 1, 'hard': 2 };
+                if (difficultyOrder[aDifficulty] !== difficultyOrder[bDifficulty]) {
+                    return difficultyOrder[aDifficulty] - difficultyOrder[bDifficulty];
+                }
+                const aPercent = aProgress.learnedCount / a[1].countries.length;
+                const bPercent = bProgress.learnedCount / b[1].countries.length;
+                return aPercent - bPercent;
+            });
+
+            const nextCategory = incomplete[0][0];
+            this.startCategoryStudy(nextCategory);
+            return;
+        }
+
+        // 2) 都完成了，则挑需要复习的（>7天未学习），排除当前
+        const review = categories.filter(([name]) => {
+            if (name === current) return false;
+            const days = this.getDaysSinceLastStudy(name);
+            return days > 7;
+        });
+
+        if (review.length > 0) {
+            review.sort((a, b) => {
+                const aDays = this.getDaysSinceLastStudy(a[0]);
+                const bDays = this.getDaysSinceLastStudy(b[0]);
+                return bDays - aDays;
+            });
+            const nextCategory = review[0][0];
+            this.startCategoryStudy(nextCategory);
+            return;
+        }
+
+        // 3) 没有下一个分类
+        this.showMessage('🎉 所有分类均已完成，暂无需要继续的分类');
+        this.returnToMemory();
+    },
+
+    // 获取分类进度
+    getCategoryProgress(categoryName) {
+        if (!this.categoryProgress[categoryName]) {
+            const category = this.categories[categoryName];
+            const learnedCount = category.countries.filter(code => this.progress[code]?.learned).length;
+            
+            this.categoryProgress[categoryName] = {
+                status: learnedCount === category.countries.length ? 'completed' : 'in_progress',
+                learnedCount: learnedCount,
+                totalCount: category.countries.length,
+                lastStudied: null,
+                studyCount: 0
+            };
+        }
+        
+        return this.categoryProgress[categoryName];
+    },
+
+    // 获取距离上次学习的天数
+    getDaysSinceLastStudy(categoryName) {
+        const progress = this.getCategoryProgress(categoryName);
+        if (!progress.lastStudied) return 999;
+        
+        const lastStudy = new Date(progress.lastStudied);
+        const now = new Date();
+        const diffTime = Math.abs(now - lastStudy);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        
+        return diffDays;
+    },
+
+    // 记录学习会话
+    recordLearningSession(categoryName) {
+        const now = new Date().toISOString();
+        
+        // 更新分类进度
+        const progress = this.getCategoryProgress(categoryName);
+        progress.lastStudied = now;
+        progress.studyCount = (progress.studyCount || 0) + 1;
+        
+        // 保存分类进度
+        this.saveCategoryProgress();
+        
+        // 添加到学习历史
+        this.learningState.sessionHistory.push({
+            category: categoryName,
+            startTime: now,
+            sessionType: '智能学习'
+        });
+        
+        // 只保留最近50条历史记录
+        if (this.learningState.sessionHistory.length > 50) {
+            this.learningState.sessionHistory = this.learningState.sessionHistory.slice(-50);
+        }
+        
+        // 保存学习状态
+        this.saveLearningState();
+    },
+
+    // 更新分类进度（在学习完成后调用）
+    updateCategoryProgress(categoryName) {
+        const category = this.categories[categoryName];
+        const learnedCount = category.countries.filter(code => this.progress[code]?.learned).length;
+        
+        const progress = this.getCategoryProgress(categoryName);
+        progress.learnedCount = learnedCount;
+        progress.status = learnedCount === category.countries.length ? 'completed' : 'in_progress';
+        
+        this.saveCategoryProgress();
+    },
+
+    // 保存分类进度
+    saveCategoryProgress() {
+        try {
+            localStorage.setItem('categoryProgress', JSON.stringify(this.categoryProgress));
+        } catch (error) {
+            console.warn('分类进度保存失败');
         }
     },
 
-    updateDailyGoal(newGoal) {
-        this.dailyGoal = parseInt(newGoal);
-        localStorage.setItem('dailyGoal', this.dailyGoal.toString());
-        this.render();
+    // 保存学习状态
+    saveLearningState() {
+        try {
+            localStorage.setItem('learningState', JSON.stringify(this.learningState));
+        } catch (error) {
+            console.warn('学习状态保存失败');
+        }
     },
 
-    exportProgress() {
-        const exportData = {
-            progress: this.progress,
-            dailyGoal: this.dailyGoal,
-            exportDate: new Date().toISOString()
-        };
-        
-        const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `flag-memory-backup-${new Date().toISOString().split('T')[0]}.json`;
-        a.click();
-        URL.revokeObjectURL(url);
-        
-        this.showMessage('📤 学习数据已导出成功！');
+    // 更新开始学习按钮状态
+    updateStartLearningButton() {
+        const startBtn = document.getElementById('startLearningBtn');
+        if (!startBtn) return;
+
+        const selectedCategory = this.selectBestCategory();
+        const btnIcon = startBtn.querySelector('.btn-icon');
+        const btnText = startBtn.querySelector('.btn-text');
+        const learningHint = document.querySelector('.learning-hint');
+
+        if (!selectedCategory) {
+            // 所有分类都已完成
+            startBtn.className = 'start-learning-btn review-mode';
+            if (btnIcon) btnIcon.textContent = '🎉';
+            if (btnText) btnText.textContent = '复习巩固';
+            if (learningHint) learningHint.textContent = '💡 所有分类都已完成，开始复习巩固记忆吧！';
+        } else {
+            const progress = this.getCategoryProgress(selectedCategory);
+            
+            if (progress.status === 'in_progress' && progress.learnedCount > 0) {
+                // 有未完成的学习进度
+                startBtn.className = 'start-learning-btn continue-mode';
+                if (btnIcon) btnIcon.textContent = '📚';
+                if (btnText) btnText.textContent = '继续学习';
+                if (learningHint) learningHint.textContent = `💡 继续学习"${selectedCategory}"，已完成 ${progress.learnedCount}/${progress.totalCount}`;
+            } else {
+                // 开始新的学习
+                startBtn.className = 'start-learning-btn';
+                if (btnIcon) btnIcon.textContent = '🚀';
+                if (btnText) btnText.textContent = '开始学习';
+                if (learningHint) learningHint.textContent = `💡 系统推荐学习"${selectedCategory}"，每次专注一个关卡`;
+            }
+        }
     },
 
-    resetProgress() {
-        if (confirm('确定要重置所有学习进度吗？此操作不可逆！')) {
-            localStorage.removeItem('enhancedMemoryProgress');
-            localStorage.removeItem('dailyGoal');
-            
-            this.progress = {};
-            this.dailyGoal = 10;
-            
-            this.render();
-            this.showMessage('🗑️ 学习进度已重置！');
+    // 检查每日进度
+    checkDailyProgress() {
+        // 可以在这里添加每日学习目标的检查
+        const today = new Date().toDateString();
+        const todayProgress = this.learningState.sessionHistory.filter(
+            session => new Date(session.startTime).toDateString() === today
+        );
+
+        // 如果今天还没有学习，可以显示提示
+        if (todayProgress.length === 0) {
+            console.log('今天还没有开始学习，加油！');
         }
     },
 
     showMessage(message) {
         const messageEl = document.createElement('div');
-        messageEl.innerHTML = `
-            <div style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #3b82f6; color: white; padding: 15px 25px; border-radius: 8px; z-index: 10000; box-shadow: 0 5px 20px rgba(59, 130, 246, 0.3); animation: messageSlide 0.3s ease-out;">
-                ${message}
-            </div>
-            <style>
-                @keyframes messageSlide {
-                    from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
-                    to { transform: translateX(-50%) translateY(0); opacity: 1; }
-                }
-            </style>
-        `;
+        messageEl.className = 'message-popup';
+        messageEl.textContent = message;
         
         document.body.appendChild(messageEl);
         
         setTimeout(() => {
-            messageEl.style.animation = 'messageSlide 0.3s ease-out reverse';
+            messageEl.classList.add('reverse');
             setTimeout(() => {
                 document.body.removeChild(messageEl);
             }, 300);
@@ -1781,6 +2241,135 @@ const EnhancedMemorySystem = {
             [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
         }
         return shuffled;
+    },
+
+    // 清除学习进度功能
+    clearMemoryProgress() {
+        // 创建自定义确认对话框
+        const confirmDialog = document.createElement('div');
+        confirmDialog.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            font-family: inherit;
+        `;
+
+        confirmDialog.innerHTML = `
+            <div style="
+                background: white;
+                padding: 30px;
+                border-radius: 15px;
+                max-width: 400px;
+                text-align: center;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            ">
+                <div style="font-size: 3rem; margin-bottom: 15px;">⚠️</div>
+                <h3 style="margin: 0 0 15px 0; color: #1f2937; font-size: 1.3rem;">确认清除学习进度？</h3>
+                <p style="margin: 0 0 20px 0; color: #6b7280; line-height: 1.5;">
+                    此操作将清除以下所有数据，无法恢复：<br>
+                    • 所有国旗学习记录<br>
+                    • 分类学习进度<br>
+                    • 学习历史和统计<br>
+                    • 难度标记和复习记录
+                </p>
+                <div style="display: flex; gap: 10px; justify-content: center;">
+                    <button id="confirmClearBtn" style="
+                        background: #ef4444;
+                        color: white;
+                        border: none;
+                        padding: 10px 20px;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        font-size: 14px;
+                        font-weight: 500;
+                    ">确认清除</button>
+                    <button id="cancelClearBtn" style="
+                        background: #6b7280;
+                        color: white;
+                        border: none;
+                        padding: 10px 20px;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        font-size: 14px;
+                        font-weight: 500;
+                    ">取消</button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(confirmDialog);
+
+        // 绑定确认按钮事件
+        const confirmBtn = document.getElementById('confirmClearBtn');
+        const cancelBtn = document.getElementById('cancelClearBtn');
+
+        const handleConfirm = () => {
+            // 执行清除操作
+            try {
+                // 清除所有localStorage中的记忆训练相关数据
+                localStorage.removeItem('enhancedMemoryProgress');
+                localStorage.removeItem('categoryProgress');
+                localStorage.removeItem('learningState');
+                localStorage.removeItem('sessionHistory');
+                localStorage.removeItem('memoryAchievements');
+
+                // 重置内存中的数据
+                this.progress = {};
+                this.categoryProgress = {};
+                this.learningState = {
+                    currentCategory: null,
+                    lastStudiedCategory: null,
+                    sessionHistory: []
+                };
+                this.achievements = [];
+
+                // 显示成功消息
+                this.showMessage('🗑️ 学习进度已成功清除');
+
+                // 重新显示记忆训练界面以更新UI
+                setTimeout(() => {
+                    this.showMemory();
+                }, 1000);
+
+            } catch (error) {
+                console.error('清除学习进度时出错:', error);
+                this.showMessage('❌ 清除失败，请重试');
+            }
+
+            // 移除确认对话框
+            document.body.removeChild(confirmDialog);
+        };
+
+        const handleCancel = () => {
+            // 移除确认对话框
+            document.body.removeChild(confirmDialog);
+        };
+
+        confirmBtn.onclick = handleConfirm;
+        cancelBtn.onclick = handleCancel;
+
+        // 点击背景也可以关闭
+        confirmDialog.onclick = (e) => {
+            if (e.target === confirmDialog) {
+                handleCancel();
+            }
+        };
+
+        // ESC键关闭
+        const handleEscKey = (e) => {
+            if (e.key === 'Escape') {
+                handleCancel();
+                document.removeEventListener('keydown', handleEscKey);
+            }
+        };
+        document.addEventListener('keydown', handleEscKey);
     }
 };
 
