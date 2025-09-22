@@ -1350,6 +1350,71 @@
       "nameEN": "China",
       "continent": "亚洲",
       "styles": ["星星", "纯色"]
+    },
+    {
+      "code": "ck",
+      "nameCN": "库克群岛",
+      "nameEN": "Cook Islands",
+      "continent": "大洋洲",
+      "styles": [
+        "联合杰克",
+        "星星",
+        "太阳"
+      ]
+    },
+    {
+      "code": "nu",
+      "nameCN": "纽埃",
+      "nameEN": "Niue",
+      "continent": "大洋洲",
+      "styles": [
+        "联合杰克",
+        "星星",
+        "太阳"
+      ]
+    },
+    {
+      "code": "ps",
+      "nameCN": "巴勒斯坦",
+      "nameEN": "Palestine",
+      "continent": "亚洲",
+      "styles": [
+        "水平条纹",
+        "泛阿拉伯色彩"
+      ]
+    },
+    {
+      "code": "eh",
+      "nameCN": "阿拉伯撒哈拉民主共和国（西撒哈拉）",
+      "nameEN": "Western Sahara",
+      "continent": "非洲",
+      "styles": [
+        "月牙",
+        "星星",
+        "水平条纹",
+        "泛阿拉伯色彩"
+      ]
+    },
+    {
+      "code": "euu",
+      "nameCN": "欧洲联盟",
+      "nameEN": "European Union",
+      "continent": "欧洲",
+      "styles": [
+        "蓝色背景",
+        "12颗金色五角星环形排列"
+      ]
+    },
+    {
+      "code": "auu",
+      "nameCN": "非洲联盟",
+      "nameEN": "African Union",
+      "continent": "非洲",
+      "styles": [
+        "绿色背景",
+        "金色非洲大陆轮廓",
+        "金色星星环形排列"
+      ]
     }
   ]
 }

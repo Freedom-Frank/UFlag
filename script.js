@@ -11,25 +11,372 @@ let selectedDataSource = 'all';
 // 数据来源配置
 const dataSources = {
     all: { 
-        name: '全部国家', 
-        countries: null 
+        name: '全部国家和国际组织', 
+    countries: [
+        "al", "dz", "af", "ar", "ae", "sy", "om", "az", "eg", "et", 
+        "ie", "ee", "ad", "ao", "ag", "at", "au", "bb", "pg", "bs", 
+        "pk", "py", "bh", "pa", "br", "by", "bg", "mk", "bj", "be", 
+        "pe", "is", "pl", "ba", "bz", "bw", "bt", "bf", "bi", "kp", 
+        "gq", "gb", "kr", "dk", "de", "tl", "tg", "do", "dm", "bo", 
+        "ru", "ec", "er", "fr", "ph", "fj", "fi", "cv", "gm", "cg", 
+        "cd", "co", "cr", "gd", "ge", "cu", "gy", "kz", "ht", "nl", 
+        "me", "hn", "ki", "dj", "kg", "gn", "gw", "ca", "gh", "ga", 
+        "kh", "cz", "zw", "cm", "qa", "km", "ci", "kw", "hr", "ke", 
+        "lv", "ls", "la", "lb", "lt", "lr", "ly", "li", "lu", "rw", 
+        "ro", "mg", "mv", "mt", "mw", "my", "ml", "mh", "mu", "mr", 
+        "us", "mn", "bd", "fm", "mm", "md", "ma", "mc", "mz", "mx", 
+        "na", "za", "ss", "nr", "np", "ni", "ne", "ng", "no", "pw", 
+        "pt", "jp", "se", "ch", "sv", "ws", "rs", "sl", "sn", "cy", 
+        "sc", "sa", "st", "kn", "lc", "sm", "vc", "lk", "sk", "si", 
+        "sz", "sd", "sr", "sb", "so", "tj", "th", "tz", "to", "tt", 
+        "tn", "tv", "tr", "tm", "vu", "gt", "ve", "bn", "ug", "ua", 
+        "uy", "uz", "es", "gr", "sg", "nz", "hu", "jm", "am", "ye", 
+        "iq", "ir", "il", "it", "in", "id", "jo", "vn", "zm", "td", 
+        "cl", "cf", "cn", //un_countries
+        "ck", "nu", "ps", //Have diplomatic relations with china but not UN members
+        "euu", "auu" //oganiations
+        ]
     },
     un: { 
-        name: '联合国成员国', 
+    name: '联合国成员国', 
+    countries: [
+        "al", "dz", "af", "ar", "ae", "sy", "om", "az", "eg", "et", 
+        "ie", "ee", "ad", "ao", "ag", "at", "au", "bb", "pg", "bs", 
+        "pk", "py", "bh", "pa", "br", "by", "bg", "mk", "bj", "be", 
+        "pe", "is", "pl", "ba", "bz", "bw", "bt", "bf", "bi", "kp", 
+        "gq", "gb", "kr", "dk", "de", "tl", "tg", "do", "dm", "bo", 
+        "ru", "ec", "er", "fr", "ph", "fj", "fi", "cv", "gm", "cg", 
+        "cd", "co", "cr", "gd", "ge", "cu", "gy", "kz", "ht", "nl", 
+        "me", "hn", "ki", "dj", "kg", "gn", "gw", "ca", "gh", "ga", 
+        "kh", "cz", "zw", "cm", "qa", "km", "ci", "kw", "hr", "ke", 
+        "lv", "ls", "la", "lb", "lt", "lr", "ly", "li", "lu", "rw", 
+        "ro", "mg", "mv", "mt", "mw", "my", "ml", "mh", "mu", "mr", 
+        "us", "mn", "bd", "fm", "mm", "md", "ma", "mc", "mz", "mx", 
+        "na", "za", "ss", "nr", "np", "ni", "ne", "ng", "no", "pw", 
+        "pt", "jp", "se", "ch", "sv", "ws", "rs", "sl", "sn", "cy", 
+        "sc", "sa", "st", "kn", "lc", "sm", "vc", "lk", "sk", "si", 
+        "sz", "sd", "sr", "sb", "so", "tj", "th", "tz", "to", "tt", 
+        "tn", "tv", "tr", "tm", "vu", "gt", "ve", "bn", "ug", "ua", 
+        "uy", "uz", "es", "gr", "sg", "nz", "hu", "jm", "am", "ye", 
+        "iq", "ir", "il", "it", "in", "id", "jo", "vn", "zm", "td", 
+        "cl", "cf", "cn"
+        ]
+    },
+    g20: {
+        name: 'G20',
         countries: [
-            "af", "al", "dz", "ad", "ao", "ag", "ar", "am", "au", "at", "az", "bs", "bh", "bd", "bb", "by", "be", "bz", "bj", "bt", "bo", "ba", "bw", "br", "bn", "bg", "bf", "bi", "cv", "kh", "cm", "ca", "cf", "td", "cl", "cn", "co", "km", "cg", "cd", "cr", "ci", "hr", "cu", "cy", "cz", "dk", "dj", "dm", "do", "ec", "eg", "sv", "gq", "er", "ee", "sz", "et", "fj", "fi", "fr", "ga", "gm", "ge", "de", "gh", "gr", "gd", "gt", "gn", "gw", "gy", "ht", "hn", "hu", "is", "in", "id", "ir", "iq", "ie", "il", "it", "jm", "jp", "jo", "kz", "ke", "ki", "kw", "kg", "la", "lv", "lb", "ls", "lr", "ly", "li", "lt", "lu", "mg", "mw", "my", "mv", "ml", "mt", "mh", "mr", "mu", "mx", "fm", "md", "mc", "mn", "me", "ma", "mz", "mm", "na", "nr", "np", "nl", "nz", "ni", "ne", "ng", "kp", "mk", "no", "om", "pk", "pw", "pa", "pg", "py", "pe", "ph", "pl", "pt", "qa", "ro", "ru", "rw", "kn", "lc", "vc", "ws", "sm", "st", "sa", "sn", "rs", "sc", "sl", "sg", "sk", "si", "sb", "so", "za", "kr", "ss", "es", "lk", "sd", "sr", "se", "ch", "sy", "tj", "tz", "th", "tl", "tg", "to", "tt", "tn", "tr", "tm", "tv", "ug", "ua", "ae", "gb", "us", "uy", "uz", "vu", "ve", "vn", "ye", "zm", "zw"]
+            "cn", // 1. 中国
+            "ar", // 2. 阿根廷
+            "au", // 3. 澳大利亚
+            "br", // 4. 巴西
+            "ca", // 5. 加拿大
+            "fr", // 6. 法国
+            "de", // 7. 德国
+            "in", // 8. 印度
+            "id", // 9. 印度尼西亚
+            "it", // 10. 意大利
+            "jp", // 11. 日本
+            "kr", // 12. 韩国
+            "mx", // 13. 墨西哥
+            "ru", // 14. 俄罗斯
+            "sa", // 15. 沙特阿拉伯
+            "za", // 16. 南非
+            "tr", // 17. 土耳其
+            "gb", // 18. 英国
+            "us", // 19. 美国
+            // 注：欧盟和非洲联盟作为区域组织不使用国家代码
+            "euu", // 20. 欧盟（European Union）
+            "auu"  // 21. 非洲联盟（African Union）
+        ]
     },
-    g20: { 
-        name: '二十国集团', 
-        countries: ["cn", "ar", "au", "br", "ca", "fr", "de", "in", "id", "it", "jp", "kr", "mx", "ru", "sa", "za", "tr", "gb", "us"] 
+    euu: {
+        name: '欧洲联盟',
+        countries: [
+            "at", // 奥地利
+            "be", // 比利时
+            "bg", // 保加利亚
+            "cy", // 塞浦路斯
+            "cz", // 捷克
+            "hr", // 克罗地亚
+            "dk", // 丹麦
+            "ee", // 爱沙尼亚
+            "fi", // 芬兰
+            "fr", // 法国
+            "de", // 德国
+            "gr", // 希腊
+            "hu", // 匈牙利
+            "ie", // 爱尔兰
+            "it", // 意大利
+            "lv", // 拉脱维亚
+            "lt", // 立陶宛
+            "lu", // 卢森堡
+            "mt", // 马耳他
+            "nl", // 荷兰
+            "pl", // 波兰
+            "pt", // 葡萄牙
+            "ro", // 罗马尼亚
+            "sk", // 斯洛伐克
+            "si", // 斯洛文尼亚
+            "es", // 西班牙
+            "se"  // 瑞典
+        ]
     },
-    eu: { 
-        name: '欧洲联盟', 
-        countries: ["at", "be", "bg", "cy", "cz", "hr", "dk", "ee", "fi", "fr", "de", "gr", "hu", "ie", "it", "lv", "ro", "lt", "lu", "mt", "nl", "pl", "pt", "sk", "si", "es", "se"] 
+    auu: {
+        name: '非洲联盟',
+        countries: [
+            "dz", // 1. 阿尔及利亚
+            "eg", // 2. 埃及
+            "et", // 3. 埃塞俄比亚
+            "ao", // 4. 安哥拉
+            "bj", // 5. 贝宁
+            "bw", // 6. 博茨瓦纳
+            "bf", // 7. 布基纳法索
+            "bi", // 8. 布隆迪
+            "gq", // 9. 赤道几内亚
+            "tg", // 10. 多哥
+            "er", // 11. 厄立特里亚
+            "cv", // 12. 佛得角
+            "gm", // 13. 冈比亚
+            "cg", // 14. 刚果（布）
+            "cd", // 15. 刚果（金）
+            "dj", // 16. 吉布提
+            "gn", // 17. 几内亚
+            "gw", // 18. 几内亚比绍
+            "gh", // 19. 加纳
+            "ga", // 20. 加蓬
+            "zw", // 21. 津巴布韦
+            "cm", // 22. 喀麦隆
+            "km", // 23. 科摩罗
+            "ci", // 24. 科特迪瓦
+            "ke", // 25. 肯尼亚
+            "ls", // 26. 莱索托
+            "lr", // 27. 利比里亚
+            "ly", // 28. 利比亚
+            "rw", // 29. 卢旺达
+            "mg", // 30. 马达加斯加
+            "mw", // 31. 马拉维
+            "ml", // 32. 马里
+            "mu", // 33. 毛里求斯
+            "mr", // 34. 毛里塔尼亚
+            "mz", // 35. 莫桑比克
+            "na", // 36. 纳米比亚
+            "za", // 37. 南非
+            "ne", // 38. 尼日尔
+            "ng", // 39. 尼日利亚
+            "sl", // 40. 塞拉利昂
+            "sn", // 41. 塞内加尔
+            "sc", // 42. 塞舌尔
+            "st", // 43. 圣多美和普林西比
+            "sz", // 44. 斯威士兰
+            "sd", // 45. 苏丹
+            "so", // 46. 索马里
+            "tz", // 47. 坦桑尼亚
+            "tn", // 48. 突尼斯
+            "ug", // 49. 乌干达
+            "zm", // 50. 赞比亚
+            "td", // 51. 乍得
+            "cf", // 52. 中非
+            "eh", // 53. 阿拉伯撒哈拉民主共和国（西撒哈拉）非盟中唯一不是联合国会员国的国家
+            "ss", // 54. 南苏丹
+            "ma"  // 55. 摩洛哥
+        ]
     },
-    china_diplomatic: { 
-        name: '与中华人民共和国建交国家', 
-        countries: ["af", "am", "az", "bh", "bd", "bn", "kh", "kp", "tl", "ge", "in", "id", "ir", "iq", "il", "jp", "jo", "kz", "kw", "kg", "la", "lb", "my", "mv", "mn", "mm", "np", "om", "pk", "ps", "ph", "qa", "kr", "sa", "sg", "lk", "sy", "tj", "th", "tr", "tm", "ae", "uz", "vn", "ye", "dz", "ao", "bj", "bw", "bf", "bi", "cm", "cv", "cf", "td", "km", "cd", "cg", "ci", "dj", "eg", "gq", "er", "et", "ga", "gm", "gh", "gn", "gw", "ke", "ls", "lr", "ly", "mg", "mw", "ml", "mr", "mu", "ma", "mz", "na", "ne", "ng", "rw", "st", "sn", "sc", "sl", "so", "za", "ss", "sd", "tz", "tg", "tn", "ug", "zm", "zw", "al", "ad", "at", "by", "be", "ba", "bg", "hr", "cy", "cz", "dk", "ee", "fi", "fr", "de", "gr", "hu", "is", "ie", "it", "lv", "li", "lt", "lu", "mt", "md", "mc", "me", "nl", "mk", "no", "pl", "pt", "ro", "ru", "sm", "rs", "sk", "si", "es", "se", "ch", "ua", "gb", "ag", "ar", "bs", "bb", "bo", "br", "ca", "cl", "co", "cr", "cu", "dm", "do", "ec", "sv", "gd", "gy", "hn", "jm", "mx", "ni", "pa", "pe", "sr", "tt", "us", "uy", "ve", "au", "ck", "fj", "ki", "fm", "nr", "nz", "nu", "pg", "ws", "sb", "to", "vu"] 
+    china_diplomatic: {
+        name: '与中华人民共和国建交国家',
+        countries: [
+            // 亚洲 (45个国家)
+            "af", // 阿富汗
+            "am", // 亚美尼亚
+            "az", // 阿塞拜疆
+            "bh", // 巴林
+            "bd", // 孟加拉国
+            "bn", // 文莱
+            "kh", // 柬埔寨
+            "kp", // 朝鲜
+            "tl", // 东帝汶
+            "ge", // 格鲁吉亚
+            "in", // 印度
+            "id", // 印度尼西亚
+            "ir", // 伊朗
+            "iq", // 伊拉克
+            "il", // 以色列
+            "jp", // 日本
+            "jo", // 约旦
+            "kz", // 哈萨克斯坦
+            "kw", // 科威特
+            "kg", // 吉尔吉斯斯坦
+            "la", // 老挝
+            "lb", // 黎巴嫩
+            "my", // 马来西亚
+            "mv", // 马尔代夫
+            "mn", // 蒙古
+            "mm", // 缅甸
+            "np", // 尼泊尔
+            "om", // 阿曼
+            "pk", // 巴基斯坦
+            "ps", // 巴勒斯坦
+            "ph", // 菲律宾
+            "qa", // 卡塔尔
+            "kr", // 韩国
+            "sa", // 沙特阿拉伯
+            "sg", // 新加坡
+            "lk", // 斯里兰卡
+            "sy", // 叙利亚
+            "tj", // 塔吉克斯坦
+            "th", // 泰国
+            "tr", // 土耳其
+            "tm", // 土库曼斯坦
+            "ae", // 阿拉伯联合酋长国
+            "uz", // 乌兹别克斯坦
+            "vn", // 越南
+            "ye", // 也门
+            
+            // 非洲 (53个国家)
+            "dz", // 阿尔及利亚
+            "ao", // 安哥拉
+            "bj", // 贝宁
+            "bw", // 博茨瓦纳
+            "bf", // 布基纳法索
+            "bi", // 布隆迪
+            "cm", // 喀麦隆
+            "cv", // 佛得角
+            "cf", // 中非
+            "td", // 乍得
+            "km", // 科摩罗
+            "cd", // 刚果（金）
+            "cg", // 刚果（布）
+            "ci", // 科特迪瓦
+            "dj", // 吉布提
+            "eg", // 埃及
+            "gq", // 赤道几内亚
+            "er", // 厄立特里亚
+            "et", // 埃塞俄比亚
+            "ga", // 加蓬
+            "gm", // 冈比亚
+            "gh", // 加纳
+            "gn", // 几内亚
+            "gw", // 几内亚比绍
+            "ke", // 肯尼亚
+            "ls", // 莱索托
+            "lr", // 利比里亚
+            "ly", // 利比亚
+            "mg", // 马达加斯加
+            "mw", // 马拉维
+            "ml", // 马里
+            "mr", // 毛里塔尼亚
+            "mu", // 毛里求斯
+            "ma", // 摩洛哥
+            "mz", // 莫桑比克
+            "na", // 纳米比亚
+            "za", // 南非
+            "ne", // 尼日尔
+            "ng", // 尼日利亚
+            "rw", // 卢旺达
+            "st", // 圣多美和普林西比
+            "sn", // 塞内加尔
+            "sc", // 塞舌尔
+            "sl", // 塞拉利昂
+            "so", // 索马里
+            "ss", // 南苏丹
+            "sd", // 苏丹
+            "tz", // 坦桑尼亚
+            "tg", // 多哥
+            "tn", // 突尼斯
+            "ug", // 乌干达
+            "zm", // 赞比亚
+            "zw", // 津巴布韦
+            
+            // 欧洲 (45个国家)
+            "al", // 阿尔巴尼亚
+            "ad", // 安道尔
+            "at", // 奥地利
+            "by", // 白俄罗斯
+            "be", // 比利时
+            "ba", // 波斯尼亚和黑塞哥维那
+            "bg", // 保加利亚
+            "hr", // 克罗地亚
+            "cy", // 塞浦路斯
+            "cz", // 捷克
+            "dk", // 丹麦
+            "ee", // 爱沙尼亚
+            "fi", // 芬兰
+            "fr", // 法国
+            "de", // 德国
+            "gr", // 希腊
+            "hu", // 匈牙利
+            "is", // 冰岛
+            "ie", // 爱尔兰
+            "it", // 意大利
+            "lv", // 拉脱维亚
+            "li", // 列支敦士登
+            "lt", // 立陶宛
+            "lu", // 卢森堡
+            "mt", // 马耳他
+            "md", // 摩尔多瓦
+            "mc", // 摩纳哥
+            "me", // 黑山
+            "nl", // 荷兰
+            "mk", // 北马其顿
+            "no", // 挪威
+            "pl", // 波兰
+            "pt", // 葡萄牙
+            "ro", // 罗马尼亚
+            "ru", // 俄罗斯
+            "sm", // 圣马力诺
+            "rs", // 塞尔维亚
+            "sk", // 斯洛伐克
+            "si", // 斯洛文尼亚
+            "es", // 西班牙
+            "se", // 瑞典
+            "ch", // 瑞士
+            "ua", // 乌克兰
+            "gb", // 英国
+            
+            // 美洲 (24个国家)
+            "ag", // 安提瓜和巴布达
+            "ar", // 阿根廷
+            "bs", // 巴哈马
+            "bb", // 巴巴多斯
+            "bo", // 玻利维亚
+            "br", // 巴西
+            "ca", // 加拿大
+            "cl", // 智利
+            "co", // 哥伦比亚
+            "cr", // 哥斯达黎加
+            "cu", // 古巴
+            "dm", // 多米尼克
+            "do", // 多米尼加
+            "ec", // 厄瓜多尔
+            "sv", // 萨尔瓦多
+            "gd", // 格林纳达
+            "gy", // 圭亚那
+            "hn", // 洪都拉斯
+            "jm", // 牙买加
+            "mx", // 墨西哥
+            "ni", // 尼加拉瓜
+            "pa", // 巴拿马
+            "pe", // 秘鲁
+            "sr", // 苏里南
+            "tt", // 特立尼达和多巴哥
+            "us", // 美国
+            "uy", // 乌拉圭
+            "ve", // 委内瑞拉
+            
+            // 大洋洲 (13个国家)
+            "au", // 澳大利亚
+            "ck", // 库克群岛
+            "fj", // 斐济
+            "ki", // 基里巴斯
+            "fm", // 密克罗尼西亚
+            "nr", // 瑙鲁
+            "nz", // 新西兰
+            "nu", // 纽埃
+            "pg", // 巴布亚新几内亚
+            "ws", // 萨摩亚
+            "sb", // 所罗门群岛
+            "to", // 汤加
+            "vu"  // 瓦努阿图
+        ]
     },
     asiasim: {
         name: '亚洲仿真联盟',
@@ -94,13 +441,13 @@ function saveStats() {
 // 加载国家数据
 async function loadCountriesData() {
     try {
-        const response = await fetch('countries_un.json');
+        const response = await fetch('countries_and_oganizations.json');
         if (response.ok) {
             const data = await response.json();
             allCountries = data.countries;
             console.log(`成功加载 ${allCountries.length} 个国家数据`);
         } else {
-            throw new Error('无法加载countries_un.json');
+            throw new Error('无法加载countries_and_oganizations.json');
         }
     } catch (error) {
         console.log('使用示例数据:', error.message);
