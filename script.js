@@ -1152,47 +1152,89 @@ function displayWrongAnswers() {
 const EnhancedMemorySystem = {
     // 分类数据
     categories: {
-        '🌟 常见国家': {
+        '常见国家': {
             description: '最常见和知名的国家国旗，学习国旗的绝佳起点',
-            countries: ['cn', 'us', 'gb', 'jp', 'de', 'fr', 'ca', 'au', 'br', 'in', 'ru', 'it', 'es', 'kr'],
+            countries: ['cn', 'jp', 'kr', 'gb', 'us', 'ca', 'br'],
             difficulty: 'easy',
             tips: '这些都是经常在新闻中看到的国家，从它们开始学习最容易建立信心'
         },
-        '🏳️ 三色旗系列': {
+        '类似美国系列': {
+            description: '与美国国旗相似的国旗',
+            countries: ['us', 'lr', 'my', 'cl', 'tg'],
+            difficulty: 'medium',
+            tips: '注意左上角图案以及红白条纹，多哥和智利相似但配色不同'
+        },
+        '几何圆形': {
+        description: '都有几何圆形特征',
+        countries: ['jp', 'bd', 'pw', 'mk', 'la', 'ne'],
+        difficulty: 'medium',
+        tips: '孟加拉国和帕劳国旗中间的圆形都处于偏左的位置；帕劳作为大洋洲群岛国家，蓝底色代表太平洋，圆形代表的是满月而不是太阳；北马其顿放射太阳像“金色光芒”；老挝蓝红间白月带禅意；'
+        },
+        '类似加拿大系列': {
+            description: '这些国家的国旗主要以红色和白色为主色调，图案鲜明，容易区分和记忆',
+            countries: ['ca', 'lb', 'pe'],
+            difficulty: 'medium',
+            tips: '加拿大的枫叶、黎巴嫩的雪松树、秘鲁的红白竖条都非常直观'
+        },
+        '独特形状系列': {
+            description: '特殊形状国家以及与其相似国旗',
+            countries: ['ch', 'ge', 'to', 'va', 'np', 'me', 'lk', 'gd'],
+            difficulty: 'medium',
+            tips: '瑞士和梵蒂冈国旗都是方形；格鲁吉亚和汤加的十字架鲜明；尼泊尔国旗是唯一非矩形的并且镶边，镶边的还有：黑山有双头鹰；斯里兰卡有狮子；格林纳达旗角藏有肉豆蔻'
+        },
+        '复杂纹理系列': {
+            description: '这些国家的国旗常带有复杂的装饰纹理或特殊图案',
+            countries: ['by', 'tm', 'ir', 'kz'],
+            difficulty: 'easy',
+            tips: '白俄罗斯和土库曼斯坦旗帜有传统织纹装饰，伊朗国旗边缘有阿拉伯文字，哈萨克斯坦国旗有精细的金色装饰与雄鹰'
+        },
+        '特殊象征图案': {
+            description: '这些国家的国旗上有极具象征意义的独特图案，比如神兽、宗教符号或历史标志',
+            countries: ['al', 'bt', 'bb', 'il', 'kh'],
+            difficulty: 'easy',
+            tips: '巴巴多斯的三叉戟象征海神波塞冬；以色列的大卫之星（六芒星）象征犹太民族；不丹的巨龙；阿尔巴尼亚的双头鹰；柬埔寨的吴哥窟'
+        },
+        '三色旗系列': {
             description: '经典的三色条纹设计，欧洲国家的主流风格',
             countries: ['fr', 'it', 'de', 'ru', 'nl', 'be', 'ro', 'bg', 'hu', 'ie', 'at', 'ee', 'lv', 'lt'],
             difficulty: 'medium',
             tips: '记住条纹方向很重要：法国、荷兰是垂直条纹，德国、奥地利是水平条纹'
         },
-        '✝️ 十字设计': {
+        '十字设计': {
             description: '包含十字图案的国旗，体现宗教和文化传统',
             countries: ['dk', 'no', 'se', 'fi', 'is', 'ch', 'gr', 'ge', 'to', 'mt'],
             difficulty: 'medium',
             tips: '北欧十字（丹麦风格）vs 居中十字（瑞士风格）要区分清楚'
         },
-        '☪️ 星月图案': {
+        '星月图案': {
             description: '伊斯兰文化圈国家常见的星月符号',
             countries: ['tr', 'pk', 'my', 'sg', 'tn', 'dz', 'ly', 'mr', 'mv', 'az', 'uz', 'tm'],
             difficulty: 'medium',
             tips: '星星数量和排列方式是区别的关键：土耳其1颗星，马来西亚14颗星'
         },
-        '🇬🇧 米字旗系列': {
-            description: '英联邦国家，左上角保留英国米字旗',
-            countries: ['gb', 'au', 'nz', 'fj', 'tv'],
+        '米字旗 + 南十字星': {
+            description: '英联邦国家左上角保留英国米字旗。南十字星是南半球国家的专属',
+            countries: ['gb', 'au', 'nz', 'fj', 'tv', 'fm', 'ws','pg'],
             difficulty: 'easy',
-            tips: '重点看右侧图案：澳大利亚有南十字星，新西兰有南十字星但颜色不同'
+            tips: '澳大利亚有白色南十字星，新西兰有红色南十字星；图瓦卢国旗上的五角星数量就是本国岛屿的数量；密克罗尼西亚国旗上的四颗星星不是南十字星，那只是象征全国四个州'
         },
-        '🔴 红白条纹': {
+        '红白条纹': {
             description: '简洁的红白条纹设计，经典而醒目',
             countries: ['pl', 'at', 'id', 'lv', 'mc', 'pe'],
             difficulty: 'easy',
             tips: '波兰和印尼很像但颜色位置相反，注意区分'
         },
-        '🔵 蓝白条纹': {
+        '蓝白条纹': {
             description: '蓝白条纹，多为拉丁美洲和地中海国家',
             countries: ['ar', 'uy', 'gr', 'gt', 'hn', 'ni', 'sv', 'il'],
             difficulty: 'medium',
             tips: '阿根廷有太阳，希腊有十字，以色列有大卫星'
+        },
+        '特殊图像': {
+            description: '这些国家的国旗非常鲜明',
+            countries: ['ag', 'ki', 'lc', 'cy', 'ba', 'sa', 'kg', 'cf'],
+            difficulty: 'hard',
+            tips: '安提瓜和巴布达的旭日+V型结构、基里巴斯的飞鸟与海洋、圣卢西亚的双山、塞浦路斯地图本体、波黑的星与三角形、沙特的伊斯兰文字与刀、吉尔吉斯的太阳毡房纹样、中非的四色条纹加星星，都有独特象征'
         }
     },
 
