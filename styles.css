@@ -416,6 +416,15 @@ nav {
     margin: 20px 0;
 }
 
+/* 修复“看国家选国旗”中内联国家名的字体与周围不一致问题 */
+.question-text .country-name {
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+    font-family: inherit;
+    display: inline;
+}
+
 .options-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
