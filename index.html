@@ -15,8 +15,8 @@
 
         <nav>
             <button class="nav-btn active" id="browseBtn">国旗浏览</button>
-            <button class="nav-btn" id="quizBtn">知识测试</button>
             <button class="nav-btn" id="memoryBtn">记忆训练</button>
+            <button class="nav-btn" id="quizBtn">知识测试</button>
             <button class="nav-btn" id="statsBtn">学习统计</button>
         </nav>
 
@@ -116,6 +116,15 @@
                 </div>
             </div>
 
+            <!-- 记忆训练模式 -->
+            <div id="memory-section" style="display: none;">
+                <div style="text-align: center; padding: 40px;">
+                    <!-- <h2>🧠 记忆训练功能</h2>
+                    <p>记忆训练功能正在加载中...</p> -->
+                    <div id="simpleMemoryContainer"></div>
+                </div>
+            </div>
+
             <!-- 测试模式 -->
             <div id="quiz-section" style="display: none;">
                 <div class="quiz-container">
@@ -199,14 +208,7 @@
                     </div>
                 </div>
             </div>
-            <!-- 记忆训练模式 -->
-            <div id="memory-section" style="display: none;">
-                <div style="text-align: center; padding: 40px;">
-                    <!-- <h2>🧠 记忆训练功能</h2>
-                    <p>记忆训练功能正在加载中...</p> -->
-                    <div id="simpleMemoryContainer"></div>
-                </div>
-            </div>
+            
             <!-- 统计模式 -->
             <div id="stats-section" style="display: none;">
                 <div class="stats-container">

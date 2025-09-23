@@ -896,6 +896,8 @@ function showQuestion() {
                 
                 if (button && textSpan) {
                     button.onclick = () => checkAnswer(opt.code, q.correct.code);
+                    // 记录选项代码，便于统一判题上色
+                    button.dataset.code = opt.code;
                     textSpan.textContent = opt.nameCN;
                     optionsContainer.appendChild(buttonContent);
                 }
@@ -925,6 +927,8 @@ function showQuestion() {
                 
                 if (button && img) {
                     button.onclick = () => checkAnswer(opt.code, q.correct.code);
+                    // 记录选项代码，便于统一判题上色
+                    button.dataset.code = opt.code;
                     img.src = `pics/${opt.code}.png`;
                     img.alt = opt.nameCN;
                     img.onerror = function() {
@@ -943,7 +947,7 @@ function checkAnswer(selected, correct) {
     
     buttons.forEach(btn => {
         btn.disabled = true;
-        const btnCode = extractCodeFromOnclick(btn.onclick);
+        const btnCode = btn.dataset && btn.dataset.code ? btn.dataset.code : null;
         
         if (btnCode === correct) {
             btn.classList.add('correct');
