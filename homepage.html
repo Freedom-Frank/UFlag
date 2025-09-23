@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>环球识旗</title>
+    <title>认识国旗</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1><span class="emoji">🌍</span> 环球识旗</h1>
+            <h1><span class="emoji">🌍</span> 认识国旗</h1>
             <p class="subtitle">探索世界，从认识国旗开始✨</p>
+            <div class="sponsor-badge" title="本网页由亚洲仿真联盟支持">
+                <img class="sponsor-logo" src="ASIASIM.png" alt="亚洲仿真联盟支持">
+            </div>
         </header>
 
         <nav>
@@ -32,8 +35,8 @@
                         <div class="filter-group">
                             <div class="filter-title">数据来源</div>
                             <select class="filter-select" id="dataSourceSelect">
-                                <option value="all" selected>全部国家和国际组织</option>
-                                <option value="un">联合国会员国</option>
+                                <!-- <option value="all" selected>全部国家和国际组织</option> -->
+                                <option value="un" selected>联合国会员国</option>
                                 <option value="g20">二十国集团</option>
                                 <option value="euu">欧洲联盟</option>
                                 <option value="auu">非洲联盟</option>
@@ -104,7 +107,7 @@
                     </div>
                     <div class="stat-card">
                         <div class="stat-number" id="styleCount">16</div>
-                        <div class="stat-label">设计风格</div>
+                        <div class="stat-label">特征分类</div>
                     </div>
                 </div>
 
@@ -340,11 +343,11 @@
                 </div>
             </div>
             <div style="background: #e5e7eb; height: 8px; border-radius: 4px; overflow: hidden; margin-bottom: 25px;">
-                <div class="progress-fill" style="background: linear-gradient(90deg, #3b82f6, #10b981); height: 100%; width: 0%; transition: width 0.3s;"></div>
+                <div class="progress-fill" style="background: linear-gradient(90deg, #0179C8, #23457C); height: 100%; width: 0%; transition: width 0.3s;"></div>
             </div>
             <div style="margin-bottom: 25px; position: relative;">
                 <img class="study-flag-img" alt="" style="max-width: 300px; width: 100%; height: auto; max-height: 200px; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); object-fit: contain; background: #f8f9fa;">
-                <div class="learned-indicator" style="position: absolute; top: -8px; right: -8px; background: #10b981; color: white; border-radius: 50%; width: 28px; height: 28px; display: none; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; border: 3px solid white;">
+                <div class="learned-indicator" style="position: absolute; top: -8px; right: -8px; background: #0179C8; color: white; border-radius: 50%; width: 28px; height: 28px; display: none; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; border: 3px solid white;">
                     ✓
                 </div>
             </div>
@@ -367,7 +370,7 @@
     <template id="memory-main-template">
         <div style="max-width: 900px; margin: 0 auto;">
             <!-- 头部统计 -->
-            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 15px; margin-bottom: 25px; text-align: center;">
+            <div style="background: linear-gradient(135deg, #002B7D 0%, #0179C8 100%); color: white; padding: 25px; border-radius: 15px; margin-bottom: 25px; text-align: center;">
                 <h2 style="margin: 0 0 15px 0; font-size: 1.8rem;">📚 学习概览</h2>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 15px; margin-bottom: 20px;">
                     <div>
@@ -395,14 +398,14 @@
                         <span class="total-progress-text">0/0</span>
                     </div>
                     <div style="background: rgba(255,255,255,0.3); height: 8px; border-radius: 4px; overflow: hidden;">
-                        <div class="total-progress-fill" style="background: #10b981; height: 100%; width: 0%; transition: width 0.3s;"></div>
+                        <div class="total-progress-fill" style="background: #0179C8; height: 100%; width: 0%; transition: width 0.3s;"></div>
                     </div>
                     <div class="overall-complete" style="margin-top: 8px; font-size: 0.9rem; display: none;">🎉 太棒了！你已掌握所有国旗</div>
                 </div>
                 
                 <!-- 开始学习按钮 -->
                 <div style="margin-top: 25px; text-align: center;">
-                    <button id="startLearningBtn" class="start-learning-btn" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; padding: 16px 32px; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; transition: all 0.3s; box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3); min-width: 200px;">
+                    <button id="startLearningBtn" class="start-learning-btn" style="background: linear-gradient(135deg, #E8A848 0%, #E28031 100%); color: white; border: none; padding: 16px 32px; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; transition: all 0.3s; box-shadow: 0 8px 25px rgba(226, 128, 49, 0.3); min-width: 200px;">
                         <span class="btn-icon">🚀</span>
                         <span class="btn-text">开始学习</span>
                     </button>
@@ -435,7 +438,7 @@
     </template>
 
     <template id="study-complete-template">
-        <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border-radius: 20px; padding: 40px; text-align: center; box-shadow: 0 15px 35px rgba(16, 185, 129, 0.3); max-width: 600px; margin: 0 auto;">
+        <div style="background: linear-gradient(135deg, #0179C8 0%, #23457C 100%); color: white; border-radius: 20px; padding: 40px; text-align: center; box-shadow: 0 15px 35px rgba(1, 121, 200, 0.3); max-width: 600px; margin: 0 auto;">
             <div style="font-size: 4rem; margin-bottom: 20px; animation: bounce 1s ease-in-out;">🎊</div>
             <h3 style="margin: 0 0 15px 0; font-size: 2rem;">学习完成！</h3>
             <p style="margin: 0 0 30px 0; font-size: 1.1rem; opacity: 0.95;" class="session-type-text">太棒了！你完成了学习</p>
@@ -456,7 +459,7 @@
             </div>
             
             <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                <button class="return-home-btn" style="background: rgba(255,255,255,0.9); color: #059669; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                <button class="return-home-btn" style="background: rgba(255,255,255,0.9); color: #23457C; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: bold;">
                     🏠 返回首页
                 </button>
                 <button class="continue-study-btn" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: bold;">
