@@ -6,6 +6,7 @@
     --accent-gold: #E8A848;        /* Diplomatic gold */
     --accent-orange: #E28031;      /* Warm accent orange */
     --pure-white: #ffffff;         /* Clean white */
+    --light-blue: #E6F3FF;         /* Light blue background */
 
     /* Supporting colors for international feel */
     --diplomatic-gray: #f8f9fc;    /* Light diplomatic background */
@@ -133,6 +134,13 @@ h1 {
     font-weight: 700;
     margin-bottom: 12px;
     letter-spacing: -0.025em;
+}
+
+h2 {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    margin-bottom: 24px;
+    text-align: center;
 }
 
 .emoji {
@@ -489,6 +497,19 @@ nav {
     margin-bottom: 16px;
 }
 
+.start-quiz-wrapper {
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.start-quiz-wrapper .btn-primary {
+    margin: 0 auto;
+}
+
 /* Question Styles */
 .question-container {
     background: var(--pure-white);
@@ -710,6 +731,35 @@ nav {
     background: rgba(1, 121, 200, 0.05);
 }
 
+/* Quiz Header */
+.quiz-header {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 16px;
+}
+
+.return-to-quiz-btn {
+    background: white;
+    color: #23457C;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.return-to-quiz-btn:hover {
+    background: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.return-to-quiz-btn .btn-icon {
+    margin-right: 8px;
+}
+
 /* Progress Bar */
 .progress-bar {
     width: 100%;
@@ -809,6 +859,36 @@ nav {
     border: 1px solid var(--border-light);
 }
 
+.comparison-flag {
+    width: 120px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-diplomatic);
+    background: var(--diplomatic-gray);
+    border: 1px solid var(--border-light);
+}
+
+.flag-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.flag-label {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.flags-comparison {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    margin-top: 16px;
+}
+
 /* Memory Training Styles */
 .start-learning-btn {
     background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-orange) 100%);
@@ -831,7 +911,7 @@ nav {
 }
 
 .category-card {
-    background: var(--pure-white);
+    background: var(--light-blue);
     border: 1px solid var(--border-light);
     border-radius: var(--border-radius-large);
     padding: 24px;

@@ -90,13 +90,27 @@
       },
       "retry": "再测一次",
       "back": "返回",
+      "backToQuiz": "返回知识测试",
       "wrongAnswers": {
         "title": "错题详情",
         "flagToCountry": "看国旗选国家",
         "countryToFlag": "看国家选国旗",
         "correctAnswer": "正确答案：",
         "yourAnswer": "你的答案："
-      }
+      },
+      "messages": {
+        "perfect": "完美！你是真正的国旗专家！🏆",
+        "excellent": "优秀！你的国旗知识非常丰富！⭐",
+        "good": "不错！继续努力，你会更棒的！💪",
+        "keepTrying": "加油！多练习就能进步！📚",
+        "keepLearning": "没关系，学习需要时间，继续努力！🌟"
+      },
+      "questionNumber": "第 {index} 题",
+      "flag": "国旗",
+      "correctAnswer": "正确答案",
+      "wrongAnswer": "错误答案",
+      "correctFlag": "正确国旗",
+      "wrongFlag": "错误国旗"
     },
     "memory": {
       "overview": "📚 学习概览",
@@ -119,10 +133,57 @@
         "new": "新掌握",
         "time": "用时"
       },
-      "returnHome": "🏠 返回首页",
-      "continueStudy": "🎲 继续学习",
+      "returnHome": "返回首页",
+      "continueStudy": "继续学习",
       "previous": "← 上一个",
-      "next": "下一个 →"
+      "next": "下一个 →",
+      "allCategoriesComplete": "🎉 所有分类均已完成，暂无需要继续的分类",
+      "reviewMode": "复习巩固",
+      "continueMode": "继续学习",
+      "systemRecommendation": "💡 系统推荐学习\"{category}\"，每次专注一个关卡",
+      "continueCategory": "💡 继续学习\"{category}\"，已完成 {learned}/{total}",
+      "allCompletedReview": "💡 所有分类都已完成，开始复习巩固记忆吧！",
+      "progressClearedSuccess": "🗑️ 学习进度已成功清除",
+      "clearFailed": "❌ 清除失败，请重试",
+      "confirmClearProgress": "确认清除学习进度？",
+      "clearDialogDetails": "此操作将清除以下所有数据，无法恢复：<br>• 所有国旗学习记录<br>• 分类学习进度<br>• 学习历史和统计<br>• 难度标记和复习记录",
+      "confirmClear": "确认清除",
+      "cancel": "取消",
+      "overviewTitle": "📚 学习概览",
+      "categoryLearning": "📂 分类学习",
+      "studyComplete": "🎊 学习完成！",
+      "studyCompleteMessage": "太棒了！你完成了学习",
+      "statsTotal": "总数量",
+      "statsProgress": "完成度",
+      "statsToday": "今日学习",
+      "statsLearned": "已学习",
+      "statsNew": "新掌握",
+      "statsTime": "用时",
+      "learningProgress": "学习进度",
+      "allFlagsMastered": "🎉 太棒了！你已掌握所有国旗",
+      "systemSmartHint": "💡 系统会智能选择最适合的学习分类，每次专注一个关卡",
+      "tipsTitle": "💡 学习技巧",
+      "lastStudied": "上次学习: ",
+      "smartLearning": "智能学习",
+      "todayNoStudy": "今天还没有开始学习，加油！",
+      "continentDescriptions": {
+        "asia": "亚洲地区国家的国旗，包括东亚、东南亚、南亚、西亚和中亚",
+        "europe": "欧洲地区国家的国旗，多为三色旗和十字设计",
+        "africa": "非洲地区国家的国旗，多采用泛非色彩",
+        "northAmerica": "北美洲地区国家的国旗",
+        "southAmerica": "南美洲地区国家的国旗，多为蓝白红配色",
+        "oceania": "大洋洲地区国家的国旗，多含南十字星"
+      },
+      "continentTips": {
+        "asia": "亚洲国旗文化多样，有星月图案、三色旗等多种设计风格",
+        "europe": "欧洲国旗以简洁的三色条和十字图案为主，容易识别",
+        "africa": "非洲国旗常用红、黄、绿三色，象征独立和自由",
+        "northAmerica": "北美洲国旗设计多样，有条纹、徽章等不同元素",
+        "southAmerica": "南美洲国旗常包含太阳、山脉等自然象征",
+        "oceania": "大洋洲国旗常以南十字星和蓝底为代表海洋"
+      },
+      "defaultTip": "认真学习这些国旗的特征和含义",
+      "startSessionHint": "点击开始后将按顺序展示每面国旗"
     },
     "stats": {
       "title": "学习统计",
@@ -265,13 +326,27 @@
       },
       "retry": "Try Again",
       "back": "Back",
+      "backToQuiz": "Back to Quiz",
       "wrongAnswers": {
         "title": "Wrong Answers Details",
         "flagToCountry": "Flag to Country",
         "countryToFlag": "Country to Flag",
         "correctAnswer": "Correct Answer: ",
         "yourAnswer": "Your Answer: "
-      }
+      },
+      "messages": {
+        "perfect": "Perfect! You are a true flag expert! 🏆",
+        "excellent": "Excellent! Your flag knowledge is very rich! ⭐",
+        "good": "Good! Keep working hard, you'll be even better! 💪",
+        "keepTrying": "Come on! Practice more and you'll improve! 📚",
+        "keepLearning": "It's okay, learning takes time, keep working hard! 🌟"
+      },
+      "questionNumber": "Question {index}",
+      "flag": "Flag",
+      "correctAnswer": "Correct Answer",
+      "wrongAnswer": "Wrong Answer",
+      "correctFlag": "Correct Flag",
+      "wrongFlag": "Wrong Flag"
     },
     "memory": {
       "overview": "📚 Learning Overview",
@@ -294,10 +369,69 @@
         "new": "New",
         "time": "Time"
       },
-      "returnHome": "🏠 Return Home",
-      "continueStudy": "🎲 Continue Learning",
+      "returnHome": "Return Home",
+      "continueStudy": "Continue Learning",
       "previous": "← Previous",
-      "next": "Next →"
+      "next": "Next →",
+      "allCategoriesComplete": "🎉 All categories completed, no more categories to continue",
+      "reviewMode": "Review & Reinforce",
+      "continueMode": "Continue Learning",
+      "systemRecommendation": "💡 System recommends learning \"{category}\", focus on one level at a time",
+      "continueCategory": "💡 Continue learning \"{category}\", completed {learned}/{total}",
+      "allCompletedReview": "💡 All categories completed, time to review and reinforce your memory!",
+      "progressClearedSuccess": "🗑️ Learning progress successfully cleared",
+      "clearFailed": "❌ Clear failed, please try again",
+      "confirmClearProgress": "Confirm Clear Learning Progress?",
+      "clearDialogDetails": "This operation will clear all the following data, cannot be restored:<br>• All flag learning records<br>• Category learning progress<br>• Learning history and statistics<br>• Difficulty marks and review records",
+      "confirmClear": "Confirm Clear",
+      "cancel": "Cancel",
+      "overviewTitle": "📚 Learning Overview",
+      "categoryLearning": "📂 Category Learning",
+      "studyComplete": "🎊 Study Complete!",
+      "studyCompleteMessage": "Excellent! You have completed the learning session",
+      "statsTotal": "Total",
+      "statsProgress": "Progress",
+      "statsToday": "Today",
+      "statsLearned": "Learned",
+      "statsNew": "New",
+      "statsTime": "Time",
+      "learningProgress": "Learning Progress",
+      "allFlagsMastered": "🎉 Great! You have mastered all flags",
+      "systemSmartHint": "💡 The system will intelligently select the most suitable learning category, focusing on one level at a time",
+      "tipsTitle": "💡 Study Tips",
+      "lastStudied": "Last studied: ",
+      "smartLearning": "Smart Learning",
+      "todayNoStudy": "You haven't started learning today, keep it up!",
+      "continentDescriptions": {
+        "asia": "Flags of Asian countries, including East Asia, Southeast Asia, South Asia, West Asia and Central Asia",
+        "europe": "Flags of European countries, mostly tricolor flags and cross designs",
+        "africa": "Flags of African countries, mostly using Pan-African colors",
+        "northAmerica": "Flags of North American countries",
+        "southAmerica": "Flags of South American countries, mostly blue, white and red color schemes",
+        "oceania": "Flags of Oceanian countries, mostly containing the Southern Cross"
+      },
+      "continentTips": {
+        "asia": "Asian flags are diverse in culture, with various design styles such as star and moon patterns, tricolor flags",
+        "europe": "European flags are mainly simple tricolor stripes and cross patterns, easy to recognize",
+        "africa": "African flags often use red, yellow, and green colors, symbolizing independence and freedom",
+        "northAmerica": "North American flags are diverse in design, with different elements such as stripes and emblems",
+        "southAmerica": "South American flags often contain natural symbols such as sun and mountains",
+        "oceania": "Oceanian flags often feature the Southern Cross and blue backgrounds representing the ocean"
+      },
+      "defaultTip": "Study the characteristics and meanings of these flags carefully",
+      "startSessionHint": "After clicking start, flags will be displayed in sequence",
+      "prepareStudy": "Prepare to study: ",
+      "studyHintTitle": "Study Tips",
+      "totalCount": "Total in Category",
+      "unlearned": "Unlearned",
+      "learned": "Learned",
+      "beginTest": "Begin Study",
+      "dontKnow": "Don't Know",
+      "know": "Know",
+      "next": "Next →",
+      "studyCompleteMessage": "Excellent! You have completed ",
+      "returnToMemory": "← Return to Memory Training",
+      "categoryLearning": "Category Learning: "
     },
     "stats": {
       "title": "Learning Statistics",
@@ -349,7 +483,22 @@
       "english": "English"
     },
     "sponsorBadge": {
-      "title": "本网页由亚洲仿真联盟支持"
+      "title": "This website is supported by Asia Simulation Alliance"
+    },
+    "systemMessages": {
+      "dataLoaded": "Successfully loaded {count} country data",
+      "usingSampleData": "Using sample data",
+      "memorySystemInitialized": "Enhanced memory system initialized",
+      "continentCategoriesInitialized": "Continent categories initialized",
+      "flagSystemInitialized": "🏳️ Flag system fully initialized",
+      "dataSources": {
+        "all": "All Countries & Organizations",
+        "un": "UN Member States",
+        "g20": "G20",
+        "euu": "European Union",
+        "auu": "African Union",
+        "china_diplomatic": "Countries with Diplomatic Relations with China"
+      }
     }
   }
 }
