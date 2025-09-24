@@ -1230,7 +1230,6 @@ const EnhancedMemorySystem = {
                 this.categories[categoryName] = {
                     description: this.getContinentDescription(continent, i + 1, groupCount),
                     countries: groupCountries.map(c => c.code),
-                    difficulty: this.getContinentDifficulty(continent),
                     tips: this.getContinentTips(continent),
                     groupNumber: i + 1,
                     totalGroups: groupCount,
@@ -1253,28 +1252,10 @@ const EnhancedMemorySystem = {
             '大洋洲': '大洋洲地区国家的国旗，多含南十字星'
         };
 
-        let description = baseDescriptions[continent] || `${continent}地区国家的国旗`;
-
-        if (totalGroups > 1) {
-            description += ` (第${groupNumber}组，共${totalGroups}组)`;
-        }
-
-        return description;
+        return baseDescriptions[continent] || `${continent}地区国家的国旗`;
     },
 
-    // 获取大洲难度
-    getContinentDifficulty(continent) {
-        const difficulties = {
-            '亚洲': 'medium',
-            '欧洲': 'easy',
-            '非洲': 'medium',
-            '北美洲': 'medium',
-            '南美洲': 'easy',
-            '大洋洲': 'medium'
-        };
-        return difficulties[continent] || 'medium';
-    },
-
+    
     // 获取大洲学习技巧
     getContinentTips(continent) {
         const tips = {
@@ -1375,18 +1356,7 @@ const EnhancedMemorySystem = {
                 categoryCard.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
             };
 
-            const difficultyColor = {
-                'easy': '#10b981',
-                'medium': '#f59e0b', 
-                'hard': '#ef4444'
-            }[data.difficulty] || '#6b7280';
-
-            const difficultyText = {
-                'easy': '简单',
-                'medium': '中等',
-                'hard': '困难'
-            }[data.difficulty] || '一般';
-
+  
             // 根据进度状态添加不同的视觉样式
             let statusIcon = '';
             let statusClass = '';
@@ -1397,7 +1367,7 @@ const EnhancedMemorySystem = {
                 statusIcon = '📖';
                 statusClass = 'in-progress';
             } else {
-                statusIcon = '🆕';
+                statusIcon = '🕹️';
                 statusClass = 'new';
             }
 
@@ -1407,7 +1377,6 @@ const EnhancedMemorySystem = {
                         <span class="category-status ${statusClass}">${statusIcon}</span>
                         <h4 class="category-title">${name}</h4>
                     </div>
-                    <span class="difficulty-tag ${data.difficulty}">${difficultyText}</span>
                 </div>
                 <p class="category-description">${data.description}</p>
                 <div class="category-progress">
@@ -1418,8 +1387,8 @@ const EnhancedMemorySystem = {
                     <span class="stats-percent">${progress}%</span>
                 </div>
                 ${data.tips ? `
-                    <div class="category-tips">
-                        <div class="tips-title">💡 学习技巧</div>
+                    <div class="category-tips" style="background: #fefce8; border-left: 3px solid #fde047; border-radius: 6px; padding: 10px;">
+                        <div class="tips-title" style="text-align: left; margin-bottom: 6px; font-weight: 600;">💡 学习技巧</div>
                         <div class="tips-content">${data.tips}</div>
                     </div>
                 ` : ''}
@@ -2039,20 +2008,12 @@ const EnhancedMemorySystem = {
         });
 
         if (incompleteCategories.length > 0) {
-            // 按难度和进度排序，优先选择简单且进度较低的分类
+            // 按进度排序，优先选择进度较低的分类
             incompleteCategories.sort((a, b) => {
                 const aProgress = this.getCategoryProgress(a[0]);
                 const bProgress = this.getCategoryProgress(b[0]);
-                const aDifficulty = this.categories[a[0]].difficulty;
-                const bDifficulty = this.categories[b[0]].difficulty;
-                
-                // 优先简单难度
-                const difficultyOrder = { 'easy': 0, 'medium': 1, 'hard': 2 };
-                if (difficultyOrder[aDifficulty] !== difficultyOrder[bDifficulty]) {
-                    return difficultyOrder[aDifficulty] - difficultyOrder[bDifficulty];
-                }
-                
-                // 相同难度则选择进度较低的
+
+                // 选择进度较低的
                 const aProgressPercent = aProgress.learnedCount / a[1].countries.length;
                 const bProgressPercent = bProgress.learnedCount / b[1].countries.length;
                 return aProgressPercent - bProgressPercent;
@@ -2096,16 +2057,10 @@ const EnhancedMemorySystem = {
         });
 
         if (incomplete.length > 0) {
-            // 复用与 selectBestCategory 相同的排序逻辑：简单优先，进度低优先
+            // 按进度排序，优先选择进度较低的分类
             incomplete.sort((a, b) => {
                 const aProgress = this.getCategoryProgress(a[0]);
                 const bProgress = this.getCategoryProgress(b[0]);
-                const aDifficulty = this.categories[a[0]].difficulty;
-                const bDifficulty = this.categories[b[0]].difficulty;
-                const difficultyOrder = { 'easy': 0, 'medium': 1, 'hard': 2 };
-                if (difficultyOrder[aDifficulty] !== difficultyOrder[bDifficulty]) {
-                    return difficultyOrder[aDifficulty] - difficultyOrder[bDifficulty];
-                }
                 const aPercent = aProgress.learnedCount / a[1].countries.length;
                 const bPercent = bProgress.learnedCount / b[1].countries.length;
                 return aPercent - bPercent;
