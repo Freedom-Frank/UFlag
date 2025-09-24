@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>认识国旗 - 从国旗认识世界</title>
+    <title data-i18n="siteName">认识国旗 - 从国旗认识世界</title>
     <style>
         * {
             margin: 0;
@@ -54,6 +54,36 @@
             margin-bottom: 20px;
             text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             position: relative;
+        }
+
+        /* 语言切换器 */
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .lang-btn.active {
+            background: rgba(232, 168, 72, 0.8);
+            border-color: #E8A848;
         }
 
         .emoji-globe {
@@ -316,30 +346,36 @@
 <body>
 
     <div class="welcome-container">
+        <!-- 语言切换器 -->
+        <div class="language-switcher">
+            <button class="lang-btn active" data-lang="zh">中文</button>
+            <button class="lang-btn" data-lang="en">English</button>
+        </div>
+
         <!-- 主标题区域 -->
         <div class="hero-section">
             <div class="title-row">
                 <div class="emoji-globe">🌍</div>
-                <h1 class="main-title">认识国旗</h1>
+                <h1 class="main-title" data-i18n="welcome.title">认识国旗</h1>
             </div>
-            <p class="subtitle">从国旗开始，探索全世界</p>
+            <p class="subtitle" data-i18n="welcome.subtitle">从国旗开始，探索全世界</p>
         </div>
 
         <div class="feature-slogans">
             <div class="feature-card">
                 <span class="feature-icon">🏳️‍🌈</span>
-                <h3 class="feature-title">国旗浏览</h3>
-                <p class="feature-desc">轻松掌握200个国家和地区国旗</p>
+                <h3 class="feature-title" data-i18n="welcome.features.browse.title">国旗浏览</h3>
+                <p class="feature-desc" data-i18n="welcome.features.browse.description">轻松掌握200个国家和地区国旗</p>
             </div>
             <div class="feature-card">
                 <span class="feature-icon">🧠</span>
-                <h3 class="feature-title">记忆训练</h3>
-                <p class="feature-desc">分类记忆国旗，让学习更高效持久</p>
+                <h3 class="feature-title" data-i18n="welcome.features.memory.title">记忆训练</h3>
+                <p class="feature-desc" data-i18n="welcome.features.memory.description">分类记忆国旗，让学习更高效持久</p>
             </div>
             <div class="feature-card">
                 <span class="feature-icon">🎮</span>
-                <h3 class="feature-title">知识测试</h3>
-                <p class="feature-desc">自定义测试，在游戏中提升知识水平</p>
+                <h3 class="feature-title" data-i18n="welcome.features.quiz.title">知识测试</h3>
+                <p class="feature-desc" data-i18n="welcome.features.quiz.description">自定义测试，在游戏中提升知识水平</p>
             </div>
         </div>
 
@@ -347,22 +383,22 @@
         <div class="enter-section">
             <button class="enter-button" id="enterButton">
                 <span class="button-icon">🚀</span>
-                <span>开启探索之旅</span>
+                <span data-i18n="welcome.enterButton">开启探索之旅</span>
             </button>
             
             <!-- 统计预览 -->
             <div class="stats-preview">
                 <div class="stat-item">
                     <div class="stat-number">200</div>
-                    <div class="stat-label">国家地区</div>
+                    <div class="stat-label" data-i18n="welcome.stats.countries">国家地区</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">16</div>
-                    <div class="stat-label">特征分类</div>
+                    <div class="stat-label" data-i18n="welcome.stats.features">特征分类</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">7</div>
-                    <div class="stat-label">大洲分类</div>
+                    <div class="stat-label" data-i18n="welcome.stats.continents">大洲分类</div>
                 </div>
             </div>
         </div>
@@ -370,18 +406,91 @@
         <!-- 底部信息 -->
         <div class="footer-info">
             <div class="welcome-footer">
-                <p>🌟 从常见国家到冷门地区，从基础认知到专业掌握</p>
-                <p>📚 系统化学习路径，让你成为真正的国旗专家</p>
+                <p data-i18n="welcome.footer.0">🌟 从常见国家到冷门地区，从基础认知到专业掌握</p>
+                <p data-i18n="welcome.footer.1">📚 系统化学习路径，让你成为真正的国旗专家</p>
             </div>
         </div>
     </div>
 
     <script>
+        // 国际化功能
+        let currentLang = 'zh';
+        let i18nData = {};
+
+        // 加载国际化数据
+        async function loadI18nData() {
+            try {
+                const response = await fetch('i18n.json');
+                i18nData = await response.json();
+                updateLanguage('zh'); // 默认中文
+            } catch (error) {
+                console.error('Failed to load i18n data:', error);
+            }
+        }
+
+        // 更新页面语言
+        function updateLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en-US';
+
+            // 更新页面标题
+            const title = document.querySelector('title');
+            if (title) {
+                title.textContent = i18nData[lang]?.siteName || 'UFlag';
+            }
+
+            // 更新所有带有 data-i18n 属性的元素
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                const translation = getNestedValue(i18nData[lang], key);
+                if (translation) {
+                    element.textContent = translation;
+                }
+            });
+
+            // 更新语言按钮状态
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+
+            // 保存语言偏好
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // 获取嵌套对象值
+        function getNestedValue(obj, path) {
+            return path.split('.').reduce((current, key) => {
+                return current && current[key] !== undefined ? current[key] : undefined;
+            }, obj);
+        }
+
+        // 语言切换事件
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('lang-btn')) {
+                const lang = e.target.getAttribute('data-lang');
+                updateLanguage(lang);
+            }
+        });
+
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            loadI18nData();
+
+            // 恢复语言偏好
+            const savedLang = localStorage.getItem('preferredLanguage');
+            if (savedLang && savedLang !== 'zh') {
+                updateLanguage(savedLang);
+            }
+        });
+
         // 页面加载完成后隐藏加载页面
         window.addEventListener('load', function() {
             setTimeout(() => {
                 const loadingOverlay = document.getElementById('loadingOverlay');
-                loadingOverlay.classList.add('hidden');
+                if (loadingOverlay) {
+                    loadingOverlay.classList.add('hidden');
+                }
             }, 1000);
         });
 
@@ -395,18 +504,17 @@
 
             // 延迟跳转，添加过渡效果
             setTimeout(() => {
-                // 这里可以跳转到主页面
-                // window.location.href = 'index.html';
-                
+                // 传递当前语言到主页面
+                sessionStorage.setItem('currentLanguage', currentLang);
+
                 // 或者显示一个过渡动画
                 document.body.style.opacity = '0';
                 document.body.style.transition = 'opacity 0.8s ease-out';
-                
+
                 setTimeout(() => {
                     // 实际跳转逻辑
                     window.location.href = 'homepage.html';
-                    // window.location.href = 'homepage.html';
-                    
+
                     // 恢复页面显示（演示用）
                     document.body.style.opacity = '1';
                 }, 800);

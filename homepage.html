@@ -3,91 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>认识国旗</title>
+    <title data-i18n="siteName">认识国旗</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1><span class="emoji">🌍</span> 认识国旗</h1>
-            <p class="subtitle">探索世界，从认识国旗开始✨</p>
-            <div class="sponsor-badge" title="本网页由亚洲仿真联盟支持">
+            <!-- 语言切换器 -->
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang="zh">中文</button>
+                <button class="lang-btn" data-lang="en">English</button>
+            </div>
+
+            <h1><span class="emoji">🌍</span> <span data-i18n="siteName">认识国旗</span></h1>
+            <p class="subtitle" data-i18n="siteSubtitle">探索世界，从认识国旗开始✨</p>
+            <div class="sponsor-badge" data-i18n-title="sponsorBadge.title">
                 <img class="sponsor-logo" src="ASIASIM.png" alt="亚洲仿真联盟支持">
             </div>
         </header>
 
         <nav>
-            <button class="nav-btn active" id="browseBtn">国旗浏览</button>
-            <button class="nav-btn" id="memoryBtn">记忆训练</button>
-            <button class="nav-btn" id="quizBtn">知识测试</button>
-            <button class="nav-btn" id="statsBtn">测试统计</button>
+            <button class="nav-btn active" id="browseBtn" data-i18n="nav.browse">国旗浏览</button>
+            <button class="nav-btn" id="memoryBtn" data-i18n="nav.memory">记忆训练</button>
+            <button class="nav-btn" id="quizBtn" data-i18n="nav.quiz">知识测试</button>
+            <button class="nav-btn" id="statsBtn" data-i18n="nav.stats">测试统计</button>
         </nav>
 
         <div class="content">
             <!-- 浏览模式 -->
             <div id="browse-section">
                 <div class="search-box">
-                    <input type="text" class="search-input" id="searchInput" placeholder="搜索国家名称...">
+                    <input type="text" class="search-input" id="searchInput" data-i18n-placeholder="browse.searchPlaceholder" placeholder="搜索国家名称...">
                 </div>
 
                 <div class="filter-section">
                     <div class="filter-row">
                         <div class="filter-group">
-                            <div class="filter-title">数据来源</div>
+                            <div class="filter-title" data-i18n="browse.dataSource">数据来源</div>
                             <select class="filter-select" id="dataSourceSelect">
-                                <!-- <option value="all" selected>全部国家和国际组织</option> -->
-                                <option value="un" selected>联合国会员国</option>
-                                <option value="g20">二十国集团</option>
-                                <option value="euu">欧洲联盟</option>
-                                <option value="auu">非洲联盟</option>
-                                <option value="china_diplomatic">与中华人民共和国建交的国家</option>
-                                <option value="asiasim">亚洲仿真联盟</option>
+                                <!-- <option value="all" selected data-i18n="dataSources.all">全部国家和国际组织</option> -->
+                                <option value="un" selected data-i18n="dataSources.un">联合国会员国</option>
+                                <option value="g20" data-i18n="dataSources.g20">二十国集团</option>
+                                <option value="euu" data-i18n="dataSources.eu">欧洲联盟</option>
+                                <option value="auu" data-i18n="dataSources.au">非洲联盟</option>
+                                <option value="china_diplomatic" data-i18n="dataSources.chinaDiplomatic">与中华人民共和国建交的国家</option>
+                                <option value="asiasim" data-i18n="dataSources.asiasim">亚洲仿真联盟</option>
                             </select>
                         </div>
 
                         <div class="filter-group">
-                            <div class="filter-title">大洲筛选</div>
+                            <div class="filter-title" data-i18n="browse.continent">大洲筛选</div>
                             <select class="filter-select" id="continentSelect">
-                                <option value="all" selected>全部</option>
-                                <option value="亚洲">亚洲</option>
-                                <option value="欧洲">欧洲</option>
-                                <option value="非洲">非洲</option>
-                                <option value="北美洲">北美洲</option>
-                                <option value="南美洲">南美洲</option>
-                                <option value="大洋洲">大洋洲</option>
-                                <option value="南极洲">南极洲</option>
+                                <option value="all" selected data-i18n="continents.all">全部</option>
+                                <option value="亚洲" data-i18n="continents.asia">亚洲</option>
+                                <option value="欧洲" data-i18n="continents.europe">欧洲</option>
+                                <option value="非洲" data-i18n="continents.africa">非洲</option>
+                                <option value="北美洲" data-i18n="continents.northAmerica">北美洲</option>
+                                <option value="南美洲" data-i18n="continents.southAmerica">南美洲</option>
+                                <option value="大洋洲" data-i18n="continents.oceania">大洋洲</option>
+                                <option value="南极洲" data-i18n="continents.antarctica">南极洲</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="filter-group">
-                        <div class="filter-title">特征筛选（可多选）</div>
+                        <div class="filter-title" data-i18n="browse.features">特征筛选（可多选）</div>
                         <div class="style-buttons-container">
-                            <button class="style-btn" data-style="星星">星星</button>
-                            <button class="style-btn" data-style="十字">十字</button>
-                            <button class="style-btn" data-style="月牙">月牙</button>
-                            <button class="style-btn" data-style="太阳">太阳</button>
-                            <button class="style-btn" data-style="动物">动物</button>
-                            <button class="style-btn" data-style="植物">植物</button>
-                            <button class="style-btn" data-style="几何图形">几何图形</button>
-                            <button class="style-btn" data-style="水平条纹">水平条纹</button>
-                            <button class="style-btn" data-style="垂直条纹">垂直条纹</button>
-                            <button class="style-btn" data-style="对角条纹">对角条纹</button>
-                            <button class="style-btn" data-style="联合杰克">联合杰克</button>
-                            <button class="style-btn" data-style="泛非色彩">泛非色彩</button>
-                            <button class="style-btn" data-style="泛阿拉伯色彩">泛阿拉伯色彩</button>
-                            <button class="style-btn" data-style="北欧十字">北欧十字</button>
-                            <button class="style-btn" data-style="纯色">纯色</button>
-                            <button class="style-btn" data-style="复杂徽章">复杂徽章</button>
+                            <button class="style-btn" data-style="星星" data-i18n="features.stars">星星</button>
+                            <button class="style-btn" data-style="十字" data-i18n="features.cross">十字</button>
+                            <button class="style-btn" data-style="月牙" data-i18n="features.crescent">月牙</button>
+                            <button class="style-btn" data-style="太阳" data-i18n="features.sun">太阳</button>
+                            <button class="style-btn" data-style="动物" data-i18n="features.animals">动物</button>
+                            <button class="style-btn" data-style="植物" data-i18n="features.plants">植物</button>
+                            <button class="style-btn" data-style="几何图形" data-i18n="features.geometric">几何图形</button>
+                            <button class="style-btn" data-style="水平条纹" data-i18n="features.horizontalStripes">水平条纹</button>
+                            <button class="style-btn" data-style="垂直条纹" data-i18n="features.verticalStripes">垂直条纹</button>
+                            <button class="style-btn" data-style="对角条纹" data-i18n="features.diagonalStripes">对角条纹</button>
+                            <button class="style-btn" data-style="联合杰克" data-i18n="features.unionJack">联合杰克</button>
+                            <button class="style-btn" data-style="泛非色彩" data-i18n="features.panAfrican">泛非色彩</button>
+                            <button class="style-btn" data-style="泛阿拉伯色彩" data-i18n="features.panArab">泛阿拉伯色彩</button>
+                            <button class="style-btn" data-style="北欧十字" data-i18n="features.nordicCross">北欧十字</button>
+                            <button class="style-btn" data-style="纯色" data-i18n="features.solid">纯色</button>
+                            <button class="style-btn" data-style="复杂徽章" data-i18n="features.complexEmblem">复杂徽章</button>
                         </div>
                     </div>
 
                     <div class="filter-group">
-                        <div class="filter-title">排序方式</div>
+                        <div class="filter-title" data-i18n="browse.sortMethod">排序方式</div>
                         <div class="filter-buttons">
-                            <button class="filter-btn active" data-sort="name">默认</button>
-                            <button class="filter-btn" data-sort="continent">大洲</button>
-                            <button class="filter-btn" data-sort="random">随机</button>
+                            <button class="filter-btn active" data-sort="name" data-i18n="browse.sortOptions.name">默认</button>
+                            <button class="filter-btn" data-sort="continent" data-i18n="browse.sortOptions.continent">大洲</button>
+                            <button class="filter-btn" data-sort="random" data-i18n="browse.sortOptions.random">随机</button>
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,10 @@ let sortMethod = 'name';
 let searchTerm = '';
 let selectedDataSource = 'all';
 
+// 国际化相关变量
+let currentLang = 'zh';
+let i18nData = {};
+
 // 数据来源配置
 const dataSources = {
     all: { 
@@ -415,6 +419,11 @@ async function init() {
     await loadCountriesData();
     setupEventListeners();
     displayFlags();
+
+    // 初始化增强记忆系统
+    if (typeof EnhancedMemorySystem !== 'undefined') {
+        EnhancedMemorySystem.init();
+    }
 }
 
 // 加载统计数据
@@ -441,13 +450,13 @@ function saveStats() {
 // 加载国家数据
 async function loadCountriesData() {
     try {
-        const response = await fetch('countries_and_oganizations.json');
+        const response = await fetch('countries_un.json');
         if (response.ok) {
             const data = await response.json();
             allCountries = data.countries;
             console.log(`成功加载 ${allCountries.length} 个国家数据`);
         } else {
-            throw new Error('无法加载countries_and_oganizations.json');
+            throw new Error('无法加载countries_un.json');
         }
     } catch (error) {
         console.log('使用示例数据:', error.message);
@@ -1154,93 +1163,8 @@ function displayWrongAnswers() {
 
 // 增强版记忆训练系统
 const EnhancedMemorySystem = {
-    // 分类数据
-    categories: {
-        '常见国家': {
-            description: '最常见和知名的国家国旗，学习国旗的绝佳起点',
-            countries: ['cn', 'jp', 'kr', 'gb', 'us', 'ca', 'br'],
-            difficulty: 'easy',
-            tips: '这些都是经常在新闻中看到的国家，从它们开始学习最容易建立信心'
-        },
-        '类似美国系列': {
-            description: '与美国国旗相似的国旗',
-            countries: ['us', 'lr', 'my', 'cl', 'tg'],
-            difficulty: 'medium',
-            tips: '注意左上角图案以及红白条纹，多哥和智利相似但配色不同'
-        },
-        '几何圆形': {
-        description: '都有几何圆形特征',
-        countries: ['jp', 'bd', 'pw', 'mk', 'la', 'ne'],
-        difficulty: 'medium',
-        tips: '孟加拉国和帕劳国旗中间的圆形都处于偏左的位置；帕劳作为大洋洲群岛国家，蓝底色代表太平洋，圆形代表的是满月而不是太阳；北马其顿放射太阳像“金色光芒”；老挝蓝红间白月带禅意；'
-        },
-        '类似加拿大系列': {
-            description: '这些国家的国旗主要以红色和白色为主色调，图案鲜明，容易区分和记忆',
-            countries: ['ca', 'lb', 'pe'],
-            difficulty: 'medium',
-            tips: '加拿大的枫叶、黎巴嫩的雪松树、秘鲁的红白竖条都非常直观'
-        },
-        '独特形状系列': {
-            description: '特殊形状国家以及与其相似国旗',
-            countries: ['ch', 'ge', 'to', 'va', 'np', 'me', 'lk', 'gd'],
-            difficulty: 'medium',
-            tips: '瑞士和梵蒂冈国旗都是方形；格鲁吉亚和汤加的十字架鲜明；尼泊尔国旗是唯一非矩形的并且镶边，镶边的还有：黑山有双头鹰；斯里兰卡有狮子；格林纳达旗角藏有肉豆蔻'
-        },
-        '复杂纹理系列': {
-            description: '这些国家的国旗常带有复杂的装饰纹理或特殊图案',
-            countries: ['by', 'tm', 'ir', 'kz'],
-            difficulty: 'easy',
-            tips: '白俄罗斯和土库曼斯坦旗帜有传统织纹装饰，伊朗国旗边缘有阿拉伯文字，哈萨克斯坦国旗有精细的金色装饰与雄鹰'
-        },
-        '特殊象征图案': {
-            description: '这些国家的国旗上有极具象征意义的独特图案，比如神兽、宗教符号或历史标志',
-            countries: ['al', 'bt', 'bb', 'il', 'kh'],
-            difficulty: 'easy',
-            tips: '巴巴多斯的三叉戟象征海神波塞冬；以色列的大卫之星（六芒星）象征犹太民族；不丹的巨龙；阿尔巴尼亚的双头鹰；柬埔寨的吴哥窟'
-        },
-        '三色旗系列': {
-            description: '经典的三色条纹设计，欧洲国家的主流风格',
-            countries: ['fr', 'it', 'de', 'ru', 'nl', 'be', 'ro', 'bg', 'hu', 'ie', 'at', 'ee', 'lv', 'lt'],
-            difficulty: 'medium',
-            tips: '记住条纹方向很重要：法国、荷兰是垂直条纹，德国、奥地利是水平条纹'
-        },
-        '十字设计': {
-            description: '包含十字图案的国旗，体现宗教和文化传统',
-            countries: ['dk', 'no', 'se', 'fi', 'is', 'ch', 'gr', 'ge', 'to', 'mt'],
-            difficulty: 'medium',
-            tips: '北欧十字（丹麦风格）vs 居中十字（瑞士风格）要区分清楚'
-        },
-        '星月图案': {
-            description: '伊斯兰文化圈国家常见的星月符号',
-            countries: ['tr', 'pk', 'my', 'sg', 'tn', 'dz', 'ly', 'mr', 'mv', 'az', 'uz', 'tm'],
-            difficulty: 'medium',
-            tips: '星星数量和排列方式是区别的关键：土耳其1颗星，马来西亚14颗星'
-        },
-        '米字旗 + 南十字星': {
-            description: '英联邦国家左上角保留英国米字旗。南十字星是南半球国家的专属',
-            countries: ['gb', 'au', 'nz', 'fj', 'tv', 'fm', 'ws','pg'],
-            difficulty: 'easy',
-            tips: '澳大利亚有白色南十字星，新西兰有红色南十字星；图瓦卢国旗上的五角星数量就是本国岛屿的数量；密克罗尼西亚国旗上的四颗星星不是南十字星，那只是象征全国四个州'
-        },
-        '红白条纹': {
-            description: '简洁的红白条纹设计，经典而醒目',
-            countries: ['pl', 'at', 'id', 'lv', 'mc', 'pe'],
-            difficulty: 'easy',
-            tips: '波兰和印尼很像但颜色位置相反，注意区分'
-        },
-        '蓝白条纹': {
-            description: '蓝白条纹，多为拉丁美洲和地中海国家',
-            countries: ['ar', 'uy', 'gr', 'gt', 'hn', 'ni', 'sv', 'il'],
-            difficulty: 'medium',
-            tips: '阿根廷有太阳，希腊有十字，以色列有大卫星'
-        },
-        '特殊图像': {
-            description: '这些国家的国旗非常鲜明',
-            countries: ['ag', 'ki', 'lc', 'cy', 'ba', 'sa', 'kg', 'cf'],
-            difficulty: 'hard',
-            tips: '安提瓜和巴布达的旭日+V型结构、基里巴斯的飞鸟与海洋、圣卢西亚的双山、塞浦路斯地图本体、波黑的星与三角形、沙特的伊斯兰文字与刀、吉尔吉斯的太阳毡房纹样、中非的四色条纹加星星，都有独特象征'
-        }
-    },
+    // 按大洲分类数据（自动分组，每组最多15个国家）
+    categories: {},
 
     // 用户数据
     progress: JSON.parse(localStorage.getItem('enhancedMemoryProgress') || '{}'),
@@ -1266,6 +1190,102 @@ const EnhancedMemorySystem = {
     init() {
         console.log('增强版记忆系统已初始化');
         this.checkDailyProgress();
+        this.initContinentCategories();
+    },
+
+    // 初始化按大洲分类（自动分组，每组最多15个国家）
+    initContinentCategories() {
+        // 清空分类
+        this.categories = {};
+
+        // 按大洲分组国家
+        const continentGroups = {};
+        allCountries.forEach(country => {
+            const continent = country.continent;
+            if (continent === '南极洲') return; // 跳过南极洲
+
+            if (!continentGroups[continent]) {
+                continentGroups[continent] = [];
+            }
+            continentGroups[continent].push(country);
+        });
+
+        // 为每个大洲创建分组（每组最多12个国家）
+        Object.entries(continentGroups).forEach(([continent, countries]) => {
+            const totalCountries = countries.length;
+            const groupCount = Math.ceil(totalCountries / 12);
+
+            for (let i = 0; i < groupCount; i++) {
+                const startIndex = i * 12;
+                const endIndex = Math.min(startIndex + 12, totalCountries);
+                const groupCountries = countries.slice(startIndex, endIndex);
+
+                let categoryName;
+                if (groupCount === 1) {
+                    categoryName = continent;
+                } else {
+                    categoryName = `${continent}（${i + 1}）`;
+                }
+
+                this.categories[categoryName] = {
+                    description: this.getContinentDescription(continent, i + 1, groupCount),
+                    countries: groupCountries.map(c => c.code),
+                    difficulty: this.getContinentDifficulty(continent),
+                    tips: this.getContinentTips(continent),
+                    groupNumber: i + 1,
+                    totalGroups: groupCount,
+                    originalContinent: continent
+                };
+            }
+        });
+
+        console.log('大洲分类初始化完成:', this.categories);
+    },
+
+    // 获取大洲描述
+    getContinentDescription(continent, groupNumber, totalGroups) {
+        const baseDescriptions = {
+            '亚洲': '亚洲地区国家的国旗，包括东亚、东南亚、南亚、西亚和中亚',
+            '欧洲': '欧洲地区国家的国旗，多为三色旗和十字设计',
+            '非洲': '非洲地区国家的国旗，多采用泛非色彩',
+            '北美洲': '北美洲和中美洲地区国家的国旗',
+            '南美洲': '南美洲地区国家的国旗，多为蓝白红配色',
+            '大洋洲': '大洋洲地区国家的国旗，多含南十字星'
+        };
+
+        let description = baseDescriptions[continent] || `${continent}地区国家的国旗`;
+
+        if (totalGroups > 1) {
+            description += ` (第${groupNumber}组，共${totalGroups}组)`;
+        }
+
+        return description;
+    },
+
+    // 获取大洲难度
+    getContinentDifficulty(continent) {
+        const difficulties = {
+            '亚洲': 'medium',
+            '欧洲': 'easy',
+            '非洲': 'medium',
+            '北美洲': 'medium',
+            '南美洲': 'easy',
+            '大洋洲': 'medium'
+        };
+        return difficulties[continent] || 'medium';
+    },
+
+    // 获取大洲学习技巧
+    getContinentTips(continent) {
+        const tips = {
+            '亚洲': '亚洲国旗文化多样，有星月图案、三色旗等多种设计风格',
+            '欧洲': '欧洲国旗以简洁的三色条和十字图案为主，容易识别',
+            '非洲': '非洲国旗常用红、黄、绿三色，象征独立和自由',
+            '北美洲': '北美洲国旗设计多样，有条纹、徽章等不同元素',
+            '南美洲': '南美洲国旗常包含太阳、山脉等自然象征',
+            '大洋洲': '大洋洲国旗常以南十字星和蓝底为代表海洋'
+        };
+        return tips[continent] || '认真学习这些国旗的特征和含义';
     },
 
     showMemory() {
@@ -1837,14 +1857,14 @@ const EnhancedMemorySystem = {
     // 添加加载国家数据的方法
     async loadCountriesData() {
         try {
-            const response = await fetch('countries_and_oganizations.json');
+            const response = await fetch('countries_un.json');
             if (response.ok) {
                 const data = await response.json();
                 allCountries = data.countries;
                 console.log(`成功加载 ${allCountries.length} 个国家数据`);
                 return true;
             } else {
-                throw new Error('无法加载countries_and_oganizations.json');
+                throw new Error('无法加载countries_un.json');
             }
         } catch (error) {
             console.log('使用示例数据:', error.message);
@@ -2423,12 +2443,151 @@ const EnhancedMemorySystem = {
 window.checkAnswer = checkAnswer;
 window.EnhancedMemorySystem = EnhancedMemorySystem;
 
+// 国际化功能
+async function loadI18nData() {
+    try {
+        const response = await fetch('i18n.json');
+        i18nData = await response.json();
+
+        // 恢复语言偏好或从会话存储获取
+        const savedLang = localStorage.getItem('preferredLanguage') ||
+                        sessionStorage.getItem('currentLanguage') ||
+                        'zh';
+        updateLanguage(savedLang);
+    } catch (error) {
+        console.error('Failed to load i18n data:', error);
+    }
+}
+
+// 更新页面语言
+function updateLanguage(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en-US';
+
+    // 更新页面标题
+    const title = document.querySelector('title');
+    if (title && i18nData[lang]?.siteName) {
+        title.textContent = i18nData[lang].siteName;
+    }
+
+    // 更新所有带有 data-i18n 属性的元素
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        const translation = getNestedValue(i18nData[lang], key);
+        if (translation) {
+            element.textContent = translation;
+        }
+    });
+
+    // 更新所有带有 data-i18n-placeholder 属性的输入框
+    const inputs = document.querySelectorAll('[data-i18n-placeholder]');
+    inputs.forEach(input => {
+        const key = input.getAttribute('data-i18n-placeholder');
+        const translation = getNestedValue(i18nData[lang], key);
+        if (translation) {
+            input.placeholder = translation;
+        }
+    });
+
+    // 更新所有带有 data-i18n-title 属性的元素
+    const titledElements = document.querySelectorAll('[data-i18n-title]');
+    titledElements.forEach(element => {
+        const key = element.getAttribute('data-i18n-title');
+        const translation = getNestedValue(i18nData[lang], key);
+        if (translation) {
+            element.title = translation;
+        }
+    });
+
+    // 更新语言按钮状态
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+
+    // 更新数据源和选项
+    updateDataSourceOptions(lang);
+    updateContinentOptions(lang);
+    updateStyleButtons(lang);
+    updateSortButtons(lang);
+
+    // 保存语言偏好
+    localStorage.setItem('preferredLanguage', lang);
+}
+
+// 获取嵌套对象值
+function getNestedValue(obj, path) {
+    return path.split('.').reduce((current, key) => {
+        return current && current[key] !== undefined ? current[key] : undefined;
+    }, obj);
+}
+
+// 更新数据源选项
+function updateDataSourceOptions(lang) {
+    const dataSourceSelect = document.getElementById('dataSourceSelect');
+    if (!dataSourceSelect) return;
+
+    const options = dataSourceSelect.querySelectorAll('option[data-i18n]');
+    options.forEach(option => {
+        const key = option.getAttribute('data-i18n');
+        const translation = getNestedValue(i18nData[lang], key);
+        if (translation) {
+            option.textContent = translation;
+        }
+    });
+}
+
+// 更新大洲选项
+function updateContinentOptions(lang) {
+    const continentSelect = document.getElementById('continentSelect');
+    if (!continentSelect) return;
+
+    const options = continentSelect.querySelectorAll('option[data-i18n]');
+    options.forEach(option => {
+        const key = option.getAttribute('data-i18n');
+        const translation = getNestedValue(i18nData[lang], key);
+        if (translation) {
+            option.textContent = translation;
+        }
+    });
+}
+
+// 更新特征按钮
+function updateStyleButtons(lang) {
+    const styleButtons = document.querySelectorAll('.style-btn[data-i18n]');
+    styleButtons.forEach(button => {
+        const key = button.getAttribute('data-i18n');
+        const translation = getNestedValue(i18nData[lang], key);
+        if (translation) {
+            button.textContent = translation;
+        }
+    });
+}
+
+// 更新排序按钮
+function updateSortButtons(lang) {
+    const sortButtons = document.querySelectorAll('.filter-btn[data-i18n]');
+    sortButtons.forEach(button => {
+        const key = button.getAttribute('data-i18n');
+        const translation = getNestedValue(i18nData[lang], key);
+        if (translation) {
+            button.textContent = translation;
+        }
+    });
+}
+
+// 语言切换事件监听
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('lang-btn')) {
+        const lang = e.target.getAttribute('data-lang');
+        updateLanguage(lang);
+    }
+});
+
 // 初始化应用
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
+    await loadI18nData();
     init();
-    
-    // 初始化增强记忆系统
-    EnhancedMemorySystem.init();
-    
+
     console.log('🏳️ 国旗系统已完全初始化');
 });

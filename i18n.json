@@ -1,0 +1,355 @@
+{
+  "zh": {
+    "siteName": "认识国旗",
+    "siteSubtitle": "从国旗开始，探索全世界",
+    "uflagName": "UFlag",
+    "uflagSubtitle": "Discover the world through flags",
+    "welcome": {
+      "title": "认识国旗",
+      "subtitle": "从国旗开始，探索全世界",
+      "features": {
+        "browse": {
+          "title": "国旗浏览",
+          "description": "轻松掌握200个国家和地区国旗"
+        },
+        "memory": {
+          "title": "记忆训练",
+          "description": "分类记忆国旗，让学习更高效持久"
+        },
+        "quiz": {
+          "title": "知识测试",
+          "description": "自定义测试，在游戏中提升知识水平"
+        }
+      },
+      "enterButton": "开启探索之旅",
+      "stats": {
+        "countries": "国家地区",
+        "features": "特征分类",
+        "continents": "大洲分类"
+      },
+      "footer": [
+        "🌟 从常见国家到冷门地区，从基础认知到专业掌握",
+        "📚 系统化学习路径，让你成为真正的国旗专家"
+      ]
+    },
+    "nav": {
+      "browse": "国旗浏览",
+      "memory": "记忆训练",
+      "quiz": "知识测试",
+      "stats": "测试统计"
+    },
+    "browse": {
+      "searchPlaceholder": "搜索国家名称...",
+      "dataSource": "数据来源",
+      "continent": "大洲筛选",
+      "features": "特征筛选（可多选）",
+      "sortMethod": "排序方式",
+      "sortOptions": {
+        "name": "默认",
+        "continent": "大洲",
+        "random": "随机"
+      },
+      "stats": {
+        "total": "数据来源总数",
+        "filtered": "当前显示",
+        "continents": "大洲",
+        "features": "特征分类"
+      },
+      "loading": "正在加载国旗数据...",
+      "noResults": {
+        "title": "没有找到匹配的国旗",
+        "description": "请尝试调整筛选条件"
+      }
+    },
+    "quiz": {
+      "title": "选择测试模式",
+      "flagToCountry": {
+        "title": "看国旗选国家",
+        "description": "根据显示的国旗选择对应的国家"
+      },
+      "countryToFlag": {
+        "title": "看国家选国旗",
+        "description": "根据国家名称选择对应的国旗"
+      },
+      "difficulty": {
+        "easy": "简单 (5题)",
+        "medium": "中等 (10题)",
+        "hard": "困难 (20题)"
+      },
+      "startButton": "开始测试",
+      "question": "第 {current} / {total} 题",
+      "timer": "⏱️ {time}",
+      "flagQuestion": "这是哪个国家的国旗？",
+      "countryQuestion": "请选择 {country} 的国旗",
+      "completed": "测试完成！",
+      "stats": {
+        "correct": "正确",
+        "wrong": "错误",
+        "accuracy": "准确率",
+        "timeSpent": "用时"
+      },
+      "retry": "再测一次",
+      "back": "返回",
+      "wrongAnswers": {
+        "title": "错题详情",
+        "flagToCountry": "看国旗选国家",
+        "countryToFlag": "看国家选国旗",
+        "correctAnswer": "正确答案：",
+        "yourAnswer": "你的答案："
+      }
+    },
+    "memory": {
+      "overview": "📚 学习概览",
+      "stats": {
+        "learned": "已学习",
+        "total": "总数量",
+        "progress": "完成度",
+        "today": "今日学习"
+      },
+      "progressLabel": "学习进度",
+      "startButton": "开始学习",
+      "hint": "💡 系统会智能选择最适合的大洲进行学习，每次专注一个大洲",
+      "clearProgress": "🗑️ 清除学习进度",
+      "clearWarning": "⚠️ 此操作将清除所有学习记录和进度，无法恢复",
+      "categories": "📂 大洲分类学习",
+      "sessionComplete": "学习完成！",
+      "completeMessage": "太棒了！你完成了学习",
+      "completeStats": {
+        "learned": "学习数量",
+        "new": "新掌握",
+        "time": "用时"
+      },
+      "returnHome": "🏠 返回首页",
+      "continueStudy": "🎲 继续学习",
+      "previous": "← 上一个",
+      "next": "下一个 →"
+    },
+    "stats": {
+      "title": "学习统计",
+      "totalTests": "总测试次数",
+      "totalQuestions": "总答题数",
+      "overallAccuracy": "总体准确率",
+      "bestScore": "最高分",
+      "clearStats": "清除统计"
+    },
+    "continents": {
+      "all": "全部",
+      "asia": "亚洲",
+      "europe": "欧洲",
+      "africa": "非洲",
+      "northAmerica": "北美洲",
+      "southAmerica": "南美洲",
+      "oceania": "大洋洲",
+      "antarctica": "南极洲"
+    },
+    "features": {
+      "stars": "星星",
+      "cross": "十字",
+      "crescent": "月牙",
+      "sun": "太阳",
+      "animals": "动物",
+      "plants": "植物",
+      "geometric": "几何图形",
+      "horizontalStripes": "水平条纹",
+      "verticalStripes": "垂直条纹",
+      "diagonalStripes": "对角条纹",
+      "unionJack": "联合杰克",
+      "panAfrican": "泛非色彩",
+      "panArab": "泛阿拉伯色彩",
+      "nordicCross": "北欧十字",
+      "solid": "纯色",
+      "complexEmblem": "复杂徽章"
+    },
+    "dataSources": {
+      "all": "全部国家和国际组织",
+      "un": "联合国会员国",
+      "g20": "二十国集团",
+      "eu": "欧洲联盟",
+      "au": "非洲联盟",
+      "chinaDiplomatic": "与中华人民共和国建交的国家",
+      "asiasim": "亚洲仿真联盟"
+    },
+    "languageSwitch": {
+      "chinese": "中文",
+      "english": "English"
+    }
+  },
+  "en": {
+    "siteName": "UFlag",
+    "siteSubtitle": "Discover the world through flags",
+    "uflagName": "UFlag",
+    "uflagSubtitle": "Discover the world through flags",
+    "welcome": {
+      "title": "UFlag",
+      "subtitle": "Discover the world through flags",
+      "features": {
+        "browse": {
+          "title": "Flag Browser",
+          "description": "Explore 200+ countries and territories flags"
+        },
+        "memory": {
+          "title": "Memory Training",
+          "description": "Learn flags efficiently with categorized memory training"
+        },
+        "quiz": {
+          "title": "Knowledge Quiz",
+          "description": "Test your knowledge with customizable quizzes"
+        }
+      },
+      "enterButton": "Start Exploring",
+      "stats": {
+        "countries": "Countries",
+        "features": "Features",
+        "continents": "Continents"
+      },
+      "footer": [
+        "🌟 From common nations to rare territories, from basic to expert knowledge",
+        "📚 Systematic learning path helps you become a true flag expert"
+      ]
+    },
+    "nav": {
+      "browse": "Browse",
+      "memory": "Memory",
+      "quiz": "Quiz",
+      "stats": "Statistics"
+    },
+    "browse": {
+      "searchPlaceholder": "Search country name...",
+      "dataSource": "Data Source",
+      "continent": "Continent Filter",
+      "features": "Feature Filter (Multi-select)",
+      "sortMethod": "Sort Method",
+      "sortOptions": {
+        "name": "Default",
+        "continent": "Continent",
+        "random": "Random"
+      },
+      "stats": {
+        "total": "Total in Source",
+        "filtered": "Currently Showing",
+        "continents": "Continents",
+        "features": "Feature Categories"
+      },
+      "loading": "Loading flag data...",
+      "noResults": {
+        "title": "No matching flags found",
+        "description": "Please try adjusting your filter criteria"
+      }
+    },
+    "quiz": {
+      "title": "Select Quiz Mode",
+      "flagToCountry": {
+        "title": "Flag to Country",
+        "description": "Choose the correct country for the displayed flag"
+      },
+      "countryToFlag": {
+        "title": "Country to Flag",
+        "description": "Choose the correct flag for the given country"
+      },
+      "difficulty": {
+        "easy": "Easy (5 questions)",
+        "medium": "Medium (10 questions)",
+        "hard": "Hard (20 questions)"
+      },
+      "startButton": "Start Quiz",
+      "question": "Question {current} / {total}",
+      "timer": "⏱️ {time}",
+      "flagQuestion": "Which country does this flag belong to?",
+      "countryQuestion": "Please select the flag of {country}",
+      "completed": "Quiz Completed!",
+      "stats": {
+        "correct": "Correct",
+        "wrong": "Wrong",
+        "accuracy": "Accuracy",
+        "timeSpent": "Time Spent"
+      },
+      "retry": "Try Again",
+      "back": "Back",
+      "wrongAnswers": {
+        "title": "Wrong Answers Details",
+        "flagToCountry": "Flag to Country",
+        "countryToFlag": "Country to Flag",
+        "correctAnswer": "Correct Answer: ",
+        "yourAnswer": "Your Answer: "
+      }
+    },
+    "memory": {
+      "overview": "📚 Learning Overview",
+      "stats": {
+        "learned": "Learned",
+        "total": "Total",
+        "progress": "Progress",
+        "today": "Today"
+      },
+      "progressLabel": "Learning Progress",
+      "startButton": "Start Learning",
+      "hint": "💡 The system will intelligently select the most suitable continent for learning, focusing on one continent at a time",
+      "clearProgress": "🗑️ Clear Progress",
+      "clearWarning": "⚠️ This will clear all learning records and progress, cannot be restored",
+      "categories": "📂 Continent Learning",
+      "sessionComplete": "Learning Complete!",
+      "completeMessage": "Excellent! You have completed the learning session",
+      "completeStats": {
+        "learned": "Learned",
+        "new": "New",
+        "time": "Time"
+      },
+      "returnHome": "🏠 Return Home",
+      "continueStudy": "🎲 Continue Learning",
+      "previous": "← Previous",
+      "next": "Next →"
+    },
+    "stats": {
+      "title": "Learning Statistics",
+      "totalTests": "Total Tests",
+      "totalQuestions": "Total Questions",
+      "overallAccuracy": "Overall Accuracy",
+      "bestScore": "Best Score",
+      "clearStats": "Clear Statistics"
+    },
+    "continents": {
+      "all": "All",
+      "asia": "Asia",
+      "europe": "Europe",
+      "africa": "Africa",
+      "northAmerica": "North America",
+      "southAmerica": "South America",
+      "oceania": "Oceania",
+      "antarctica": "Antarctica"
+    },
+    "features": {
+      "stars": "Stars",
+      "cross": "Cross",
+      "crescent": "Crescent",
+      "sun": "Sun",
+      "animals": "Animals",
+      "plants": "Plants",
+      "geometric": "Geometric",
+      "horizontalStripes": "Horizontal Stripes",
+      "verticalStripes": "Vertical Stripes",
+      "diagonalStripes": "Diagonal Stripes",
+      "unionJack": "Union Jack",
+      "panAfrican": "Pan-African",
+      "panArab": "Pan-Arab",
+      "nordicCross": "Nordic Cross",
+      "solid": "Solid",
+      "complexEmblem": "Complex Emblem"
+    },
+    "dataSources": {
+      "all": "All Countries & Organizations",
+      "un": "UN Member States",
+      "g20": "G20",
+      "eu": "European Union",
+      "au": "African Union",
+      "chinaDiplomatic": "Countries with Diplomatic Relations with China",
+      "asiasim": "Asia Simulation Alliance"
+    },
+    "languageSwitch": {
+      "chinese": "中文",
+      "english": "English"
+    },
+    "sponsorBadge": {
+      "title": "本网页由亚洲仿真联盟支持"
+    }
+  }
+}
