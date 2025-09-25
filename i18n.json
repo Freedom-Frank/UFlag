@@ -1,12 +1,12 @@
 {
   "zh": {
     "siteName": "认识国旗",
-    "siteSubtitle": "从国旗开始，探索全世界",
+    "siteSubtitle": "理解世界，从认识国旗开始",
     "uflagName": "UFlag",
-    "uflagSubtitle": "Discover the world through flags",
+    "uflagSubtitle": "Understanding the world, start with the national flags",
     "welcome": {
       "title": "认识国旗",
-      "subtitle": "从国旗开始，探索全世界",
+      "subtitle": "理解世界，从认识国旗开始",
       "features": {
         "browse": {
           "title": "国旗浏览",
@@ -237,16 +237,16 @@
   },
   "en": {
     "siteName": "UFlag",
-    "siteSubtitle": "Discover the world through flags",
+    "siteSubtitle": "Understanding the world, start with the national flags",
     "uflagName": "UFlag",
-    "uflagSubtitle": "Discover the world through flags",
+    "uflagSubtitle": "Understanding the world, start with the national flags",
     "welcome": {
       "title": "UFlag",
-      "subtitle": "Discover the world through flags",
+      "subtitle": "Understanding the world, start with the national flags",
       "features": {
         "browse": {
           "title": "Flag Browser",
-          "description": "Explore 200+ countries and territories flags"
+          "description": "Explore 200 countries and territories flags"
         },
         "memory": {
           "title": "Memory Training",
