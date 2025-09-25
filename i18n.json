@@ -183,6 +183,7 @@
         "oceania": "大洋洲国旗常以南十字星和蓝底为代表海洋"
       },
       "defaultTip": "认真学习这些国旗的特征和含义",
+      "flagsOfRegion": "地区国家的国旗",
       "startSessionHint": "点击开始后将按顺序展示每面国旗"
     },
     "stats": {
@@ -419,6 +420,7 @@
         "oceania": "Oceanian flags often feature the Southern Cross and blue backgrounds representing the ocean"
       },
       "defaultTip": "Study the characteristics and meanings of these flags carefully",
+      "flagsOfRegion": "flags of countries in the region",
       "startSessionHint": "After clicking start, flags will be displayed in sequence",
       "prepareStudy": "Prepare to study: ",
       "studyHintTitle": "Study Tips",
