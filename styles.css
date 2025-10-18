@@ -1029,8 +1029,157 @@ nav {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
     }
-    
+
     .stat-number {
         font-size: var(--font-size-xl);
+    }
+}
+
+/* 3D地球仪样式 */
+.globe-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.globe-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.globe-header h2 {
+    color: var(--primary-dark);
+    font-size: var(--font-size-3xl);
+    margin-bottom: 10px;
+}
+
+.globe-header p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-lg);
+}
+
+.globe-controls {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: var(--diplomatic-gray);
+    border-radius: var(--border-radius-large);
+    flex-wrap: wrap;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.control-group label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+}
+
+.control-group span {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    padding: 4px 8px;
+    background: var(--pure-white);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-light);
+}
+
+#globe-canvas-container {
+    width: 100%;
+    height: 600px;
+    background: var(--primary-dark);
+    border-radius: var(--border-radius-large);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-elevated);
+}
+
+#globe-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: var(--pure-white);
+}
+
+#globe-loading .spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid var(--accent-gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 国旗弹窗样式 */
+.globe-flag-popup {
+    animation: popupFadeIn 0.3s ease-out;
+}
+
+.popup-overlay {
+    animation: overlayFadeIn 0.3s ease-out;
+}
+
+@keyframes popupFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes overlayFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.close-popup-btn:hover {
+    color: var(--primary-light);
+    transform: scale(1.1);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .globe-container {
+        padding: 15px;
+    }
+
+    .globe-controls {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .control-group {
+        justify-content: center;
+    }
+
+    #globe-canvas-container {
+        height: 400px;
+    }
+
+    .globe-flag-popup {
+        max-width: 90vw;
+        margin: 20px;
     }
 }
