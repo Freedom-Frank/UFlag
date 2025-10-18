@@ -1360,7 +1360,7 @@ const EnhancedMemorySystem = {
     getContinentDescription(continent, groupNumber, totalGroups) {
         const continentKey = this.getContinentKey(continent);
         const descriptions = i18nData[currentLang]?.memory?.continentDescriptions || {};
-        return descriptions[continentKey] || `${this.getLocalizedContinentName(continent)}地区国家的国旗`;
+        return descriptions[continentKey] || `${this.getLocalizedContinentName(continent)} ${i18nData[currentLang]?.memory?.flagsOfRegion || '地区国家的国旗'}`;
     },
 
     
@@ -1388,6 +1388,26 @@ const EnhancedMemorySystem = {
             '大洋洲': 'oceania'
         };
         return continentMap[continent] || continent;
+    },
+
+    // 获取本地化的分类名称
+    getLocalizedCategoryName(name, data) {
+        if (data.groupNumber && data.totalGroups && data.totalGroups > 1) {
+            // 如果是分组的情况，需要重新生成本地化名称
+            const continentName = this.getLocalizedContinentName(data.originalContinent);
+            return `${continentName}（${data.groupNumber}）`;
+        }
+        return this.getLocalizedContinentName(data.originalContinent) || name;
+    },
+
+    // 获取本地化的分类描述
+    getLocalizedCategoryDescription(data) {
+        return this.getContinentDescription(data.originalContinent, data.groupNumber, data.totalGroups);
+    },
+
+    // 获取本地化的分类技巧
+    getLocalizedCategoryTips(data) {
+        return this.getContinentTips(data.originalContinent);
     },
 
     showMemory() {
@@ -1503,15 +1523,20 @@ const EnhancedMemorySystem = {
             const learnedText = i18nData[currentLang]?.memory?.statsLearned || 'Learned';
             const studyTipsTitle = i18nData[currentLang]?.memory?.tipsTitle || '💡 Study Tips';
             const lastStudiedText = i18nData[currentLang]?.memory?.lastStudied || 'Last studied: ';
-            
+
+            // 动态生成当前语言的分类名称、描述和技巧
+            const displayName = this.getLocalizedCategoryName(name, data);
+            const displayDescription = this.getLocalizedCategoryDescription(data);
+            const displayTips = this.getLocalizedCategoryTips(data);
+
             categoryCard.innerHTML = `
                 <div class="category-header">
                     <div class="category-title-wrapper">
                         <span class="category-status ${statusClass}">${statusIcon}</span>
-                        <h4 class="category-title">${name}</h4>
+                        <h4 class="category-title">${displayName}</h4>
                     </div>
                 </div>
-                <p class="category-description">${data.description}</p>
+                <p class="category-description">${displayDescription}</p>
                 <div class="category-progress">
                     <div class="category-progress-fill" style="width: ${progress}%;"></div>
                 </div>
@@ -1519,10 +1544,10 @@ const EnhancedMemorySystem = {
                     <span class="stats-learned">${categoryLearned}/${data.countries.length} ${learnedText}</span>
                     <span class="stats-percent">${progress}%</span>
                 </div>
-                ${data.tips ? `
+                ${displayTips ? `
                     <div class="category-tips" style="background: #fefce8; border-left: 3px solid #fde047; border-radius: 6px; padding: 10px;">
                         <div class="tips-title" style="text-align: left; margin-bottom: 6px; font-weight: 600;">${studyTipsTitle}</div>
-                        <div class="tips-content">${data.tips}</div>
+                        <div class="tips-content">${displayTips}</div>
                     </div>
                 ` : ''}
                 ${categoryProgress.lastStudied ? `
@@ -2904,6 +2929,12 @@ function updateMemoryModuleText(lang) {
         });
 
         console.log('Memory module text updated successfully');
+
+        // 重新渲染分类卡片以确保翻译正确
+        if (typeof EnhancedMemorySystem !== 'undefined' && typeof EnhancedMemorySystem.renderCategories === 'function') {
+            console.log('Re-rendering category cards with new language...');
+            EnhancedMemorySystem.renderCategories();
+        }
     } else {
         console.log('Memory section is not visible, skipping dynamic content update');
     }
