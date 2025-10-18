@@ -17,7 +17,13 @@
       "Bash(git add --renormalize .claude/settings.local.json)",
       "Bash(git add .gitattributes)",
       "Bash(git commit -m \"$(cat <<''EOF''\n修复 LF/CRLF 换行符警告\n\n- 添加 .gitattributes 文件确保 JSON 和 Claude 配置文件使用 LF 换行符\n- 重新规范化 .claude/settings.local.json 文件\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
-      "Bash(git add .claude/settings.local.json)"
+      "Bash(git add .claude/settings.local.json)",
+      "Bash(git log -1 --format='%an %ae')",
+      "Bash(git add homepage.html script.js styles.css)",
+      "Bash(git commit -m \"$(cat <<''EOF''\n添加3D地球仪功能\n\n- 集成 Three.js 库实现交互式3D地球仪\n- 加载 GeoJSON 世界地图数据并渲染国家边界\n- 支持鼠标拖拽旋转、滚轮缩放和惯性效果\n- 点击国家显示国旗弹窗\n- 悬停高亮国家边界（黄色轮廓）\n- 使用世界地图配色方案为每个国家着色\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push origin main)",
+      "Bash(rm -rf temp-world-data/)",
+      "Bash(rm -f world_detailed.geojson world_simple.geojson)"
     ],
     "deny": [],
     "ask": []
