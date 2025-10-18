@@ -2,7 +2,19 @@
   "permissions": {
     "allow": [
       "Bash(dir:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(python:*)",
+      "Bash(npx http-server:*)",
+      "Bash(curl:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:cdn.jsdelivr.net)",
+      "WebFetch(domain:github.com)",
+      "Bash(git clone:*)",
+      "Bash(git pull:*)",
+      "Bash(start http://localhost:8000/homepage.html)",
+      "Bash(start http://localhost:8001/homepage.html)",
+      "Bash(git config core.autocrlf)",
+      "Bash(git add --renormalize .claude/settings.local.json)"
     ],
     "deny": [],
     "ask": []
