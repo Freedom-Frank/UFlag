@@ -36,6 +36,7 @@
       "browse": "国旗浏览",
       "memory": "记忆训练",
       "quiz": "知识测试",
+      "globe": "3D地球仪",
       "stats": "测试统计"
     },
     "browse": {
@@ -81,6 +82,7 @@
       "timer": "⏱️ {time}",
       "flagQuestion": "这是哪个国家的国旗？",
       "countryQuestion": "请选择 {country} 的国旗",
+      "countryQuestionFlag": "的国旗",
       "completed": "测试完成！",
       "stats": {
         "correct": "正确",
@@ -150,7 +152,6 @@
       "confirmClear": "确认清除",
       "cancel": "取消",
       "overviewTitle": "📚 学习概览",
-      "categoryLearning": "📂 分类学习",
       "studyComplete": "🎊 学习完成！",
       "studyCompleteMessage": "太棒了！你完成了学习",
       "statsTotal": "总数量",
@@ -184,7 +185,45 @@
       },
       "defaultTip": "认真学习这些国旗的特征和含义",
       "flagsOfRegion": "地区国家的国旗",
-      "startSessionHint": "点击开始后将按顺序展示每面国旗"
+      "startSessionHint": "点击开始后将按顺序展示每面国旗",
+      "prepareStudy": "准备学习: ",
+      "studyHintTitle": "💡 学习技巧",
+      "totalCount": "分类总数",
+      "unlearned": "未学习",
+      "learned": "已学习",
+      "beginTest": "开始学习",
+      "dontKnow": "不知道",
+      "know": "知道",
+      "returnToMemory": "← 返回记忆训练",
+      "categoryLearning": "📂 大洲分类学习",
+      "category": {
+        "europe.1": "欧洲（1）",
+        "europe.2": "欧洲（2）",
+        "europe.3": "欧洲（3）",
+        "europe.4": "欧洲（4）",
+        "africa.1": "非洲（1）",
+        "africa.2": "非洲（2）",
+        "africa.3": "非洲（3）",
+        "africa.4": "非洲（4）",
+        "africa.5": "非洲（5）",
+        "asia.1": "亚洲（1）",
+        "asia.2": "亚洲（2）",
+        "asia.3": "亚洲（3）",
+        "asia.4": "亚洲（4）",
+        "southAmerica": "南美洲",
+        "northAmerica.1": "北美洲（1）",
+        "northAmerica.2": "北美洲（2）",
+        "oceania.1": "大洋洲（1）",
+        "oceania.2": "大洋洲（2）"
+      },
+      "continents": {
+        "europe": "欧洲",
+        "africa": "非洲",
+        "asia": "亚洲",
+        "northAmerica": "北美洲",
+        "southAmerica": "南美洲",
+        "oceania": "大洋洲"
+      }
     },
     "stats": {
       "title": "学习统计",
@@ -234,6 +273,23 @@
     "languageSwitch": {
       "chinese": "中文",
       "english": "English"
+    },
+    "alerts": {
+      "selectTestType": "请先选择测试类型！",
+      "confirmClearStats": "确定要清除所有统计数据吗？"
+    },
+    "globe": {
+      "title": "3D地球仪",
+      "description": "在3D地球仪上探索世界各国，点击任意国家查看其国旗",
+      "controls": {
+        "rotate": "旋转：",
+        "rotateHelp": "鼠标拖拽",
+        "zoom": "缩放：",
+        "zoomHelp": "滚轮",
+        "select": "选择国家：",
+        "selectHelp": "点击"
+      },
+      "loading": "正在加载3D地球仪..."
     }
   },
   "en": {
@@ -273,6 +329,7 @@
       "browse": "Browse",
       "memory": "Memory",
       "quiz": "Quiz",
+      "globe": "3D Globe",
       "stats": "Statistics"
     },
     "browse": {
@@ -318,6 +375,7 @@
       "timer": "⏱️ {time}",
       "flagQuestion": "Which country does this flag belong to?",
       "countryQuestion": "Please select the flag of {country}",
+      "countryQuestionFlag": "'s flag",
       "completed": "Quiz Completed!",
       "stats": {
         "correct": "Correct",
@@ -430,10 +488,35 @@
       "beginTest": "Begin Study",
       "dontKnow": "Don't Know",
       "know": "Know",
-      "next": "Next →",
-      "studyCompleteMessage": "Excellent! You have completed ",
       "returnToMemory": "← Return to Memory Training",
-      "categoryLearning": "Category Learning: "
+      "category": {
+        "europe.1": "Europe(1)",
+        "europe.2": "Europe(2)",
+        "europe.3": "Europe(3)",
+        "europe.4": "Europe(4)",
+        "africa.1": "Africa(1)",
+        "africa.2": "Africa(2)",
+        "africa.3": "Africa(3)",
+        "africa.4": "Africa(4)",
+        "africa.5": "Africa(5)",
+        "asia.1": "Asia(1)",
+        "asia.2": "Asia(2)",
+        "asia.3": "Asia(3)",
+        "asia.4": "Asia(4)",
+        "southAmerica": "South America",
+        "northAmerica.1": "North America(1)",
+        "northAmerica.2": "North America(2)",
+        "oceania.1": "Oceania(1)",
+        "oceania.2": "Oceania(2)"
+      },
+      "continents": {
+        "europe": "Europe",
+        "africa": "Africa",
+        "asia": "Asia",
+        "northAmerica": "North America",
+        "southAmerica": "South America",
+        "oceania": "Oceania"
+      }
     },
     "stats": {
       "title": "Learning Statistics",
@@ -483,6 +566,23 @@
     "languageSwitch": {
       "chinese": "中文",
       "english": "English"
+    },
+    "alerts": {
+      "selectTestType": "Please select a test type first!",
+      "confirmClearStats": "Are you sure you want to clear all statistics?"
+    },
+    "globe": {
+      "title": "3D Globe",
+      "description": "Explore countries around the world on the 3D globe, click any country to view its flag",
+      "controls": {
+        "rotate": "Rotate: ",
+        "rotateHelp": "Mouse drag",
+        "zoom": "Zoom: ",
+        "zoomHelp": "Mouse wheel",
+        "select": "Select country: ",
+        "selectHelp": "Click"
+      },
+      "loading": "Loading 3D globe..."
     },
     "sponsorBadge": {
       "title": "This website is supported by Asia Simulation Alliance"
