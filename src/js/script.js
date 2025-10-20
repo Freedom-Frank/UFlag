@@ -568,7 +568,7 @@ async function init() {
 // 加载翻译数据
 async function loadTranslations() {
     try {
-        const response = await fetch('i18n.json');
+        const response = await fetch('../../data/i18n/i18n.json');
         if (response.ok) {
             const data = await response.json();
             i18n.setTranslations(data);
@@ -588,7 +588,7 @@ async function loadTranslations() {
 
             console.log(`✅ 语言设置为: ${preferredLanguage}`);
         } else {
-            throw new Error('无法加载i18n.json');
+            throw new Error('无法加载 i18n.json');
         }
     } catch (error) {
         console.warn('翻译数据加载失败:', error.message);
@@ -629,13 +629,13 @@ function saveStats() {
 // 加载国家数据
 async function loadCountriesData() {
     try {
-        const response = await fetch('countries_un.json');
+        const response = await fetch('../../data/countries/countries_un.json');
         if (response.ok) {
             const data = await response.json();
             allCountries = data.countries;
             console.log(`成功加载 ${allCountries.length} 个国家数据`);
         } else {
-            throw new Error('无法加载countries_un.json');
+            throw new Error('无法加载 countries_un.json');
         }
     } catch (error) {
         console.log('使用示例数据:', error.message);
@@ -1019,7 +1019,7 @@ function displayFlags() {
         // 设置图片
         const img = flagCard.querySelector('.flag-img');
         if (img) {
-            img.src = `pics/${country.code}.png`;
+            img.src = `../../assets/images/flags/${country.code}.png`;
             img.alt = i18n.getCountryName(country);
             img.onerror = function() {
                 this.src = `https://via.placeholder.com/200x140/f0f0f0/999?text=${country.code.toUpperCase()}`;
@@ -1173,7 +1173,7 @@ function showQuestion() {
             const templateContent = flagTemplate.content.cloneNode(true);
             const img = templateContent.querySelector('.question-flag');
             if (img) {
-                img.src = `pics/${q.correct.code}.png`;
+                img.src = `../../assets/images/flags/${q.correct.code}.png`;
                 img.alt = '国旗';
                 img.onerror = function() {
                     this.src = `https://via.placeholder.com/360x240/f0f0f0/999?text=${q.correct.code.toUpperCase()}`;
@@ -1243,7 +1243,7 @@ function showQuestion() {
                     button.onclick = () => checkAnswer(opt.code, q.correct.code);
                     // 记录选项代码，便于统一判题上色
                     button.dataset.code = opt.code;
-                    img.src = `pics/${opt.code}.png`;
+                    img.src = `../../assets/images/flags/${opt.code}.png`;
                     img.alt = opt.nameCN;
                     img.onerror = function() {
                         this.src = `https://via.placeholder.com/200x120/f0f0f0/999?text=${opt.code.toUpperCase()}`;
@@ -1432,7 +1432,7 @@ function displayWrongAnswers() {
                 // 设置国旗图片
                 const flagImg = templateContent.querySelector('.wrong-flag');
                 if (flagImg) {
-                    flagImg.src = `pics/${wrong.correctCountry.code}.png`;
+                    flagImg.src = `../../assets/images/flags/${wrong.correctCountry.code}.png`;
                     flagImg.alt = '国旗';
                     flagImg.onerror = function() {
                         this.src = `https://via.placeholder.com/200x120/f0f0f0/999?text=${wrong.correctCountry.code.toUpperCase()}`;
@@ -1485,7 +1485,7 @@ function displayWrongAnswers() {
                 // 设置正确国旗
                 const correctFlag = templateContent.querySelector('.flag-option.correct .comparison-flag');
                 if (correctFlag) {
-                    correctFlag.src = `pics/${wrong.correctCountry.code}.png`;
+                    correctFlag.src = `../../assets/images/flags/${wrong.correctCountry.code}.png`;
                     correctFlag.alt = '正确国旗';
                     correctFlag.onerror = function() {
                         this.src = `https://via.placeholder.com/150x100/f0f0f0/999?text=${wrong.correctCountry.code.toUpperCase()}`;
@@ -1495,7 +1495,7 @@ function displayWrongAnswers() {
                 // 设置错误国旗
                 const wrongFlag = templateContent.querySelector('.flag-option.wrong .comparison-flag');
                 if (wrongFlag) {
-                    wrongFlag.src = `pics/${wrong.selectedCountry.code}.png`;
+                    wrongFlag.src = `../../assets/images/flags/${wrong.selectedCountry.code}.png`;
                     wrongFlag.alt = '错误国旗';
                     wrongFlag.onerror = function() {
                         this.src = `https://via.placeholder.com/150x100/f0f0f0/999?text=${wrong.selectedCountry.code.toUpperCase()}`;
@@ -2193,7 +2193,7 @@ const EnhancedMemorySystem = {
             return `
                 <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px;">
                     <div style="width:100%;height:90px;background:#f8f9fa;border:1px solid #e9ecef;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
-                        <img src="pics/${code}.png" alt="${titleCN}" style="max-width:100%;max-height:100%;object-fit:contain;" onerror="this.src='https://via.placeholder.com/160x100/f0f0f0/999?text=${code.toUpperCase()}'" />
+                        <img src="../../assets/images/flags/${code}.png" alt="${titleCN}" style="max-width:100%;max-height:100%;object-fit:contain;" onerror="this.src='https://via.placeholder.com/160x100/f0f0f0/999?text=${code.toUpperCase()}'" />
                     </div>
                     <div style="text-align:center;">
                         <div style="font-size:13px;color:#1f2937;font-weight:600;">${titleCN}</div>
@@ -2331,7 +2331,7 @@ const EnhancedMemorySystem = {
 
             const flagImg = templateContent.querySelector('.study-flag-img');
             if (flagImg) {
-                flagImg.src = `pics/${flagCode}.png`;
+                flagImg.src = `../../assets/images/flags/${flagCode}.png`;
                 flagImg.alt = countryInfo?.nameCN || flagCode.toUpperCase();
                 flagImg.onerror = function() {
                     this.src = `https://via.placeholder.com/300x200/f0f0f0/999?text=${flagCode.toUpperCase()}`;
@@ -2494,14 +2494,14 @@ const EnhancedMemorySystem = {
     // 添加加载国家数据的方法
     async loadCountriesData() {
         try {
-            const response = await fetch('countries_un.json');
+            const response = await fetch('../../data/countries/countries_un.json');
             if (response.ok) {
                 const data = await response.json();
                 allCountries = data.countries;
                 console.log(`成功加载 ${allCountries.length} 个国家数据`);
                 return true;
             } else {
-                throw new Error('无法加载countries_un.json');
+                throw new Error('无法加载 countries_un.json');
             }
         } catch (error) {
             console.log('使用示例数据:', error.message);
@@ -3528,7 +3528,7 @@ async function loadI18nData() {
     try {
         console.log('Loading i18n data...');
         // 添加缓存破坏参数
-        const response = await fetch('i18n.json?t=' + Date.now());
+        const response = await fetch('../../data/i18n/i18n.json?t=' + Date.now());
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -3699,7 +3699,7 @@ function updateWrongAnswersContent() {
             const wrongAnswerItem = element.closest('.wrong-answer-item');
             if (wrongAnswerItem) {
                 // 查找相关的国家代码信息
-                const flagImg = wrongAnswerItem.querySelector('img[src*="pics/"]');
+                const flagImg = wrongAnswerItem.querySelector('img[src*="flags/"]');
                 if (flagImg) {
                     const src = flagImg.getAttribute('src');
                     const match = src.match(/pics\/([a-z]{2})\.png/);
@@ -5816,11 +5816,11 @@ async function loadWorldData() {
         // 优先尝试加载详细地图数据
         let response;
         try {
-            response = await fetch('./world_detailed.geojson');
+            response = await fetch('../../assets/geo/world_detailed.geojson');
             if (!response.ok) throw new Error('详细地图数据不存在');
         } catch (e) {
             console.log('📍 使用简化地图数据...');
-            response = await fetch('./world_simple.geojson');
+            response = await fetch('../../assets/geo/world_simple.geojson');
         }
 
         worldData = await response.json();
@@ -6283,7 +6283,7 @@ function showCountryFlag(countryData) {
     const countryNameEn = popup.querySelector('.popup-country-name-en');
     const countryContinent = popup.querySelector('.popup-country-continent');
 
-    flagImg.src = `pics/${country.code}.png`;
+    flagImg.src = `../../assets/images/flags/${country.code}.png`;
     flagImg.alt = `${country.nameCN}国旗`;
     countryNameCn.textContent = country.nameCN;
     countryNameEn.textContent = country.nameEN;

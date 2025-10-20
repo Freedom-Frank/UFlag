@@ -556,7 +556,7 @@
     </div>
 
     <!-- 引入统一的国际化核心模块 -->
-    <script src="i18n-core.js"></script>
+    <script src="src/js/i18n-core.js"></script>
 
     <script>
         // ===== 使用统一的国际化系统 =====
@@ -569,7 +569,7 @@
         async function loadI18nData() {
             try {
                 console.log('Loading i18n data for index.html...');
-                const response = await fetch('i18n.json?t=' + Date.now());
+                const response = await fetch('data/i18n/i18n.json?t=' + Date.now());
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -681,7 +681,7 @@
 
                 setTimeout(() => {
                     // 实际跳转逻辑
-                    window.location.href = 'homepage.html';
+                    window.location.href = 'src/pages/homepage.html';
 
                     // 恢复页面显示（演示用）
                     document.body.style.opacity = '1';

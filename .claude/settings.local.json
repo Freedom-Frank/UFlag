@@ -25,10 +25,28 @@
       "Bash(git push origin main)",
       "Bash(rm -rf temp-world-data/)",
       "Bash(rm -f world_detailed.geojson world_simple.geojson)",
-      "Bash(timeout 3 bash -c 'until curl -s http://localhost:8000 > /dev/null; do sleep 0.5; done')"
+      "Bash(timeout 3 bash -c 'until curl -s http://localhost:8000 > /dev/null; do sleep 0.5; done')",
+      "Bash(mkdir -p src/pages src/js src/css data/countries data/i18n data/lists assets/images/flags assets/geo)",
+      "Bash(mv homepage.html src/pages/)",
+      "Bash(mv script.js src/js/)",
+      "Bash(mv i18n-core.js src/js/)",
+      "Bash(mv styles.css src/css/)",
+      "Bash(mv countries.json data/countries/)",
+      "Bash(mv countries_un.json data/countries/)",
+      "Bash(mv countries_and_oganizations.json data/countries/)",
+      "Bash(mv i18n.json data/i18n/)",
+      "Bash(mv lists/*.txt data/lists/)",
+      "Bash(rmdir lists)",
+      "Bash(mv pics/* assets/images/flags/)",
+      "Bash(rmdir pics)",
+      "Bash(mv ASIASIM.png assets/images/)",
+      "Bash(mv world_detailed.geojson assets/geo/)",
+      "Bash(mv world_simple.geojson assets/geo/)",
+      "Bash(npx -y http-server -p 8000 -c-1)",
+      "Bash(start http://localhost:8000)",
+      "Bash(tree -L 3 -I 'node_modules|.git' --dirsfirst)"
     ],
     "deny": [],
     "ask": []
   }
 }
-
