@@ -4,6 +4,7 @@
       "Bash(dir:*)",
       "Bash(node:*)",
       "Bash(python:*)",
+      "Bash(python:*)",
       "Bash(npx http-server:*)",
       "Bash(curl:*)",
       "WebFetch(domain:raw.githubusercontent.com)",
@@ -30,3 +31,4 @@
     "ask": []
   }
 }
+

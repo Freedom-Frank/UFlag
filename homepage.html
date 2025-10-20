@@ -104,26 +104,26 @@
                 <div class="stats">
                     <div class="stat-card">
                         <div class="stat-number" id="totalCount">0</div>
-                        <div class="stat-label">数据来源总数</div>
+                        <div class="stat-label" data-i18n="browse.stats.total">数据来源总数</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-number" id="filteredCount">0</div>
-                        <div class="stat-label">当前显示</div>
+                        <div class="stat-label" data-i18n="browse.stats.filtered">当前显示</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-number" id="continentCount">7</div>
-                        <div class="stat-label">大洲</div>
+                        <div class="stat-label" data-i18n="browse.stats.continents">大洲</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-number" id="styleCount">16</div>
-                        <div class="stat-label">特征分类</div>
+                        <div class="stat-label" data-i18n="browse.stats.features">特征分类</div>
                     </div>
                 </div>
 
                 <div id="flags-container" class="flags-grid">
                     <div class="loading">
                         <div class="spinner"></div>
-                        <p>正在加载国旗数据...</p>
+                        <p data-i18n="browse.loading">正在加载国旗数据...</p>
                     </div>
                 </div>
             </div>
@@ -306,18 +306,22 @@
     <template id="empty-state-template">
         <div class="empty-state" style="grid-column: 1/-1;">
             <div class="empty-icon">🔍</div>
-            <h3>没有找到匹配的国旗</h3>
-            <p>请尝试调整筛选条件</p>
+            <h3 data-i18n="browse.noResults.title">没有找到匹配的国旗</h3>
+            <p data-i18n="browse.noResults.description">请尝试调整筛选条件</p>
         </div>
     </template>
 
     <template id="question-flag-template">
         <img class="question-flag" alt="国旗">
-        <p class="question-text">这是哪个国家的国旗？</p>
+        <p class="question-text" data-i18n="quiz.flagQuestion">这是哪个国家的国旗？</p>
     </template>
 
     <template id="question-country-template">
-        <p class="question-text">请选择 <span class="country-name"></span> 的国旗</p>
+        <p class="question-text">
+            <span data-i18n="quiz.countryQuestion">请选择</span>
+            <span class="country-name"></span>
+            <span data-i18n="quiz.countryQuestionFlag">的国旗</span>
+        </p>
     </template>
 
     <template id="option-button-template">
@@ -338,17 +342,17 @@
         <div class="wrong-answer-item">
             <div class="wrong-question-header">
                 <span class="wrong-question-number"></span>
-                <span class="wrong-question-type">看国旗选国家</span>
+                <span class="wrong-question-type" data-i18n="quiz.wrongAnswers.flagToCountry">看国旗选国家</span>
             </div>
             <div class="wrong-question-content">
                 <img class="wrong-flag" alt="国旗">
                 <div class="wrong-answer-info">
                     <div class="correct-answer">
-                        <span class="answer-label">正确答案：</span>
+                        <span class="answer-label" data-i18n="quiz.wrongAnswers.correctAnswer">正确答案：</span>
                         <span class="answer-text correct"></span>
                     </div>
                     <div class="wrong-answer">
-                        <span class="answer-label">你的答案：</span>
+                        <span class="answer-label" data-i18n="quiz.wrongAnswers.yourAnswer">你的答案：</span>
                         <span class="answer-text wrong"></span>
                     </div>
                 </div>
@@ -360,17 +364,17 @@
         <div class="wrong-answer-item">
             <div class="wrong-question-header">
                 <span class="wrong-question-number"></span>
-                <span class="wrong-question-type">看国家选国旗</span>
+                <span class="wrong-question-type" data-i18n="quiz.wrongAnswers.countryToFlag">看国家选国旗</span>
             </div>
             <div class="wrong-question-content">
                 <div class="country-name"></div>
                 <div class="flags-comparison">
                     <div class="flag-option correct">
-                        <div class="flag-label">正确答案</div>
+                        <div class="flag-label" data-i18n="quiz.correctFlag">正确答案</div>
                         <img class="comparison-flag" alt="正确国旗">
                     </div>
                     <div class="flag-option wrong">
-                        <div class="flag-label">错误答案</div>
+                        <div class="flag-label" data-i18n="quiz.wrongFlag">错误答案</div>
                         <img class="comparison-flag" alt="错误国旗">
                     </div>
                 </div>
@@ -403,10 +407,10 @@
                 <p style="margin: 0; color: #3b82f6; font-weight: 500;" class="country-continent"></p>
             </div>
             <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                <button class="study-btn-prev" style="background: #6b7280; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.3s;">
+                <button class="study-btn-prev" style="background: #6b7280; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.3s;" data-i18n="memory.previous">
                     ← 上一个
                 </button>
-                <button class="study-btn-next" style="background: #3b82f6; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.3s;">
+                <button class="study-btn-next" style="background: #3b82f6; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.3s;" data-i18n="memory.next">
                     下一个 →
                 </button>
             </div>
@@ -417,62 +421,62 @@
         <div style="max-width: 900px; margin: 0 auto;">
             <!-- 头部统计 -->
             <div style="background: linear-gradient(135deg, #002B7D 0%, #0179C8 100%); color: white; padding: 25px; border-radius: 15px; margin-bottom: 25px; text-align: center;">
-                <h2 style="margin: 0 0 15px 0; font-size: 1.8rem;">📚 学习概览</h2>
+                <h2 style="margin: 0 0 15px 0; font-size: 1.8rem;" data-i18n="memory.overviewTitle">📚 学习概览</h2>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 15px; margin-bottom: 20px;">
                     <div>
                         <div style="font-size: 1.5rem; font-weight: bold;" class="learned-count">0</div>
-                        <div style="font-size: 0.9rem; opacity: 0.9;">已学习</div>
+                        <div style="font-size: 0.9rem; opacity: 0.9;" data-i18n="memory.stats.learned">已学习</div>
                     </div>
                     <div>
                         <div style="font-size: 1.5rem; font-weight: bold;" class="total-count">0</div>
-                        <div style="font-size: 0.9rem; opacity: 0.9;">总数量</div>
+                        <div style="font-size: 0.9rem; opacity: 0.9;" data-i18n="memory.stats.total">总数量</div>
                     </div>
                     <div>
                         <div style="font-size: 1.5rem; font-weight: bold;" class="progress-percent">0%</div>
-                        <div style="font-size: 0.9rem; opacity: 0.9;">完成度</div>
+                        <div style="font-size: 0.9rem; opacity: 0.9;" data-i18n="memory.stats.progress">完成度</div>
                     </div>
                     <div>
                         <div style="font-size: 1.5rem; font-weight: bold;" class="today-count">0</div>
-                        <div style="font-size: 0.9rem; opacity: 0.9;">今日学习</div>
+                        <div style="font-size: 0.9rem; opacity: 0.9;" data-i18n="memory.stats.today">今日学习</div>
                     </div>
                 </div>
                 
                 <!-- 总体进度 -->
                 <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <span>学习进度</span>
+                        <span data-i18n="memory.progressLabel">学习进度</span>
                         <span class="total-progress-text">0/0</span>
                     </div>
                     <div style="background: rgba(255,255,255,0.3); height: 8px; border-radius: 4px; overflow: hidden;">
                         <div class="total-progress-fill" style="background: #0179C8; height: 100%; width: 0%; transition: width 0.3s;"></div>
                     </div>
-                    <div class="overall-complete" style="margin-top: 8px; font-size: 0.9rem; display: none;">🎉 太棒了！你已掌握所有国旗</div>
+                    <div class="overall-complete" style="margin-top: 8px; font-size: 0.9rem; display: none;" data-i18n="memory.allFlagsMastered">🎉 太棒了！你已掌握所有国旗</div>
                 </div>
                 
                 <!-- 开始学习按钮 -->
                 <div style="margin-top: 25px; text-align: center;">
                     <button id="startLearningBtn" class="start-learning-btn" style="background: linear-gradient(135deg, #E8A848 0%, #E28031 100%); color: white; border: none; padding: 16px 32px; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; transition: all 0.3s; box-shadow: 0 8px 25px rgba(226, 128, 49, 0.3); min-width: 200px;">
                         <span class="btn-icon">🚀</span>
-                        <span class="btn-text">开始学习</span>
+                        <span class="btn-text" data-i18n="memory.startButton">开始学习</span>
                     </button>
                     <div style="margin-top: 12px; font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.4;" class="learning-hint">
-                        💡 系统会智能选择最适合的学习分类，每次专注一个关卡
+                        💡 <span data-i18n="memory.systemSmartHint">系统会智能选择最适合的学习分类，每次专注一个关卡</span>
                     </div>
-                    
+
                     <!-- 清除学习进度按钮 -->
                     <div style="margin-top: 20px;">
                         <button id="clearMemoryProgressBtn" class="clear-memory-btn" style="background: rgba(239, 68, 68, 0.8); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; transition: all 0.3s; opacity: 0.8;">
-                            🗑️ 清除学习进度
+                            🗑️ <span data-i18n="memory.clearProgress">🗑️ 清除学习进度</span>
                         </button>
                         <div style="margin-top: 8px; font-size: 12px; color: rgba(255,255,255,0.6);">
-                            ⚠️ 此操作将清除所有学习记录和进度，无法恢复
+                            ⚠️ <span data-i18n="memory.clearWarning">⚠️ 此操作将清除所有学习记录和进度，无法恢复</span>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- 分类学习 -->
-            <h3 style="margin-bottom: 20px; color: #1f2937;">📂 分类学习</h3>
+            <h3 style="margin-bottom: 20px; color: #1f2937;" data-i18n="memory.categories">📂 分类学习</h3>
             <div class="categories-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 30px;">
                 <!-- 分类卡片将在这里动态生成 -->
             </div>
@@ -535,6 +539,9 @@
         <div class="popup-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999;"></div>
     </template>
 
+    <!-- 统一翻译核心模块 -->
+    <script src="i18n-core.js"></script>
+    <!-- 主应用脚本 -->
     <script src="script.js"></script>
 </body>
 </html>

@@ -8,7 +8,67 @@ let sortMethod = 'name';
 let searchTerm = '';
 let selectedDataSource = 'all';
 
-// 国际化相关变量
+// ===== 引入统一翻译核心模块 =====
+// 注意：UnifiedTranslationManager 和 ModernI18n 类已移至 i18n-core.js
+// 现在使用统一的 i18n 实例
+
+// 重新渲染浏览模块的国家卡片
+function rerenderBrowseCards() {
+    const flagsContainer = document.getElementById('flags-container');
+    if (!flagsContainer) {
+        console.warn('rerenderBrowseCards: flags-container not found');
+        return;
+    }
+
+    // 紧急修复：简单检查，不要递归调用
+    if (typeof filteredCountries === 'undefined' || filteredCountries.length === 0) {
+        console.warn('rerenderBrowseCards: filteredCountries is empty or undefined, skipping render');
+        return;
+    }
+
+    const flagCards = flagsContainer.querySelectorAll('.flag-card');
+    console.log(`rerenderBrowseCards: found ${flagCards.length} cards, ${filteredCountries.length} countries`);
+
+    flagCards.forEach((card, index) => {
+        if (index < filteredCountries.length) {  // 修复：使用filteredCountries而不是allCountries
+            const country = filteredCountries[index];
+            const nameCN = card.querySelector('.flag-name-cn'); // 主要名称
+            const nameEN = card.querySelector('.flag-name-en'); // 次要名称
+            const isEnglishMode = i18n.currentLanguage === 'en';
+
+            if (isEnglishMode) {
+                // 英文模式：主要显示英文，次要显示中文
+                if (nameCN) nameCN.textContent = country.nameEN;
+                if (nameEN) nameEN.textContent = country.nameCN;
+            } else {
+                // 中文模式：主要显示中文，次要显示英文
+                if (nameCN) nameCN.textContent = country.nameCN;
+                if (nameEN) nameEN.textContent = country.nameEN;
+            }
+
+            // 更新大洲标签
+            const continentTag = card.querySelector('.continent-tag');
+            if (continentTag) {
+                continentTag.textContent = i18n.getContinentName(country.continent);
+            }
+
+            // 更新特征标签
+            const styleTag = card.querySelector('.style-tag');
+            if (styleTag && country.styles && country.styles.length > 0) {
+                styleTag.textContent = i18n.getFeatureName(country.styles[0]);
+            }
+        }
+    });
+}
+
+// ===== 兼容性函数 =====
+// 注意：测试函数已移至 i18n-core.js 中作为统一翻译系统的一部分
+
+// ===== 全局翻译系统 =====
+// 注意：ModernI18n 类已移至 i18n-core.js
+// 现在使用统一的 i18n 实例，该实例在 i18n-core.js 中定义并导出到全局作用域
+
+// 兼容性变量（逐步移除）
 let currentLang = 'zh';
 let i18nData = {};
 
@@ -415,15 +475,134 @@ const stylesList = [
 
 // 初始化应用
 async function init() {
+    console.log('📦 加载统计数据...');
     loadStats();
-    await loadCountriesData();
-    setupEventListeners();
-    displayFlags();
 
-    // 初始化增强记忆系统
+    console.log('🌍 加载国家数据...');
+    await loadCountriesData();
+    console.log(`✅ 已加载 ${allCountries.length} 个国家`);
+
+    console.log('🌐 加载翻译数据...');
+    await loadTranslations();
+
+    console.log('🧠 初始化增强记忆系统...');
     if (typeof EnhancedMemorySystem !== 'undefined') {
         EnhancedMemorySystem.init();
+    } else {
+        console.warn('⚠️ EnhancedMemorySystem 未定义');
     }
+
+    console.log('🔗 设置事件监听器...');
+    setupEventListeners();
+
+    console.log('📂 显示默认区域（浏览模式）...');
+    showSection('browse');
+
+    console.log('🏳️ 显示国旗卡片...');
+    displayFlags();
+
+    console.log('🎉 初始化完成');
+
+    // 紧急修复：强制清空所有可能的记忆训练内容泄漏
+    setTimeout(() => {
+        // 清空记忆训练容器
+        const simpleMemoryContainer = document.getElementById('simpleMemoryContainer');
+        if (simpleMemoryContainer && simpleMemoryContainer.children.length > 0) {
+            console.warn('🚨 检测到记忆训练容器有内容，正在清空...');
+            simpleMemoryContainer.innerHTML = '';
+        }
+
+        // 移除任何可能错误添加到body的对话框或内容
+        const possibleDialogs = document.body.querySelectorAll('.message-popup, [style*="position"], [style*="fixed"]');
+        possibleDialogs.forEach(el => {
+            const text = el.textContent || '';
+            if (text.includes('清除') || text.includes('clear') || text.includes('progress') || text.includes('学习记录') || text.includes('learning records')) {
+                console.warn('🚨 移除错误的对话框:', el, 'Text:', text);
+                if (el.parentNode) {
+                    el.parentNode.removeChild(el);
+                }
+            }
+        });
+
+        // 强制移除任何全屏覆盖元素
+        const fixedElements = document.body.querySelectorAll('[style*="position: fixed"], [style*="position:fixed"]');
+        fixedElements.forEach(el => {
+            if (el.style.zIndex && parseInt(el.style.zIndex) > 1000) {
+                console.warn('🚨 移除高z-index元素:', el);
+                if (el.parentNode) {
+                    el.parentNode.removeChild(el);
+                }
+            }
+        });
+
+        // 调试：检查页面状态
+        console.group('🔍 页面状态调试');
+
+        const browseSection = document.getElementById('browse-section');
+        const memorySection = document.getElementById('memory-section');
+
+        console.log('Browse section:', {
+            exists: !!browseSection,
+            display: browseSection ? window.getComputedStyle(browseSection).display : 'N/A',
+            visible: browseSection ? browseSection.offsetParent !== null : false
+        });
+
+        console.log('Memory section:', {
+            exists: !!memorySection,
+            display: memorySection ? window.getComputedStyle(memorySection).display : 'N/A',
+            visible: memorySection ? memorySection.offsetParent !== null : false
+        });
+
+        console.log('Simple memory container:', {
+            exists: !!simpleMemoryContainer,
+            innerHTML: simpleMemoryContainer ? simpleMemoryContainer.innerHTML : 'N/A',
+            children: simpleMemoryContainer ? simpleMemoryContainer.children.length : 0
+        });
+
+        console.log('Current section:', currentSection);
+
+        console.groupEnd();
+    }, 1000);
+}
+
+// 加载翻译数据
+async function loadTranslations() {
+    try {
+        const response = await fetch('i18n.json');
+        if (response.ok) {
+            const data = await response.json();
+            i18n.setTranslations(data);
+            console.log('✅ 翻译数据加载成功');
+
+            // 设置用户首选语言
+            const preferredLanguage = localStorage.getItem('preferredLanguage') || 'zh';
+            i18n.setLanguage(preferredLanguage);
+
+            // 更新语言按钮状态
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === preferredLanguage) {
+                    btn.classList.add('active');
+                }
+            });
+
+            console.log(`✅ 语言设置为: ${preferredLanguage}`);
+        } else {
+            throw new Error('无法加载i18n.json');
+        }
+    } catch (error) {
+        console.warn('翻译数据加载失败:', error.message);
+        // 使用默认语言继续运行
+        i18n.setLanguage('zh');
+    }
+
+    // 翻译数据加载完成后，触发记忆系统渲染
+    setTimeout(() => {
+        if (window.EnhancedMemorySystem && window.EnhancedMemorySystem.renderCategories) {
+            console.log('🔄 翻译数据加载完成，重新渲染记忆训练分类...');
+            window.EnhancedMemorySystem.renderCategories();
+        }
+    }, 200);
 }
 
 // 加载统计数据
@@ -501,6 +680,48 @@ function setupEventListeners() {
     safeAddEventListener('globeBtn', 'click', () => showSection('globe'));
     safeAddEventListener('statsBtn', 'click', () => showSection('stats'));
 
+    // 语言切换按钮 - 使用统一翻译系统
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const lang = this.getAttribute('data-lang');
+            console.log(`Language button clicked: ${lang}`);
+
+            // 更新按钮状态
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            // 使用新的统一翻译系统进行切换
+            i18n.switchLanguage(lang);
+
+            // 强化修复：确保页面内容正常显示
+            setTimeout(() => {
+                // 检查并恢复国旗显示
+                const flagsContainer = document.getElementById('flags-container');
+                if (flagsContainer && flagsContainer.children.length === 0) {
+                    console.warn('Emergency recovery: flags container is empty, forcing displayFlags()');
+                    displayFlags();
+                } else if (flagsContainer) {
+                    const flagCards = flagsContainer.querySelectorAll('.flag-card');
+                    if (flagCards.length === 0 && filteredCountries.length > 0) {
+                        console.warn('Emergency recovery: no flag cards found but data exists, forcing displayFlags()');
+                        displayFlags();
+                    } else if (flagCards.length > 0) {
+                        // 强制重新渲染国旗卡片以更新语言
+                        rerenderBrowseCards();
+                    }
+                }
+
+                // 确保当前section正确显示
+                if (currentSection) {
+                    showSection(currentSection);
+                }
+            }, 150);
+
+            console.log(`✅ Language switched to: ${lang} using unified translation system`);
+        });
+    });
+
     // 搜索框
     safeAddEventListener('searchInput', 'input', (e) => {
         searchTerm = e.target.value.toLowerCase();
@@ -572,7 +793,7 @@ function setupEventListeners() {
 
     // 清除统计
     safeAddEventListener('clearStatsBtn', 'click', () => {
-        if (confirm('确定要清除所有统计数据吗？')) {
+        if (confirm(i18n.t('alerts.confirmClearStats'))) {
             stats = { totalTests: 0, totalQuestions: 0, correctAnswers: 0, bestScore: 0 };
             saveStats();
             updateStatsDisplay();
@@ -590,8 +811,9 @@ function safeAddEventListener(id, event, handler) {
 
 // 切换显示区域
 function showSection(section) {
+    console.log(`🔄 showSection called with: ${section}`);
     currentSection = section;
-    
+
     // 更新导航按钮
     document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
     if (section === 'browse') safeSetClass('browseBtn', 'active');
@@ -604,11 +826,21 @@ function showSection(section) {
     }
 
     // 显示对应区域
+    console.log(`📂 Setting display for sections: browse=${section === 'browse'}, quiz=${section === 'quiz'}, memory=${section === 'memory'}, stats=${section === 'stats'}`);
     safeSetDisplay('browse-section', section === 'browse' ? 'block' : 'none');
     safeSetDisplay('quiz-section', section === 'quiz' ? 'block' : 'none');
     safeSetDisplay('memory-section', section === 'memory' ? 'block' : 'none');
     safeSetDisplay('globe-section', section === 'globe' ? 'block' : 'none');
     safeSetDisplay('stats-section', section === 'stats' ? 'block' : 'none');
+
+    // 紧急修复：确保浏览模式的容器可见
+    if (section === 'browse') {
+        const browseSection = document.getElementById('browse-section');
+        if (browseSection) {
+            browseSection.style.display = 'block';
+            console.log('✅ Browse section forced to visible');
+        }
+    }
     
     // 重置测试状态
     if (section === 'quiz') {
@@ -617,7 +849,11 @@ function showSection(section) {
     
     // 处理记忆训练区域
     if (section === 'memory') {
-        EnhancedMemorySystem.showMemory();
+        if (typeof EnhancedMemorySystem !== 'undefined') {
+            EnhancedMemorySystem.showMemory();
+        } else {
+            console.warn('EnhancedMemorySystem not available');
+        }
     }
 
     // 处理3D地球仪
@@ -637,7 +873,12 @@ function safeSetClass(id, className) {
 // 安全设置显示状态
 function safeSetDisplay(id, display) {
     const element = document.getElementById(id);
-    if (element) element.style.display = display;
+    if (element) {
+        element.style.display = display;
+        console.log(`📱 safeSetDisplay: ${id} -> ${display}`);
+    } else {
+        console.warn(`⚠️ safeSetDisplay: element with id '${id}' not found`);
+    }
 }
 
 // 重置测试状态
@@ -779,33 +1020,44 @@ function displayFlags() {
         const img = flagCard.querySelector('.flag-img');
         if (img) {
             img.src = `pics/${country.code}.png`;
-            img.alt = country.nameCN;
+            img.alt = i18n.getCountryName(country);
             img.onerror = function() {
                 this.src = `https://via.placeholder.com/200x140/f0f0f0/999?text=${country.code.toUpperCase()}`;
             };
         }
-        
-        // 设置国家名称
-        const nameCN = flagCard.querySelector('.flag-name-cn');
-        if (nameCN) nameCN.textContent = country.nameCN;
-        
-        const nameEN = flagCard.querySelector('.flag-name-en');
-        if (nameEN) nameEN.textContent = country.nameEN;
-        
-        // 设置标签
+
+        // 设置国家名称 - 根据当前语言动态显示
+        const nameCN = flagCard.querySelector('.flag-name-cn'); // 主要名称（大字体）
+        const nameEN = flagCard.querySelector('.flag-name-en'); // 次要名称（小字体）
+        const isEnglishMode = i18n.currentLanguage === 'en';
+
+        if (isEnglishMode) {
+            // 英文模式：主要显示英文名称，中文名称为副标题
+            if (nameCN) nameCN.textContent = country.nameEN;  // 主要显示英文
+            if (nameEN) nameEN.textContent = country.nameCN;  // 副标题显示中文
+        } else {
+            // 中文模式：主要显示中文名称，英文名称为副标题
+            if (nameCN) nameCN.textContent = country.nameCN;  // 主要显示中文
+            if (nameEN) nameEN.textContent = country.nameEN;  // 副标题显示英文
+        }
+
+        // 设置标签 - 使用本地化的名称，并添加数据属性避免重复更新
         const continentTag = flagCard.querySelector('.continent-tag');
         if (continentTag) {
-            continentTag.textContent = country.continent;
+            continentTag.setAttribute('data-continent', country.continent);
+            continentTag.textContent = i18n.getContinentName(country.continent);
         }
-        
-        // 设置风格标签
+
+        // 设置风格标签 - 使用本地化的名称，并添加数据属性避免重复更新
         const styleTag = flagCard.querySelector('.style-tag');
         if (styleTag && country.styles && country.styles.length > 0) {
-            styleTag.textContent = country.styles[0];
+            styleTag.setAttribute('data-feature', country.styles[0]);
+            styleTag.textContent = i18n.getFeatureName(country.styles[0]);
             // 添加更多风格标签
             for (let i = 1; i < Math.min(country.styles.length, 3); i++) {
                 const newStyleTag = styleTag.cloneNode();
-                newStyleTag.textContent = country.styles[i];
+                newStyleTag.setAttribute('data-feature', country.styles[i]);
+                newStyleTag.textContent = i18n.getFeatureName(country.styles[i]);
                 styleTag.parentNode.appendChild(newStyleTag);
             }
         } else if (styleTag) {
@@ -836,12 +1088,12 @@ function backToQuiz() {
 // 开始测试
 function startQuiz() {
     if (!quizType) {
-        alert('请先选择测试类型！');
+        alert(i18n.t('alerts.selectTestType'));
         return;
     }
 
     // 确保i18n数据已加载
-    if (!i18nData[currentLang] || !i18nData[currentLang].quiz) {
+    if (!i18n.loaded || !i18n.translations[i18n.currentLanguage]?.quiz) {
         console.warn('i18n data not loaded, waiting...');
         setTimeout(startQuiz, 100);
         return;
@@ -905,8 +1157,8 @@ function showQuestion() {
     const progressFill = document.getElementById('progressFill');
     if (progressFill) progressFill.style.width = `${((currentQuestion + 1) / total) * 100}%`;
     
-    const questionTemplate = i18nData[currentLang]?.quiz?.question || '第 {current} / {total} 题';
-    safeSetText('questionNumber', questionTemplate.replace('{current}', currentQuestion + 1).replace('{total}', total));
+    const questionTemplate = i18n.t('quiz.question', {current: currentQuestion + 1, total: total});
+    safeSetText('questionNumber', questionTemplate);
     
     const questionContent = document.getElementById('questionContent');
     const optionsContainer = document.getElementById('optionsContainer');
@@ -933,7 +1185,7 @@ function showQuestion() {
             setTimeout(() => {
                 const questionText = questionContent.querySelector('.question-text');
                 if (questionText) {
-                    const flagQuestionText = i18nData[currentLang]?.quiz?.flagQuestion || '这是哪个国家的国旗？';
+                    const flagQuestionText = i18n.t('quiz.flagQuestion');
                     questionText.textContent = flagQuestionText;
                     console.log('Flag question text updated to:', flagQuestionText);
                 }
@@ -953,7 +1205,7 @@ function showQuestion() {
                     button.onclick = () => checkAnswer(opt.code, q.correct.code);
                     // 记录选项代码，便于统一判题上色
                     button.dataset.code = opt.code;
-                    textSpan.textContent = currentLang === 'zh' ? opt.nameCN : opt.nameEN;
+                    textSpan.textContent = i18n.getCountryName(opt);
                     optionsContainer.appendChild(buttonContent);
                 }
             });
@@ -966,14 +1218,14 @@ function showQuestion() {
             const templateContent = countryTemplate.content.cloneNode(true);
             const countryName = templateContent.querySelector('.country-name');
             if (countryName) {
-                countryName.textContent = currentLang === 'zh' ? q.correct.nameCN : q.correct.nameEN;
+                countryName.textContent = i18n.getCountryName(q.correct);
             }
 
             // 更新国家选择国旗的问题文本
             const questionText = templateContent.querySelector('.question-text');
             if (questionText) {
-                const template = i18nData[currentLang]?.quiz?.countryQuestion || '请选择 {country} 的国旗';
-                questionText.textContent = template.replace('{country}', currentLang === 'zh' ? q.correct.nameCN : q.correct.nameEN);
+                const template = i18n.t('quiz.countryQuestion');
+                questionText.textContent = template.replace('{country}', i18n.getCountryName(q.correct));
             }
             questionContent.appendChild(templateContent);
         }
@@ -1080,7 +1332,7 @@ function endQuiz() {
     safeSetText('accuracyRate', `${accuracy}%`);
     safeSetText('timeSpent', formatTime(timeSpent));
     
-    const messages = i18nData[currentLang]?.quiz?.messages || {};
+    const messages = i18n.translations[i18n.currentLanguage]?.quiz?.messages || {};
     let message = '';
     if (accuracy === 100) {
         message = messages.perfect || '完美！你是真正的国旗专家！🏆';
@@ -1144,9 +1396,25 @@ function displayWrongAnswers() {
     wrongSection.style.display = 'block';
     container.innerHTML = '';
 
+    console.log('🔍 displayWrongAnswers - current language:', i18n.currentLanguage);
+    console.log('🔍 displayWrongAnswers - i18n loaded:', i18n.loaded);
+    console.log('🔍 displayWrongAnswers - translations available:', !!i18n.translations[i18n.currentLanguage]);
+    console.log('🔍 displayWrongAnswers - correctAnswer key:', i18n.t('quiz.wrongAnswers.correctAnswer'));
+    console.log('🔍 displayWrongAnswers - yourAnswer key:', i18n.t('quiz.wrongAnswers.yourAnswer'));
+
+    // 检查翻译路径
+    if (i18n.translations[i18n.currentLanguage]) {
+        const quizSection = i18n.translations[i18n.currentLanguage].quiz;
+        if (quizSection && quizSection.wrongAnswers) {
+            console.log('🔍 Available wrongAnswers keys:', Object.keys(quizSection.wrongAnswers));
+        } else {
+            console.log('🔍 quiz.wrongAnswers section not found');
+        }
+    }
+
     // 在显示错题后立即更新标签
     setTimeout(() => {
-        updateWrongAnswersLabels(currentLang);
+        updateWrongAnswersContent();
     }, 100);
     
     wrongAnswers.forEach(wrong => {
@@ -1158,7 +1426,7 @@ function displayWrongAnswers() {
                 
                 // 设置题号
                 const questionNumber = templateContent.querySelector('.wrong-question-number');
-                const questionTemplate = i18nData[currentLang]?.quiz?.questionNumber || '第 {index} 题';
+                const questionTemplate = i18n.t('quiz.questionNumber', {index: wrong.questionIndex});
                 if (questionNumber) questionNumber.textContent = questionTemplate.replace('{index}', wrong.questionIndex);
                 
                 // 设置国旗图片
@@ -1173,27 +1441,26 @@ function displayWrongAnswers() {
                 
                 // 设置正确答案
                 const correctText = templateContent.querySelector('.answer-text.correct');
-                if (correctText) correctText.textContent = currentLang === 'zh' ? wrong.correctCountry.nameCN : wrong.correctCountry.nameEN;
+                if (correctText) {
+                    correctText.textContent = i18n.getCountryName(wrong.correctCountry);
+                    correctText.setAttribute('data-country-code', wrong.correctCountry.code);
+                }
 
                 // 设置错误答案
                 const wrongText = templateContent.querySelector('.answer-text.wrong');
-                if (wrongText) wrongText.textContent = currentLang === 'zh' ? wrong.selectedCountry.nameCN : wrong.selectedCountry.nameEN;
+                if (wrongText) {
+                    wrongText.textContent = i18n.getCountryName(wrong.selectedCountry);
+                    wrongText.setAttribute('data-country-code', wrong.selectedCountry.code);
+                }
 
                 // 更新错题详情模板中的国际化文本
                 const questionType = templateContent.querySelector('.wrong-question-type');
                 if (questionType) {
-                    questionType.textContent = i18nData[currentLang]?.quiz?.wrongAnswers?.flagToCountry || '看国旗选国家';
+                    questionType.textContent = i18n.t('quiz.wrongAnswers.flagToCountry');
                 }
 
-                const correctLabel = templateContent.querySelector('.answer-label.correct');
-                if (correctLabel) {
-                    correctLabel.textContent = i18nData[currentLang]?.quiz?.wrongAnswers?.correctAnswer || '正确答案：';
-                }
-
-                const wrongLabel = templateContent.querySelector('.answer-label.wrong');
-                if (wrongLabel) {
-                    wrongLabel.textContent = i18nData[currentLang]?.quiz?.wrongAnswers?.yourAnswer || '你的答案：';
-                }
+                // 注意：不直接设置answer-label的textContent，因为它们有data-i18n属性
+                // 让updateWrongAnswersContent()函数处理这些翻译
 
                 container.appendChild(templateContent);
             }
@@ -1205,12 +1472,15 @@ function displayWrongAnswers() {
                 
                 // 设置题号
                 const questionNumber = templateContent.querySelector('.wrong-question-number');
-                const questionTemplate = i18nData[currentLang]?.quiz?.questionNumber || '第 {index} 题';
+                const questionTemplate = i18n.t('quiz.questionNumber', {index: wrong.questionIndex});
                 if (questionNumber) questionNumber.textContent = questionTemplate.replace('{index}', wrong.questionIndex);
                 
                 // 设置国家名称
                 const countryName = templateContent.querySelector('.country-name');
-                if (countryName) countryName.textContent = currentLang === 'zh' ? wrong.correctCountry.nameCN : wrong.correctCountry.nameEN;
+                if (countryName) {
+                    countryName.textContent = i18n.getCountryName(wrong.correctCountry);
+                    countryName.setAttribute('data-country-code', wrong.correctCountry.code);
+                }
                 
                 // 设置正确国旗
                 const correctFlag = templateContent.querySelector('.flag-option.correct .comparison-flag');
@@ -1235,19 +1505,19 @@ function displayWrongAnswers() {
                 // 更新错题详情模板中的国际化文本
                 const questionType = templateContent.querySelector('.wrong-question-type');
                 if (questionType) {
-                    questionType.textContent = i18nData[currentLang]?.quiz?.wrongAnswers?.countryToFlag || '看国家选国旗';
+                    questionType.textContent = i18n.t('quiz.wrongAnswers.countryToFlag');
                 }
 
                 const correctLabel = templateContent.querySelector('.flag-option.correct .flag-label');
                 if (correctLabel) {
-                    const correctText = i18nData[currentLang]?.quiz?.wrongAnswers?.correctAnswer || '正确答案：';
+                    const correctText = i18n.t('quiz.wrongAnswers.correctAnswer');
                     correctLabel.textContent = correctText;
                     console.log('Setting correct label to:', correctText, 'Current lang:', currentLang);
                 }
 
                 const wrongLabel = templateContent.querySelector('.flag-option.wrong .flag-label');
                 if (wrongLabel) {
-                    const wrongText = i18nData[currentLang]?.quiz?.wrongAnswers?.yourAnswer || '你的答案：';
+                    const wrongText = i18n.t('quiz.wrongAnswers.yourAnswer');
                     wrongLabel.textContent = wrongText;
                     console.log('Setting wrong label to:', wrongText, 'Current lang:', currentLang);
                 }
@@ -1260,13 +1530,13 @@ function displayWrongAnswers() {
                     const addedWrongLabel = container.querySelector('.flag-option.wrong .flag-label');
 
                     if (addedCorrectLabel) {
-                        const correctText = i18nData[currentLang]?.quiz?.wrongAnswers?.correctAnswer || '正确答案：';
+                        const correctText = i18n.t('quiz.wrongAnswers.correctAnswer');
                         addedCorrectLabel.textContent = correctText;
                         console.log('DOM update - Setting correct label to:', correctText);
                     }
 
                     if (addedWrongLabel) {
-                        const wrongText = i18nData[currentLang]?.quiz?.wrongAnswers?.yourAnswer || '你的答案：';
+                        const wrongText = i18n.t('quiz.wrongAnswers.yourAnswer');
                         addedWrongLabel.textContent = wrongText;
                         console.log('DOM update - Setting wrong label to:', wrongText);
                     }
@@ -1278,7 +1548,7 @@ function displayWrongAnswers() {
 
 // 增强版记忆训练系统
 const EnhancedMemorySystem = {
-    // 按大洲分类数据（自动分组，每组最多15个国家）
+    // 按大洲分类数据（自动分组，每组最多12个国家）
     categories: {},
 
     // 用户数据
@@ -1303,15 +1573,39 @@ const EnhancedMemorySystem = {
     },
 
     init() {
-        console.log('增强版记忆系统已初始化');
+        console.log('🚀 增强版记忆系统开始初始化');
         this.checkDailyProgress();
+        console.log('📂 开始初始化分类数据...');
         this.initContinentCategories();
+        console.log('📂 初始化完成，当前分类数量:', Object.keys(this.categories).length);
+
+        // 注意：renderCategories() 在 showMemory() 时调用，不是在 init() 时调用
+        // 这里只需要确保分类数据已准备好
     },
 
-    // 初始化按大洲分类（自动分组，每组最多15个国家）
+    // 初始化按大洲分类（自动分组，每组最多12个国家）
     initContinentCategories() {
+        // 检查国家数据是否已加载
+        if (!allCountries || allCountries.length === 0) {
+            console.warn('⚠️ 国家数据未加载，延迟初始化分类');
+            setTimeout(() => this.initContinentCategories(), 500);
+            return;
+        }
+
         // 清空分类
         this.categories = {};
+
+        console.log('🌍 开始初始化分类，国家数量:', allCountries.length);
+
+        // 简化的大洲到键的映射
+        const continentKeyMap = {
+            '亚洲': 'asia',
+            '欧洲': 'europe',
+            '非洲': 'africa',
+            '北美洲': 'northAmerica',
+            '南美洲': 'southAmerica',
+            '大洋洲': 'oceania'
+        };
 
         // 按大洲分组国家
         const continentGroups = {};
@@ -1325,77 +1619,191 @@ const EnhancedMemorySystem = {
             continentGroups[continent].push(country);
         });
 
-        // 为每个大洲创建分组（每组最多12个国家）
+        console.log('🗂️ 大洲分组:', Object.keys(continentGroups));
+
+        // 为每个大洲创建分组
         Object.entries(continentGroups).forEach(([continent, countries]) => {
+            const continentKey = continentKeyMap[continent] || continent.toLowerCase();
             const totalCountries = countries.length;
             const groupCount = Math.ceil(totalCountries / 12);
+
+            console.log(`📍 处理大洲 ${continent} (${continentKey}), 国家数量: ${totalCountries}, 分组数: ${groupCount}`);
 
             for (let i = 0; i < groupCount; i++) {
                 const startIndex = i * 12;
                 const endIndex = Math.min(startIndex + 12, totalCountries);
                 const groupCountries = countries.slice(startIndex, endIndex);
 
-                let categoryName;
+                // 生成分类键
+                let categoryKey;
                 if (groupCount === 1) {
-                    categoryName = this.getLocalizedContinentName(continent);
+                    categoryKey = continentKey;
                 } else {
-                    categoryName = `${this.getLocalizedContinentName(continent)}（${i + 1}）`;
+                    categoryKey = `${continentKey}.${i + 1}`;
                 }
 
-                this.categories[categoryName] = {
-                    description: this.getContinentDescription(continent, i + 1, groupCount),
+                // 创建分类数据 - 使用最简化的方式
+                this.categories[categoryKey] = {
+                    originalContinent: continentKey,
+                    groupNumber: groupCount > 1 ? i + 1 : null,
+                    continentKey: continentKey,
+                    description: `Flags of ${continentKey.charAt(0).toUpperCase() + continentKey.slice(1)} countries`,
                     countries: groupCountries.map(c => c.code),
-                    tips: this.getContinentTips(continent),
-                    groupNumber: i + 1,
-                    totalGroups: groupCount,
-                    originalContinent: continent
+                    tips: 'Study tips for this region',
+                    totalGroups: groupCount
                 };
+
+                console.log(`✅ 创建分类 ${categoryKey}，包含 ${groupCountries.length} 个国家`);
             }
         });
 
-        console.log('大洲分类初始化完成:', this.categories);
+        console.log('🎉 大洲分类初始化完成，分类数量:', Object.keys(this.categories).length);
     },
 
     // 获取大洲描述
     getContinentDescription(continent, groupNumber, totalGroups) {
         const continentKey = this.getContinentKey(continent);
-        const descriptions = i18nData[currentLang]?.memory?.continentDescriptions || {};
-        return descriptions[continentKey] || `${this.getLocalizedContinentName(continent)} ${i18nData[currentLang]?.memory?.flagsOfRegion || '地区国家的国旗'}`;
+        // 使用新的翻译API获取描述
+        const descriptionKey = `memory.continentDescriptions.${continentKey}`;
+        const description = i18n.t(descriptionKey);
+        return description !== descriptionKey ? description : `${this.getLocalizedContinentName(continent)} ${i18n.t('memory.flagsOfRegion')}`;
     },
 
-    
     // 获取大洲学习技巧
     getContinentTips(continent) {
         const continentKey = this.getContinentKey(continent);
-        const tips = i18nData[currentLang]?.memory?.continentTips || {};
-        return tips[continentKey] || (i18nData[currentLang]?.memory?.defaultTip || '认真学习这些国旗的特征和含义');
+        // 使用新的翻译API获取技巧
+        const tipsKey = `memory.continentTips.${continentKey}`;
+        const tips = i18n.t(tipsKey);
+        return tips !== tipsKey ? tips : i18n.t('memory.defaultTip');
     },
 
     // 获取本地化的大洲名称
     getLocalizedContinentName(continent) {
         const continentKey = this.getContinentKey(continent);
-        return i18nData[currentLang]?.continents?.[continentKey] || continent;
+        // 确保使用当前正确的语言状态
+        const currentLang = i18n.currentLanguage || 'zh';
+
+        // 首先尝试从memory.continents获取翻译（记忆训练模块的大洲翻译）
+        if (i18n.translations[currentLang] &&
+            i18n.translations[currentLang].memory &&
+            i18n.translations[currentLang].memory.continents &&
+            i18n.translations[currentLang].memory.continents[continentKey]) {
+            const translatedName = i18n.translations[currentLang].memory.continents[continentKey];
+            return translatedName;
+        }
+
+        // 备选方案：从全局continents获取翻译
+        if (i18n.translations[currentLang] &&
+            i18n.translations[currentLang].continents &&
+            i18n.translations[currentLang].continents[continentKey]) {
+            const translatedName = i18n.translations[currentLang].continents[continentKey];
+            return translatedName;
+        }
+
+        console.warn(`⚠️ 未找到大洲翻译: ${continentKey} (${currentLang})`);
+        return continent;
+    },
+
+    // 获取本地化的分类名称
+    getLocalizedCategoryName(categoryName) {
+        // 如果是硬编码的中文名称，先尝试转换为键名
+        let categoryKey = categoryName;
+
+        // 处理硬编码的中文分类名称
+        const chineseToKeyMap = {
+            '欧洲（1）': 'europe.1',
+            '欧洲（2）': 'europe.2',
+            '欧洲（3）': 'europe.3',
+            '欧洲（4）': 'europe.4',
+            '非洲（1）': 'africa.1',
+            '非洲（2）': 'africa.2',
+            '非洲（3）': 'africa.3',
+            '非洲（4）': 'africa.4',
+            '非洲（5）': 'africa.5',
+            '亚洲（1）': 'asia.1',
+            '亚洲（2）': 'asia.2',
+            '亚洲（3）': 'asia.3',
+            '亚洲（4）': 'asia.4',
+            '南美洲': 'southAmerica',
+            '北美洲（1）': 'northAmerica.1',
+            '北美洲（2）': 'northAmerica.2',
+            '大洋洲（1）': 'oceania.1',
+            '大洋洲（2）': 'oceania.2'
+        };
+
+        // 处理硬编码的英文分类名称
+        const englishToKeyMap = {
+            'Europe (1)': 'europe.1',
+            'Europe (2)': 'europe.2',
+            'Europe (3)': 'europe.3',
+            'Europe (4)': 'europe.4',
+            'Africa (1)': 'africa.1',
+            'Africa (2)': 'africa.2',
+            'Africa (3)': 'africa.3',
+            'Africa (4)': 'africa.4',
+            'Africa (5)': 'africa.5',
+            'Asia (1)': 'asia.1',
+            'Asia (2)': 'asia.2',
+            'Asia (3)': 'asia.3',
+            'Asia (4)': 'asia.4',
+            'South America': 'southAmerica',
+            'North America (1)': 'northAmerica.1',
+            'North America (2)': 'northAmerica.2',
+            'Oceania (1)': 'oceania.1',
+            'Oceania (2)': 'oceania.2'
+        };
+
+        // 转换硬编码名称为标准键名
+        if (chineseToKeyMap[categoryName]) {
+            categoryKey = chineseToKeyMap[categoryName];
+        } else if (englishToKeyMap[categoryName]) {
+            categoryKey = englishToKeyMap[categoryName];
+        }
+
+        // 尝试翻译分类键名
+        const translation = i18n.t(`memory.category.${categoryKey}`);
+        if (translation !== `memory.category.${categoryKey}`) {
+            return translation;
+        }
+
+        // 如果没有找到翻译，返回原始名称
+        return categoryName;
     },
 
     // 获取大洲的键名
     getContinentKey(continent) {
         const continentMap = {
+            // 中文到键的映射
             '亚洲': 'asia',
             '欧洲': 'europe',
             '非洲': 'africa',
             '北美洲': 'northAmerica',
             '南美洲': 'southAmerica',
-            '大洋洲': 'oceania'
+            '大洋洲': 'oceania',
+            // 英文到键的映射
+            'Asia': 'asia',
+            'Europe': 'europe',
+            'Africa': 'africa',
+            'North America': 'northAmerica',
+            'South America': 'southAmerica',
+            'Oceania': 'oceania'
         };
         return continentMap[continent] || continent;
     },
 
     // 获取本地化的分类名称
     getLocalizedCategoryName(name, data) {
+        // 确保获取最新的语言状态
+        const currentLang = i18n.currentLanguage || 'zh';
+
         if (data.groupNumber && data.totalGroups && data.totalGroups > 1) {
             // 如果是分组的情况，需要重新生成本地化名称
             const continentName = this.getLocalizedContinentName(data.originalContinent);
-            return `${continentName}（${data.groupNumber}）`;
+            // 使用当前语言的括号格式
+            const bracketFormat = currentLang === 'zh' ? '（' : '(';
+            const bracketFormatEnd = currentLang === 'zh' ? '）' : ')';
+            return `${continentName}${bracketFormat}${data.groupNumber}${bracketFormatEnd}`;
         }
         return this.getLocalizedContinentName(data.originalContinent) || name;
     },
@@ -1411,8 +1819,14 @@ const EnhancedMemorySystem = {
     },
 
     showMemory() {
+        console.log('🧠 showMemory() 开始执行');
         const container = document.getElementById('simpleMemoryContainer');
-        if (!container) return;
+        if (!container) {
+            console.error('❌ simpleMemoryContainer 未找到');
+            return;
+        }
+        console.log('✅ 找到 simpleMemoryContainer');
+        console.log('📊 当前分类数据:', Object.keys(this.categories).length, '个分类');
 
         const allFlags = Object.values(this.categories).flatMap(cat => cat.countries);
         const learned = allFlags.filter(code => this.progress[code]?.learned);
@@ -1422,22 +1836,37 @@ const EnhancedMemorySystem = {
         // 使用记忆训练主界面模板
         const mainTemplate = document.getElementById('memory-main-template');
         if (mainTemplate) {
+            console.log('✅ 找到 memory-main-template');
             container.innerHTML = '';
             const templateContent = mainTemplate.content.cloneNode(true);
             container.appendChild(templateContent);
+            console.log('✅ 模板已插入到DOM，容器内容长度:', container.innerHTML.length);
+
+            // 立即翻译模板内容
+            setTimeout(() => {
+                if (window.i18n && window.i18n.updateDOM) {
+                    // 确保使用正确的语言设置
+                    const currentLang = i18n.currentLanguage || 'zh';
+                    console.log('🌐 翻译模板内容，当前语言:', currentLang);
+                    i18n.updateDOM();
+
+                    // 额外调用记忆训练模块的翻译函数
+                    if (typeof updateLanguage === 'function') {
+                        updateLanguage(currentLang);
+                    }
+                }
+            }, 50);
+        } else {
+            console.error('❌ memory-main-template 未找到');
         }
 
         // 更新统计数据
+        console.log('📊 开始更新统计数据...');
         this.updateMemoryStats();
+        console.log('📊 开始渲染分类...');
         this.renderCategories();
+        console.log('📊 开始设置事件监听器...');
         this.setupMemoryEventListeners();
-        
-        // 应用当前语言设置到动态生成的内容
-        if (typeof updateLanguage === 'function') {
-            setTimeout(() => {
-                updateLanguage(currentLang);
-            }, 100);
-        }
         
         // 更新开始学习按钮状态
         this.updateStartLearningButton();
@@ -1480,15 +1909,53 @@ const EnhancedMemorySystem = {
     },
 
     renderCategories() {
-        const categoriesContainer = document.querySelector('.categories-container');
-        if (!categoriesContainer) return;
+        console.log('🔍 开始查找 categories-container...');
+        let categoriesContainer = document.querySelector('.categories-container');
+
+        // 如果没有找到，尝试多种选择器
+        if (!categoriesContainer) {
+            console.log('🔍 尝试其他选择器...');
+            categoriesContainer = document.querySelector('#simpleMemoryContainer .categories-container');
+        }
+
+        if (!categoriesContainer) {
+            console.log('🔍 尝试通过class查找...');
+            const allContainers = document.getElementsByClassName('categories-container');
+            if (allContainers.length > 0) {
+                categoriesContainer = allContainers[0];
+                console.log('✅ 通过getElementsByClassName找到容器');
+            }
+        }
+
+        if (!categoriesContainer) {
+            console.error('❌ 所有方法都无法找到 categories-container');
+            console.log('📋 页面中所有相关元素:', document.querySelectorAll('[class*="categories"], [id*="memory"]'));
+            return;
+        }
+
+        console.log('✅ 找到 categories-container:', categoriesContainer);
+        console.log('🔍 容器可见性:', window.getComputedStyle(categoriesContainer).display);
+        console.log('🔍 容器父元素:', categoriesContainer.parentElement);
 
         categoriesContainer.innerHTML = '';
 
-        Object.entries(this.categories).forEach(([name, data]) => {
+        console.log('🔍 renderCategories: 分类数据数量:', Object.keys(this.categories).length);
+        console.log('🔍 容器位置:', categoriesContainer.getBoundingClientRect());
+
+        if (Object.keys(this.categories).length === 0) {
+            console.warn('⚠️ 没有分类数据可渲染');
+            categoriesContainer.innerHTML = '<p style="text-align: center; color: #666;">正在加载分类数据...</p>';
+            return;
+        }
+
+        // 开始渲染真实的分类卡片
+        console.log('🎯 开始渲染真实的分类卡片...');
+
+        Object.entries(this.categories).forEach(([categoryName, data]) => {
+            console.log('🏷️ 渲染分类:', categoryName, '国家数量:', data.countries?.length);
             const categoryLearned = data.countries.filter(code => this.progress[code]?.learned).length;
             const progress = Math.round((categoryLearned / data.countries.length) * 100);
-            const categoryProgress = this.getCategoryProgress(name);
+            const categoryProgress = this.getCategoryProgress(categoryName);
 
             const categoryCard = document.createElement('div');
             categoryCard.className = 'category-card';
@@ -1519,16 +1986,22 @@ const EnhancedMemorySystem = {
                 statusClass = 'new';
             }
 
-            // 获取当前语言的翻译文本
-            const learnedText = i18nData[currentLang]?.memory?.statsLearned || 'Learned';
-            const studyTipsTitle = i18nData[currentLang]?.memory?.tipsTitle || '💡 Study Tips';
-            const lastStudiedText = i18nData[currentLang]?.memory?.lastStudied || 'Last studied: ';
+            // 使用新的统一翻译系统获取翻译文本
+            const learnedText = i18n.t('memory.learned');
+            const studyTipsTitle = i18n.t('memory.tipsTitle');
+            const lastStudiedText = i18n.t('memory.lastStudied');
 
-            // 动态生成当前语言的分类名称、描述和技巧
-            const displayName = this.getLocalizedCategoryName(name, data);
-            const displayDescription = this.getLocalizedCategoryDescription(data);
-            const displayTips = this.getLocalizedCategoryTips(data);
+            // 使用正确的i18n翻译系统获取大洲描述和学习提示
+            const displayName = this.getLocalizedCategoryName(categoryName, data);
+            const continentKey = data.originalContinent || data.continentKey;
+            const descriptionKey = `memory.continentDescriptions.${continentKey}`;
+            const tipsKey = `memory.continentTips.${continentKey}`;
 
+            // 获取本地化的大洲描述和学习提示
+            const displayDescription = i18n.t(descriptionKey);
+            const displayTips = i18n.t(tipsKey);
+
+            
             categoryCard.innerHTML = `
                 <div class="category-header">
                     <div class="category-title-wrapper">
@@ -1563,12 +2036,20 @@ const EnhancedMemorySystem = {
                 categoryCard.style.transform = 'scale(0.98)';
                 setTimeout(() => {
                     categoryCard.style.transform = '';
-                    this.startCategoryStudy(name);
+                    this.startCategoryStudy(categoryName);
                 }, 150);
             };
 
             categoriesContainer.appendChild(categoryCard);
         });
+
+        // 所有分类卡片渲染完成后，触发一次翻译确保内容正确
+        setTimeout(() => {
+            if (window.i18n && window.i18n.updateDOM) {
+                console.log('🔄 renderCategories完成，触发DOM翻译');
+                i18n.updateDOM();
+            }
+        }, 100);
     },
 
     // 格式化上次学习时间
@@ -1607,7 +2088,10 @@ const EnhancedMemorySystem = {
         // 清除学习进度按钮
         const clearMemoryProgressBtn = document.getElementById('clearMemoryProgressBtn');
         if (clearMemoryProgressBtn) {
-            clearMemoryProgressBtn.addEventListener('click', () => {
+            clearMemoryProgressBtn.addEventListener('click', (e) => {
+                console.log('🔍 Clear memory progress button clicked');
+                e.preventDefault();
+                e.stopPropagation();
                 this.clearMemoryProgress();
             });
         }
@@ -1626,7 +2110,7 @@ const EnhancedMemorySystem = {
         this.currentFlags = orderedAll;
         this.currentIndex = 0;
         this.currentCategory = categoryName;
-        const categoryLearningText = i18nData[currentLang]?.memory?.categoryLearning || 'Category Learning: ';
+        const categoryLearningText = i18n.t('memory.categoryLearning');
         this.currentSession.sessionType = categoryLearningText + categoryName;
         // 先展示预览页，用户点击"开始测试"后再开始会话
         this.showPreviewPage();
@@ -1652,7 +2136,7 @@ const EnhancedMemorySystem = {
         }
 
         // 获取返回按钮翻译文本
-        const returnToMemoryText = i18nData[currentLang]?.memory?.returnToMemory || '← Return to Memory Training';
+        const returnToMemoryText = i18n.t('memory.returnToMemory');
 
         studySection.style.display = 'block';
         studySection.innerHTML = `
@@ -1720,13 +2204,13 @@ const EnhancedMemorySystem = {
         }).join('');
 
         // 获取翻译文本
-        const prepareText = i18nData[currentLang]?.memory?.prepareStudy || 'Prepare to study: ';
-        const studyHintTitle = i18nData[currentLang]?.memory?.studyHintTitle || 'Study Tips';
-        const totalCountText = i18nData[currentLang]?.memory?.totalCount || 'Total in Category';
-        const unlearnedText = i18nData[currentLang]?.memory?.unlearned || 'Unlearned';
-        const learnedText = i18nData[currentLang]?.memory?.learned || 'Learned';
-        const beginTestText = i18nData[currentLang]?.memory?.beginTest || 'Begin Study';
-        const startSessionHint = i18nData[currentLang]?.memory?.startSessionHint || 'Click start and flags will be displayed in sequence';
+        const prepareText = i18n.t('memory.prepareStudy');
+        const studyHintTitle = i18n.t('memory.studyHintTitle');
+        const totalCountText = i18n.t('memory.totalCount');
+        const unlearnedText = i18n.t('memory.unlearned');
+        const learnedText = i18n.t('memory.learned');
+        const beginTestText = i18n.t('memory.beginTest');
+        const startSessionHint = i18n.t('memory.startSessionHint');
 
         // 翻译分类名称
         const translatedCategoryName = this.getLocalizedContinentName(categoryName);
@@ -1767,7 +2251,7 @@ const EnhancedMemorySystem = {
 
         // 在创建DOM后立即调用翻译更新
         setTimeout(() => {
-            updateMemoryModuleText(currentLang);
+            updateMemoryModuleText();
         }, 50);
 
         const btn = document.getElementById('beginStudyBtn');
@@ -1914,8 +2398,8 @@ const EnhancedMemorySystem = {
             const nextBtn = templateContent.querySelector('.study-btn-next');
 
             // 修改按钮文本
-            const dontKnowText = i18nData[currentLang]?.memory?.dontKnow || "Don't Know";
-            const knowText = i18nData[currentLang]?.memory?.know || 'Know';
+            const dontKnowText = i18n.t('memory.dontKnow');
+            const knowText = i18n.t('memory.know');
 
             if (prevBtn) prevBtn.textContent = dontKnowText;
             if (nextBtn) nextBtn.textContent = knowText;
@@ -1942,7 +2426,7 @@ const EnhancedMemorySystem = {
                 // 跳转逻辑：两种情况都改为手动点击“下一个”
                 if (nextBtn) {
                     nextBtn.disabled = false;
-                    const nextText = i18nData[currentLang]?.memory?.next || 'Next →';
+                    const nextText = i18n.t('memory.next');
                     nextBtn.textContent = nextText;
                     nextBtn.onclick = () => {
                         nextBtn.disabled = true;
@@ -2142,7 +2626,7 @@ const EnhancedMemorySystem = {
 
             // 调用翻译更新
             setTimeout(() => {
-                updateMemoryModuleText(currentLang);
+                updateMemoryModuleText();
                 updateLanguage(currentLang);
             }, 50);
         }
@@ -2385,23 +2869,27 @@ const EnhancedMemorySystem = {
             // 所有分类都已完成
             startBtn.className = 'start-learning-btn review-mode';
             if (btnIcon) btnIcon.textContent = '🎉';
-            if (btnText) btnText.textContent = '复习巩固';
-            if (learningHint) learningHint.textContent = '💡 所有分类都已完成，开始复习巩固记忆吧！';
+            if (btnText) btnText.textContent = i18n.t('memory.reviewMode');
+            if (learningHint) learningHint.textContent = i18n.t('memory.allCompletedReview');
         } else {
             const progress = this.getCategoryProgress(selectedCategory);
-            
+
             if (progress.status === 'in_progress' && progress.learnedCount > 0) {
                 // 有未完成的学习进度
                 startBtn.className = 'start-learning-btn continue-mode';
                 if (btnIcon) btnIcon.textContent = '📚';
-                if (btnText) btnText.textContent = '继续学习';
-                if (learningHint) learningHint.textContent = `💡 继续学习"${selectedCategory}"，已完成 ${progress.learnedCount}/${progress.totalCount}`;
+                if (btnText) btnText.textContent = i18n.t('memory.continueMode');
+                // 获取本地化的分类名称
+                const localizedCategory = this.getLocalizedCategoryName(selectedCategory, this.categories[selectedCategory]);
+                if (learningHint) learningHint.textContent = i18n.t('memory.continueCategory', {category: localizedCategory, learned: progress.learnedCount, total: progress.totalCount});
             } else {
                 // 开始新的学习
                 startBtn.className = 'start-learning-btn';
                 if (btnIcon) btnIcon.textContent = '🚀';
-                if (btnText) btnText.textContent = '开始学习';
-                if (learningHint) learningHint.textContent = `💡 系统推荐学习"${selectedCategory}"，每次专注一个关卡`;
+                if (btnText) btnText.textContent = i18n.t('memory.startButton');
+                // 获取本地化的分类名称
+                const localizedCategory = this.getLocalizedCategoryName(selectedCategory, this.categories[selectedCategory]);
+                if (learningHint) learningHint.textContent = i18n.t('memory.systemRecommendation', {category: localizedCategory});
             }
         }
     },
@@ -2454,6 +2942,8 @@ const EnhancedMemorySystem = {
 
     // 清除学习进度功能
     clearMemoryProgress() {
+        console.log('🗑️ clearMemoryProgress called');
+
         // 创建自定义确认对话框
         const confirmDialog = document.createElement('div');
         confirmDialog.style.cssText = `
@@ -2470,6 +2960,12 @@ const EnhancedMemorySystem = {
             font-family: inherit;
         `;
 
+        // 使用 i18n 获取翻译文本
+        const confirmTitle = i18n.t('memory.confirmClearProgress');
+        const confirmDetails = i18n.t('memory.clearDialogDetails');
+        const confirmClearText = i18n.t('memory.confirmClear');
+        const cancelText = i18n.t('memory.cancel');
+
         confirmDialog.innerHTML = `
             <div style="
                 background: white;
@@ -2480,13 +2976,9 @@ const EnhancedMemorySystem = {
                 box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             ">
                 <div style="font-size: 3rem; margin-bottom: 15px;">⚠️</div>
-                <h3 style="margin: 0 0 15px 0; color: #1f2937; font-size: 1.3rem;">确认清除学习进度？</h3>
+                <h3 style="margin: 0 0 15px 0; color: #1f2937; font-size: 1.3rem;">${confirmTitle}</h3>
                 <p style="margin: 0 0 20px 0; color: #6b7280; line-height: 1.5;">
-                    此操作将清除以下所有数据，无法恢复：<br>
-                    • 所有国旗学习记录<br>
-                    • 分类学习进度<br>
-                    • 学习历史和统计<br>
-                    • 难度标记和复习记录
+                    ${confirmDetails}
                 </p>
                 <div style="display: flex; gap: 10px; justify-content: center;">
                     <button id="confirmClearBtn" style="
@@ -2498,7 +2990,7 @@ const EnhancedMemorySystem = {
                         cursor: pointer;
                         font-size: 14px;
                         font-weight: 500;
-                    ">确认清除</button>
+                    ">${confirmClearText}</button>
                     <button id="cancelClearBtn" style="
                         background: #6b7280;
                         color: white;
@@ -2508,7 +3000,7 @@ const EnhancedMemorySystem = {
                         cursor: pointer;
                         font-size: 14px;
                         font-weight: 500;
-                    ">取消</button>
+                    ">${cancelText}</button>
                 </div>
             </div>
         `;
@@ -2540,7 +3032,7 @@ const EnhancedMemorySystem = {
                 this.achievements = [];
 
                 // 显示成功消息
-                this.showMessage('🗑️ 学习进度已成功清除');
+                this.showMessage(i18n.t('memory.progressClearedSuccess'));
 
                 // 重新显示记忆训练界面以更新UI
                 setTimeout(() => {
@@ -2549,7 +3041,7 @@ const EnhancedMemorySystem = {
 
             } catch (error) {
                 console.error('清除学习进度时出错:', error);
-                this.showMessage('❌ 清除失败，请重试');
+                this.showMessage(i18n.t('memory.clearFailed'));
             }
 
             // 移除确认对话框
@@ -2579,12 +3071,457 @@ const EnhancedMemorySystem = {
             }
         };
         document.addEventListener('keydown', handleEscKey);
+    },
+
+    // 获取当前学习状态
+    getCurrentState() {
+        return {
+            currentCategory: this.learningState.currentCategory,
+            lastStudiedCategory: this.learningState.lastStudiedCategory,
+            sessionHistory: this.learningState.sessionHistory,
+            currentSection: typeof currentSection !== 'undefined' ? currentSection : 'memory'
+        };
+    },
+
+    // 获取分类数据
+    getCategoryData(categoryName) {
+        return this.categories[categoryName] || null;
+    },
+
+    // 显示分类学习页面（如果需要的话）
+    showCategoryLearning(categoryName) {
+        // 直接显示预览页面，不开始学习会话
+        this.currentCategory = categoryName;
+        this.showPreviewPage();
     }
 };
 
 // 暴露全局函数
 window.checkAnswer = checkAnswer;
 window.EnhancedMemorySystem = EnhancedMemorySystem;
+
+// 暴露 i18n 系统用于测试和调试
+window.i18n = i18n;
+window.t = t;
+
+// 简单的国际化系统测试函数
+window.testI18n = function() {
+    console.group('🌐 现代化国际化系统测试');
+
+    // 测试基本翻译功能
+    console.log('当前语言:', i18n.getCurrentLanguage());
+    console.log('站点名称:', t('siteName'));
+    console.log('欢迎标题:', t('welcome.title'));
+    console.log('测验问题模板:', t('quiz.question', {current: 1, total: 10}));
+
+    // 测试国家名称本地化
+    const testCountry = allCountries.find(c => c.code === 'cn');
+    if (testCountry) {
+        console.log('测试国家名称 (中文):', i18n.getCountryName(testCountry));
+    }
+
+    // 测试大洲名称本地化
+    console.log('亚洲:', i18n.getContinentName('asia'));
+    console.log('欧洲:', i18n.getContinentName('europe'));
+
+    // 测试特征名称本地化
+    console.log('星星特征:', i18n.getFeatureName('星星'));
+    console.log('十字特征:', i18n.getFeatureName('十字'));
+
+    // 测试语言切换
+    console.log('切换到英文...');
+    i18n.setLanguage('en');
+    console.log('Site name (EN):', t('siteName'));
+    console.log('Welcome title (EN):', t('welcome.title'));
+
+    if (testCountry) {
+        console.log('Test country name (EN):', i18n.getCountryName(testCountry));
+    }
+
+    console.log('Asia (EN):', i18n.getContinentName('asia'));
+    console.log('Stars feature (EN):', i18n.getFeatureName('星星'));
+
+    // 切换回中文
+    console.log('切换回中文...');
+    i18n.setLanguage('zh');
+    console.log('站点名称 (ZH):', t('siteName'));
+
+    console.groupEnd();
+    console.log('✅ 国际化系统测试完成！可在控制台查看详细结果。');
+
+    // 返回测试结果
+    return {
+        currentLanguage: i18n.getCurrentLanguage(),
+        isLoaded: i18n.loaded,
+        availableLanguages: Object.keys(i18n.translations),
+        sampleTranslations: {
+            siteName: t('siteName'),
+            welcomeTitle: t('welcome.title'),
+            quizQuestion: t('quiz.question', {current: 1, total: 10})
+        }
+    };
+};
+
+// 国际化演示功能 - 显示国旗卡片更新
+window.demoI18nFlags = function() {
+    if (!allCountries || allCountries.length === 0) {
+        console.warn('国家数据尚未加载，请稍后再试');
+        return;
+    }
+
+    console.group('🏳️ 国旗卡片国际化演示');
+
+    // 获取前几个国家作为演示
+    const demoCountries = allCountries.slice(0, 3);
+
+    console.log('当前语言:', i18n.getCurrentLanguage());
+    demoCountries.forEach((country, index) => {
+        console.log(`国家 ${index + 1}:`, {
+            code: country.code,
+            name: i18n.getCountryName(country),
+            continent: i18n.getContinentName(country.continent),
+            features: country.styles.slice(0, 2).map(style => i18n.getFeatureName(style))
+        });
+    });
+
+    // 演示语言切换对国旗信息的影响
+    console.log('切换到英文后...');
+    i18n.setLanguage('en');
+    demoCountries.forEach((country, index) => {
+        console.log(`Country ${index + 1}:`, {
+            code: country.code,
+            name: i18n.getCountryName(country),
+            continent: i18n.getContinentName(country.continent),
+            features: country.styles.slice(0, 2).map(style => i18n.getFeatureName(style))
+        });
+    });
+
+    // 切换回中文
+    i18n.setLanguage('zh');
+    console.log('已切换回中文');
+
+    console.groupEnd();
+    console.log('🎯 国旗卡片国际化演示完成！界面上的所有国旗信息都应该已更新。');
+
+    return {
+        currentLanguage: i18n.getCurrentLanguage(),
+        demoCountries: demoCountries.map(country => ({
+            code: country.code,
+            name: i18n.getCountryName(country),
+            continent: i18n.getContinentName(country.continent),
+            features: country.styles.slice(0, 2).map(style => i18n.getFeatureName(style))
+        }))
+    };
+};
+
+// 添加快速语言切换功能
+window.quickLanguageSwitch = function(lang) {
+    if (lang === 'zh' || lang === 'en') {
+        const success = i18n.setLanguage(lang);
+        if (success) {
+            console.log(`✅ 已切换到${lang === 'zh' ? '中文' : '英文'}`);
+
+            // 如果在浏览模式，刷新国旗显示
+            if (currentSection === 'browse' && filteredCountries.length > 0) {
+                displayFlags();
+                console.log('🔄 国旗显示已刷新');
+            }
+
+            // 如果在记忆训练模式，重新渲染分类卡片
+            if (currentSection === 'memory' && window.EnhancedMemorySystem) {
+                setTimeout(() => {
+                    console.log('🔄 重新渲染记忆训练分类卡片');
+                    window.EnhancedMemorySystem.renderCategories();
+                    window.EnhancedMemorySystem.updateStartLearningButton();
+
+                    // 额外翻译记忆训练模板内容
+                    if (window.i18n && window.i18n.updateDOM) {
+                        window.i18n.updateDOM();
+                    }
+
+                    // 如果有记忆训练模块的翻译函数，也调用它
+                    if (typeof updateLanguage === 'function') {
+                        updateLanguage(lang);
+                    }
+                }, 100);
+            }
+
+            // 强制更新所有动态内容
+            setTimeout(() => {
+                updateDynamicContent();
+                console.log('🔄 动态内容已更新');
+            }, 100);
+        } else {
+            console.error('❌ 语言切换失败');
+        }
+    } else {
+        console.error('❌ 不支持的语言代码，请使用 "zh" 或 "en"');
+    }
+};
+
+// 测试国际化的修复效果
+window.testI18nFixes = function() {
+    console.group('🔧 测试国际化修复效果');
+
+    console.log('📋 当前状态:');
+    console.log('- 当前语言:', i18n.getCurrentLanguage());
+    console.log('- i18n 加载状态:', i18n.loaded);
+    console.log('- 当前页面区域:', currentSection);
+
+    // 测试基本翻译功能
+    console.log('\n🌐 测试基本翻译:');
+    console.log('- 站点名称:', i18n.t('siteName'));
+    console.log('- 测验问题:', i18n.t('quiz.flagQuestion'));
+    console.log('- 记忆训练标题:', i18n.t('memory.overviewTitle'));
+
+    // 测试语言切换
+    console.log('\n🔄 测试语言切换:');
+    console.log('切换到英文...');
+    i18n.setLanguage('en');
+
+    // 检查DOM更新
+    setTimeout(() => {
+        console.log('检查DOM更新效果:');
+        const title = document.querySelector('title');
+        if (title) console.log('- 页面标题:', title.textContent);
+
+        const quizQuestion = document.querySelector('#quiz-game .question-text');
+        if (quizQuestion) console.log('- 测验问题:', quizQuestion.textContent);
+
+        const memoryTitle = document.querySelector('#memory-section h2');
+        if (memoryTitle) console.log('- 记忆训练标题:', memoryTitle.textContent);
+
+        console.log('切换回中文...');
+        i18n.setLanguage('zh');
+
+        setTimeout(() => {
+            const titleAfter = document.querySelector('title');
+            if (titleAfter) console.log('- 页面标题 (中文):', titleAfter.textContent);
+
+            console.log('\n✅ 国际化修复测试完成！');
+            console.log('💡 如果所有文本都正确更新，说明修复成功');
+
+            console.groupEnd();
+        }, 200);
+    }, 200);
+
+    return {
+        currentLanguage: i18n.getCurrentLanguage(),
+        isLoaded: i18n.loaded,
+        currentSection: currentSection,
+        translations: {
+            siteName: i18n.t('siteName'),
+            quizQuestion: i18n.t('quiz.flagQuestion'),
+            memoryTitle: i18n.t('memory.overviewTitle')
+        }
+    };
+};
+
+// 测试记忆训练页面的语言切换
+window.testMemoryI18n = function() {
+    console.group('🧠 测试记忆训练页面语言切换');
+
+    // 确保在记忆训练页面
+    if (currentSection !== 'memory') {
+        console.log('📝 切换到记忆训练页面...');
+        showSection('memory');
+
+        // 等待页面加载完成
+        setTimeout(() => {
+            performMemoryI18nTest();
+        }, 500);
+    } else {
+        performMemoryI18nTest();
+    }
+
+    function performMemoryI18nTest() {
+        console.log('📋 当前状态:');
+        console.log('- 当前语言:', i18n.getCurrentLanguage());
+        console.log('- i18n 加载状态:', i18n.loaded);
+
+        // 测试记忆训练相关的翻译
+        console.log('\n🧠 测试记忆训练翻译:');
+        console.log('- 概览标题:', i18n.t('memory.overviewTitle'));
+        console.log('- 开始按钮:', i18n.t('memory.startButton'));
+        console.log('- 清除进度:', i18n.t('memory.clearProgress'));
+        console.log('- 系统提示:', i18n.t('memory.systemSmartHint'));
+
+        // 检查当前页面的元素
+        console.log('\n🔍 检查当前页面元素:');
+        const startBtn = document.getElementById('beginStudyBtn');
+        if (startBtn) {
+            console.log('- 开始学习按钮:', startBtn.textContent);
+        }
+
+        const clearBtn = document.querySelector('button[onclick*="clearProgress"]');
+        if (clearBtn) {
+            console.log('- 清除进度按钮:', clearBtn.textContent);
+        }
+
+        const hints = document.querySelectorAll('.learning-hint, .hint');
+        console.log('- 提示文本数量:', hints.length);
+        hints.forEach((hint, index) => {
+            if (index < 2) {
+                console.log(`  提示 ${index + 1}: ${hint.textContent}`);
+            }
+        });
+
+        const categoryCards = document.querySelectorAll('.category-card');
+        console.log('- 分类卡片数量:', categoryCards.length);
+        categoryCards.forEach((card, index) => {
+            if (index < 3) {
+                const title = card.querySelector('.category-title');
+                if (title) {
+                    console.log(`  卡片 ${index + 1} 标题: ${title.textContent}`);
+                }
+            }
+        });
+
+        // 测试语言切换
+        console.log('\n🔄 测试语言切换到英文...');
+        i18n.setLanguage('en');
+
+        setTimeout(() => {
+            console.log('英文模式下的元素:');
+            if (startBtn) console.log('- 开始学习按钮:', startBtn.textContent);
+            if (clearBtn) console.log('- 清除进度按钮:', clearBtn.textContent);
+
+            categoryCards.forEach((card, index) => {
+                if (index < 2) {
+                    const title = card.querySelector('.category-title');
+                    if (title) {
+                        console.log(`  卡片 ${index + 1} 标题: ${title.textContent}`);
+                    }
+                }
+            });
+
+            // 切换回中文
+            console.log('\n🔄 切换回中文...');
+            i18n.setLanguage('zh');
+
+            setTimeout(() => {
+                console.log('中文模式下的元素:');
+                if (startBtn) console.log('- 开始学习按钮:', startBtn.textContent);
+                if (clearBtn) console.log('- 清除进度按钮:', clearBtn.textContent);
+
+                categoryCards.forEach((card, index) => {
+                    if (index < 2) {
+                        const title = card.querySelector('.category-title');
+                        if (title) {
+                            console.log(`  卡片 ${index + 1} 标题: ${title.textContent}`);
+                        }
+                    }
+                });
+
+                console.log('\n✅ 记忆训练页面语言切换测试完成！');
+                console.log('💡 如果所有元素都正确更新了中英文，说明修复成功');
+                console.groupEnd();
+            }, 300);
+        }, 300);
+    }
+
+    return {
+        currentLanguage: i18n.getCurrentLanguage(),
+        currentSection: currentSection,
+        isLoaded: i18n.loaded,
+        memoryTranslations: {
+            overviewTitle: i18n.t('memory.overviewTitle'),
+            startButton: i18n.t('memory.startButton'),
+            clearProgress: i18n.t('memory.clearProgress'),
+            systemHint: i18n.t('memory.systemSmartHint')
+        }
+    };
+};
+
+// 测试国旗卡片标签显示
+window.testFlagCardLabels = function() {
+    console.group('🏳️ 测试国旗卡片标签显示');
+
+    // 检查国旗卡片中的标签
+    const flagCards = document.querySelectorAll('.flag-card');
+    console.log(`找到 ${flagCards.length} 个国旗卡片`);
+
+    if (flagCards.length === 0) {
+        console.log('⚠️ 没有找到国旗卡片，请先进入浏览模式并加载国旗数据');
+        console.groupEnd();
+        return { cardCount: 0, currentLanguage: i18n.getCurrentLanguage() };
+    }
+
+    flagCards.forEach((card, index) => {
+        if (index >= 3) return; // 只显示前3个卡片
+
+        console.log(`\n国旗卡片 ${index + 1}:`);
+
+        const continentTag = card.querySelector('.continent-tag');
+        if (continentTag) {
+            console.log(`  大洲标签: "${continentTag.textContent}"`);
+            console.log(`  数据属性: ${continentTag.getAttribute('data-continent')}`);
+        }
+
+        const styleTags = card.querySelectorAll('.style-tag');
+        console.log(`  特征标签数量: ${styleTags.length}`);
+        styleTags.forEach((tag, tagIndex) => {
+            if (tagIndex < 3) { // 只显示前3个特征
+                console.log(`    特征 ${tagIndex + 1}: "${tag.textContent}" (数据属性: ${tag.getAttribute('data-feature')})`);
+            }
+        });
+    });
+
+    console.log('\n🔄 测试翻译函数...');
+
+    // 测试翻译函数
+    console.log('大洲翻译测试:');
+    console.log(`  "欧洲" -> "${i18n.getContinentName('欧洲')}"`);
+    console.log(`  "Europe" -> "${i18n.getContinentName('Europe')}"`);
+    console.log(`  "asia" -> "${i18n.getContinentName('asia')}"`);
+
+    console.log('特征翻译测试:');
+    console.log(`  "纯色" -> "${i18n.getFeatureName('纯色')}"`);
+    console.log(`  "Solid" -> "${i18n.getFeatureName('Solid')}"`);
+    console.log(`  "stars" -> "${i18n.getFeatureName('stars')}"`);
+
+    console.log('\n🔄 测试语言切换对标签的影响...');
+
+    // 切换到英文
+    i18n.setLanguage('en');
+    setTimeout(() => {
+        console.log('英文模式下的标签:');
+        flagCards.forEach((card, index) => {
+            if (index >= 3) return;
+            const continentTag = card.querySelector('.continent-tag');
+            if (continentTag) {
+                console.log(`  卡片 ${index + 1} 大洲: "${continentTag.textContent}"`);
+            }
+        });
+
+        // 切换回中文
+        i18n.setLanguage('zh');
+        setTimeout(() => {
+            console.log('中文模式下的标签:');
+            flagCards.forEach((card, index) => {
+                if (index >= 3) return;
+                const continentTag = card.querySelector('.continent-tag');
+                if (continentTag) {
+                    console.log(`  卡片 ${index + 1} 大洲: "${continentTag.textContent}"`);
+                }
+            });
+
+            console.log('\n✅ 国旗卡片标签测试完成！');
+            console.log('💡 如果标签显示正常且没有显示 "continents." 或 "features." 前缀，说明修复成功');
+            console.groupEnd();
+        }, 300);
+    }, 300);
+
+    return {
+        cardCount: flagCards.length,
+        currentLanguage: i18n.getCurrentLanguage(),
+        sampleCards: Array.from(flagCards.slice(0, 3)).map(card => ({
+            continent: card.querySelector('.continent-tag')?.textContent,
+            continentData: card.querySelector('.continent-tag')?.getAttribute('data-continent'),
+            features: Array.from(card.querySelectorAll('.style-tag')).slice(0, 3).map(tag => tag.textContent)
+        }))
+    };
+};
 
 // 国际化功能
 async function loadI18nData() {
@@ -2595,349 +3532,1524 @@ async function loadI18nData() {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        i18nData = await response.json();
-        console.log('i18n data loaded successfully:', i18nData);
+        const translations = await response.json();
+        console.log('i18n data loaded successfully:', translations);
 
-        // 恢复语言偏好或从会话存储获取
+        // 设置翻译数据到新的 i18n 系统
+        i18n.setTranslations(translations);
+
+        // 恢复语言偏好
         const savedLang = localStorage.getItem('preferredLanguage') ||
                         sessionStorage.getItem('currentLanguage') ||
                         'zh';
         console.log(`Setting language to: ${savedLang}`);
-        updateLanguage(savedLang);
+        i18n.setLanguage(savedLang);
 
-        // 如果正在运行quiz，确保问题文本也更新
-        setTimeout(() => {
-            if (document.getElementById('quiz-game')?.style.display !== 'none') {
-                console.log('Quiz is running, updating question text after i18n load');
-                updateQuizQuestionText(savedLang);
+        // 订阅语言变化，自动更新界面
+        i18n.subscribe((newLang) => {
+            console.log(`Language changed to: ${newLang}`);
+
+            // 更新兼容性变量
+            currentLang = newLang;
+            i18nData = translations;
+
+            // 自动更新所有 DOM 元素
+            i18n.updateDOM();
+
+            // 更新页面标题
+            const title = document.querySelector('title');
+            if (title) {
+                title.textContent = i18n.t('siteName');
             }
 
-            // 更新错题显示中的标签
-            if (document.getElementById('wrong-answers-section')?.style.display !== 'none') {
-                console.log('Wrong answers section is visible, updating labels');
-                updateWrongAnswersLabels(savedLang);
-            }
-        }, 500);
+            // 更新动态内容
+            updateDynamicContent();
+        });
+
+        // 立即执行一次更新
+        i18n.updateDOM();
+
+        // 更新页面标题
+        const title = document.querySelector('title');
+        if (title) {
+            title.textContent = i18n.t('siteName');
+        }
+
+        // 更新兼容性变量
+        currentLang = savedLang;
+        i18nData = translations;
+
+        console.log('Modern i18n system initialized successfully');
     } catch (error) {
         console.error('Failed to load i18n data:', error);
     }
 }
 
-// 更新页面语言
-function updateLanguage(lang) {
-    currentLang = lang;
-    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en-US';
-
-    // 更新页面标题
-    const title = document.querySelector('title');
-    if (title && i18nData[lang]?.siteName) {
-        title.textContent = i18nData[lang].siteName;
+// 更新动态内容的函数
+function updateDynamicContent() {
+    if (!i18n.loaded) {
+        console.warn('i18n not loaded, skipping dynamic content update');
+        return;
     }
 
-    // 更新所有带有 data-i18n 属性的元素
-    const elements = document.querySelectorAll('[data-i18n]');
-    console.log(`Updating ${elements.length} elements to ${lang}`);
-    elements.forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        const translation = getNestedValue(i18nData[lang], key);
-        if (translation) {
-            console.log(`Updating "${key}" from "${element.textContent}" to "${translation}"`);
-            element.textContent = translation;
+    console.log('Updating dynamic content with new i18n system...');
+
+    // 更新国旗显示中的国家名称
+    document.querySelectorAll('.country-name').forEach(element => {
+        const countryCode = element.getAttribute('data-country-code');
+        if (countryCode && allCountries) {
+            const country = allCountries.find(c => c.code === countryCode);
+            if (country) {
+                element.textContent = i18n.getCountryName(country);
+            }
+        }
+    });
+
+    // 更新国旗显示中的大洲标签 - 使用新的翻译映射
+    document.querySelectorAll('.continent-tag').forEach(element => {
+        const continent = element.getAttribute('data-continent');
+        if (continent) {
+            // 优先使用数据属性中的原始数据
+            element.textContent = i18n.getContinentName(continent);
         } else {
-            console.warn(`No translation found for key: "${key}" in language: "${lang}"`);
+            // 如果没有数据属性，尝试从当前文本翻译
+            const currentText = element.textContent.trim();
+            if (currentText && currentText.length > 0) {
+                element.textContent = i18n.getContinentName(currentText);
+            }
         }
     });
 
-    // 更新记忆训练模块的硬编码文本
-    updateMemoryModuleText(lang);
-
-    // 更新所有带有 data-i18n-placeholder 属性的输入框
-    const inputs = document.querySelectorAll('[data-i18n-placeholder]');
-    inputs.forEach(input => {
-        const key = input.getAttribute('data-i18n-placeholder');
-        const translation = getNestedValue(i18nData[lang], key);
-        if (translation) {
-            input.placeholder = translation;
+    // 更新国旗显示中的特征标签 - 使用新的翻译映射
+    document.querySelectorAll('.style-tag').forEach(element => {
+        const feature = element.getAttribute('data-feature');
+        if (feature) {
+            // 优先使用数据属性中的原始数据
+            element.textContent = i18n.getFeatureName(feature);
+        } else {
+            // 如果没有数据属性，尝试从当前文本翻译
+            const currentText = element.textContent.trim();
+            if (currentText && currentText.length > 0) {
+                element.textContent = i18n.getFeatureName(currentText);
+            }
         }
     });
 
-    // 更新所有带有 data-i18n-title 属性的元素
-    const titledElements = document.querySelectorAll('[data-i18n-title]');
-    titledElements.forEach(element => {
-        const key = element.getAttribute('data-i18n-title');
-        const translation = getNestedValue(i18nData[lang], key);
-        if (translation) {
-            element.title = translation;
-        }
-    });
-
-    // 更新语言按钮状态
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-    });
-
-    // 更新数据源和选项
-    updateDataSourceOptions(lang);
-    updateContinentOptions(lang);
-    updateStyleButtons(lang);
-    updateSortButtons(lang);
-
-    // 保存语言偏好
-    localStorage.setItem('preferredLanguage', lang);
-
-    // 特殊处理：更新quiz问题文本
-    updateQuizQuestionText(lang);
-
-    // 强制立即更新quiz中的问题文本（如果正在显示）
-    setTimeout(() => {
-        const quizQuestionText = document.querySelector('#quiz-game .question-text');
-        if (quizQuestionText) {
-            const flagQuestionText = i18nData[lang]?.quiz?.flagQuestion || '这是哪个国家的国旗？';
-            quizQuestionText.textContent = flagQuestionText;
-            console.log('Force updated quiz question text to:', flagQuestionText);
-        }
-    }, 100);
-}
-
-// 更新quiz问题文本
-function updateQuizQuestionText(lang) {
+    // 如果正在运行quiz，更新问题文本
     const quizQuestionText = document.querySelector('#quiz-game .question-text');
     if (quizQuestionText) {
-        const flagQuestionText = i18nData[lang]?.quiz?.flagQuestion || '这是哪个国家的国旗？';
-        console.log('updateQuizQuestionText: Updating from', quizQuestionText.textContent, 'to', flagQuestionText);
-        quizQuestionText.textContent = flagQuestionText;
+        quizQuestionText.textContent = i18n.t('quiz.flagQuestion');
+    }
 
-        // 确保设置成功
-        setTimeout(() => {
-            if (quizQuestionText.textContent !== flagQuestionText) {
-                console.log('updateQuizQuestionText: Re-applying text');
-                quizQuestionText.textContent = flagQuestionText;
+    // 更新错题显示中的标签
+    const wrongAnswersSection = document.getElementById('wrong-answers-section');
+    if (wrongAnswersSection && wrongAnswersSection.style.display !== 'none') {
+        updateWrongAnswersContent();
+    }
+
+    // 更新测验选项中的国家名称
+    document.querySelectorAll('#quiz-game .option-text').forEach(element => {
+        const countryCode = element.getAttribute('data-country-code');
+        if (countryCode && allCountries) {
+            const country = allCountries.find(c => c.code === countryCode);
+            if (country) {
+                element.textContent = i18n.getCountryName(country);
             }
-        }, 50);
-    } else {
-        console.log('updateQuizQuestionText: No quiz question text element found');
+        }
+    });
+
+    // 更新记忆训练中的动态内容
+    updateMemoryModuleText();
+
+    // 更新所有带有数据属性的动态文本
+    document.querySelectorAll('[data-i18n-dynamic]').forEach(element => {
+        const key = element.getAttribute('data-i18n-dynamic');
+        if (key) {
+            element.textContent = i18n.t(key);
+        }
+    });
+
+    console.log('Dynamic content update completed');
+}
+
+// 更新错题内容的函数
+function updateWrongAnswersContent() {
+    // 更新错题详情中的国家名称
+    document.querySelectorAll('.wrong-answer-section .country-name').forEach(element => {
+        const countryCode = element.getAttribute('data-country-code');
+        if (countryCode && allCountries) {
+            const country = allCountries.find(c => c.code === countryCode);
+            if (country) {
+                element.textContent = i18n.getCountryName(country);
+            }
+        }
+    });
+
+    // 更新错题详情中的答案文本（正确答案和错误答案）
+    document.querySelectorAll('.wrong-answers-container .answer-text').forEach(element => {
+        const countryCode = element.getAttribute('data-country-code');
+        if (countryCode && allCountries) {
+            const country = allCountries.find(c => c.code === countryCode);
+            if (country) {
+                element.textContent = i18n.getCountryName(country);
+            }
+        } else if (element.classList.contains('correct') || element.classList.contains('wrong')) {
+            // 如果没有data-country-code属性，通过其他方式查找对应的国家
+            // 首先尝试从相邻的元素中获取信息
+            const wrongAnswerItem = element.closest('.wrong-answer-item');
+            if (wrongAnswerItem) {
+                // 查找相关的国家代码信息
+                const flagImg = wrongAnswerItem.querySelector('img[src*="pics/"]');
+                if (flagImg) {
+                    const src = flagImg.getAttribute('src');
+                    const match = src.match(/pics\/([a-z]{2})\.png/);
+                    if (match) {
+                        const country = allCountries.find(c => c.code === match[1]);
+                        if (country) {
+                            element.textContent = i18n.getCountryName(country);
+                            element.setAttribute('data-country-code', country.code);
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // 更新各种标签文本
+    const questionTypes = document.querySelectorAll('.wrong-question-type');
+    questionTypes.forEach(element => {
+        if (element.textContent.includes('看国旗选国家') || element.textContent.includes('Flag to Country')) {
+            element.textContent = i18n.t('quiz.wrongAnswers.flagToCountry');
+        } else if (element.textContent.includes('看国家选国旗') || element.textContent.includes('Country to Flag')) {
+            element.textContent = i18n.t('quiz.wrongAnswers.countryToFlag');
+        }
+    });
+
+    // 更新答案标签 - 优先处理data-i18n属性
+    console.log('🔍 updateWrongAnswersContent - current language:', i18n.currentLanguage);
+    console.log('🔍 updateWrongAnswersContent - correctAnswer translation:', i18n.t('quiz.wrongAnswers.correctAnswer'));
+    console.log('🔍 updateWrongAnswersContent - yourAnswer translation:', i18n.t('quiz.wrongAnswers.yourAnswer'));
+
+    // 首先处理所有带有data-i18n属性的元素
+    const wrongAnswersContainer = document.getElementById('wrong-answers-container');
+    if (wrongAnswersContainer) {
+        const dataI18nElements = wrongAnswersContainer.querySelectorAll('[data-i18n]');
+        console.log('🔍 Found data-i18n elements in wrong answers:', dataI18nElements.length);
+
+        dataI18nElements.forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            const translation = i18n.t(key);
+            if (translation && translation !== key) {
+                element.textContent = translation;
+                console.log(`🔍 Updated ${key} to:`, translation);
+            }
+        });
+    }
+
+    // 备用方案：如果没有data-i18n属性或翻译失败，直接设置
+    const correctLabels = document.querySelectorAll('.answer-label.correct');
+    correctLabels.forEach(element => {
+        if (!element.hasAttribute('data-i18n') || element.textContent.includes('正确答案')) {
+            element.textContent = i18n.t('quiz.wrongAnswers.correctAnswer');
+            console.log('🔍 Updated correct label to:', element.textContent);
+        }
+    });
+
+    const wrongLabels = document.querySelectorAll('.answer-label.wrong');
+    wrongLabels.forEach(element => {
+        if (!element.hasAttribute('data-i18n') || element.textContent.includes('你的答案')) {
+            element.textContent = i18n.t('quiz.wrongAnswers.yourAnswer');
+            console.log('🔍 Updated wrong label to:', element.textContent);
+        }
+    });
+}
+
+// 更新页面语言 (已弃用，由新 i18n 系统接管)
+function updateLanguage(lang) {
+    console.warn('updateLanguage() is deprecated, using new i18n system instead');
+
+    // 更新兼容性变量
+    currentLang = lang;
+
+    // 使用新的 i18n 系统进行更新
+    if (i18n.loaded && i18n.translations[lang]) {
+        i18n.setLanguage(lang);
+        i18n.updateDOM();
+        updateDynamicContent();
+
+        // 更新动态生成的内容
+        updateMemoryModuleText();
+        updateWrongAnswersContent();
+        updateQuizContent();
     }
 }
 
-// 更新错题显示中的标签文本
-function updateWrongAnswersLabels(lang) {
-    console.log('updateWrongAnswersLabels: Updating labels for language:', lang);
+// 更新quiz问题文本 (已弃用，使用新的 updateQuizContent)
+function updateQuizQuestionText() {
+    console.warn('updateQuizQuestionText is deprecated, using updateQuizContent instead');
+    updateQuizContent();
+}
 
-    // 调试：查看整个错题容器的内容
-    const container = document.getElementById('wrong-answers-container');
-    if (container) {
-        console.log('Wrong answers container full HTML:');
-        console.log(container.innerHTML);
+// 更新测验内容的国际化
+function updateQuizContent() {
+    if (!i18n.loaded) {
+        console.warn('i18n not loaded, skipping quiz content update');
+        return;
     }
 
-    // 更新国旗到国家类型的错题标签
-    const flagCorrectLabels = document.querySelectorAll('#wrong-answers-container .correct-answer .answer-label');
-    const flagWrongLabels = document.querySelectorAll('#wrong-answers-container .wrong-answer .answer-label');
+    // 更新测验问题文本
+    const quizQuestionText = document.querySelector('#quiz-game .question-text');
+    if (quizQuestionText) {
+        quizQuestionText.textContent = i18n.t('quiz.flagQuestion');
+    }
 
-    console.log('Found flag correct labels:', flagCorrectLabels.length);
-    console.log('Found flag wrong labels:', flagWrongLabels.length);
-
-    flagCorrectLabels.forEach((label, index) => {
-        const correctText = i18nData[lang]?.quiz?.wrongAnswers?.correctAnswer || '正确答案：';
-        console.log(`Flag correct label ${index}: before="${label.textContent}", after="${correctText}"`);
-        label.textContent = correctText;
-    });
-
-    flagWrongLabels.forEach((label, index) => {
-        const wrongText = i18nData[lang]?.quiz?.wrongAnswers?.yourAnswer || '你的答案：';
-        console.log(`Flag wrong label ${index}: before="${label.textContent}", after="${wrongText}"`);
-        label.textContent = wrongText;
-    });
-
-    // 更新国家到国旗类型的错题标签
-    const countryCorrectLabels = document.querySelectorAll('#wrong-answers-container .flag-option.correct .flag-label');
-    const countryWrongLabels = document.querySelectorAll('#wrong-answers-container .flag-option.wrong .flag-label');
-
-    console.log('Found country correct labels:', countryCorrectLabels.length);
-    console.log('Found country wrong labels:', countryWrongLabels.length);
-
-    countryCorrectLabels.forEach((label, index) => {
-        const correctText = i18nData[lang]?.quiz?.wrongAnswers?.correctAnswer || '正确答案：';
-        console.log(`Country correct label ${index}: before="${label.textContent}", after="${correctText}"`);
-        label.textContent = correctText;
-    });
-
-    countryWrongLabels.forEach((label, index) => {
-        const wrongText = i18nData[lang]?.quiz?.wrongAnswers?.yourAnswer || '你的答案：';
-        console.log(`Country wrong label ${index}: before="${label.textContent}", after="${wrongText}"`);
-        label.textContent = wrongText;
+    // 更新测验选项中的国家名称
+    document.querySelectorAll('#quiz-game .option-text').forEach(element => {
+        const countryCode = element.getAttribute('data-country-code');
+        if (countryCode && allCountries) {
+            const country = allCountries.find(c => c.code === countryCode);
+            if (country) {
+                element.textContent = i18n.getCountryName(country);
+            }
+        }
     });
 }
 
-// 更新记忆训练模块的硬编码文本
-function updateMemoryModuleText(lang) {
-    console.log('Updating memory module text...');
-    
+// 更新错题显示中的标签文本 (已弃用，使用新的 updateWrongAnswersContent)
+function updateWrongAnswersLabels() {
+    console.warn('updateWrongAnswersLabels is deprecated, using updateWrongAnswersContent instead');
+    updateWrongAnswersContent();
+}
+
+// 修复翻译键显示问题的函数 - 双向翻译增强版本
+function fixTranslationKeyElements() {
+    console.log('开始修复所有翻译键问题...');
+
+    // 获取当前语言
+    const currentLang = i18n.currentLanguage;
+    const isChineseMode = currentLang === 'zh';
+
+    // 修复静态data-i18n属性
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (key && !element.textContent.includes('.')) {
+            const translation = i18n.t(key);
+            if (translation && translation !== key) {
+                element.textContent = translation;
+            }
+        }
+    });
+
+    // 修复动态生成的翻译键
+    const patterns = [
+        { pattern: /continents\.\w+/g, type: 'continent' },
+        { pattern: /features\.\w+/g, type: 'feature' },
+        { pattern: /dataSources\.\w+/g, type: 'dataSource' },
+        { pattern: /continents\.\w+\.\w+\.\w+/g, type: 'continentNested' },
+        { pattern: /features\.\w+\.\w+\.\w+/g, type: 'featureNested' },
+        { pattern: /memory\.\w+/g, type: 'memory' }
+    ];
+
+    // 查找所有包含翻译键的文本节点
+    const textNodes = [];
+    const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+        null,
+        false
+    );
+
+    let node;
+    while (node = walker.nextNode()) {
+        if (node.nodeValue && (node.nodeValue.includes('.') || node.nodeValue.includes('memory.'))) {
+            textNodes.push(node);
+        }
+    }
+
+    textNodes.forEach(textNode => {
+        let text = textNode.nodeValue;
+        const originalText = text;
+
+        // 修复翻译键
+        patterns.forEach(({ pattern, type }) => {
+            if (pattern.test(text)) {
+                const matches = text.match(pattern);
+                if (matches) {
+                    matches.forEach(match => {
+                        try {
+                            let translation = '';
+                            const cleanKey = match.replace(/^(\.+)|(\.+)$/g, '');
+
+                            if (type === 'continentNested') {
+                                const parts = cleanKey.split('.');
+                                const actualKey = parts[parts.length - 1];
+                                translation = i18n.t(`continents.${actualKey}`);
+                            } else if (type === 'featureNested') {
+                                const parts = cleanKey.split('.');
+                                const actualKey = parts[parts.length - 1];
+                                translation = i18n.t(`features.${actualKey}`);
+                            } else {
+                                translation = i18n.t(cleanKey);
+                            }
+
+                            if (translation && translation !== cleanKey) {
+                                text = text.replace(match, translation);
+                                console.log(`修复翻译键: ${cleanKey} -> ${translation}`);
+                            }
+                        } catch (e) {
+                            console.warn(`无法修复翻译键: ${match}`, e);
+                        }
+                    });
+                }
+            }
+        });
+
+        // 根据当前语言处理硬编码文本
+        if (isChineseMode) {
+            // 英文到中文翻译映射
+            const englishToChineseMap = {
+                'Start Learning': '开始学习',
+                'Study Tips': '💡 学习技巧',
+                '💡 Study Tips': '💡 学习技巧',
+                'Last studied:': '上次学习: ',
+                'Last studied': '上次学习:',
+                'Today': '今日',
+                'Learned': '已学习',
+                'Total': '总数量',
+                'Progress': '完成度',
+                'Continue Learning': '继续学习',
+                'Review & Reinforce': '复习巩固',
+                'Previous': '← 上一个',
+                'Next': '下一个 →',
+                'Return Home': '返回首页',
+                'Clear Progress': '🗑️ 清除学习进度',
+                'Learning Overview': '📚 学习概览',
+                'Continent Learning': '📂 大洲分类学习',
+                'Smart Learning': '智能学习',
+                'All categories completed': '🎉 所有分类均已完成',
+                'time to review': '开始复习巩固记忆吧！',
+                'Study Complete': '🎊 学习完成！',
+                'All flags mastered': '🎉 太棒了！你已掌握所有国旗',
+                'Prepare to study:': '准备学习: ',
+                'Total in Category': '分类总数',
+                'Begin Study': '开始学习',
+                'Category Learning': '📂 大洲分类学习',
+                'This will clear all learning records and progress, cannot be restored': '⚠️ 此操作将清除所有学习记录和进度，无法恢复',
+                'This will clear all learning records and progress': '⚠️ 此操作将清除所有学习记录和进度，无法恢复',
+                'Unlearned': '未学习',
+                'Begin Study': '开始学习',
+                'Don\'t Know': '不知道',
+                'Know': '知道',
+                'Return to Memory Training': '← 返回记忆训练',
+                'Category Learning': '📂 大洲分类学习',
+                'Learning Progress': '学习进度',
+                'System recommends': '系统推荐'
+            };
+
+            Object.entries(englishToChineseMap).forEach(([english, chinese]) => {
+                if (text.includes(english)) {
+                    text = text.replace(new RegExp(english, 'g'), chinese);
+                    console.log(`英文转中文: ${english} -> ${chinese}`);
+                }
+            });
+        } else {
+            // 中文到英文翻译映射
+            const chineseToEnglishMap = {
+                '开始学习': 'Start Learning',
+                '学习技巧': 'Study Tips',
+                '💡 学习技巧': '💡 Study Tips',
+                '上次学习:': 'Last studied:',
+                '上次学习': 'Last studied',
+                '今日': 'Today',
+                '已学习': 'Learned',
+                '总数量': 'Total',
+                '完成度': 'Progress',
+                '继续学习': 'Continue Learning',
+                '复习巩固': 'Review & Reinforce',
+                '上一个': 'Previous',
+                '下一个': 'Next',
+                '返回首页': 'Return Home',
+                '清除学习进度': 'Clear Progress',
+                '学习概览': 'Learning Overview',
+                '大洲分类学习': 'Continent Learning',
+                '智能学习': 'Smart Learning',
+                '学习进度': 'Learning Progress',
+                '系统推荐': 'System recommends',
+                '📚 学习概览': '📚 Learning Overview',
+                '💡 学习技巧': '💡 Study Tips',
+                '🗑️ 清除学习进度': '🗑️ Clear Progress',
+                '🚀 开始学习': '🚀 Start Learning',
+                '开始测试': 'Begin Test',
+                '未学习': 'Unlearned',
+                '不知道': 'Don\'t Know',
+                '知道': 'Know',
+                '⚠️ 此操作将清除所有学习记录和进度，无法恢复': '⚠️ This will clear all learning records and progress, cannot be restored',
+                '此操作将清除所有学习记录和进度，无法恢复': 'This will clear all learning records and progress, cannot be restored',
+                '📂 大洲分类学习': '📂 Continent Learning',
+                '🎉 所有分类均已完成': '🎉 All categories completed',
+                '🎊 学习完成': '🎊 Study Complete',
+                '← 返回记忆训练': '← Return to Memory Training'
+            };
+
+            Object.entries(chineseToEnglishMap).forEach(([chinese, english]) => {
+                if (text.includes(chinese)) {
+                    text = text.replace(new RegExp(chinese.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), english);
+                    console.log(`中文转英文: ${chinese} -> ${english}`);
+                }
+            });
+        }
+
+        // 更新文本节点
+        if (text !== originalText) {
+            textNode.nodeValue = text;
+        }
+    });
+
+    // 处理按钮元素
+    document.querySelectorAll('button, .btn, [role="button"]').forEach(button => {
+        const buttonText = button.textContent.trim();
+
+        if (isChineseMode) {
+            const buttonEnToZh = {
+                'Start Learning': '🚀 开始学习',
+                'Continue Learning': '继续学习',
+                'Clear Progress': '🗑️ 清除学习进度',
+                'Previous': '← 上一个',
+                'Next': '下一个 →',
+                'Return Home': '返回首页',
+                'Begin Study': '开始学习',
+                'Don\'t Know': '不知道',
+                'Know': '知道',
+                'Return to Memory Training': '← 返回记忆训练'
+            };
+
+            if (buttonEnToZh[buttonText]) {
+                button.textContent = buttonEnToZh[buttonText];
+                console.log(`按钮英文转中文: ${buttonText} -> ${buttonEnToZh[buttonText]}`);
+            }
+        } else {
+            const buttonZhToEn = {
+                '🚀 开始学习': '🚀 Start Learning',
+                '继续学习': 'Continue Learning',
+                '🗑️ 清除学习进度': '🗑️ Clear Progress',
+                '← 上一个': '← Previous',
+                '下一个 →': 'Next →',
+                '返回首页': 'Return Home',
+                '开始学习': 'Begin Study',
+                '不知道': 'Don\'t Know',
+                '知道': 'Know',
+                '← 返回记忆训练': '← Return to Memory Training'
+            };
+
+            if (buttonZhToEn[buttonText]) {
+                button.textContent = buttonZhToEn[buttonText];
+                console.log(`按钮中文转英文: ${buttonText} -> ${buttonZhToEn[buttonText]}`);
+            }
+        }
+    });
+
+    // 处理统计标签和提示信息
+    document.querySelectorAll('.stat-item, .progress-info, .hint, .tip, .overview-title').forEach(element => {
+        let text = element.textContent;
+        let changed = false;
+
+        if (isChineseMode) {
+            const statEnToZh = {
+                'Last studied:': '上次学习: ',
+                'Last studied': '上次学习',
+                'Today:': '今日: ',
+                'Today': '今日',
+                'Learned:': '已学习: ',
+                'Learned': '已学习',
+                'Total:': '总数量: ',
+                'Total': '总数量',
+                'Progress:': '完成度: ',
+                'Progress': '完成度',
+                'Learning Overview': '📚 学习概览',
+                'Study Tips': '💡 学习技巧',
+                'This will clear all learning records and progress, cannot be restored': '⚠️ 此操作将清除所有学习记录和进度，无法恢复'
+            };
+
+            Object.entries(statEnToZh).forEach(([english, chinese]) => {
+                if (text.includes(english)) {
+                    text = text.replace(new RegExp(english, 'g'), chinese);
+                    changed = true;
+                }
+            });
+        } else {
+            const statZhToEn = {
+                '上次学习:': 'Last studied: ',
+                '上次学习': 'Last studied',
+                '今日:': 'Today: ',
+                '今日': 'Today',
+                '已学习:': 'Learned: ',
+                '已学习': 'Learned',
+                '总数量:': 'Total: ',
+                '总数量': 'Total',
+                '完成度:': 'Progress: ',
+                '完成度': 'Progress',
+                '📚 学习概览': '📚 Learning Overview',
+                '💡 学习技巧': '💡 Study Tips',
+                '⚠️ 此操作将清除所有学习记录和进度，无法恢复': '⚠️ This will clear all learning records and progress, cannot be restored'
+            };
+
+            Object.entries(statZhToEn).forEach(([chinese, english]) => {
+                if (text.includes(chinese)) {
+                    text = text.replace(new RegExp(chinese.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), english);
+                    changed = true;
+                }
+            });
+        }
+
+        if (changed) {
+            element.textContent = text;
+            console.log(`修复统计/提示文本: ${element.className || element.tagName}`);
+        }
+    });
+
+    // 处理分类卡片描述
+    document.querySelectorAll('.category-description, .continent-description').forEach(element => {
+        let text = element.textContent;
+        let changed = false;
+
+        if (!isChineseMode) {
+            // 特定的中文描述转英文
+            const descriptionMap = {
+                '欧洲地区国家的国旗，多为三色旗和十字设计': 'Flags of European countries, mostly tricolor flags and cross designs',
+                '欧洲国旗以简洁的三色条和十字图案为主，容易识别': 'European flags are mainly simple tricolor stripes and cross patterns, easy to recognize',
+                '亚洲地区国家的国旗，包括东亚、东南亚、南亚、西亚和中亚': 'Flags of Asian countries, including East Asia, Southeast Asia, South Asia, West Asia and Central Asia',
+                '非洲地区国家的国旗，多采用泛非色彩': 'Flags of African countries, mostly using Pan-African colors',
+                '南美洲地区国家的国旗，多为蓝白红配色': 'Flags of South American countries, mostly blue, white and red colors',
+                '北美洲地区国家的国旗': 'Flags of North American countries',
+                '大洋洲地区国家的国旗，多含南十字星': 'Flags of Oceanian countries, mostly containing the Southern Cross',
+                // 处理混合文本
+                'South America地区国家的国旗，多为蓝白红配色': 'Flags of South American countries, mostly blue, white and red colors',
+                'Europe地区国家的国旗，多为三色旗和十字设计': 'Flags of European countries, mostly tricolor flags and cross designs',
+                'Africa地区国家的国旗，多采用泛非色彩': 'Flags of African countries, mostly using Pan-African colors',
+                'Asia地区国家的国旗，包括东亚、东南亚、南亚、西亚和中亚': 'Flags of Asian countries, including East Asia, Southeast Asia, South Asia, West Asia and Central Asia'
+            };
+
+            Object.entries(descriptionMap).forEach(([chinese, english]) => {
+                if (text.includes(chinese)) {
+                    text = text.replace(chinese, english);
+                    changed = true;
+                }
+            });
+        }
+
+        if (changed) {
+            element.textContent = text;
+            console.log(`修复分类描述: ${element.className}`);
+        }
+    });
+
+    console.log('翻译键修复完成');
+}
+
+// 更新记忆训练模块的所有文本和动态内容
+function updateMemoryModuleText() {
+    if (!i18n.loaded) {
+        console.warn('i18n not loaded, skipping memory module text update');
+        return;
+    }
+
+    console.log('🔄🔄🔄 updateMemoryModuleText 开始执行');
+    console.log('🔍 当前语言:', i18n.currentLanguage);
+    console.log('🔍 i18n 对象状态:', {
+        loaded: i18n.loaded,
+        currentLanguage: i18n.currentLanguage,
+        translations: i18n.translations ? '存在' : '不存在'
+    });
+
     // 检查记忆训练模块是否已经显示
     const memorySection = document.getElementById('memory-section');
+    const studySection = document.getElementById('study-section');
+    // 也要检查通过 class 查找的元素
+    const memorySectionByClass = document.querySelector('.memory-section');
+    const studySectionByClass = document.querySelector('.study-section');
+
     const isMemoryVisible = memorySection && memorySection.style.display !== 'none';
-    
-    if (isMemoryVisible) {
-        console.log('Memory section is visible, updating all dynamic content...');
-        
-        // 更新学习概览标题
-        const overviewTitles = document.querySelectorAll('h2');
-        overviewTitles.forEach(title => {
-            if (title.textContent.includes('学习概览') || title.textContent.includes('Learning Overview')) {
-                title.textContent = i18nData[lang]?.memory?.overviewTitle || '📚 Learning Overview';
+    const isStudyVisible = studySection && studySection.style.display !== 'none';
+    const isMemoryVisibleByClass = memorySectionByClass && !memorySectionByClass.classList.contains('hidden');
+    const isStudyVisibleByClass = studySectionByClass && !studySectionByClass.classList.contains('hidden');
+
+    console.log('🔍 DOM 元素检查结果:', {
+        memorySection: !!memorySection,
+        studySection: !!studySection,
+        memorySectionByClass: !!memorySectionByClass,
+        studySectionByClass: !!studySectionByClass,
+        memorySectionDisplay: memorySection ? memorySection.style.display : 'N/A',
+        studySectionDisplay: studySection ? studySection.style.display : 'N/A',
+        isMemoryVisible,
+        isStudyVisible,
+        isMemoryVisibleByClass,
+        isStudyVisibleByClass
+    });
+
+    if (isMemoryVisible || isMemoryVisibleByClass) {
+        console.log('📚 记忆训练主界面可见，开始全面更新...');
+
+        // 首先修复显示翻译键的元素
+        console.log('🔧 第1步：修复翻译键元素');
+        fixTranslationKeyElements();
+
+        // 强制重新生成整个记忆训练界面以确保所有动态内容都更新
+        if (window.enhancedMemorySystem) {
+            console.log('🔧 第2步：重新生成记忆训练界面');
+
+            // 保存当前的学习状态
+            const currentState = window.enhancedMemorySystem.getCurrentState();
+            console.log('🔧 保存的当前状态:', currentState);
+
+            // 重新显示记忆训练界面以刷新所有内容
+            window.enhancedMemorySystem.showMemory();
+
+            // 如果之前在某个分类学习界面，恢复该界面
+            if (currentState.currentCategory) {
+                console.log('🔧 第3步：恢复分类学习界面:', currentState.currentCategory);
+                setTimeout(() => {
+                    const categoryData = window.enhancedMemorySystem.getCategoryData(currentState.currentCategory);
+                    if (categoryData) {
+                        window.enhancedMemorySystem.showCategoryLearning(currentState.currentCategory);
+                    } else {
+                        console.warn('⚠️ 无法找到分类数据:', currentState.currentCategory);
+                    }
+                }, 100);
+            }
+        } else {
+            console.warn('⚠️ enhancedMemorySystem 不存在');
+        }
+
+        // 手动更新一些可能没有被重新生成的静态元素
+        console.log('🔧 第4步：更新静态元素');
+        updateStaticMemoryElements();
+
+        // 强制翻译页面元素作为兜底
+        console.log('🔧 第5步：强制翻译页面元素');
+        forceTranslateAllMemoryElements();
+
+        console.log('✅ 记忆训练模块全面更新完成');
+    } else if (isStudyVisible || isStudyVisibleByClass) {
+        console.log('📖 学习界面可见，开始更新学习界面...');
+
+        // 如果在学习页面，重新生成学习界面
+        if (window.enhancedMemorySystem) {
+            console.log('🔧 学习界面：重新生成学习内容');
+            const currentState = window.enhancedMemorySystem.getCurrentState();
+
+            if (currentState.currentCategory) {
+                console.log('🔧 重新生成学习界面，分类:', currentState.currentCategory);
+
+                // 重新生成学习预览页面
+                window.enhancedMemorySystem.showPreviewPage();
+            } else {
+                console.warn('⚠️ 学习界面：没有当前分类信息');
+            }
+        } else {
+            console.warn('⚠️ 学习界面：enhancedMemorySystem 不存在');
+        }
+
+        // 修复可能存在的翻译键问题
+        console.log('🔧 学习界面：修复翻译键问题');
+        fixTranslationKeyElements();
+
+        // 强制翻译学习界面元素
+        console.log('🔧 学习界面：强制翻译元素');
+        forceTranslateStudyElements();
+
+        console.log('✅ 学习界面更新完成');
+    } else {
+        console.log('ℹ️ 记忆训练模块不可见，跳过更新');
+    }
+
+    // 额外检查：如果还有硬编码的中文/英文文本没有更新，进行强制翻译
+    setTimeout(() => {
+        console.log('🔧 延迟检查：强制翻译所有记忆训练元素');
+        debugMemoryModuleDOMState(); // 添加调试检查
+        forceTranslateAllMemoryElements();
+
+        // 调用专门的记忆训练模块翻译器
+        translateMemoryTrainingModule();
+    }, 20);
+
+    console.log('🔄🔄🔄 updateMemoryModuleText 执行完成');
+}
+
+// 强制翻译所有记忆训练元素
+function forceTranslateAllMemoryElements() {
+    console.log('🚨🚨🚨 forceTranslateAllMemoryElements 开始执行');
+    console.log('🔍 当前语言:', i18n.currentLanguage);
+    console.log('🔍 i18n 对象状态:', {
+        loaded: i18n.loaded,
+        currentLanguage: i18n.currentLanguage,
+        hasTranslations: !!i18n.translations
+    });
+
+    const currentLang = i18n.currentLanguage;
+    const isChineseMode = currentLang === 'zh';
+    console.log('🔍 中文模式判断:', isChineseMode);
+
+    // 处理学习页面中的所有硬编码文本
+    const studySection = document.getElementById('study-section');
+    console.log('🔍 Study section found:', !!studySection);
+
+    if (studySection) {
+        console.log('📖 处理学习页面元素');
+
+        // 强制翻译按钮文本
+        const beginBtn = studySection.querySelector('#beginStudyBtn');
+        console.log('🔍 Begin button found:', !!beginBtn);
+        console.log('🔍 Begin button text:', beginBtn ? beginBtn.textContent : 'N/A');
+
+        if (beginBtn) {
+            const btnText = beginBtn.textContent.trim();
+            if (isChineseMode && (btnText.includes('Begin Study') || btnText === 'Begin Study')) {
+                const newText = i18n.t('memory.beginTest');
+                beginBtn.textContent = newText;
+                console.log('✅ Force translated Begin Study button:', btnText, '->', newText);
+            } else {
+                console.log('ℹ️ Begin Study button text is correct:', btnText);
+            }
+        }
+
+        // 检查学习页面中是否也有推荐系统文字
+        const studyLearningHint = studySection.querySelector('.learning-hint');
+        console.log('🔍 Study learning hint found:', !!studyLearningHint);
+        if (studyLearningHint) {
+            const hintText = studyLearningHint.textContent.trim();
+            console.log('🔍 Study learning hint text:', hintText);
+            if (isChineseMode && hintText.includes('System recommends learning')) {
+                console.log('✅ Force translated system recommendation in study section');
+                studyLearningHint.textContent = i18n.t('memory.systemRecommendation', {category: window.enhancedMemorySystem?.currentCategory || 'Unknown'});
+            } else if (!isChineseMode && hintText.includes('系统推荐学习')) {
+                console.log('✅ Force translated system recommendation to English in study section');
+                studyLearningHint.textContent = i18n.t('memory.systemRecommendation', {category: window.enhancedMemorySystem?.currentCategory || 'Unknown'});
+            } else {
+                console.log('ℹ️ Study system recommendation text is correct:', hintText);
+            }
+        }
+
+        // 强制翻译分类描述 - 针对记忆训练模块
+        const memorySection = document.querySelector('.memory-section');
+        if (memorySection) {
+            const descriptions = memorySection.querySelectorAll('.category-description');
+            console.log('🔍 Memory category descriptions found:', descriptions.length);
+            descriptions.forEach((desc, index) => {
+                const text = desc.textContent.trim();
+                console.log(`🔍 Memory description ${index} text:`, text);
+
+                // 根据当前分类获取对应的描述
+                const categoryCard = desc.closest('.category-card');
+                if (categoryCard) {
+                    const categoryTitleElement = categoryCard.querySelector('.category-title');
+                    if (categoryTitleElement) {
+                        const categoryTitle = categoryTitleElement.textContent.trim();
+                        // 从分类标题中提取大洲名称
+                        let continentKey = null;
+                        if (categoryTitle.includes('欧洲') || categoryTitle.includes('Europe')) continentKey = 'europe';
+                        else if (categoryTitle.includes('亚洲') || categoryTitle.includes('Asia')) continentKey = 'asia';
+                        else if (categoryTitle.includes('非洲') || categoryTitle.includes('Africa')) continentKey = 'africa';
+                        else if (categoryTitle.includes('北美洲') || categoryTitle.includes('North America')) continentKey = 'northAmerica';
+                        else if (categoryTitle.includes('南美洲') || categoryTitle.includes('South America')) continentKey = 'southAmerica';
+                        else if (categoryTitle.includes('大洋洲') || categoryTitle.includes('Oceania')) continentKey = 'oceania';
+
+                        if (continentKey) {
+                            const localizedDesc = i18n.t(`memory.continentDescriptions.${continentKey}`);
+                            if (localizedDesc !== `memory.continentDescriptions.${continentKey}`) {
+                                if (text !== localizedDesc) {
+                                    console.log('✅ Force translated memory category description:', text, '->', localizedDesc);
+                                    desc.textContent = localizedDesc;
+                                } else {
+                                    console.log(`ℹ️ Memory description ${index} text is correct:`, text);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // 强制翻译学习技巧 - 针对记忆训练模块
+        if (memorySection) {
+            const tips = memorySection.querySelectorAll('.tips-content');
+            console.log('🔍 Memory tips found:', tips.length);
+            tips.forEach((tip, index) => {
+                const text = tip.textContent.trim();
+                console.log(`🔍 Memory tip ${index} text:`, text);
+
+                // 根据当前分类获取对应的提示
+                const categoryCard = tip.closest('.category-card');
+                if (categoryCard) {
+                    const categoryTitleElement = categoryCard.querySelector('.category-title');
+                    if (categoryTitleElement) {
+                        const categoryTitle = categoryTitleElement.textContent.trim();
+                        // 从分类标题中提取大洲名称
+                        let continentKey = null;
+                        if (categoryTitle.includes('欧洲') || categoryTitle.includes('Europe')) continentKey = 'europe';
+                        else if (categoryTitle.includes('亚洲') || categoryTitle.includes('Asia')) continentKey = 'asia';
+                        else if (categoryTitle.includes('非洲') || categoryTitle.includes('Africa')) continentKey = 'africa';
+                        else if (categoryTitle.includes('北美洲') || categoryTitle.includes('North America')) continentKey = 'northAmerica';
+                        else if (categoryTitle.includes('南美洲') || categoryTitle.includes('South America')) continentKey = 'southAmerica';
+                        else if (categoryTitle.includes('大洋洲') || categoryTitle.includes('Oceania')) continentKey = 'oceania';
+
+                        if (continentKey) {
+                            const localizedTip = i18n.t(`memory.continentTips.${continentKey}`);
+                            if (localizedTip !== `memory.continentTips.${continentKey}`) {
+                                if (text !== localizedTip) {
+                                    console.log('✅ Force translated memory category tip:', text, '->', localizedTip);
+                                    tip.textContent = localizedTip;
+                                } else {
+                                    console.log(`ℹ️ Memory tip ${index} text is correct:`, text);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    // 处理记忆训练主页中的元素
+    const memorySection = document.getElementById('memory-section') || document.querySelector('.memory-section');
+    console.log('🔍 Memory section found:', !!memorySection);
+    console.log('🔍 Memory section by ID:', !!document.getElementById('memory-section'));
+    console.log('🔍 Memory section by class:', !!document.querySelector('.memory-section'));
+
+    if (memorySection) {
+        console.log('📚 处理记忆训练主页面元素');
+
+        // 强制翻译系统推荐信息
+        const learningHint = memorySection.querySelector('.learning-hint');
+        console.log('🔍 Learning hint found:', !!learningHint);
+        console.log('🔍 Learning hint text:', learningHint ? learningHint.textContent.trim() : 'N/A');
+
+        if (learningHint) {
+            const text = learningHint.textContent.trim();
+            console.log('🔍 Current learning hint text:', text);
+            if (isChineseMode && text.includes('System recommends learning')) {
+                // 如果是中文模式但显示英文推荐，重新生成
+                console.log('🔧 需要翻译为中文，当前文本:', text);
+                if (window.enhancedMemorySystem) {
+                    window.enhancedMemorySystem.updateStartLearningButton();
+                    console.log('✅ 调用了 updateStartLearningButton');
+                    // 立即检查是否更新成功
+                    setTimeout(() => {
+                        const newText = learningHint.textContent.trim();
+                        console.log('🔍 更新后的文本:', newText);
+                    }, 100);
+                } else {
+                    console.warn('⚠️ enhancedMemorySystem 不存在');
+                }
+            } else if (!isChineseMode && text.includes('系统推荐学习')) {
+                // 如果是英文模式但显示中文推荐，重新生成
+                console.log('🔧 需要翻译为英文，当前文本:', text);
+                if (window.enhancedMemorySystem) {
+                    window.enhancedMemorySystem.updateStartLearningButton();
+                    console.log('✅ 调用了 updateStartLearningButton');
+                    // 立即检查是否更新成功
+                    setTimeout(() => {
+                        const newText = learningHint.textContent.trim();
+                        console.log('🔍 更新后的文本:', newText);
+                    }, 100);
+                } else {
+                    console.warn('⚠️ enhancedMemorySystem 不存在');
+                }
+            } else {
+                console.log('ℹ️ System recommendation text is correct:', text);
+                // 但仍然可以尝试直接翻译作为备用方案
+                if (isChineseMode && text.includes('System recommends learning')) {
+                    // 直接翻译
+                    // 移除硬编码翻译，使用统一的翻译系统
+                this.updateMemorySystemHint();
+                }
+            }
+        } else {
+            console.warn('⚠️ Learning hint element not found! 尝试其他选择器...');
+            // 尝试其他可能的选择器
+            const altLearningHint = document.querySelector('[class*="learning"], [class*="hint"], [class*="recommend"]');
+            console.log('🔍 Alternative learning hint found:', !!altLearningHint);
+            if (altLearningHint) {
+                console.log('🔍 Alternative element text:', altLearningHint.textContent.trim());
+            }
+        }
+
+        // 查找并翻译警告信息
+        const warningElements = memorySection.querySelectorAll('.warning, .alert, [data-i18n*="warning"], [data-i18n*="clear"]');
+        console.log('🔍 Warning elements found:', warningElements.length);
+        warningElements.forEach((warning, index) => {
+            const text = warning.textContent.trim();
+            console.log(`🔍 Warning ${index} text:`, text);
+            if (isChineseMode && text.includes('此操作将清除所有学习记录和进度')) {
+                // 看起来是正确的中文，不需要改变
+                console.log(`ℹ️ Warning ${index} is correct Chinese`);
+            } else if (!isChineseMode && text.includes('此操作将清除所有学习记录和进度')) {
+                // 需要翻译成英文
+                warning.textContent = i18n.t('memory.clearProgressWarning');
+                console.log(`✅ Translated warning ${index} to English`);
+            } else if (isChineseMode && text.includes('This operation will clear all learning records')) {
+                // 需要翻译成中文
+                warning.textContent = i18n.t('memory.clearProgressWarning');
+                console.log(`✅ Translated warning ${index} to Chinese`);
             }
         });
 
-        // 更新分类学习标题
-        const categoryLearningTitles = document.querySelectorAll('h3');
-        categoryLearningTitles.forEach(title => {
-            if (title.textContent.includes('分类学习') || title.textContent.includes('Category Learning')) {
-                title.textContent = i18nData[lang]?.memory?.categoryLearning || '📂 Category Learning';
+        // 查找并翻译分类学习标题
+        const categoryTitles = memorySection.querySelectorAll('h3, .category-title, [data-i18n*="category"]');
+        console.log('🔍 Category titles found:', categoryTitles.length);
+        categoryTitles.forEach((title, index) => {
+            const text = title.textContent.trim();
+            console.log(`🔍 Category title ${index} text:`, text);
+
+            // 翻译主标题
+            if (isChineseMode && text.includes('Category Learning')) {
+                title.textContent = i18n.t('memory.categoryLearning');
+                console.log(`✅ Translated category title ${index} to Chinese`);
+            } else if (!isChineseMode && (text.includes('大洲分类学习') || text.includes('分类学习'))) {
+                title.textContent = i18n.t('memory.categoryLearning');
+                console.log(`✅ Translated category title ${index} to English`);
+            }
+
+            // 翻译具体分类名称（如Europe(1), Africa(1)等）
+            if (isChineseMode) {
+                // 检查是否是英文分类名称需要翻译为中文
+                const englishCategoryPatterns = [
+                    /Europe\((\d+)\)/g,
+                    /Africa\((\d+)\)/g,
+                    /Asia\((\d+)\)/g,
+                    /North America\((\d+)\)/g,
+                    /South America/g,
+                    /Oceania\((\d+)\)/g
+                ];
+
+                let translated = false;
+                for (const pattern of englishCategoryPatterns) {
+                    if (pattern.test(text)) {
+                        // 使用EnhancedMemorySystem的翻译函数
+                        if (window.EnhancedMemorySystem && typeof window.EnhancedMemorySystem.getLocalizedCategoryName === 'function') {
+                            // 从分类名称中提取原始键名
+                            const categoryKey = text.replace(/Europe\((\d+)\)/, 'europe.$1')
+                                                   .replace(/Africa\((\d+)\)/, 'africa.$1')
+                                                   .replace(/Asia\((\d+)\)/, 'asia.$1')
+                                                   .replace(/North America\((\d+)\)/, 'northAmerica.$1')
+                                                   .replace(/South America/, 'southAmerica')
+                                                   .replace(/Oceania\((\d+)\)/, 'oceania.$1');
+
+                            const categoryData = window.EnhancedMemorySystem.categories[categoryKey];
+                            if (categoryData) {
+                                const localizedCategory = window.EnhancedMemorySystem.getLocalizedCategoryName(categoryKey, categoryData);
+                                title.textContent = localizedCategory;
+                                console.log(`✅ Translated category title ${index}: ${text} -> ${localizedCategory}`);
+                                translated = true;
+                                break;
+                            }
+                        }
+
+                        // 如果EnhancedMemorySystem不可用，使用i18n直接翻译
+                        if (!translated) {
+                            const categoryKey = text.replace(/Europe\((\d+)\)/, 'europe.$1')
+                                                   .replace(/Africa\((\d+)\)/, 'africa.$1')
+                                                   .replace(/Asia\((\d+)\)/, 'asia.$1')
+                                                   .replace(/North America\((\d+)\)/, 'northAmerica.$1')
+                                                   .replace(/South America/, 'southAmerica')
+                                                   .replace(/Oceania\((\d+)\)/, 'oceania.$1');
+
+                            const translation = i18n.t(`memory.category.${categoryKey}`);
+                            if (translation !== `memory.category.${categoryKey}`) {
+                                title.textContent = translation;
+                                console.log(`✅ Translated category title ${index}: ${text} -> ${translation}`);
+                            }
+                        }
+                        break;
+                    }
+                }
+            } else {
+                // 英文模式下，检查是否是中文分类名称需要翻译为英文
+                const chineseCategoryPatterns = [
+                    /欧洲（(\d+)）/g,
+                    /非洲（(\d+)）/g,
+                    /亚洲（(\d+)）/g,
+                    /北美洲（(\d+)）/g,
+                    /南美洲/g,
+                    /大洋洲（(\d+)）/g
+                ];
+
+                let translated = false;
+                for (const pattern of chineseCategoryPatterns) {
+                    if (pattern.test(text)) {
+                        // 使用EnhancedMemorySystem的翻译函数
+                        if (window.EnhancedMemorySystem && typeof window.EnhancedMemorySystem.getLocalizedCategoryName === 'function') {
+                            // 从分类名称中提取原始键名
+                            const categoryKey = text.replace(/欧洲（(\d+)）/g, 'europe.$1')
+                                                   .replace(/非洲（(\d+)）/g, 'africa.$1')
+                                                   .replace(/亚洲（(\d+)）/g, 'asia.$1')
+                                                   .replace(/北美洲（(\d+)）/g, 'northAmerica.$1')
+                                                   .replace(/南美洲/g, 'southAmerica')
+                                                   .replace(/大洋洲（(\d+)）/g, 'oceania.$1');
+
+                            const categoryData = window.EnhancedMemorySystem.categories[categoryKey];
+                            if (categoryData) {
+                                const localizedCategory = window.EnhancedMemorySystem.getLocalizedCategoryName(categoryKey, categoryData);
+                                title.textContent = localizedCategory;
+                                console.log(`✅ Translated category title ${index}: ${text} -> ${localizedCategory}`);
+                                translated = true;
+                                break;
+                            }
+                        }
+
+                        // 如果EnhancedMemorySystem不可用，使用i18n直接翻译
+                        if (!translated) {
+                            const categoryKey = text.replace(/欧洲（(\d+)）/g, 'europe.$1')
+                                                   .replace(/非洲（(\d+)）/g, 'africa.$1')
+                                                   .replace(/亚洲（(\d+)）/g, 'asia.$1')
+                                                   .replace(/北美洲（(\d+)）/g, 'northAmerica.$1')
+                                                   .replace(/南美洲/g, 'southAmerica')
+                                                   .replace(/大洋洲（(\d+)）/g, 'oceania.$1');
+
+                            const translation = i18n.t(`memory.category.${categoryKey}`);
+                            if (translation !== `memory.category.${categoryKey}`) {
+                                title.textContent = translation;
+                                console.log(`✅ Translated category title ${index}: ${text} -> ${translation}`);
+                            }
+                        }
+                        break;
+                    }
+                }
             }
         });
 
-        // 更新统计文本（包括内联样式的统计文本）
-        const statLabels = document.querySelectorAll('.stat-label, div[style*="font-size: 0.9rem; opacity: 0.9;"]');
-        statLabels.forEach(label => {
+        // 查找并翻译学习进度相关文本
+        const progressElements = memorySection.querySelectorAll('.progress, .learning-progress, [data-i18n*="progress"]');
+        console.log('🔍 Progress elements found:', progressElements.length);
+        progressElements.forEach((progress, index) => {
+            const text = progress.textContent.trim();
+            console.log(`🔍 Progress element ${index} text:`, text);
+            // 检查是否包含需要翻译的进度文本
+            if (isChineseMode && (text.includes('Progress') || text.includes('Learned'))) {
+                // 重新生成整个进度区域
+                if (window.enhancedMemorySystem) {
+                    window.enhancedMemorySystem.displayOverview();
+                    console.log(`✅ Refreshed progress display to Chinese`);
+                }
+            } else if (!isChineseMode && (text.includes('进度') || text.includes('已学习'))) {
+                // 重新生成整个进度区域
+                if (window.enhancedMemorySystem) {
+                    window.enhancedMemorySystem.displayOverview();
+                    console.log(`✅ Refreshed progress display to English`);
+                }
+            }
+        });
+    }
+
+    // 最后兜底：查找所有可能包含硬编码文本的元素并强制翻译
+    console.log('🔧 最终兜底：查找并翻译所有硬编码文本');
+    forceTranslateHardcodedText();
+
+    // 专门处理记忆训练模块的翻译
+    console.log('🔧 记忆训练模块专用翻译器');
+    translateMemoryTrainingModule();
+
+    // 添加通用键值翻译器作为最后兜底
+    console.log('🔧 通用键值翻译器：处理所有未翻译的键值');
+    const memSection = document.getElementById('memory-section');
+    if (memSection) {
+        const allElements = memSection.querySelectorAll('*');
+        allElements.forEach(element => {
+            if (element.children.length === 0 && element.textContent) {
+                const text = element.textContent.trim();
+                // 检查是否是未翻译的键值
+                if (text.startsWith('memory.') || text.includes('memory.')) {
+                    const translatedText = i18n.t(text);
+                    if (translatedText !== text) {
+                        element.textContent = translatedText;
+                        console.log('✅ 通用翻译器处理:', text, '->', translatedText);
+                    }
+                }
+            }
+        });
+    }
+
+    // 再次调用 fixTranslationKeyElements 作为兜底
+    console.log('🔧 最后兜底：调用 fixTranslationKeyElements');
+    fixTranslationKeyElements();
+
+    console.log('🚨🚨🚨 forceTranslateAllMemoryElements 执行完成');
+}
+
+// 强制翻译硬编码文本的兜底函数
+function forceTranslateHardcodedText() {
+    console.log('🔥🔥🔥 forceTranslateHardcodedText 开始执行');
+
+    const isChineseMode = i18n.currentLanguage === 'zh';
+    console.log('🔥 当前语言模式:', isChineseMode ? '中文' : '英文');
+
+    // 查找所有可能包含硬编码文本的元素
+    const allElements = document.querySelectorAll('*');
+    console.log('🔥 检查所有DOM元素，总数:', allElements.length);
+
+    let translatedCount = 0;
+
+    allElements.forEach((element) => {
+        if (element.children.length === 0) { // 只检查叶子节点
+            const text = element.textContent.trim();
+
+            // 系统推荐信息翻译 - 使用智能翻译
+            if (isChineseMode && text.includes('System recommends learning')) {
+                // 提取推荐分类并翻译
+                const match = text.match(/"([^"]+)"/);
+                if (match) {
+                    const category = match[1];
+                    let localizedCategory = category; // 默认使用原始分类名
+
+                    // 如果有EnhancedMemorySystem实例，使用它的翻译函数
+                    if (window.EnhancedMemorySystem && typeof window.EnhancedMemorySystem.getLocalizedCategoryName === 'function') {
+                        // 尝试从categories获取数据
+                        const categoryData = window.EnhancedMemorySystem.categories[category];
+                        if (categoryData) {
+                            localizedCategory = window.EnhancedMemorySystem.getLocalizedCategoryName(category, categoryData);
+                        }
+                    } else {
+                        // 备选方案：直接使用i18n翻译键
+                        const translation = i18n.t(`memory.category.${category}`);
+                        if (translation !== `memory.category.${category}`) {
+                            localizedCategory = translation;
+                        }
+                    }
+                    element.textContent = i18n.t('memory.systemRecommendation', {category: localizedCategory});
+                    translatedCount++;
+                    console.log('🔥 翻译了系统推荐信息为中文:', text);
+                }
+            } else if (!isChineseMode && text.includes('系统推荐学习')) {
+                // 提取推荐分类并翻译
+                const match = text.match(/"([^"]+)"/);
+                if (match) {
+                    const category = match[1];
+                    let localizedCategory = category; // 默认使用原始分类名
+
+                    // 如果有EnhancedMemorySystem实例，使用它的翻译函数
+                    if (window.EnhancedMemorySystem && typeof window.EnhancedMemorySystem.getLocalizedCategoryName === 'function') {
+                        // 尝试从categories获取数据
+                        const categoryData = window.EnhancedMemorySystem.categories[category];
+                        if (categoryData) {
+                            localizedCategory = window.EnhancedMemorySystem.getLocalizedCategoryName(category, categoryData);
+                        }
+                    } else {
+                        // 备选方案：直接使用i18n翻译键
+                        const translation = i18n.t(`memory.category.${category}`);
+                        if (translation !== `memory.category.${category}`) {
+                            localizedCategory = translation;
+                        }
+                    }
+                    element.textContent = i18n.t('memory.systemRecommendation', {category: localizedCategory});
+                    translatedCount++;
+                    console.log('🔥 翻译了系统推荐信息为英文:', text);
+                }
+            }
+
+            // 警告信息翻译
+            if (isChineseMode && text.includes('This operation will clear all learning records')) {
+                element.textContent = i18n.t('memory.clearWarning');
+                translatedCount++;
+                console.log('🔥 翻译了警告信息为中文:', text);
+            } else if (!isChineseMode && text.includes('此操作将清除所有学习记录和进度')) {
+                element.textContent = i18n.t('memory.clearWarning');
+                translatedCount++;
+                console.log('🔥 翻译了警告信息为英文:', text);
+            }
+
+            // 分类学习标题翻译
+            if (isChineseMode && text.includes('Category Learning')) {
+                element.textContent = i18n.t('memory.categoryLearning');
+                translatedCount++;
+                console.log('🔥 翻译了分类学习标题为中文:', text);
+            } else if (!isChineseMode && (text.includes('大洲分类学习') || text.includes('分类学习'))) {
+                element.textContent = i18n.t('memory.categoryLearning');
+                translatedCount++;
+                console.log('🔥 翻译了分类学习标题为英文:', text);
+            }
+
+            // 分类描述和学习技巧翻译现在由统一的i18n系统处理
+            // 这些硬编码翻译已移除，因为i18n.json已包含相应翻译键
+
+            // 进度显示翻译
+            if (isChineseMode && text.includes('Learned') && !text.includes('已学习')) {
+                element.textContent = text.replace('Learned', '已学习');
+                translatedCount++;
+                console.log('🔥 翻译了进度显示为中文:', text);
+            } else if (!isChineseMode && text.includes('已学习') && !text.includes('Learned')) {
+                element.textContent = text.replace('已学习', 'Learned');
+                translatedCount++;
+                console.log('🔥 翻译了进度显示为英文:', text);
+            }
+
+            // "个" 单位翻译
+            if (isChineseMode && text.match(/\d+\s+Learned/)) {
+                element.textContent = text.replace(/(\d+)\s+Learned/, '$1 已学习');
+                translatedCount++;
+                console.log('🔥 翻译了"个"单位为中文:', text);
+            } else if (!isChineseMode && text.match(/\d+\s+已学习/)) {
+                element.textContent = text.replace(/(\d+)\s+已学习/, '$1 Learned');
+                translatedCount++;
+                console.log('🔥 翻译了"个"单位为英文:', text);
+            }
+        }
+    });
+
+    console.log(`🔥🔥🔥 forceTranslateHardcodedText 完成，共翻译了 ${translatedCount} 个元素`);
+}
+
+// 调试函数：检查当前记忆训练模块DOM状态
+function debugMemoryModuleDOMState() {
+    console.log('🔍🔍🔍 debugMemoryModuleDOMState 开始检查');
+
+    const memorySection = document.getElementById('memory-section');
+    const studySection = document.getElementById('study-section');
+
+    console.log('🔍 DOM 状态检查:', {
+        memorySection: !!memorySection,
+        studySection: !!studySection,
+        memorySectionDisplay: memorySection ? memorySection.style.display : 'N/A',
+        studySectionDisplay: studySection ? studySection.style.display : 'N/A',
+        memorySectionVisible: memorySection ? memorySection.style.display !== 'none' : false,
+        studySectionVisible: studySection ? studySection.style.display !== 'none' : false
+    });
+
+    // 检查记忆训练主页面元素
+    if (memorySection) {
+        const learningHint = memorySection.querySelector('.learning-hint');
+        const continueBtn = memorySection.querySelector('#continueBtn');
+        const clearBtn = memorySection.querySelector('#clearBtn');
+
+        console.log('📚 记忆训练主页面元素:', {
+            learningHint: !!learningHint,
+            learningHintText: learningHint ? learningHint.textContent.trim() : 'N/A',
+            continueBtn: !!continueBtn,
+            continueBtnText: continueBtn ? continueBtn.textContent.trim() : 'N/A',
+            clearBtn: !!clearBtn,
+            clearBtnText: clearBtn ? clearBtn.textContent.trim() : 'N/A'
+        });
+    }
+
+    // 检查学习页面元素
+    if (studySection) {
+        const beginBtn = studySection.querySelector('#beginStudyBtn');
+        const studyLearningHint = studySection.querySelector('.learning-hint');
+        const categoryDesc = studySection.querySelector('.category-description');
+        const tipsContent = studySection.querySelector('.tips-content');
+
+        console.log('📖 学习页面元素:', {
+            beginBtn: !!beginBtn,
+            beginBtnText: beginBtn ? beginBtn.textContent.trim() : 'N/A',
+            studyLearningHint: !!studyLearningHint,
+            studyLearningHintText: studyLearningHint ? studyLearningHint.textContent.trim() : 'N/A',
+            categoryDesc: !!categoryDesc,
+            categoryDescText: categoryDesc ? categoryDesc.textContent.trim() : 'N/A',
+            tipsContent: !!tipsContent,
+            tipsContentText: tipsContent ? tipsContent.textContent.trim() : 'N/A'
+        });
+    }
+
+    console.log('🔍🔍🔍 debugMemoryModuleDOMState 检查完成');
+}
+
+// 更新静态记忆训练元素
+function updateStaticMemoryElements() {
+    // 更新学习概览标题
+    const overviewTitles = document.querySelectorAll('h2');
+    overviewTitles.forEach(title => {
+        if (title.textContent.includes('学习概览') || title.textContent.includes('Learning Overview')) {
+            title.textContent = i18n.t('memory.overviewTitle');
+        }
+    });
+
+    // 更新分类学习标题
+    const categoryLearningTitles = document.querySelectorAll('h3');
+    categoryLearningTitles.forEach(title => {
+        if (title.textContent.includes('分类学习') || title.textContent.includes('Category Learning') ||
+            title.textContent.includes('大洲分类学习') || title.textContent.includes('Continent Learning')) {
+            title.textContent = i18n.t('memory.categoryLearning');
+        }
+    });
+
+    // 更新所有按钮文本
+    document.querySelectorAll('button').forEach(button => {
+        const btnText = button.textContent.trim();
+
+        // 开始学习按钮
+        if (btnText.includes('开始学习') || btnText.includes('Start Learning')) {
+            button.textContent = i18n.t('memory.startButton');
+        }
+
+        // 清除进度按钮
+        if (btnText.includes('清除学习进度') || btnText.includes('Clear Progress')) {
+            button.textContent = i18n.t('memory.clearProgress');
+        }
+
+        // 返回按钮
+        if (btnText.includes('返回首页') || btnText.includes('Return Home')) {
+            button.textContent = i18n.t('memory.returnHome');
+        }
+
+        // 继续学习按钮
+        if (btnText.includes('继续学习') || btnText.includes('Continue Learning')) {
+            button.textContent = i18n.t('memory.continueStudy');
+        }
+    });
+
+    // 更新统计文本（包括内联样式的统计文本）
+    const statLabels = document.querySelectorAll('.stat-label, div[style*="font-size: 0.9rem; opacity: 0.9;"]');
+    statLabels.forEach(label => {
             const text = label.textContent.trim();
             switch(text) {
                 case '已学习':
                 case 'Learned':
-                    label.textContent = i18nData[lang]?.memory?.statsLearned || 'Learned';
+                    label.textContent = i18n.t('memory.statsLearned');
                     break;
                 case '总数量':
                 case 'Total':
-                    label.textContent = i18nData[lang]?.memory?.statsTotal || 'Total';
+                    label.textContent = i18n.t('memory.statsTotal');
                     break;
                 case '完成度':
                 case 'Progress':
-                    label.textContent = i18nData[lang]?.memory?.statsProgress || 'Progress';
+                    label.textContent = i18n.t('memory.statsProgress');
                     break;
                 case '今日学习':
                 case 'Today':
-                    label.textContent = i18nData[lang]?.memory?.statsToday || 'Today';
+                    label.textContent = i18n.t('memory.statsToday');
                     break;
                 case '学习数量':
-                    label.textContent = i18nData[lang]?.memory?.statsLearned || 'Learned';
+                    label.textContent = i18n.t('memory.statsLearned');
                     break;
                 case '新掌握':
                 case 'New':
-                    label.textContent = i18nData[lang]?.memory?.statsNew || 'New';
+                    label.textContent = i18n.t('memory.statsNew');
                     break;
                 case '用时':
                 case 'Time':
-                    label.textContent = i18nData[lang]?.memory?.statsTime || 'Time';
+                    label.textContent = i18n.t('memory.statsTime');
                     break;
             }
         });
 
-        // 更新学习进度文本
-        const progressContainers = document.querySelectorAll('div[style*="background: rgba(255,255,255,0.2)"]');
-        progressContainers.forEach(container => {
-            const spans = container.querySelectorAll('span');
-            spans.forEach(span => {
-                if (span.textContent.includes('学习进度') || span.textContent.includes('Learning Progress')) {
-                    span.textContent = i18nData[lang]?.memory?.learningProgress || 'Learning Progress';
-                }
-            });
-        });
-
-        // 更新特定进度文本（模板中硬编码的）
-        const progressLabels = document.querySelectorAll('div[style*="background: rgba(255,255,255,0.2)"] span:first-child');
-        progressLabels.forEach(label => {
-            if (label.textContent.includes('学习进度') || label.textContent.includes('Learning Progress')) {
-                label.textContent = i18nData[lang]?.memory?.learningProgress || 'Learning Progress';
+    // 更新学习进度文本
+    const progressContainers = document.querySelectorAll('div[style*="background: rgba(255,255,255,0.2)"]');
+    progressContainers.forEach(container => {
+        const spans = container.querySelectorAll('span');
+        spans.forEach(span => {
+            if (span.textContent.includes('学习进度') || span.textContent.includes('Learning Progress')) {
+                span.textContent = i18n.t('memory.learningProgress');
             }
         });
+    });
 
-        // 更新系统提示
-        const hints = document.querySelectorAll('.learning-hint');
-        hints.forEach(hint => {
-            if (hint.textContent.includes('系统会智能选择最适合的学习分类') || 
-                hint.textContent.includes('The system will intelligently select')) {
-                hint.innerHTML = i18nData[lang]?.memory?.systemSmartHint || '💡 The system will intelligently select the most suitable learning category, focusing on one level at a time';
-            }
-        });
-
-        // 更新完成提示
-        const completeMessages = document.querySelectorAll('.overall-complete');
-        completeMessages.forEach(msg => {
-            if (msg.textContent.includes('太棒了！你已掌握所有国旗') || 
-                msg.textContent.includes('Great! You have mastered all flags')) {
-                msg.textContent = i18nData[lang]?.memory?.allFlagsMastered || '🎉 Great! You have mastered all flags';
-            }
-        });
-
-        // 更新学习完成提示
-        const sessionMessages = document.querySelectorAll('.session-type-text');
-        sessionMessages.forEach(msg => {
-            if (msg.textContent.includes('太棒了！你完成了学习') ||
-                msg.textContent.includes('Excellent! You have completed')) {
-                msg.textContent = i18nData[lang]?.memory?.studyCompleteMessage || 'Excellent! You have completed the learning session';
-            }
-        });
-
-        // 更新学习完成页面的标题和统计标签
-        const completeTitle = document.querySelectorAll('h3');
-        completeTitle.forEach(title => {
-            if (title.textContent.includes('学习完成！') || title.textContent.includes('Study Complete!')) {
-                title.textContent = i18nData[lang]?.memory?.studyComplete || '🎊 Study Complete!';
-            }
-        });
-
-        // 更新学习完成页面的统计标签
-        const statsLabels = document.querySelectorAll('div[style*="background: rgba(255,255,255,0.2)"] div:last-child');
-        statsLabels.forEach(label => {
-            if (label.textContent.includes('学习数量')) {
-                label.textContent = i18nData[lang]?.memory?.statsLearned || 'Learned';
-            } else if (label.textContent.includes('新掌握')) {
-                label.textContent = i18nData[lang]?.memory?.statsNew || 'New';
-            } else if (label.textContent.includes('用时')) {
-                label.textContent = i18nData[lang]?.memory?.statsTime || 'Time';
-            }
-        });
-
-        // 更新学习完成页面的按钮
-        const returnHomeBtns = document.querySelectorAll('.return-home-btn');
-        returnHomeBtns.forEach(btn => {
-            if (btn.textContent.includes('🏠 返回首页')) {
-                btn.innerHTML = '🏠 ' + (i18nData[lang]?.memory?.returnHome || 'Return Home');
-            }
-        });
-
-        const continueStudyBtns = document.querySelectorAll('.continue-study-btn');
-        continueStudyBtns.forEach(btn => {
-            if (btn.textContent.includes('🎲 继续学习')) {
-                btn.innerHTML = '🎲 ' + (i18nData[lang]?.memory?.continueStudy || 'Continue Learning');
-            }
-        });
-
-        // 更新开始学习按钮
-        const startButtons = document.querySelectorAll('.btn-text');
-        startButtons.forEach(btn => {
-            if (btn.textContent.includes('开始学习') || btn.textContent.includes('Start Learning')) {
-                btn.textContent = i18nData[lang]?.memory?.startButton || 'Start Learning';
-            }
-        });
-
-        // 更新清除进度按钮
-        const clearButtons = document.querySelectorAll('.clear-memory-btn');
-        clearButtons.forEach(btn => {
-            if (btn.textContent.includes('清除学习进度') || btn.textContent.includes('Clear Progress')) {
-                btn.innerHTML = '🗑️ ' + (i18nData[lang]?.memory?.clearProgress || 'Clear Progress');
-            }
-        });
-
-        console.log('Memory module text updated successfully');
-
-        // 重新渲染分类卡片以确保翻译正确
-        if (typeof EnhancedMemorySystem !== 'undefined' && typeof EnhancedMemorySystem.renderCategories === 'function') {
-            console.log('Re-rendering category cards with new language...');
-            EnhancedMemorySystem.renderCategories();
+    // 更新系统提示和提示文字
+    const hints = document.querySelectorAll('.learning-hint, .hint');
+    hints.forEach(hint => {
+        const hintText = hint.textContent.trim();
+        if (hintText.includes('系统会智能选择最适合的学习分类') ||
+            hintText.includes('The system will intelligently select')) {
+            hint.innerHTML = i18n.t('memory.systemSmartHint');
+        } else if (hintText.includes('💡 系统会智能选择最适合的学习分类')) {
+            hint.innerHTML = i18n.t('memory.systemSmartHint');
         }
-    } else {
-        console.log('Memory section is not visible, skipping dynamic content update');
-    }
+    });
+
+    // 更新完成提示
+    const completeMessages = document.querySelectorAll('.overall-complete, .complete-message');
+    completeMessages.forEach(msg => {
+        const msgText = msg.textContent.trim();
+        if (msgText.includes('太棒了！你已掌握所有国旗') ||
+            msgText.includes('Great! You have mastered all flags')) {
+            msg.textContent = i18n.t('memory.allFlagsMastered');
+        }
+    });
+
+    // 更新分类卡片文本
+    updateCategoryCardsText();
+
+    // 更新学习完成提示
+    const sessionMessages = document.querySelectorAll('.session-type-text');
+    sessionMessages.forEach(msg => {
+        const msgText = msg.textContent.trim();
+        if (msgText.includes('太棒了！你完成了学习') ||
+            msgText.includes('Excellent! You have completed')) {
+            msg.textContent = i18n.t('memory.studyCompleteMessage');
+        }
+    });
+}
+
+// 更新分类卡片文本的函数
+function updateCategoryCardsText() {
+    if (!i18n.loaded) return;
+
+    console.log('Updating category cards text...');
+
+    // 更新分类卡片中的文本
+    const categoryCards = document.querySelectorAll('.category-card');
+    categoryCards.forEach(card => {
+        // 更新分类标题
+        const categoryTitle = card.querySelector('.category-title');
+        if (categoryTitle) {
+            // 这里需要根据实际的数据结构来更新
+            // 如果有data属性，使用data属性；否则保持原样
+        }
+
+        // 更新分类描述
+        const categoryDesc = card.querySelector('.category-description');
+        if (categoryDesc) {
+            const currentDesc = categoryDesc.textContent.trim();
+            if (currentDesc.includes('个国家的国旗') || currentDesc.includes('countries\' flags')) {
+                // 需要重新生成描述
+                const categoryName = card.getAttribute('data-category');
+                if (categoryName) {
+                    const countryCount = card.getAttribute('data-count') || 0;
+                    categoryDesc.textContent = i18n.t('memory.categoryDescription', {count: countryCount});
+                }
+            }
+        }
+
+        // 更新按钮文本
+        const startBtn = card.querySelector('.start-category-btn');
+        if (startBtn && startBtn.textContent.includes('开始学习')) {
+            startBtn.textContent = i18n.t('memory.startButton');
+        }
+    });
+
+    // 更新返回按钮
+    const returnButtons = document.querySelectorAll('.return-memory-btn, button[onclick*="returnToMemory"]');
+    returnButtons.forEach(btn => {
+        if (btn.textContent.includes('返回') || btn.textContent.includes('Return')) {
+            btn.textContent = i18n.t('memory.returnToMemory');
+        }
+    });
+
+    // 更新各种提示文本
+    updateAllHintsText();
+}
+
+// 更新所有提示文本
+function updateAllHintsText() {
+    // 更新学习提示
+    const hints = document.querySelectorAll('.hint, .tip, .learning-hint');
+    hints.forEach(hint => {
+        const hintText = hint.textContent.trim();
+        if (hintText.includes('💡 系统会智能选择最适合的学习分类') ||
+            hintText.includes('💡 The system will intelligently select')) {
+            hint.innerHTML = i18n.t('memory.systemSmartHint');
+        } else if (hintText.includes('点击开始按钮将进入该分类的学习模式') ||
+                   hintText.includes('Click the start button to enter learning mode')) {
+            hint.textContent = i18n.t('memory.clickStartToLearn');
+        }
+    });
+}
+
+// 清理所有学习完成的提示文本
+function updateCompleteMessages() {
+    const completeTitle = document.querySelectorAll('h3');
+    completeTitle.forEach(title => {
+        if (title.textContent.includes('学习完成！') || title.textContent.includes('Study Complete!')) {
+            title.textContent = i18n.t('memory.studyComplete');
+        }
+    });
 }
 
 // 获取嵌套对象值
@@ -3001,13 +5113,341 @@ function updateSortButtons(lang) {
     });
 }
 
-// 语言切换事件监听
-document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('lang-btn')) {
-        const lang = e.target.getAttribute('data-lang');
-        updateLanguage(lang);
+// 专门处理记忆训练模块的翻译函数
+function translateMemoryTrainingModule() {
+    console.log('🧠 专门翻译记忆训练模块...');
+    const isChineseMode = i18n.currentLanguage === 'zh';
+
+    // 处理分类标题 - 专门针对分类卡片
+    const categoryTitles = document.querySelectorAll('.category-title, h4');
+    categoryTitles.forEach(element => {
+        const text = element.textContent.trim();
+        // 处理分类名称，如 Europe(1) -> 欧洲（1）
+        if (isChineseMode) {
+            // 英文到中文的分类名称翻译
+            const categoryEnToZh = {
+                'Europe': '欧洲',
+                'Africa': '非洲',
+                'Asia': '亚洲',
+                'North America': '北美洲',
+                'South America': '南美洲',
+                'Oceania': '大洋洲'
+            };
+
+            let newText = text;
+            Object.entries(categoryEnToZh).forEach(([en, zh]) => {
+                // 匹配 Europe(1) 格式并转换为 欧洲（1）
+                newText = newText.replace(new RegExp(`${en}\\((\\d+)\\)`, 'g'), `${zh}（$1）`);
+                // 匹配 Europe 格式并转换为 欧洲
+                newText = newText.replace(new RegExp(en, 'g'), zh);
+            });
+
+            if (newText !== text) {
+                element.textContent = newText;
+                console.log('✅ 翻译分类标题:', text, '->', newText);
+            }
+        }
+    });
+
+    // 处理学习技巧标题
+    const tipsElements = document.querySelectorAll('.tips-title, [class*="tip"]');
+    tipsElements.forEach(element => {
+        const text = element.textContent.trim();
+        if (isChineseMode && (text === 'Study Tips' || text === '💡 Study Tips')) {
+            element.textContent = '💡 学习技巧';
+            console.log('✅ 翻译学习技巧标题:', text, '->', '💡 学习技巧');
+        } else if (!isChineseMode && (text === '💡 学习技巧' || text === '学习技巧')) {
+            element.textContent = '💡 Study Tips';
+            console.log('✅ 翻译学习技巧标题:', text, '->', '💡 Study Tips');
+        }
+    });
+
+    // 处理最后学习时间
+    const lastStudiedElements = document.querySelectorAll('.last-studied, [class*="studied"]');
+    lastStudiedElements.forEach(element => {
+        let text = element.textContent.trim();
+        if (isChineseMode && text.startsWith('Last studied:')) {
+            text = text.replace('Last studied:', '上次学习:');
+            element.textContent = text;
+            console.log('✅ 翻译最后学习时间:', text);
+        } else if (!isChineseMode && text.startsWith('上次学习:')) {
+            text = text.replace('上次学习:', 'Last studied:');
+            element.textContent = text;
+            console.log('✅ 翻译最后学习时间:', text);
+        }
+    });
+
+    // 处理警告信息
+    const warningElements = document.querySelectorAll('.warning, .alert, [class*="warning"], [class*="clear"]');
+    warningElements.forEach(element => {
+        const text = element.textContent.trim();
+        if (isChineseMode && text.includes('This will clear all learning records and progress')) {
+            element.textContent = '⚠️ 此操作将清除所有学习记录和进度，无法恢复';
+            console.log('✅ 翻译警告信息:', text);
+        } else if (!isChineseMode && text.includes('此操作将清除所有学习记录和进度')) {
+            element.textContent = '⚠️ This will clear all learning records and progress, cannot be restored';
+            console.log('✅ 翻译警告信息:', text);
+        }
+    });
+
+    console.log('✅ 记忆训练模块翻译完成');
+}
+
+// 最终兜底翻译验证函数
+function finalTranslationValidation() {
+    console.log('🔍 最终兜底翻译验证...');
+    const isChineseMode = i18n.currentLanguage === 'zh';
+
+    // 检查所有可能遗漏的英文文本
+    const memorySection = document.getElementById('memory-section');
+    if (!memorySection) return;
+
+    const allTextElements = memorySection.querySelectorAll('*');
+    let fixedCount = 0;
+
+    allTextElements.forEach(element => {
+        if (element.children.length === 0 && element.textContent) {
+            const text = element.textContent.trim();
+
+            // 检查英文文本在中文模式下
+            if (isChineseMode) {
+                // 检查常见的英文文本模式
+                const englishPatterns = [
+                    /^Europe\(\d+\)/,  // Europe(1), Europe(2) 等
+                    /^Africa\(\d+\)/,  // Africa(1), Africa(2) 等
+                    /^Asia\(\d+\)/,    // Asia(1), Asia(2) 等
+                    /^Study Tips$/,
+                    /^💡 Study Tips$/,
+                    /^Last studied:/,
+                    /This will clear all learning records and progress/
+                ];
+
+                englishPatterns.forEach(pattern => {
+                    if (pattern.test(text)) {
+                        // 重新调用专门翻译器
+                        translateMemoryTrainingModule();
+                        fixedCount++;
+                        console.log('🔧 兜底修复英文文本:', text);
+                        return;
+                    }
+                });
+            } else {
+                // 检查中文文本在英文模式下
+                const chinesePatterns = [
+                    /^欧洲（\d+）/,  // 欧洲（1）, 欧洲（2） 等
+                    /^非洲（\d+）/,  // 非洲（1）, 非洲（2） 等
+                    /^亚洲（\d+）/,  // 亚洲（1）, 亚洲（2） 等
+                    /^💡 学习技巧$/,
+                    /^学习技巧$/,
+                    /^上次学习:/,
+                    /此操作将清除所有学习记录和进度/
+                ];
+
+                chinesePatterns.forEach(pattern => {
+                    if (pattern.test(text)) {
+                        // 重新调用专门翻译器
+                        translateMemoryTrainingModule();
+                        fixedCount++;
+                        console.log('🔧 兜底修复中文文本:', text);
+                        return;
+                    }
+                });
+            }
+        }
+    });
+
+    if (fixedCount > 0) {
+        console.log(`✅ 兜底机制修复了 ${fixedCount} 个文本`);
+    } else {
+        console.log('✅ 所有文本都已正确翻译');
     }
-});
+}
+
+// 语言切换事件监听已移至 setupEventListeners() 函数中
+
+// 测试记忆训练页面翻译修复
+window.testMemoryTranslationFix = function() {
+    console.group('🧠 测试记忆训练页面翻译修复');
+
+    // 确保在记忆训练页面
+    if (currentSection !== 'memory') {
+        console.log('📝 切换到记忆训练页面...');
+        showSection('memory');
+
+        // 等待页面加载完成
+        setTimeout(() => {
+            performMemoryTranslationTest();
+        }, 1000);
+    } else {
+        performMemoryTranslationTest();
+    }
+
+    function performMemoryTranslationTest() {
+        console.log('📋 当前状态:');
+        console.log(`- 当前语言: ${i18n.getCurrentLanguage()}`);
+        console.log(`- i18n 加载状态: ${i18n.loaded}`);
+
+        // 检查当前页面元素
+        console.log('\n🔍 检查页面元素:');
+
+        const elements = [
+            { selector: 'h2', name: '概览标题' },
+            { selector: 'h3', name: '分类标题' },
+            { selector: 'button', name: '按钮' },
+            { selector: '.stat-label', name: '统计标签' },
+            { selector: '.hint, .learning-hint', name: '提示文本' },
+            { selector: '.category-title', name: '分类卡片标题' }
+        ];
+
+        elements.forEach(({ selector, name }) => {
+            const elems = document.querySelectorAll(selector);
+            console.log(`- ${name} 数量: ${elems.length}`);
+            elems.forEach((elem, index) => {
+                if (index < 3) {
+                    const text = elem.textContent.trim();
+                    // 检查是否包含翻译键
+                    if (text.includes('.') || text.startsWith('memory.') || text.startsWith('quiz.')) {
+                        console.log(`  ${name} ${index + 1}: "${text}" ⚠️ 发现翻译键`);
+                    } else {
+                        console.log(`  ${name} ${index + 1}: "${text}"`);
+                    }
+                }
+            });
+        });
+
+        console.log('\n🔄 测试语言切换...');
+
+        // 切换到英文
+        console.log('切换到英文...');
+        i18n.setLanguage('en');
+
+        setTimeout(() => {
+            console.log('英文模式检查:');
+            elements.forEach(({ selector, name }) => {
+                const elems = document.querySelectorAll(selector);
+                elems.forEach((elem, index) => {
+                    if (index < 2) {
+                        const text = elem.textContent.trim();
+                        if (text.includes('.') || text.startsWith('memory.') || text.startsWith('quiz.')) {
+                            console.log(`  ❌ ${name} ${index + 1}: "${text}" (未修复)`);
+                        } else {
+                            console.log(`  ✅ ${name} ${index + 1}: "${text}"`);
+                        }
+                    }
+                });
+            });
+
+            // 切换回中文
+            console.log('\n切换回中文...');
+            i18n.setLanguage('zh');
+
+            setTimeout(() => {
+                console.log('中文模式检查:');
+                elements.forEach(({ selector, name }) => {
+                    const elems = document.querySelectorAll(selector);
+                    elems.forEach((elem, index) => {
+                        if (index < 2) {
+                            const text = elem.textContent.trim();
+                            if (text.includes('.') || text.startsWith('memory.') || text.startsWith('quiz.')) {
+                                console.log(`  ❌ ${name} ${index + 1}: "${text}" (未修复)`);
+                            } else {
+                                console.log(`  ✅ ${name} ${index + 1}: "${text}"`);
+                            }
+                        }
+                    });
+                });
+
+                console.log('\n✅ 记忆训练页面翻译测试完成！');
+                console.log('💡 如果所有元素都正确显示中英文，说明修复成功');
+                console.groupEnd();
+            }, 500);
+        }, 500);
+    }
+
+    return {
+        currentLanguage: i18n.getCurrentLanguage(),
+        currentSection: currentSection,
+        isLoaded: i18n.loaded
+    };
+};
+
+// 测试国旗卡片名称显示修复
+window.testFlagCardNames = function() {
+    console.group('🏳️ 测试国旗卡片名称显示修复');
+
+    // 确保在浏览模式
+    if (currentSection !== 'browse') {
+        console.log('📝 切换到浏览模式...');
+        showSection('browse');
+
+        // 等待页面加载完成
+        setTimeout(() => {
+            performNameTest();
+        }, 1000);
+    } else {
+        performNameTest();
+    }
+
+    function performNameTest() {
+        const flagCards = document.querySelectorAll('.flag-card');
+        console.log(`找到 ${flagCards.length} 个国旗卡片`);
+
+        if (flagCards.length === 0) {
+            console.log('⚠️ 没有找到国旗卡片，正在生成...');
+            displayFlags();
+            setTimeout(() => {
+                performNameTest();
+            }, 1000);
+            return;
+        }
+
+        console.log('\n📋 检查名称显示是否正确:');
+        let hasIssues = false;
+
+        flagCards.forEach((card, index) => {
+            if (index >= 5) return; // 只检查前5个卡片
+
+            const nameCN = card.querySelector('.flag-name-cn');
+            const nameEN = card.querySelector('.flag-name-en');
+
+            const cnText = nameCN?.textContent || '无';
+            const enText = nameEN?.textContent || '无';
+
+            console.log(`\n卡片 ${index + 1}:`);
+            console.log(`  中文名称: "${cnText}"`);
+            console.log(`  英文名称: "${enText}"`);
+
+            // 检查是否两个名称相同（这是问题所在）
+            if (cnText === enText && cnText !== '无') {
+                console.log(`  ⚠️ 问题：中英文名称相同 "${cnText}"`);
+                hasIssues = true;
+            } else {
+                console.log(`  ✅ 正确：中英文名称不同`);
+            }
+
+            // 检查是否包含中文字符但英文名显示也是中文
+            if (/[\u4e00-\u9fa5]/.test(cnText) && /[\u4e00-\u9fa5]/.test(enText)) {
+                console.log(`  ⚠️ 问题：英文名显示为中文`);
+                hasIssues = true;
+            }
+        });
+
+        if (!hasIssues) {
+            console.log('\n✅ 所有国旗卡片的名称显示都正确！');
+            console.log('中文和英文名称分别正确显示');
+        } else {
+            console.log('\n❌ 发现名称显示问题，请检查修复效果');
+        }
+
+        console.groupEnd();
+    }
+
+    return {
+        currentLanguage: i18n.getCurrentLanguage(),
+        currentSection: currentSection,
+        cardCount: document.querySelectorAll('.flag-card').length
+    };
+};
 
 // 3D地球仪相关变量
 let globeScene, globeCamera, globeRenderer, globeControls;
@@ -3912,8 +6352,49 @@ window.addEventListener('resize', () => {
 
 // 初始化应用
 window.addEventListener('DOMContentLoaded', async () => {
-    await loadI18nData();
-    init();
+    try {
+        console.log('🚀 开始初始化应用...');
 
-    console.log('🏳️ 国旗系统已完全初始化');
+        // 首先加载国际化数据
+        await loadI18nData();
+        console.log('✅ i18n 数据加载完成');
+
+        // 初始化应用功能
+        await init();
+        console.log('✅ 应用初始化完成');
+
+        console.log('🏳️ 国旗系统已完全初始化');
+    } catch (error) {
+        console.error('❌ 初始化失败:', error);
+    }
 });
+
+// 紧急恢复函数 - 如果页面显示异常，可在控制台调用此函数
+window.emergencyRecovery = function() {
+    console.log('🚨 执行紧急恢复...');
+
+    try {
+        // 强制显示浏览模式
+        showSection('browse');
+
+        // 强制重新显示国旗
+        if (typeof displayFlags === 'function') {
+            displayFlags();
+        }
+
+        // 强制更新导航按钮状态
+        document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+        const browseBtn = document.getElementById('browseBtn');
+        if (browseBtn) {
+            browseBtn.classList.add('active');
+        }
+
+        console.log('✅ 紧急恢复完成');
+        return true;
+    } catch (error) {
+        console.error('❌ 紧急恢复失败:', error);
+        return false;
+    }
+};
+
+console.log('💡 如果页面显示异常，请在控制台输入: emergencyRecovery()');
