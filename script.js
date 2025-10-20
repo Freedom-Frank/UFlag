@@ -3018,6 +3018,22 @@ let hoveredCountry = null;
 let worldData = null;
 let globeInitialized = false;
 let applyGlobeInertia = null; // 惯性旋转函数
+let starField = null; // 星空对象
+let starOpacities = null; // 星星透明度数组（用于闪烁）
+let starTwinkleSpeed = null; // 星星闪烁速度数组
+
+// Canvas纹理相关变量
+let worldCanvas = null;
+let worldCanvasCtx = null;
+let worldTexture = null;
+let countryColorMap = {}; // 国家代码 -> 颜色映射
+let countryPixelMap = {}; // 像素坐标 -> 国家代码映射
+
+// ID Canvas用于精确检测国家（每个国家用唯一ID颜色）
+let idCanvas = null;
+let idCanvasCtx = null;
+let countryIdMap = {}; // ID颜色 -> 国家代码映射
+let idCounter = 1; // ID计数器
 
 // 世界地图配色方案 - 参考世界地图，每个国家使用单一鲜艳颜色
 const worldMapColorPalette = [
@@ -3111,7 +3127,7 @@ async function initGlobe() {
 
         // 设置场景
         globeScene = new THREE.Scene();
-        globeScene.background = new THREE.Color(0x000011);
+        globeScene.background = new THREE.Color(0x000000); // 纯黑背景，突出星空
 
         // 设置相机
         const width = container.clientWidth || 800;
@@ -3128,6 +3144,9 @@ async function initGlobe() {
         globeRenderer.setSize(width, height);
         globeRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // 限制像素比例以提高性能
         container.appendChild(globeRenderer.domElement);
+
+        // 创建星空背景
+        createStarfield();
 
         // 创建地球
         await createEarth();
@@ -3167,22 +3186,186 @@ async function initGlobe() {
     }
 }
 
-// 创建地球
+// 创建星星纹理（圆形带光晕）
+function createStarTexture() {
+    const canvas = document.createElement('canvas');
+    canvas.width = 64;
+    canvas.height = 64;
+    const ctx = canvas.getContext('2d');
+
+    // 创建径向渐变（中心亮，边缘暗）
+    const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+    gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');    // 中心：亮白色
+    gradient.addColorStop(0.2, 'rgba(255, 255, 255, 0.8)'); // 内圈：半透明白色
+    gradient.addColorStop(0.4, 'rgba(255, 255, 255, 0.4)'); // 中圈：光晕
+    gradient.addColorStop(0.7, 'rgba(255, 255, 255, 0.1)'); // 外圈：微弱光晕
+    gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');     // 边缘：完全透明
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, 64, 64);
+
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.needsUpdate = true;
+    return texture;
+}
+
+// 创建星空背景
+function createStarfield() {
+    const starsGeometry = new THREE.BufferGeometry();
+    const starCount = 15000; // 增加星星数量
+
+    const positions = new Float32Array(starCount * 3);
+    const colors = new Float32Array(starCount * 3);
+    const sizes = new Float32Array(starCount);
+
+    // 初始化闪烁数据
+    starOpacities = new Float32Array(starCount);
+    starTwinkleSpeed = new Float32Array(starCount);
+
+    // 生成随机星星
+    for (let i = 0; i < starCount; i++) {
+        // 随机位置（球形分布）
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos((Math.random() * 2) - 1);
+        const radius = 50 + Math.random() * 50; // 距离范围：50-100
+
+        positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
+        positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+        positions[i * 3 + 2] = radius * Math.cos(phi);
+
+        // 星星颜色（更多样化）
+        const starType = Math.random();
+        if (starType < 0.7) {
+            // 70% 白色星星
+            const brightness = 0.8 + Math.random() * 0.2;
+            colors[i * 3] = brightness;
+            colors[i * 3 + 1] = brightness;
+            colors[i * 3 + 2] = 1.0;
+        } else if (starType < 0.85) {
+            // 15% 蓝色星星
+            colors[i * 3] = 0.6 + Math.random() * 0.2;
+            colors[i * 3 + 1] = 0.7 + Math.random() * 0.2;
+            colors[i * 3 + 2] = 1.0;
+        } else {
+            // 15% 黄色/橙色星星
+            colors[i * 3] = 1.0;
+            colors[i * 3 + 1] = 0.8 + Math.random() * 0.2;
+            colors[i * 3 + 2] = 0.6 + Math.random() * 0.2;
+        }
+
+        // 星星大小（更大范围的变化）
+        const sizeRandom = Math.random();
+        if (sizeRandom < 0.8) {
+            // 80% 小星星
+            sizes[i] = 0.5 + Math.random() * 1.5;
+        } else if (sizeRandom < 0.95) {
+            // 15% 中等星星
+            sizes[i] = 2 + Math.random() * 2;
+        } else {
+            // 5% 大星星（明亮的恒星）
+            sizes[i] = 4 + Math.random() * 3;
+        }
+
+        // 初始化闪烁参数
+        starOpacities[i] = 0.5 + Math.random() * 0.5; // 初始透明度 0.5-1.0
+        starTwinkleSpeed[i] = 0.0005 + Math.random() * 0.002; // 闪烁速度
+    }
+
+    starsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    starsGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    starsGeometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+    starsGeometry.setAttribute('alpha', new THREE.BufferAttribute(starOpacities, 1));
+
+    // 创建星星纹理
+    const starTexture = createStarTexture();
+
+    // 使用ShaderMaterial实现独立的星星透明度
+    const starsMaterial = new THREE.ShaderMaterial({
+        uniforms: {
+            pointTexture: { value: starTexture }
+        },
+        vertexShader: `
+            attribute float size;
+            attribute vec3 color;
+            attribute float alpha;
+            varying vec3 vColor;
+            varying float vAlpha;
+
+            void main() {
+                vColor = color;
+                vAlpha = alpha;
+                vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+                gl_PointSize = size * (300.0 / -mvPosition.z);
+                gl_Position = projectionMatrix * mvPosition;
+            }
+        `,
+        fragmentShader: `
+            uniform sampler2D pointTexture;
+            varying vec3 vColor;
+            varying float vAlpha;
+
+            void main() {
+                vec4 texColor = texture2D(pointTexture, gl_PointCoord);
+                gl_FragColor = vec4(vColor, 1.0) * texColor * vAlpha;
+            }
+        `,
+        transparent: true,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false
+    });
+
+    starField = new THREE.Points(starsGeometry, starsMaterial);
+    globeScene.add(starField);
+
+    console.log('✨ 星空背景已创建（包含光晕和闪烁效果）');
+}
+
+// 创建地球（使用Canvas纹理）
 async function createEarth() {
     const geometry = new THREE.SphereGeometry(2, 64, 64);
 
-    // 简单的海洋材质
+    // 创建显示用的Canvas
+    worldCanvas = document.createElement('canvas');
+    worldCanvas.width = 2048;  // 高分辨率纹理
+    worldCanvas.height = 1024; // 2:1比例（等距圆柱投影）
+    worldCanvasCtx = worldCanvas.getContext('2d', { willReadFrequently: true });
+
+    // 初始化为海洋颜色
+    worldCanvasCtx.fillStyle = '#4488BB';
+    worldCanvasCtx.fillRect(0, 0, worldCanvas.width, worldCanvas.height);
+
+    // 创建ID检测用的隐藏Canvas（关闭抗锯齿）
+    idCanvas = document.createElement('canvas');
+    idCanvas.width = 2048;
+    idCanvas.height = 1024;
+    idCanvasCtx = idCanvas.getContext('2d', {
+        willReadFrequently: true,
+        alpha: false
+    });
+    // 关闭抗锯齿以获得精确的颜色
+    idCanvasCtx.imageSmoothingEnabled = false;
+
+    // 初始化为海洋颜色
+    idCanvasCtx.fillStyle = '#4488BB';
+    idCanvasCtx.fillRect(0, 0, idCanvas.width, idCanvas.height);
+
+    // 创建纹理
+    worldTexture = new THREE.CanvasTexture(worldCanvas);
+    worldTexture.needsUpdate = true;
+
+    // 使用纹理的材质
     const material = new THREE.MeshBasicMaterial({
-        color: 0x4488BB,
+        map: worldTexture,
         side: THREE.FrontSide,
         depthTest: true,
         depthWrite: true
     });
 
     earth = new THREE.Mesh(geometry, material);
-    earth.renderOrder = 0;  // 地球先渲染
+    earth.renderOrder = 0;
     globeScene.add(earth);
 
+    console.log('🌍 地球球体已创建（使用Canvas纹理 + ID Canvas）');
 }
 
 // 加载世界地图数据
@@ -3208,24 +3391,37 @@ async function loadWorldData() {
     }
 }
 
-// 创建国家填充
+// 创建国家填充（在Canvas上绘制）
 function createCountryMeshes() {
     if (!worldData || !worldData.features) {
         console.error('❌ worldData 未加载或无效');
         return;
     }
 
-    console.log('🎨 开始创建国家填充网格...');
+    console.log('🎨 开始在Canvas上绘制国家...');
 
-    // 清除现有网格
-    countryMeshes.forEach(mesh => globeScene.remove(mesh));
-    countryMeshes = [];
+    // 清除显示Canvas
+    worldCanvasCtx.fillStyle = '#4488BB';
+    worldCanvasCtx.fillRect(0, 0, worldCanvas.width, worldCanvas.height);
 
-    // 颜色缓存：确保相同国家代码始终使用相同颜色
-    const countryColorCache = {};
+    // 清除ID Canvas
+    idCanvasCtx.fillStyle = '#4488BB';
+    idCanvasCtx.fillRect(0, 0, idCanvas.width, idCanvas.height);
 
-    // 材质缓存：共享相同颜色的材质以减少内存开销
-    const materialCache = {};
+    // 重置映射
+    countryColorMap = {};
+    countryIdMap = {};
+    idCounter = 1;
+
+    const canvasWidth = worldCanvas.width;
+    const canvasHeight = worldCanvas.height;
+
+    // 坐标转换函数
+    const coordsToCanvas = (lon, lat) => {
+        const x = ((lon + 180) / 360) * canvasWidth;
+        const y = ((90 - lat) / 180) * canvasHeight;
+        return [x, y];
+    };
 
     worldData.features.forEach((feature, featureIndex) => {
         if (!feature.geometry || !feature.geometry.coordinates) return;
@@ -3239,147 +3435,87 @@ function createCountryMeshes() {
             continent: feature.properties.region || feature.properties.continent
         };
 
-        // 为每个国家生成独特颜色（同一国家代码的所有 feature 使用相同颜色）
-        let countryColor;
-        if (countryProps.code && countryColorCache[countryProps.code]) {
-            // 如果该国家已经有颜色，使用缓存的颜色
-            countryColor = countryColorCache[countryProps.code];
+        if (!countryProps.code) return;
+
+        // 为每个国家生成显示颜色和ID颜色
+        let displayColor, idColor;
+
+        if (countryColorMap[countryProps.code]) {
+            displayColor = countryColorMap[countryProps.code].hex;
+            idColor = countryColorMap[countryProps.code].idColor;
         } else {
-            // 否则生成新颜色并缓存
+            // 显示颜色（鲜艳的地图颜色）
             const continent = countryProps.continent || 'default';
-            countryColor = getCountryColor(continent, countryProps.code, featureIndex);
-            if (countryProps.code) {
-                countryColorCache[countryProps.code] = countryColor;
-            }
+            const colorHex = getCountryColor(continent, countryProps.code, featureIndex);
+            displayColor = '#' + colorHex.toString(16).padStart(6, '0');
+
+            // ID颜色（唯一的RGB值用于检测）
+            const id = idCounter++;
+            const r = (id & 0xFF);
+            const g = ((id >> 8) & 0xFF);
+            const b = ((id >> 16) & 0xFF);
+            idColor = `rgb(${r},${g},${b})`;
+
+            // 存储映射
+            countryColorMap[countryProps.code] = {
+                hex: displayColor,
+                idColor: idColor,
+                country: countryProps
+            };
+            countryIdMap[idColor] = countryProps.code;
         }
 
-        // 处理多边形和多重多边形
-        const processCoordinates = (coords, isMultiPolygon = false) => {
-            const allPolygons = [];
+        // 绘制多边形到显示Canvas
+        const drawPolygonDisplay = (coordinates) => {
+            worldCanvasCtx.fillStyle = displayColor;
+            worldCanvasCtx.strokeStyle = '#333333';
+            worldCanvasCtx.lineWidth = 0.5;
 
-            if (isMultiPolygon) {
-                // MultiPolygon: [[[polygon1]], [[polygon2]]]
-                coords.forEach(polygon => {
-                    polygon.forEach(ring => {
-                        const points2D = ring.map(coord => [coord[0], coord[1]]);
-                        allPolygons.push(points2D);
-                    });
+            coordinates.forEach((ring, ringIndex) => {
+                worldCanvasCtx.beginPath();
+                ring.forEach((coord, i) => {
+                    const [x, y] = coordsToCanvas(coord[0], coord[1]);
+                    if (i === 0) worldCanvasCtx.moveTo(x, y);
+                    else worldCanvasCtx.lineTo(x, y);
                 });
-            } else {
-                // Polygon: [[outer_ring], [hole1], [hole2]]
-                coords.forEach(ring => {
-                    const points2D = ring.map(coord => [coord[0], coord[1]]);
-                    allPolygons.push(points2D);
-                });
-            }
-
-            return allPolygons;
+                worldCanvasCtx.closePath();
+                if (ringIndex === 0) worldCanvasCtx.fill();
+                worldCanvasCtx.stroke();
+            });
         };
 
-        let polygons = [];
+        // 绘制多边形到ID Canvas（无抗锯齿，无边框）
+        const drawPolygonId = (coordinates) => {
+            idCanvasCtx.fillStyle = idColor;
+
+            coordinates.forEach((ring, ringIndex) => {
+                idCanvasCtx.beginPath();
+                ring.forEach((coord, i) => {
+                    const [x, y] = coordsToCanvas(coord[0], coord[1]);
+                    if (i === 0) idCanvasCtx.moveTo(x, y);
+                    else idCanvasCtx.lineTo(x, y);
+                });
+                idCanvasCtx.closePath();
+                if (ringIndex === 0) idCanvasCtx.fill();
+            });
+        };
+
+        // 处理不同的几何类型
         if (feature.geometry.type === 'Polygon') {
-            polygons = processCoordinates(feature.geometry.coordinates);
+            drawPolygonDisplay(feature.geometry.coordinates);
+            drawPolygonId(feature.geometry.coordinates);
         } else if (feature.geometry.type === 'MultiPolygon') {
-            polygons = processCoordinates(feature.geometry.coordinates, true);
+            feature.geometry.coordinates.forEach(polygon => {
+                drawPolygonDisplay(polygon);
+                drawPolygonId(polygon);
+            });
         }
-
-        // 为每个多边形创建填充网格和边框线
-        polygons.forEach((polygon, polygonIndex) => {
-            if (polygon.length < 3) return;
-
-            try {
-                // 创建球面投影的填充网格
-
-                // 转换经纬度坐标为3D点（半径稍大于地球，避免遮挡）
-                const points3D = polygon.map(coord => {
-                    const [lon, lat] = coord;
-                    return latLonToVector3(lat, lon, 2.01);
-                });
-
-                // 使用 THREE.ShapeUtils 进行三角剖分
-                // 先将3D点投影到2D平面进行三角剖分
-                const points2D = polygon.map(coord => new THREE.Vector2(coord[0], coord[1]));
-
-                // 使用 ShapeUtils 进行三角剖分
-                const faces = THREE.ShapeUtils.triangulateShape(points2D, []);
-
-                // 根据三角剖分结果创建3D顶点
-                const vertices = [];
-                for (let i = 0; i < faces.length; i++) {
-                    const face = faces[i];
-                    vertices.push(
-                        points3D[face[0]].x, points3D[face[0]].y, points3D[face[0]].z,
-                        points3D[face[1]].x, points3D[face[1]].y, points3D[face[1]].z,
-                        points3D[face[2]].x, points3D[face[2]].y, points3D[face[2]].z
-                    );
-                }
-
-                const geometry = new THREE.BufferGeometry();
-                const positionAttribute = new THREE.BufferAttribute(new Float32Array(vertices), 3);
-                geometry.setAttribute('position', positionAttribute);
-                geometry.computeVertexNormals();
-
-                // 国家填充 - 使用缓存的材质（相同颜色共享材质）
-                // 只渲染正面，背面国家不会透过地球显示
-                let fillMaterial = materialCache[countryColor];
-                if (!fillMaterial) {
-                    fillMaterial = new THREE.MeshBasicMaterial({
-                        color: countryColor,
-                        side: THREE.FrontSide,
-                        depthTest: true,
-                        depthWrite: true
-                    });
-                    materialCache[countryColor] = fillMaterial;
-                }
-
-                const countryMesh = new THREE.Mesh(geometry, fillMaterial);
-                countryMesh.renderOrder = 1;  // 国家在地球之后渲染
-                countryMesh.userData = {
-                    country: countryProps,
-                    isCountryMesh: true,
-                    originalColor: countryColor
-                };
-
-                globeScene.add(countryMesh);
-                countryMeshes.push(countryMesh);
-
-                // 添加国家边界线
-                const linePoints = polygon.map(coord => {
-                    const [lon, lat] = coord;
-                    return latLonToVector3(lat, lon, 2.015);
-                });
-
-                const lineGeometry = new THREE.BufferGeometry().setFromPoints(linePoints);
-                const lineMaterial = new THREE.LineBasicMaterial({
-                    color: 0xFFFF00,  // 黄色高亮边界线
-                    linewidth: 2,
-                    transparent: true,
-                    opacity: 0,       // 默认完全透明（不可见）
-                    depthTest: true   // 启用深度测试，背面不显示
-                });
-
-                const line = new THREE.LineLoop(lineGeometry, lineMaterial);
-                line.userData = {
-                    country: countryProps,
-                    isCountryLine: true,
-                    linkedMesh: countryMesh  // 关联到对应的网格
-                };
-                line.visible = false;  // 默认不可见
-
-                countryMesh.userData.linkedLine = line;  // 反向关联
-
-                globeScene.add(line);
-                countryMeshes.push(line);
-
-            } catch (error) {
-                console.error('❌ 创建国家多边形失败:', countryProps.name_cn || countryProps.name, error.message);
-            }
-        });
     });
 
-    const meshCount = countryMeshes.filter(m => m.userData.isCountryMesh).length;
-    const lineCount = countryMeshes.filter(m => m.userData.isCountryLine).length;
-    console.log(`🌍 已创建 ${meshCount} 个国家填充, ${lineCount} 条边界线`);
+    // 更新显示纹理
+    worldTexture.needsUpdate = true;
+
+    console.log('🌍 Canvas绘制完成，国家数量:', Object.keys(countryColorMap).length);
 }
 
 // 将经纬度转换为3D向量
@@ -3422,18 +3558,12 @@ function addGlobeControls() {
             rotationVelocity.x = deltaMove.y * sensitivity;
             rotationVelocity.y = deltaMove.x * sensitivity;
 
-            // 应用旋转
+            // 应用旋转（纹理会自动跟随地球旋转）
             earth.rotation.y += rotationVelocity.y;
             earth.rotation.x += rotationVelocity.x;
 
             // 限制X轴旋转范围，防止翻转过度
             earth.rotation.x = Math.max(-Math.PI / 2.5, Math.min(Math.PI / 2.5, earth.rotation.x));
-
-            // 同步旋转所有国家网格
-            countryMeshes.forEach(mesh => {
-                mesh.rotation.y = earth.rotation.y;
-                mesh.rotation.x = earth.rotation.x;
-            });
 
             previousMousePosition = { x: event.clientX, y: event.clientY };
         }
@@ -3473,12 +3603,6 @@ function addGlobeControls() {
             // 限制X轴旋转
             earth.rotation.x = Math.max(-Math.PI / 2.5, Math.min(Math.PI / 2.5, earth.rotation.x));
 
-            // 同步旋转所有国家网格
-            countryMeshes.forEach(mesh => {
-                mesh.rotation.y = earth.rotation.y;
-                mesh.rotation.x = earth.rotation.x;
-            });
-
             // 应用阻尼
             rotationVelocity.x *= damping;
             rotationVelocity.y *= damping;
@@ -3486,46 +3610,76 @@ function addGlobeControls() {
     };
 }
 
-// 添加地球仪事件监听
+// 添加地球仪事件监听（基于UV坐标检测）
 function addGlobeEventListeners() {
     const canvas = globeRenderer.domElement;
+    let lastHoveredCountryCode = null;
+
+    // 从UV坐标获取国家信息（使用ID Canvas进行精确检测）
+    const getCountryFromUV = (uv) => {
+        if (!uv || !idCanvas) return null;
+
+        // UV坐标转换为Canvas像素坐标
+        const x = Math.floor(uv.x * idCanvas.width);
+        const y = Math.floor((1 - uv.y) * idCanvas.height); // 翻转Y轴
+
+        // 确保坐标在范围内
+        if (x < 0 || x >= idCanvas.width || y < 0 || y >= idCanvas.height) {
+            return null;
+        }
+
+        // 从ID Canvas读取像素颜色
+        const imageData = idCanvasCtx.getImageData(x, y, 1, 1);
+        const r = imageData.data[0];
+        const g = imageData.data[1];
+        const b = imageData.data[2];
+
+        // 转换为rgb字符串
+        const idColor = `rgb(${r},${g},${b})`;
+
+        // 在ID映射中查找对应的国家代码
+        const countryCode = countryIdMap[idColor];
+        if (countryCode && countryColorMap[countryCode]) {
+            return countryColorMap[countryCode].country;
+        }
+
+        return null;
+    };
 
     // 鼠标移动事件 - 悬停效果
     canvas.addEventListener('mousemove', (event) => {
-        // 射线检测悬停的国家（只检测填充网格，不检测边界线）
+        // 射线检测地球表面
         globeRaycaster.setFromCamera(globeMousePosition, globeCamera);
+        const intersects = globeRaycaster.intersectObject(earth);
 
-        const countryMeshesOnly = countryMeshes.filter(m => m.userData.isCountryMesh);
-        const meshIntersects = globeRaycaster.intersectObjects(countryMeshesOnly);
+        let hoveredCountryCode = null;
 
-        let newHoveredCountry = null;
+        if (intersects.length > 0) {
+            const uv = intersects[0].uv;
+            const countryData = getCountryFromUV(uv);
 
-        if (meshIntersects.length > 0 && meshIntersects[0].object.userData.isCountryMesh) {
-            newHoveredCountry = meshIntersects[0].object;
-        }
+            if (countryData && countryData.code) {
+                hoveredCountryCode = countryData.code;
 
-        // 处理悬停状态变化
-        if (hoveredCountry !== newHoveredCountry) {
-            // 隐藏之前悬停国家的边界线
-            if (hoveredCountry && hoveredCountry.userData.isCountryMesh) {
-                const linkedLine = hoveredCountry.userData.linkedLine;
-                if (linkedLine) {
-                    linkedLine.visible = false;  // 隐藏边界线
+                // 如果是新的国家，重绘Canvas高亮
+                if (hoveredCountryCode !== lastHoveredCountryCode) {
+                    redrawCanvasWithHighlight(hoveredCountryCode);
+                    lastHoveredCountryCode = hoveredCountryCode;
+                    canvas.style.cursor = 'pointer';
+                }
+            } else {
+                // 鼠标在海洋上
+                if (lastHoveredCountryCode !== null) {
+                    redrawCanvasWithHighlight(null);
+                    lastHoveredCountryCode = null;
+                    canvas.style.cursor = 'grab';
                 }
             }
-
-            // 设置新的悬停国家
-            hoveredCountry = newHoveredCountry;
-
-            // 显示新的悬停国家的轮廓（黄色高亮）
-            if (hoveredCountry && hoveredCountry.userData.isCountryMesh) {
-                const linkedLine = hoveredCountry.userData.linkedLine;
-                if (linkedLine) {
-                    linkedLine.visible = true;      // 显示边界线
-                    linkedLine.material.opacity = 1.0;  // 完全不透明
-                }
-                canvas.style.cursor = 'pointer';
-            } else {
+        } else {
+            // 鼠标离开地球
+            if (lastHoveredCountryCode !== null) {
+                redrawCanvasWithHighlight(null);
+                lastHoveredCountryCode = null;
                 canvas.style.cursor = 'grab';
             }
         }
@@ -3533,36 +3687,102 @@ function addGlobeEventListeners() {
 
     // 鼠标点击事件
     canvas.addEventListener('click', (event) => {
-        // 射线检测点击的国家
+        // 射线检测地球表面
         globeRaycaster.setFromCamera(globeMousePosition, globeCamera);
+        const intersects = globeRaycaster.intersectObject(earth);
 
-        // 只检测国家填充网格，不检测边界线
-        const countryMeshesOnly = countryMeshes.filter(m => m.userData.isCountryMesh);
-        const meshIntersects = globeRaycaster.intersectObjects(countryMeshesOnly);
+        if (intersects.length > 0) {
+            const uv = intersects[0].uv;
+            const countryData = getCountryFromUV(uv);
 
-        let clickedObject = null;
-
-        if (meshIntersects.length > 0) {
-            clickedObject = meshIntersects[0].object;
-        }
-
-        if (clickedObject && clickedObject.userData.isCountryMesh) {
-            const countryData = clickedObject.userData.country;
-            showCountryFlag(countryData);
+            if (countryData) {
+                showCountryFlag(countryData);
+            }
         }
     });
 
     // 鼠标离开画布时清除悬停效果
     canvas.addEventListener('mouseleave', () => {
-        if (hoveredCountry && hoveredCountry.userData.isCountryMesh) {
-            const linkedLine = hoveredCountry.userData.linkedLine;
-            if (linkedLine) {
-                linkedLine.visible = false;  // 隐藏边界线
-            }
+        if (lastHoveredCountryCode !== null) {
+            redrawCanvasWithHighlight(null);
+            lastHoveredCountryCode = null;
         }
-        hoveredCountry = null;
         canvas.style.cursor = 'default';
     });
+}
+
+// 重绘Canvas并高亮指定国家
+function redrawCanvasWithHighlight(highlightCountryCode) {
+    if (!worldData || !worldCanvas) return;
+
+    // 清除Canvas
+    worldCanvasCtx.fillStyle = '#4488BB';
+    worldCanvasCtx.fillRect(0, 0, worldCanvas.width, worldCanvas.height);
+
+    const canvasWidth = worldCanvas.width;
+    const canvasHeight = worldCanvas.height;
+
+    // 坐标转换函数
+    const coordsToCanvas = (lon, lat) => {
+        const x = ((lon + 180) / 360) * canvasWidth;
+        const y = ((90 - lat) / 180) * canvasHeight;
+        return [x, y];
+    };
+
+    // 绘制所有国家
+    worldData.features.forEach((feature) => {
+        if (!feature.geometry || !feature.geometry.coordinates) return;
+
+        const countryCode = (feature.id || feature.properties.ISO_A2 || feature.properties.iso_a2 || feature.properties.code || '').toLowerCase();
+        const colorData = countryColorMap[countryCode];
+        if (!colorData) return;
+
+        const isHighlighted = countryCode === highlightCountryCode;
+        const fillColor = colorData.hex;
+
+        // 绘制多边形
+        const drawPolygon = (coordinates) => {
+            worldCanvasCtx.fillStyle = fillColor;
+
+            // 如果是高亮国家，使用黄色边框
+            if (isHighlighted) {
+                worldCanvasCtx.strokeStyle = '#FFFF00';
+                worldCanvasCtx.lineWidth = 2;
+            } else {
+                worldCanvasCtx.strokeStyle = '#333333';
+                worldCanvasCtx.lineWidth = 0.5;
+            }
+
+            coordinates.forEach((ring, ringIndex) => {
+                worldCanvasCtx.beginPath();
+                ring.forEach((coord, i) => {
+                    const [x, y] = coordsToCanvas(coord[0], coord[1]);
+                    if (i === 0) {
+                        worldCanvasCtx.moveTo(x, y);
+                    } else {
+                        worldCanvasCtx.lineTo(x, y);
+                    }
+                });
+                worldCanvasCtx.closePath();
+
+                if (ringIndex === 0) {
+                    worldCanvasCtx.fill();
+                }
+                worldCanvasCtx.stroke();
+            });
+        };
+
+        if (feature.geometry.type === 'Polygon') {
+            drawPolygon(feature.geometry.coordinates);
+        } else if (feature.geometry.type === 'MultiPolygon') {
+            feature.geometry.coordinates.forEach(polygon => {
+                drawPolygon(polygon);
+            });
+        }
+    });
+
+    // 更新纹理
+    worldTexture.needsUpdate = true;
 }
 
 // 显示国家国旗弹窗
@@ -3640,6 +3860,24 @@ function animateGlobe() {
     if (!globeRenderer || !globeScene || !globeCamera) return;
 
     requestAnimationFrame(animateGlobe);
+
+    // 星空缓慢旋转
+    if (starField) {
+        starField.rotation.y += 0.0001;
+        starField.rotation.x += 0.00005;
+
+        // 星星闪烁效果
+        if (starOpacities && starTwinkleSpeed) {
+            const alphaAttribute = starField.geometry.attributes.alpha;
+            for (let i = 0; i < starOpacities.length; i++) {
+                // 正弦波闪烁
+                starOpacities[i] += starTwinkleSpeed[i];
+                const opacity = 0.3 + Math.abs(Math.sin(starOpacities[i])) * 0.7;
+                alphaAttribute.array[i] = opacity;
+            }
+            alphaAttribute.needsUpdate = true;
+        }
+    }
 
     // 应用惯性旋转效果
     if (applyGlobeInertia) {
