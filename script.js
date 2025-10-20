@@ -5461,6 +5461,8 @@ let applyGlobeInertia = null; // 惯性旋转函数
 let starField = null; // 星空对象
 let starOpacities = null; // 星星透明度数组（用于闪烁）
 let starTwinkleSpeed = null; // 星星闪烁速度数组
+let autoRotateEnabled = true; // 地球自动旋转开关
+let isDraggingGlobe = false; // 是否正在拖拽地球
 
 // Canvas纹理相关变量
 let worldCanvas = null;
@@ -5982,6 +5984,8 @@ function addGlobeControls() {
 
     canvas.addEventListener('mousedown', (event) => {
         isDragging = true;
+        isDraggingGlobe = true; // 标记正在拖拽
+        autoRotateEnabled = false; // 停止自动旋转
         rotationVelocity = { x: 0, y: 0 }; // 停止惯性
         previousMousePosition = { x: event.clientX, y: event.clientY };
         canvas.style.cursor = 'grabbing';
@@ -6016,12 +6020,28 @@ function addGlobeControls() {
 
     canvas.addEventListener('mouseup', () => {
         isDragging = false;
+        isDraggingGlobe = false;
         canvas.style.cursor = 'grab';
+
+        // 5秒后重新启用自动旋转
+        setTimeout(() => {
+            if (!isDraggingGlobe) {
+                autoRotateEnabled = true;
+            }
+        }, 5000);
     });
 
     canvas.addEventListener('mouseleave', () => {
         isDragging = false;
+        isDraggingGlobe = false;
         canvas.style.cursor = 'default';
+
+        // 5秒后重新启用自动旋转
+        setTimeout(() => {
+            if (!isDraggingGlobe) {
+                autoRotateEnabled = true;
+            }
+        }, 5000);
     });
 
     // 平滑滚轮缩放
@@ -6317,6 +6337,11 @@ function animateGlobe() {
             }
             alphaAttribute.needsUpdate = true;
         }
+    }
+
+    // 地球自动旋转（当未拖拽且启用自动旋转时）
+    if (earth && autoRotateEnabled && !isDraggingGlobe) {
+        earth.rotation.y += 0.001; // 缓慢自转
     }
 
     // 应用惯性旋转效果
