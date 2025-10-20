@@ -74,6 +74,23 @@
             font-size: 14px;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lang-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .lang-btn:hover::before {
+            left: 100%;
         }
 
         .lang-btn:hover {
@@ -84,6 +101,17 @@
         .lang-btn.active {
             background: rgba(232, 168, 72, 0.8);
             border-color: #E8A848;
+            box-shadow: 0 4px 12px rgba(232, 168, 72, 0.4);
+        }
+
+        .lang-btn:active {
+            transform: translateY(0) scale(0.95);
+        }
+
+        /* 语言切换动画 */
+        .language-switching {
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
         }
 
         .emoji-globe {
@@ -173,9 +201,70 @@
             line-height: 1.5;
         }
 
+        /* 理念阐释区域 */
+        .philosophy-section {
+            max-width: 900px;
+            margin: 50px auto 50px;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .philosophy-title {
+            font-size: 2rem;
+            color: #E8A848;
+            margin-bottom: 30px;
+            font-weight: 600;
+            text-shadow: 0 2px 10px rgba(232, 168, 72, 0.3);
+        }
+
+        .philosophy-content {
+            background: rgba(255, 255, 255, 0.12);
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 20px;
+            padding: 35px 30px;
+            text-align: left;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s ease;
+        }
+
+        .philosophy-content:hover {
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .philosophy-paragraph {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.05rem;
+            line-height: 2;
+            margin-bottom: 20px;
+            text-indent: 2em;
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+
+        .philosophy-paragraph:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 首段特殊样式 */
+        .philosophy-paragraph:first-child::first-line {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #E8A848;
+        }
+
+        /* 关键词高亮 */
+        .philosophy-highlight {
+            color: #E8A848;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(232, 168, 72, 0.3);
+        }
+
         /* 进入按钮 */
         .enter-section {
-            animation: fadeInUp 1s ease-out 0.6s both;
+            animation: fadeInUp 1s ease-out 0.8s both;
         }
 
         .enter-button {
@@ -308,6 +397,23 @@
                 padding: 20px 15px;
             }
 
+            .philosophy-section {
+                margin: 40px auto;
+            }
+
+            .philosophy-title {
+                font-size: 1.6rem;
+            }
+
+            .philosophy-content {
+                padding: 25px 20px;
+            }
+
+            .philosophy-paragraph {
+                font-size: 1rem;
+                line-height: 1.9;
+            }
+
             .enter-button {
                 padding: 16px 35px;
                 font-size: 1.1rem;
@@ -333,6 +439,24 @@
 
             .emoji-globe {
                 font-size: 3rem;
+            }
+
+            .philosophy-section {
+                margin: 30px auto;
+            }
+
+            .philosophy-title {
+                font-size: 1.4rem;
+            }
+
+            .philosophy-content {
+                padding: 20px 15px;
+            }
+
+            .philosophy-paragraph {
+                font-size: 0.95rem;
+                line-height: 1.8;
+                text-indent: 1.5em;
             }
 
             .enter-button {
@@ -379,6 +503,25 @@
             </div>
         </div>
 
+        <!-- 理念阐释 -->
+        <div class="philosophy-section">
+            <h2 class="philosophy-title" data-i18n="welcome.philosophy.title">认识世界，从认识国旗开始</h2>
+            <div class="philosophy-content">
+                <p class="philosophy-paragraph" data-i18n="welcome.philosophy.paragraph1">
+                    在信息交织的全球化时代，"认识世界"似乎是一个庞大而遥远的命题，然而我们往往忽略了，最好的起点就藏在那些飘扬的旗帜里。一面<span class="philosophy-highlight">国旗</span>，不只是一块布、几种颜色或几个图案，它是一个国家浓缩的符号，也是一把轻盈而深刻的钥匙，悄然为我们打开一扇通往广阔天地的大门。
+                </p>
+                <p class="philosophy-paragraph" data-i18n="welcome.philosophy.paragraph2">
+                    这一切，往往始于一个最简单的问题："为什么这面旗长这样？"——从颜色到图案，从历史传说到文化象征，问题一个接一个，如锁链般自然延展：这个国家在哪里？他们说什么语言？有过怎样的英雄与传说？山川何名？饮食何味？节日何欢？这些由一面旗引发的追问，悄然形成了一条<span class="philosophy-highlight">由点及面、由表及里、由具体到抽象</span>的认知路径。
+                </p>
+                <p class="philosophy-paragraph" data-i18n="welcome.philosophy.paragraph3">
+                    如果世界是一座庞大复杂的信息库，国旗，就像贴在每扇国门前的<span class="philosophy-highlight">"二维码"</span>。扫描它，便能链接并加载出一个国家的地理、历史、语言、文化与生活。它让我们从符号走进内涵，从旗帜看见山河，从图案读懂史诗。
+                </p>
+                <p class="philosophy-paragraph" data-i18n="welcome.philosophy.paragraph4">
+                    更重要的是，在这一过程中，我们不仅认识了世界，更学会了<span class="philosophy-highlight">如何理解世界</span>。我们看见不同国家旗帜背后的共性与个性，理解文化之间的差异与尊重，并在这种理解中，逐渐构建起一种真正的<span class="philosophy-highlight">全球视野</span>——既懂自己，也懂他人；既知局部，也知整体。这正是人类命运共同体时代所呼唤的认知方式：不固守一隅，不偏见一方，而是以开放之心，从微观走向宏观。
+                </p>
+            </div>
+        </div>
+
         <!-- 进入按钮 -->
         <div class="enter-section">
             <button class="enter-button" id="enterButton">
@@ -412,116 +555,15 @@
         </div>
     </div>
 
+    <!-- 引入统一的国际化核心模块 -->
+    <script src="i18n-core.js"></script>
+
     <script>
-        // ===== 现代化国际化系统 (轻量版) =====
-        class ModernI18n {
-            constructor() {
-                this.currentLanguage = 'zh';
-                this.translations = {};
-                this.observers = new Set();
-                this.fallbackLanguage = 'zh';
-                this.loaded = false;
-            }
+        // ===== 使用统一的国际化系统 =====
+        // i18n 实例已经在 i18n-core.js 中创建
 
-            // 设置翻译数据
-            setTranslations(translations) {
-                this.translations = translations;
-                this.loaded = true;
-                this.notifyObservers();
-            }
-
-            // 获取当前语言
-            getCurrentLanguage() {
-                return this.currentLanguage;
-            }
-
-            // 设置语言
-            setLanguage(lang) {
-                if (this.currentLanguage !== lang && this.translations[lang]) {
-                    this.currentLanguage = lang;
-                    localStorage.setItem('preferredLanguage', lang);
-                    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en-US';
-                    this.notifyObservers();
-                    return true;
-                }
-                return false;
-            }
-
-            // 核心翻译函数
-            t(key, params = {}) {
-                if (!this.loaded) {
-                    console.warn('i18n not loaded yet, returning key:', key);
-                    return key;
-                }
-
-                let translation = this.getNestedTranslation(this.translations[this.currentLanguage], key);
-
-                // 回退机制
-                if (!translation && this.currentLanguage !== this.fallbackLanguage) {
-                    translation = this.getNestedTranslation(this.translations[this.fallbackLanguage], key);
-                }
-
-                // 如果仍然没有翻译，返回 key
-                if (!translation) {
-                    console.warn(`Translation not found for key: "${key}" in language: "${this.currentLanguage}"`);
-                    return key;
-                }
-
-                // 参数替换
-                return this.interpolateParams(translation, params);
-            }
-
-            // 获取嵌套翻译
-            getNestedTranslation(obj, path) {
-                return path.split('.').reduce((current, key) => current && current[key], obj);
-            }
-
-            // 参数插值
-            interpolateParams(text, params) {
-                if (typeof text !== 'string') return text;
-                return text.replace(/\{(\w+)\}/g, (match, key) => params[key] || match);
-            }
-
-            // 订阅语言变化
-            subscribe(callback) {
-                this.observers.add(callback);
-                return () => this.observers.delete(callback);
-            }
-
-            // 通知观察者
-            notifyObservers() {
-                this.observers.forEach(callback => callback(this.currentLanguage));
-            }
-
-            // 批量更新 DOM 元素
-            updateDOM() {
-                // 更新页面标题
-                const title = document.querySelector('title');
-                if (title) {
-                    title.textContent = this.t('siteName');
-                }
-
-                // 更新所有带有 data-i18n 属性的元素
-                document.querySelectorAll('[data-i18n]').forEach(element => {
-                    const key = element.getAttribute('data-i18n');
-                    const translation = this.t(key);
-                    if (translation && translation !== key) {
-                        element.textContent = translation;
-                    }
-                });
-
-                // 更新语言按钮状态
-                document.querySelectorAll('.lang-btn').forEach(btn => {
-                    btn.classList.toggle('active', btn.getAttribute('data-lang') === this.currentLanguage);
-                });
-            }
-        }
-
-        // 创建全局 i18n 实例
-        const i18n = new ModernI18n();
-
-        // 全局翻译函数，方便使用
-        const t = (key, params) => i18n.t(key, params);
+        // i18n 和 t 函数已经在 i18n-core.js 中全局定义
+        // 无需重复创建实例
 
         // 加载国际化数据
         async function loadI18nData() {
@@ -548,10 +590,20 @@
                 i18n.subscribe((newLang) => {
                     console.log(`Language changed to: ${newLang}`);
                     i18n.updateDOM();
+
+                    // 更新语言按钮状态
+                    document.querySelectorAll('.lang-btn').forEach(btn => {
+                        btn.classList.toggle('active', btn.getAttribute('data-lang') === newLang);
+                    });
                 });
 
                 // 立即执行一次更新
                 i18n.updateDOM();
+
+                // 初始化语言按钮状态
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.getAttribute('data-lang') === i18n.getCurrentLanguage());
+                });
 
                 console.log('Modern i18n system initialized successfully for index.html');
             } catch (error) {
@@ -559,13 +611,32 @@
             }
         }
 
-        // 语言切换事件
+        // 语言切换事件（优化版）
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('lang-btn')) {
                 const lang = e.target.getAttribute('data-lang');
+
+                // 如果语言没有变化，直接返回
+                if (i18n.getCurrentLanguage() === lang) {
+                    return;
+                }
+
+                // 添加视觉反馈
+                const welcomeContainer = document.querySelector('.welcome-container');
+                if (welcomeContainer) {
+                    welcomeContainer.classList.add('language-switching');
+                }
+
                 // 使用新的 i18n 系统切换语言
                 if (i18n.setLanguage(lang)) {
                     console.log(`Language switched to: ${lang}`);
+
+                    // 移除切换动画
+                    setTimeout(() => {
+                        if (welcomeContainer) {
+                            welcomeContainer.classList.remove('language-switching');
+                        }
+                    }, 300);
                 }
             }
         });
@@ -575,151 +646,8 @@
             loadI18nData();
         });
 
-        // 暴露 i18n 系统用于测试和调试
-        window.i18n = i18n;
-        window.t = t;
-
-        // 简单的测试函数
-        window.testIndexI18n = function() {
-            console.group('🏠 Index.html 国际化测试');
-            console.log('当前语言:', i18n.getCurrentLanguage());
-            console.log('站点名称:', t('siteName'));
-            console.log('欢迎标题:', t('welcome.title'));
-            console.log('副标题:', t('welcome.subtitle'));
-            console.log('进入按钮:', t('welcome.enterButton'));
-
-            // 测试语言切换
-            console.log('切换到英文...');
-            i18n.setLanguage('en');
-            console.log('Site name (EN):', t('siteName'));
-            console.log('Welcome title (EN):', t('welcome.title'));
-
-            // 切换回中文
-            console.log('切换回中文...');
-            i18n.setLanguage('zh');
-            console.log('站点名称 (ZH):', t('siteName'));
-
-            console.groupEnd();
-            console.log('✅ Index.html 国际化测试完成！');
-
-            return {
-                currentLanguage: i18n.getCurrentLanguage(),
-                isLoaded: i18n.loaded,
-                sampleTranslations: {
-                    siteName: t('siteName'),
-                    welcomeTitle: t('welcome.title'),
-                    enterButton: t('welcome.enterButton')
-                }
-            };
-        };
-
-        // 完整的国际化演示功能
-        window.demoIndexI18n = function() {
-            console.group('🎭 Index.html 完整国际化演示');
-
-            console.log('📋 当前状态信息:');
-            console.log('- 当前语言:', i18n.getCurrentLanguage());
-            console.log('- 系统加载状态:', i18n.loaded);
-            console.log('- 本地存储语言:', localStorage.getItem('preferredLanguage'));
-            console.log('- 会话存储语言:', sessionStorage.getItem('currentLanguage'));
-
-            console.log('\n🌐 测试各种翻译:');
-            console.log('- 站点名称:', t('siteName'));
-            console.log('- 欢迎标题:', t('welcome.title'));
-            console.log('- 副标题:', t('welcome.subtitle'));
-            console.log('- 浏览功能标题:', t('welcome.features.browse.title'));
-            console.log('- 浏览功能描述:', t('welcome.features.browse.description'));
-            console.log('- 记忆功能标题:', t('welcome.features.memory.title'));
-            console.log('- 记忆功能描述:', t('welcome.features.memory.description'));
-            console.log('- 测试功能标题:', t('welcome.features.quiz.title'));
-            console.log('- 测试功能描述:', t('welcome.features.quiz.description'));
-            console.log('- 进入按钮:', t('welcome.enterButton'));
-            console.log('- 国家地区统计:', t('welcome.stats.countries'));
-            console.log('- 特征分类统计:', t('welcome.stats.features'));
-            console.log('- 大洲分类统计:', t('welcome.stats.continents'));
-            console.log('- 页脚信息1:', t('welcome.footer.0'));
-            console.log('- 页脚信息2:', t('welcome.footer.1'));
-
-            console.log('\n🔄 测试语言切换:');
-
-            // 切换到英文
-            console.log('切换到英文...');
-            i18n.setLanguage('en');
-            console.log('- Site name:', t('siteName'));
-            console.log('- Welcome title:', t('welcome.title'));
-            console.log('- Enter button:', t('welcome.enterButton'));
-
-            // 切换回中文
-            console.log('切换回中文...');
-            i18n.setLanguage('zh');
-            console.log('- 站点名称:', t('siteName'));
-            console.log('- 欢迎标题:', t('welcome.title'));
-            console.log('- 进入按钮:', t('welcome.enterButton'));
-
-            console.log('\n🔗 语言传递测试:');
-            console.log('准备测试语言传递到 homepage.html...');
-            console.log('当前设置将保存到 localStorage 和 sessionStorage');
-
-            console.groupEnd();
-            console.log('🎉 Index.html 国际化演示完成！');
-            console.log('💡 提示: 可以通过以下方式测试完整流程:');
-            console.log('1. 在控制台运行: demoIndexI18n()');
-            console.log('2. 切换语言后点击"开启探索之旅"按钮');
-            console.log('3. 检查 homepage.html 是否保持了语言设置');
-
-            return {
-                currentLanguage: i18n.getCurrentLanguage(),
-                isLoaded: i18n.loaded,
-                localStorageLanguage: localStorage.getItem('preferredLanguage'),
-                sessionStorageLanguage: sessionStorage.getItem('currentLanguage'),
-                allTranslations: {
-                    site: t('siteName'),
-                    welcome: {
-                        title: t('welcome.title'),
-                        subtitle: t('welcome.subtitle'),
-                        enterButton: t('welcome.enterButton')
-                    },
-                    features: {
-                        browse: {
-                            title: t('welcome.features.browse.title'),
-                            description: t('welcome.features.browse.description')
-                        },
-                        memory: {
-                            title: t('welcome.features.memory.title'),
-                            description: t('welcome.features.memory.description')
-                        },
-                        quiz: {
-                            title: t('welcome.features.quiz.title'),
-                            description: t('welcome.features.quiz.description')
-                        }
-                    },
-                    stats: {
-                        countries: t('welcome.stats.countries'),
-                        features: t('welcome.stats.features'),
-                        continents: t('welcome.stats.continents')
-                    },
-                    footer: [
-                        t('welcome.footer.0'),
-                        t('welcome.footer.1')
-                    ]
-                }
-            };
-        };
-
-        // 快速语言切换测试
-        window.quickSwitchLanguage = function(lang) {
-            if (lang === 'zh' || lang === 'en') {
-                const success = i18n.setLanguage(lang);
-                if (success) {
-                    console.log(`✅ Index.html 已切换到${lang === 'zh' ? '中文' : '英文'}`);
-                    console.log(`💡 语言设置已保存，点击"开启探索之旅"将传递到主页面`);
-                } else {
-                    console.error('❌ 语言切换失败');
-                }
-            } else {
-                console.error('❌ 不支持的语言代码，请使用 "zh" 或 "en"');
-            }
-        };
+        // i18n 和 t 已经在 i18n-core.js 中暴露到全局
+        // 无需重复暴露
 
         // 页面加载完成后隐藏加载页面
         window.addEventListener('load', function() {
