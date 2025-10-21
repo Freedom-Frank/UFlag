@@ -5052,6 +5052,1060 @@
         "zh": "https://zh.wikipedia.org/wiki/赞比亚",
         "en": "https://en.wikipedia.org/wiki/Zambia"
       }
+    },
+    {
+      "code": "ag",
+      "basic": {
+        "capital": {"zh": "圣约翰", "en": "Saint John's"},
+        "population": {"zh": "约10万", "en": "Approx. 100,000"},
+        "area": {"zh": "442平方公里", "en": "442 km²"},
+        "currency": {"zh": "东加勒比元(XCD)", "en": "East Caribbean Dollar (XCD)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约18亿美元", "en": "Approx. $1.8 billion"}
+      },
+      "description": {
+        "zh": "安提瓜和巴布达,位于加勒比海,由安提瓜岛、巴布达岛和雷东达岛组成。该国以其365个海滩而闻名,号称一年中每一天都可以去不同的海滩。",
+        "en": "Antigua and Barbuda is located in the Caribbean, consisting of Antigua, Barbuda, and Redonda islands. The country is famous for its 365 beaches, one for each day of the year."
+      },
+      "funFacts": {
+        "zh": [
+          "安提瓜和巴布达拥有365个海滩,号称一年中每天都可以去不同的海滩",
+          "安提瓜和巴布达是加勒比海地区重要的离岸金融中心",
+          "著名的尼尔森船坞是加勒比地区唯一现存的格鲁吉亚海军造船厂"
+        ],
+        "en": [
+          "Antigua and Barbuda has 365 beaches, one for each day of the year",
+          "Antigua and Barbuda is an important offshore financial center in the Caribbean",
+          "Nelson's Dockyard is the only surviving Georgian naval dockyard in the Caribbean"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/安提瓜和巴布达",
+        "en": "https://en.wikipedia.org/wiki/Antigua_and_Barbuda"
+      }
+    },
+    {
+      "code": "bb",
+      "basic": {
+        "capital": {"zh": "布里奇敦", "en": "Bridgetown"},
+        "population": {"zh": "约29万", "en": "Approx. 290,000"},
+        "area": {"zh": "430平方公里", "en": "430 km²"},
+        "currency": {"zh": "巴巴多斯元(BBD)", "en": "Barbadian Dollar (BBD)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约50亿美元", "en": "Approx. $5 billion"}
+      },
+      "description": {
+        "zh": "巴巴多斯,位于加勒比海东部,是小安的列斯群岛最东端的岛国。巴巴多斯以其朗姆酒生产、板球传统和美丽的海滩而闻名,于2021年成为共和国。",
+        "en": "Barbados is located in the eastern Caribbean and is the easternmost island nation in the Lesser Antilles. Barbados is famous for its rum production, cricket tradition, and beautiful beaches, becoming a republic in 2021."
+      },
+      "funFacts": {
+        "zh": [
+          "巴巴多斯是朗姆酒的发源地之一",
+          "巴巴多斯于2021年废除英国君主制,成为共和国",
+          "巴巴多斯是加勒比地区人均收入最高的国家之一"
+        ],
+        "en": [
+          "Barbados is one of the birthplaces of rum",
+          "Barbados became a republic in 2021, removing the British monarch as head of state",
+          "Barbados has one of the highest per capita incomes in the Caribbean"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/巴巴多斯",
+        "en": "https://en.wikipedia.org/wiki/Barbados"
+      }
+    },
+    {
+      "code": "bs",
+      "basic": {
+        "capital": {"zh": "拿骚", "en": "Nassau"},
+        "population": {"zh": "约40万", "en": "Approx. 400,000"},
+        "area": {"zh": "1.39万平方公里", "en": "13,900 km²"},
+        "currency": {"zh": "巴哈马元(BSD)", "en": "Bahamian Dollar (BSD)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约130亿美元", "en": "Approx. $13 billion"}
+      },
+      "description": {
+        "zh": "巴哈马联邦,位于大西洋西侧,由700多个岛屿和珊瑚礁组成。巴哈马以其清澈的海水、粉红色沙滩和作为重要的金融中心而闻名。",
+        "en": "The Commonwealth of The Bahamas is located on the western side of the Atlantic Ocean, consisting of over 700 islands and cays. The Bahamas is famous for its crystal-clear waters, pink sand beaches, and as a major financial center."
+      },
+      "funFacts": {
+        "zh": [
+          "巴哈马拥有世界上最清澈的海水之一",
+          "巴哈马的哈勃岛拥有著名的粉红色沙滩",
+          "巴哈马是克里斯托弗·哥伦布1492年首次登陆美洲的地点"
+        ],
+        "en": [
+          "The Bahamas has some of the clearest waters in the world",
+          "Harbour Island in the Bahamas has the famous pink sand beach",
+          "The Bahamas is where Christopher Columbus first landed in the Americas in 1492"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/巴哈马",
+        "en": "https://en.wikipedia.org/wiki/The_Bahamas"
+      }
+    },
+    {
+      "code": "bz",
+      "basic": {
+        "capital": {"zh": "贝尔莫潘", "en": "Belmopan"},
+        "population": {"zh": "约40万", "en": "Approx. 400,000"},
+        "area": {"zh": "2.3万平方公里", "en": "23,000 km²"},
+        "currency": {"zh": "伯利兹元(BZD)", "en": "Belize Dollar (BZD)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约20亿美元", "en": "Approx. $2 billion"}
+      },
+      "description": {
+        "zh": "伯利兹,位于中美洲东海岸,是中美洲唯一以英语为官方语言的国家。伯利兹拥有世界第二大珊瑚礁系统和丰富的玛雅文明遗迹。",
+        "en": "Belize is located on the eastern coast of Central America and is the only Central American country with English as its official language. Belize has the world's second-largest barrier reef system and rich Mayan civilization ruins."
+      },
+      "funFacts": {
+        "zh": [
+          "伯利兹拥有世界第二大珊瑚礁系统——伯利兹堡礁",
+          "伯利兹是中美洲唯一以英语为官方语言的国家",
+          "伯利兹的大蓝洞是世界著名的潜水胜地"
+        ],
+        "en": [
+          "Belize has the world's second-largest barrier reef system, the Belize Barrier Reef",
+          "Belize is the only Central American country with English as the official language",
+          "The Great Blue Hole in Belize is a world-famous diving destination"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/伯利兹",
+        "en": "https://en.wikipedia.org/wiki/Belize"
+      }
+    },
+    {
+      "code": "cr",
+      "basic": {
+        "capital": {"zh": "圣何塞", "en": "San José"},
+        "population": {"zh": "约520万", "en": "Approx. 5.2 million"},
+        "area": {"zh": "5.11万平方公里", "en": "51,100 km²"},
+        "currency": {"zh": "哥斯达黎加科朗(CRC)", "en": "Costa Rican Colón (CRC)"},
+        "language": {"zh": "西班牙语", "en": "Spanish"},
+        "gdp": {"zh": "约650亿美元", "en": "Approx. $65 billion"}
+      },
+      "description": {
+        "zh": "哥斯达黎加共和国,位于中美洲,以其稳定的民主制度、高生活质量和丰富的生物多样性而闻名。哥斯达黎加于1948年废除军队,是世界上少数没有军队的国家之一。",
+        "en": "The Republic of Costa Rica is located in Central America, famous for its stable democracy, high quality of life, and rich biodiversity. Costa Rica abolished its military in 1948 and is one of the few countries in the world without an army."
+      },
+      "funFacts": {
+        "zh": [
+          "哥斯达黎加于1948年废除军队,是世界上少数没有常备军队的国家",
+          "哥斯达黎加拥有世界上5%的生物多样性",
+          "哥斯达黎加是世界上最幸福的国家之一"
+        ],
+        "en": [
+          "Costa Rica abolished its military in 1948 and is one of the few countries without a standing army",
+          "Costa Rica has 5% of the world's biodiversity",
+          "Costa Rica is consistently ranked as one of the happiest countries in the world"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/哥斯达黎加",
+        "en": "https://en.wikipedia.org/wiki/Costa_Rica"
+      }
+    },
+    {
+      "code": "cu",
+      "basic": {
+        "capital": {"zh": "哈瓦那", "en": "Havana"},
+        "population": {"zh": "约1130万", "en": "Approx. 11.3 million"},
+        "area": {"zh": "10.9万平方公里", "en": "109,000 km²"},
+        "currency": {"zh": "古巴比索(CUP)", "en": "Cuban Peso (CUP)"},
+        "language": {"zh": "西班牙语", "en": "Spanish"},
+        "gdp": {"zh": "约1070亿美元", "en": "Approx. $107 billion"}
+      },
+      "description": {
+        "zh": "古巴共和国,位于加勒比海,是加勒比地区最大的岛国。古巴以其雪茄、朗姆酒、音乐舞蹈和社会主义制度而闻名,首都哈瓦那保留了大量殖民时期建筑。",
+        "en": "The Republic of Cuba is located in the Caribbean and is the largest island nation in the region. Cuba is famous for its cigars, rum, music and dance, and socialist system. The capital Havana preserves numerous colonial-era buildings."
+      },
+      "funFacts": {
+        "zh": [
+          "古巴是世界上最大的雪茄生产国",
+          "古巴拥有9处联合国教科文组织世界遗产",
+          "古巴的医疗和教育系统在拉丁美洲名列前茅"
+        ],
+        "en": [
+          "Cuba is the world's largest producer of cigars",
+          "Cuba has 9 UNESCO World Heritage Sites",
+          "Cuba's healthcare and education systems are among the best in Latin America"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/古巴",
+        "en": "https://en.wikipedia.org/wiki/Cuba"
+      }
+    },
+    {
+      "code": "dm",
+      "basic": {
+        "capital": {"zh": "罗索", "en": "Roseau"},
+        "population": {"zh": "约7.2万", "en": "Approx. 72,000"},
+        "area": {"zh": "750平方公里", "en": "750 km²"},
+        "currency": {"zh": "东加勒比元(XCD)", "en": "East Caribbean Dollar (XCD)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约6亿美元", "en": "Approx. $600 million"}
+      },
+      "description": {
+        "zh": "多米尼克国,位于加勒比海小安的列斯群岛,被称为'加勒比的自然之岛'。多米尼克拥有丰富的热带雨林、温泉和瀑布,是加勒比地区生态旅游的热门目的地。",
+        "en": "The Commonwealth of Dominica is located in the Lesser Antilles in the Caribbean and is known as 'The Nature Island of the Caribbean'. Dominica has abundant tropical rainforests, hot springs, and waterfalls, making it a popular ecotourism destination in the Caribbean."
+      },
+      "funFacts": {
+        "zh": [
+          "多米尼克被称为'加勒比的自然之岛',拥有365条河流",
+          "多米尼克是世界上唯一有野生鹦鹉物种以国家命名的地方",
+          "多米尼克拥有世界第二大温泉湖——沸腾湖"
+        ],
+        "en": [
+          "Dominica is called 'The Nature Island of the Caribbean' with 365 rivers",
+          "Dominica is the only place in the world with a wild parrot species named after the country",
+          "Dominica has the world's second-largest hot spring, the Boiling Lake"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/多米尼克",
+        "en": "https://en.wikipedia.org/wiki/Dominica"
+      }
+    },
+    {
+      "code": "do",
+      "basic": {
+        "capital": {"zh": "圣多明各", "en": "Santo Domingo"},
+        "population": {"zh": "约1100万", "en": "Approx. 11 million"},
+        "area": {"zh": "4.87万平方公里", "en": "48,700 km²"},
+        "currency": {"zh": "多米尼加比索(DOP)", "en": "Dominican Peso (DOP)"},
+        "language": {"zh": "西班牙语", "en": "Spanish"},
+        "gdp": {"zh": "约950亿美元", "en": "Approx. $95 billion"}
+      },
+      "description": {
+        "zh": "多米尼加共和国,位于加勒比海伊斯帕尼奥拉岛东部,与海地共享该岛。多米尼加以其美丽的海滩、雪茄生产和棒球传统而闻名,是加勒比地区重要的旅游目的地。",
+        "en": "The Dominican Republic is located on the eastern part of Hispaniola island in the Caribbean, sharing it with Haiti. The Dominican Republic is famous for its beautiful beaches, cigar production, and baseball tradition, making it a major tourist destination in the Caribbean."
+      },
+      "funFacts": {
+        "zh": [
+          "多米尼加的首都圣多明各是美洲最古老的欧洲殖民城市",
+          "多米尼加是世界上最大的雪茄出口国之一",
+          "多米尼加培养了许多世界知名的棒球运动员"
+        ],
+        "en": [
+          "Santo Domingo is the oldest European settlement in the Americas",
+          "The Dominican Republic is one of the world's largest cigar exporters",
+          "The Dominican Republic has produced many world-famous baseball players"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/多米尼加",
+        "en": "https://en.wikipedia.org/wiki/Dominican_Republic"
+      }
+    },
+    {
+      "code": "gd",
+      "basic": {
+        "capital": {"zh": "圣乔治", "en": "St. George's"},
+        "population": {"zh": "约11万", "en": "Approx. 110,000"},
+        "area": {"zh": "344平方公里", "en": "344 km²"},
+        "currency": {"zh": "东加勒比元(XCD)", "en": "East Caribbean Dollar (XCD)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约12亿美元", "en": "Approx. $1.2 billion"}
+      },
+      "description": {
+        "zh": "格林纳达,位于加勒比海东南部,被称为'香料之岛'。格林纳达是世界上主要的肉豆蔻生产国之一,其国旗上就有肉豆蔻的图案。",
+        "en": "Grenada is located in the southeastern Caribbean and is known as the 'Spice Isle'. Grenada is one of the world's major nutmeg producers, and the nutmeg is featured on its national flag."
+      },
+      "funFacts": {
+        "zh": [
+          "格林纳达被称为'香料之岛',是世界第二大肉豆蔻生产国",
+          "格林纳达的国旗上有肉豆蔻图案",
+          "格林纳达拥有世界上第一个水下雕塑公园"
+        ],
+        "en": [
+          "Grenada is called the 'Spice Isle' and is the world's second-largest nutmeg producer",
+          "Grenada's flag features a nutmeg",
+          "Grenada has the world's first underwater sculpture park"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/格林纳达",
+        "en": "https://en.wikipedia.org/wiki/Grenada"
+      }
+    },
+    {
+      "code": "gt",
+      "basic": {
+        "capital": {"zh": "危地马拉城", "en": "Guatemala City"},
+        "population": {"zh": "约1800万", "en": "Approx. 18 million"},
+        "area": {"zh": "10.9万平方公里", "en": "109,000 km²"},
+        "currency": {"zh": "格查尔(GTQ)", "en": "Guatemalan Quetzal (GTQ)"},
+        "language": {"zh": "西班牙语", "en": "Spanish"},
+        "gdp": {"zh": "约850亿美元", "en": "Approx. $85 billion"}
+      },
+      "description": {
+        "zh": "危地马拉共和国,位于中美洲,是玛雅文明的核心地区之一。危地马拉拥有丰富的玛雅遗迹、火山景观和传统文化,是中美洲人口最多的国家。",
+        "en": "The Republic of Guatemala is located in Central America and is one of the heartlands of Mayan civilization. Guatemala has rich Mayan ruins, volcanic landscapes, and traditional culture, making it the most populous country in Central America."
+      },
+      "funFacts": {
+        "zh": [
+          "危地马拉是玛雅文明的核心地区,拥有众多玛雅遗迹",
+          "危地马拉拥有37座火山,其中3座仍处于活跃状态",
+          "危地马拉的国鸟格查尔鸟是其货币名称的由来"
+        ],
+        "en": [
+          "Guatemala is a heartland of Mayan civilization with numerous Mayan ruins",
+          "Guatemala has 37 volcanoes, with 3 still active",
+          "Guatemala's national bird, the Quetzal, is the namesake of its currency"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/危地马拉",
+        "en": "https://en.wikipedia.org/wiki/Guatemala"
+      }
+    },
+    {
+      "code": "hn",
+      "basic": {
+        "capital": {"zh": "特古西加尔巴", "en": "Tegucigalpa"},
+        "population": {"zh": "约1000万", "en": "Approx. 10 million"},
+        "area": {"zh": "11.2万平方公里", "en": "112,000 km²"},
+        "currency": {"zh": "伦皮拉(HNL)", "en": "Honduran Lempira (HNL)"},
+        "language": {"zh": "西班牙语", "en": "Spanish"},
+        "gdp": {"zh": "约280亿美元", "en": "Approx. $28 billion"}
+      },
+      "description": {
+        "zh": "洪都拉斯共和国,位于中美洲,拥有加勒比海和太平洋两个海岸线。洪都拉斯拥有世界级的玛雅遗迹科潘和美丽的海湾群岛,是潜水爱好者的天堂。",
+        "en": "The Republic of Honduras is located in Central America with coastlines on both the Caribbean Sea and Pacific Ocean. Honduras has the world-class Mayan ruins of Copán and the beautiful Bay Islands, making it a paradise for divers."
+      },
+      "funFacts": {
+        "zh": [
+          "洪都拉斯的科潘遗址是玛雅文明最重要的考古遗址之一",
+          "洪都拉斯的海湾群岛是世界著名的潜水目的地",
+          "洪都拉斯是世界上主要的咖啡生产国之一"
+        ],
+        "en": [
+          "The Copán ruins in Honduras are one of the most important Mayan archaeological sites",
+          "Honduras' Bay Islands are a world-famous diving destination",
+          "Honduras is one of the world's major coffee producers"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/洪都拉斯",
+        "en": "https://en.wikipedia.org/wiki/Honduras"
+      }
+    },
+    {
+      "code": "ht",
+      "basic": {
+        "capital": {"zh": "太子港", "en": "Port-au-Prince"},
+        "population": {"zh": "约1150万", "en": "Approx. 11.5 million"},
+        "area": {"zh": "2.77万平方公里", "en": "27,700 km²"},
+        "currency": {"zh": "古德(HTG)", "en": "Haitian Gourde (HTG)"},
+        "language": {"zh": "法语、海地克里奥尔语", "en": "French, Haitian Creole"},
+        "gdp": {"zh": "约200亿美元", "en": "Approx. $20 billion"}
+      },
+      "description": {
+        "zh": "海地共和国,位于加勒比海伊斯帕尼奥拉岛西部。海地是拉丁美洲第一个独立的国家,也是世界上第一个由黑人奴隶起义建立的共和国,拥有独特的文化和历史。",
+        "en": "The Republic of Haiti is located on the western part of Hispaniola island in the Caribbean. Haiti was the first independent nation in Latin America and the world's first republic established by a successful slave revolt, with unique culture and history."
+      },
+      "funFacts": {
+        "zh": [
+          "海地是世界上第一个黑人共和国,于1804年独立",
+          "海地是拉丁美洲第一个独立的国家",
+          "海地拥有独特的伏都教文化"
+        ],
+        "en": [
+          "Haiti was the world's first black republic, gaining independence in 1804",
+          "Haiti was the first independent nation in Latin America",
+          "Haiti has a unique Vodou (Voodoo) culture"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/海地",
+        "en": "https://en.wikipedia.org/wiki/Haiti"
+      }
+    },
+    {
+      "code": "jm",
+      "basic": {
+        "capital": {"zh": "金斯敦", "en": "Kingston"},
+        "population": {"zh": "约300万", "en": "Approx. 3 million"},
+        "area": {"zh": "1.1万平方公里", "en": "11,000 km²"},
+        "currency": {"zh": "牙买加元(JMD)", "en": "Jamaican Dollar (JMD)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约150亿美元", "en": "Approx. $15 billion"}
+      },
+      "description": {
+        "zh": "牙买加,位于加勒比海,是加勒比地区第三大岛国。牙买加以雷鬼音乐、短跑运动员、蓝山咖啡和朗姆酒而闻名于世,拥有丰富的文化遗产。",
+        "en": "Jamaica is located in the Caribbean and is the third-largest island nation in the region. Jamaica is world-famous for reggae music, sprint athletes, Blue Mountain coffee, and rum, with a rich cultural heritage."
+      },
+      "funFacts": {
+        "zh": [
+          "牙买加是雷鬼音乐的发源地,诞生了传奇音乐家鲍勃·马利",
+          "牙买加培养了众多世界级短跑运动员,包括尤塞恩·博尔特",
+          "牙买加蓝山咖啡是世界上最昂贵的咖啡之一"
+        ],
+        "en": [
+          "Jamaica is the birthplace of reggae music and legendary musician Bob Marley",
+          "Jamaica has produced numerous world-class sprinters, including Usain Bolt",
+          "Jamaica Blue Mountain coffee is one of the most expensive coffees in the world"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/牙买加",
+        "en": "https://en.wikipedia.org/wiki/Jamaica"
+      }
+    },
+    {
+      "code": "kn",
+      "basic": {
+        "capital": {"zh": "巴斯特尔", "en": "Basseterre"},
+        "population": {"zh": "约5.5万", "en": "Approx. 55,000"},
+        "area": {"zh": "261平方公里", "en": "261 km²"},
+        "currency": {"zh": "东加勒比元(XCD)", "en": "East Caribbean Dollar (XCD)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约10亿美元", "en": "Approx. $1 billion"}
+      },
+      "description": {
+        "zh": "圣基茨和尼维斯联邦,位于加勒比海,由圣基茨岛和尼维斯岛组成。这是西半球最小的主权国家之一,以其美丽的海滩和投资移民项目而闻名。",
+        "en": "The Federation of Saint Kitts and Nevis is located in the Caribbean, consisting of Saint Kitts and Nevis islands. It is one of the smallest sovereign nations in the Western Hemisphere, famous for its beautiful beaches and citizenship by investment program."
+      },
+      "funFacts": {
+        "zh": [
+          "圣基茨和尼维斯是美洲面积最小和人口最少的主权国家",
+          "圣基茨和尼维斯拥有世界上历史最悠久的投资移民项目之一",
+          "圣基茨和尼维斯是加勒比地区第一个废除奴隶制的国家"
+        ],
+        "en": [
+          "Saint Kitts and Nevis is the smallest sovereign state in the Americas by area and population",
+          "Saint Kitts and Nevis has one of the world's oldest citizenship by investment programs",
+          "Saint Kitts and Nevis was the first Caribbean nation to abolish slavery"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/圣基茨和尼维斯",
+        "en": "https://en.wikipedia.org/wiki/Saint_Kitts_and_Nevis"
+      }
+    },
+    {
+      "code": "lc",
+      "basic": {
+        "capital": {"zh": "卡斯特里", "en": "Castries"},
+        "population": {"zh": "约18万", "en": "Approx. 180,000"},
+        "area": {"zh": "617平方公里", "en": "617 km²"},
+        "currency": {"zh": "东加勒比元(XCD)", "en": "East Caribbean Dollar (XCD)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约20亿美元", "en": "Approx. $2 billion"}
+      },
+      "description": {
+        "zh": "圣卢西亚,位于加勒比海东部,以其标志性的皮通山双峰、火山海滩和豪华度假村而闻名。圣卢西亚是加勒比地区重要的旅游目的地。",
+        "en": "Saint Lucia is located in the eastern Caribbean, famous for its iconic twin Pitons peaks, volcanic beaches, and luxury resorts. Saint Lucia is a major tourist destination in the Caribbean."
+      },
+      "funFacts": {
+        "zh": [
+          "圣卢西亚的皮通山是联合国教科文组织世界遗产",
+          "圣卢西亚是世界上唯一以女性圣人命名的国家",
+          "圣卢西亚培养了两位诺贝尔奖得主"
+        ],
+        "en": [
+          "The Pitons in Saint Lucia are a UNESCO World Heritage Site",
+          "Saint Lucia is the only country in the world named after a female saint",
+          "Saint Lucia has produced two Nobel Prize laureates"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/圣卢西亚",
+        "en": "https://en.wikipedia.org/wiki/Saint_Lucia"
+      }
+    },
+    {
+      "code": "ni",
+      "basic": {
+        "capital": {"zh": "马那瓜", "en": "Managua"},
+        "population": {"zh": "约670万", "en": "Approx. 6.7 million"},
+        "area": {"zh": "13万平方公里", "en": "130,000 km²"},
+        "currency": {"zh": "科多巴(NIO)", "en": "Nicaraguan Córdoba (NIO)"},
+        "language": {"zh": "西班牙语", "en": "Spanish"},
+        "gdp": {"zh": "约140亿美元", "en": "Approx. $14 billion"}
+      },
+      "description": {
+        "zh": "尼加拉瓜共和国,位于中美洲,是中美洲面积最大的国家。尼加拉瓜拥有众多火山、湖泊和殖民时期城市,以其自然美景和丰富的生物多样性而闻名。",
+        "en": "The Republic of Nicaragua is located in Central America and is the largest country in the region. Nicaragua has numerous volcanoes, lakes, and colonial cities, famous for its natural beauty and rich biodiversity."
+      },
+      "funFacts": {
+        "zh": [
+          "尼加拉瓜是中美洲面积最大的国家",
+          "尼加拉瓜湖是中美洲最大的淡水湖",
+          "尼加拉瓜拥有19座活火山"
+        ],
+        "en": [
+          "Nicaragua is the largest country in Central America",
+          "Lake Nicaragua is the largest freshwater lake in Central America",
+          "Nicaragua has 19 active volcanoes"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/尼加拉瓜",
+        "en": "https://en.wikipedia.org/wiki/Nicaragua"
+      }
+    },
+    {
+      "code": "pa",
+      "basic": {
+        "capital": {"zh": "巴拿马城", "en": "Panama City"},
+        "population": {"zh": "约440万", "en": "Approx. 4.4 million"},
+        "area": {"zh": "7.52万平方公里", "en": "75,200 km²"},
+        "currency": {"zh": "巴波亚(PAB)、美元(USD)", "en": "Panamanian Balboa (PAB), US Dollar (USD)"},
+        "language": {"zh": "西班牙语", "en": "Spanish"},
+        "gdp": {"zh": "约750亿美元", "en": "Approx. $75 billion"}
+      },
+      "description": {
+        "zh": "巴拿马共和国,位于中美洲和南美洲的连接处,因巴拿马运河而闻名于世。巴拿马运河是世界上最重要的航运通道之一,连接大西洋和太平洋。",
+        "en": "The Republic of Panama is located at the junction of Central and South America, world-famous for the Panama Canal. The Panama Canal is one of the world's most important shipping routes, connecting the Atlantic and Pacific Oceans."
+      },
+      "funFacts": {
+        "zh": [
+          "巴拿马运河每年为全球贸易节省数千公里的航程",
+          "巴拿马是美洲唯一一个可以同时看到太平洋和大西洋日出日落的地方",
+          "巴拿马使用美元作为主要流通货币"
+        ],
+        "en": [
+          "The Panama Canal saves thousands of kilometers for global trade each year",
+          "Panama is the only place in the Americas where you can see the sun rise over the Pacific and set over the Atlantic",
+          "Panama uses the US dollar as its primary currency"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/巴拿马",
+        "en": "https://en.wikipedia.org/wiki/Panama"
+      }
+    },
+    {
+      "code": "sv",
+      "basic": {
+        "capital": {"zh": "圣萨尔瓦多", "en": "San Salvador"},
+        "population": {"zh": "约650万", "en": "Approx. 6.5 million"},
+        "area": {"zh": "2.1万平方公里", "en": "21,000 km²"},
+        "currency": {"zh": "美元(USD)", "en": "US Dollar (USD)"},
+        "language": {"zh": "西班牙语", "en": "Spanish"},
+        "gdp": {"zh": "约300亿美元", "en": "Approx. $30 billion"}
+      },
+      "description": {
+        "zh": "萨尔瓦多共和国,位于中美洲,是中美洲面积最小和人口密度最高的国家。萨尔瓦多拥有丰富的玛雅遗迹、火山景观和美丽的海滩。",
+        "en": "The Republic of El Salvador is located in Central America and is the smallest and most densely populated country in the region. El Salvador has rich Mayan ruins, volcanic landscapes, and beautiful beaches."
+      },
+      "funFacts": {
+        "zh": [
+          "萨尔瓦多是中美洲面积最小的国家,被称为'中美洲的拇指'",
+          "萨尔瓦多于2021年成为世界上第一个将比特币作为法定货币的国家",
+          "萨尔瓦多拥有20多座火山,被称为'火山之国'"
+        ],
+        "en": [
+          "El Salvador is the smallest country in Central America, called 'The Thumb of America'",
+          "El Salvador became the world's first country to adopt Bitcoin as legal tender in 2021",
+          "El Salvador has over 20 volcanoes and is called 'The Land of Volcanoes'"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/萨尔瓦多",
+        "en": "https://en.wikipedia.org/wiki/El_Salvador"
+      }
+    },
+    {
+      "code": "tt",
+      "basic": {
+        "capital": {"zh": "西班牙港", "en": "Port of Spain"},
+        "population": {"zh": "约150万", "en": "Approx. 1.5 million"},
+        "area": {"zh": "5130平方公里", "en": "5,130 km²"},
+        "currency": {"zh": "特立尼达和多巴哥元(TTD)", "en": "Trinidad and Tobago Dollar (TTD)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约240亿美元", "en": "Approx. $24 billion"}
+      },
+      "description": {
+        "zh": "特立尼达和多巴哥共和国,位于加勒比海南部,由特立尼达岛和多巴哥岛组成。该国以其狂欢节、钢鼓音乐和丰富的石油天然气资源而闻名。",
+        "en": "The Republic of Trinidad and Tobago is located in the southern Caribbean, consisting of Trinidad and Tobago islands. The country is famous for its Carnival, steel pan music, and rich oil and gas resources."
+      },
+      "funFacts": {
+        "zh": [
+          "特立尼达和多巴哥是钢鼓乐器的发源地",
+          "特立尼达和多巴哥的狂欢节是加勒比地区最盛大的节日之一",
+          "特立尼达和多巴哥是加勒比地区最富裕的国家之一"
+        ],
+        "en": [
+          "Trinidad and Tobago is the birthplace of the steel pan, the only acoustic instrument invented in the 20th century",
+          "Trinidad and Tobago's Carnival is one of the largest festivals in the Caribbean",
+          "Trinidad and Tobago is one of the wealthiest countries in the Caribbean"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/特立尼达和多巴哥",
+        "en": "https://en.wikipedia.org/wiki/Trinidad_and_Tobago"
+      }
+    },
+    {
+      "code": "vc",
+      "basic": {
+        "capital": {"zh": "金斯敦", "en": "Kingstown"},
+        "population": {"zh": "约11万", "en": "Approx. 110,000"},
+        "area": {"zh": "389平方公里", "en": "389 km²"},
+        "currency": {"zh": "东加勒比元(XCD)", "en": "East Caribbean Dollar (XCD)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约8.5亿美元", "en": "Approx. $850 million"}
+      },
+      "description": {
+        "zh": "圣文森特和格林纳丁斯,位于加勒比海,由主岛圣文森特和格林纳丁斯群岛组成。该国以其美丽的海滩、火山景观和帆船胜地而闻名。",
+        "en": "Saint Vincent and the Grenadines is located in the Caribbean, consisting of the main island Saint Vincent and the Grenadines archipelago. The country is famous for its beautiful beaches, volcanic landscapes, and sailing destinations."
+      },
+      "funFacts": {
+        "zh": [
+          "圣文森特和格林纳丁斯是《加勒比海盗》系列电影的主要拍摄地之一",
+          "圣文森特拥有活火山苏弗里埃尔火山",
+          "格林纳丁斯群岛是世界著名的帆船和游艇目的地"
+        ],
+        "en": [
+          "Saint Vincent and the Grenadines was a major filming location for the Pirates of the Caribbean movies",
+          "Saint Vincent has an active volcano, La Soufrière",
+          "The Grenadines are a world-famous sailing and yachting destination"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/圣文森特和格林纳丁斯",
+        "en": "https://en.wikipedia.org/wiki/Saint_Vincent_and_the_Grenadines"
+      }
+    },
+    {
+      "code": "gy",
+      "basic": {
+        "capital": {"zh": "乔治敦", "en": "Georgetown"},
+        "population": {"zh": "约80万", "en": "Approx. 800,000"},
+        "area": {"zh": "21.5万平方公里", "en": "215,000 km²"},
+        "currency": {"zh": "圭亚那元(GYD)", "en": "Guyanese Dollar (GYD)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约140亿美元", "en": "Approx. $14 billion"}
+      },
+      "description": {
+        "zh": "圭亚那合作共和国,位于南美洲北部,是南美洲唯一以英语为官方语言的国家。圭亚那拥有丰富的热带雨林、壮观的凯厄图尔瀑布和丰富的矿产资源。",
+        "en": "The Co-operative Republic of Guyana is located in northern South America and is the only South American country with English as its official language. Guyana has rich tropical rainforests, the spectacular Kaieteur Falls, and abundant mineral resources."
+      },
+      "funFacts": {
+        "zh": [
+          "圭亚那是南美洲唯一以英语为官方语言的国家",
+          "圭亚那的凯厄图尔瀑布是世界上单级落差最大的瀑布之一",
+          "圭亚那近年来因发现大量海上石油储备而经济快速增长"
+        ],
+        "en": [
+          "Guyana is the only South American country with English as the official language",
+          "Kaieteur Falls in Guyana is one of the world's tallest single-drop waterfalls",
+          "Guyana's economy has been rapidly growing due to recent discovery of large offshore oil reserves"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/圭亚那",
+        "en": "https://en.wikipedia.org/wiki/Guyana"
+      }
+    },
+    {
+      "code": "sr",
+      "basic": {
+        "capital": {"zh": "帕拉马里博", "en": "Paramaribo"},
+        "population": {"zh": "约60万", "en": "Approx. 600,000"},
+        "area": {"zh": "16.4万平方公里", "en": "164,000 km²"},
+        "currency": {"zh": "苏里南元(SRD)", "en": "Surinamese Dollar (SRD)"},
+        "language": {"zh": "荷兰语", "en": "Dutch"},
+        "gdp": {"zh": "约35亿美元", "en": "Approx. $3.5 billion"}
+      },
+      "description": {
+        "zh": "苏里南共和国,位于南美洲北部,是南美洲最小的主权国家,也是唯一以荷兰语为官方语言的国家。苏里南拥有丰富的文化多样性和热带雨林资源。",
+        "en": "The Republic of Suriname is located in northern South America and is the smallest sovereign state in South America, and the only country with Dutch as its official language. Suriname has rich cultural diversity and tropical rainforest resources."
+      },
+      "funFacts": {
+        "zh": [
+          "苏里南是南美洲面积最小的主权国家",
+          "苏里南是世界上唯一以荷兰语为官方语言的南美洲国家",
+          "苏里南拥有极其丰富的文化多样性,包括印度、非洲、印尼、中国和欧洲文化"
+        ],
+        "en": [
+          "Suriname is the smallest sovereign state in South America",
+          "Suriname is the only country in South America with Dutch as the official language",
+          "Suriname has exceptionally rich cultural diversity, including Indian, African, Indonesian, Chinese, and European cultures"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/苏里南",
+        "en": "https://en.wikipedia.org/wiki/Suriname"
+      }
+    },
+    {
+      "code": "fj",
+      "basic": {
+        "capital": {"zh": "苏瓦", "en": "Suva"},
+        "population": {"zh": "约90万", "en": "Approx. 900,000"},
+        "area": {"zh": "1.83万平方公里", "en": "18,300 km²"},
+        "currency": {"zh": "斐济元(FJD)", "en": "Fijian Dollar (FJD)"},
+        "language": {"zh": "英语、斐济语、印地语", "en": "English, Fijian, Hindi"},
+        "gdp": {"zh": "约50亿美元", "en": "Approx. $5 billion"}
+      },
+      "description": {
+        "zh": "斐济共和国,位于南太平洋,由330多个岛屿组成。斐济以其美丽的珊瑚礁、白色沙滩和热情好客的文化而闻名,是南太平洋重要的旅游目的地。",
+        "en": "The Republic of Fiji is located in the South Pacific, consisting of over 330 islands. Fiji is famous for its beautiful coral reefs, white sand beaches, and hospitable culture, making it a major tourist destination in the South Pacific."
+      },
+      "funFacts": {
+        "zh": [
+          "斐济拥有世界上最丰富的软珊瑚礁之一",
+          "斐济是世界著名的'软珊瑚之都'",
+          "斐济是橄榄球七人制的强国,曾获奥运金牌"
+        ],
+        "en": [
+          "Fiji has one of the world's richest soft coral reefs",
+          "Fiji is known as the 'Soft Coral Capital of the World'",
+          "Fiji is a powerhouse in rugby sevens, winning Olympic gold medals"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/斐济",
+        "en": "https://en.wikipedia.org/wiki/Fiji"
+      }
+    },
+    {
+      "code": "fm",
+      "basic": {
+        "capital": {"zh": "帕利基尔", "en": "Palikir"},
+        "population": {"zh": "约11万", "en": "Approx. 110,000"},
+        "area": {"zh": "702平方公里", "en": "702 km²"},
+        "currency": {"zh": "美元(USD)", "en": "US Dollar (USD)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约4亿美元", "en": "Approx. $400 million"}
+      },
+      "description": {
+        "zh": "密克罗尼西亚联邦,位于西太平洋,由607个岛屿组成。密克罗尼西亚拥有丰富的海洋资源和二战遗迹,与美国有自由联系协定。",
+        "en": "The Federated States of Micronesia is located in the Western Pacific, consisting of 607 islands. Micronesia has rich marine resources and WWII relics, with a Compact of Free Association with the United States."
+      },
+      "funFacts": {
+        "zh": [
+          "密克罗尼西亚拥有众多二战时期的沉船和飞机残骸",
+          "密克罗尼西亚的楚克环礁是世界著名的沉船潜水圣地",
+          "密克罗尼西亚与美国有自由联系协定,使用美元作为货币"
+        ],
+        "en": [
+          "Micronesia has numerous WWII shipwrecks and aircraft remains",
+          "Chuuk Lagoon in Micronesia is a world-famous wreck diving destination",
+          "Micronesia has a Compact of Free Association with the US and uses the US dollar"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/密克罗尼西亚联邦",
+        "en": "https://en.wikipedia.org/wiki/Federated_States_of_Micronesia"
+      }
+    },
+    {
+      "code": "ki",
+      "basic": {
+        "capital": {"zh": "塔拉瓦", "en": "Tarawa"},
+        "population": {"zh": "约13万", "en": "Approx. 130,000"},
+        "area": {"zh": "811平方公里", "en": "811 km²"},
+        "currency": {"zh": "澳元(AUD)", "en": "Australian Dollar (AUD)"},
+        "language": {"zh": "英语、基里巴斯语", "en": "English, Gilbertese"},
+        "gdp": {"zh": "约2亿美元", "en": "Approx. $200 million"}
+      },
+      "description": {
+        "zh": "基里巴斯共和国,位于中太平洋,是世界上唯一跨越四个半球(东西南北)的国家。基里巴斯由33个环礁组成,是受气候变化和海平面上升威胁最严重的国家之一。",
+        "en": "The Republic of Kiribati is located in the central Pacific and is the only country in the world spanning all four hemispheres (north, south, east, and west). Kiribati consists of 33 atolls and is one of the countries most threatened by climate change and sea level rise."
+      },
+      "funFacts": {
+        "zh": [
+          "基里巴斯是世界上唯一跨越四个半球的国家",
+          "基里巴斯是世界上最早迎接新年的国家之一",
+          "基里巴斯面临严重的海平面上升威胁,部分岛屿可能在本世纪内被淹没"
+        ],
+        "en": [
+          "Kiribati is the only country spanning all four hemispheres",
+          "Kiribati is one of the first countries to welcome the new year",
+          "Kiribati faces severe sea level rise threats, with some islands potentially submerged this century"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/基里巴斯",
+        "en": "https://en.wikipedia.org/wiki/Kiribati"
+      }
+    },
+    {
+      "code": "mh",
+      "basic": {
+        "capital": {"zh": "马朱罗", "en": "Majuro"},
+        "population": {"zh": "约5.9万", "en": "Approx. 59,000"},
+        "area": {"zh": "181平方公里", "en": "181 km²"},
+        "currency": {"zh": "美元(USD)", "en": "US Dollar (USD)"},
+        "language": {"zh": "英语、马绍尔语", "en": "English, Marshallese"},
+        "gdp": {"zh": "约2.5亿美元", "en": "Approx. $250 million"}
+      },
+      "description": {
+        "zh": "马绍尔群岛共和国,位于西太平洋,由29个环礁和5个岛屿组成。马绍尔群岛曾是美国核试验场,比基尼环礁和埃尼威托克环礁是联合国教科文组织世界遗产。",
+        "en": "The Republic of the Marshall Islands is located in the Western Pacific, consisting of 29 atolls and 5 islands. The Marshall Islands was a US nuclear testing site, with Bikini Atoll and Enewetak Atoll designated as UNESCO World Heritage Sites."
+      },
+      "funFacts": {
+        "zh": [
+          "马绍尔群岛的比基尼环礁是美国进行核试验的地方,'比基尼'泳装由此得名",
+          "马绍尔群岛拥有世界上最大的鲨鱼保护区",
+          "马绍尔群岛与美国有自由联系协定"
+        ],
+        "en": [
+          "Bikini Atoll in the Marshall Islands was a US nuclear testing site, giving its name to the bikini swimsuit",
+          "The Marshall Islands has the world's largest shark sanctuary",
+          "The Marshall Islands has a Compact of Free Association with the United States"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/马绍尔群岛",
+        "en": "https://en.wikipedia.org/wiki/Marshall_Islands"
+      }
+    },
+    {
+      "code": "nr",
+      "basic": {
+        "capital": {"zh": "亚伦", "en": "Yaren"},
+        "population": {"zh": "约1.3万", "en": "Approx. 13,000"},
+        "area": {"zh": "21平方公里", "en": "21 km²"},
+        "currency": {"zh": "澳元(AUD)", "en": "Australian Dollar (AUD)"},
+        "language": {"zh": "英语、瑙鲁语", "en": "English, Nauruan"},
+        "gdp": {"zh": "约1.3亿美元", "en": "Approx. $130 million"}
+      },
+      "description": {
+        "zh": "瑙鲁共和国,位于中太平洋,是世界上第三小的国家。瑙鲁曾因磷酸盐开采而富裕,但资源枯竭后经济陷入困境,是一个警示过度开发资源的案例。",
+        "en": "The Republic of Nauru is located in the central Pacific and is the world's third-smallest country. Nauru was once wealthy from phosphate mining, but after resource depletion, its economy declined, serving as a cautionary tale of resource over-exploitation."
+      },
+      "funFacts": {
+        "zh": [
+          "瑙鲁是世界上第三小的国家,仅次于梵蒂冈和摩纳哥",
+          "瑙鲁是世界上唯一没有正式首都的共和国",
+          "瑙鲁曾因磷酸盐开采而成为人均GDP最高的国家之一"
+        ],
+        "en": [
+          "Nauru is the world's third-smallest country, after Vatican City and Monaco",
+          "Nauru is the only republic in the world without an official capital",
+          "Nauru once had one of the highest per capita GDPs due to phosphate mining"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/瑙鲁",
+        "en": "https://en.wikipedia.org/wiki/Nauru"
+      }
+    },
+    {
+      "code": "pg",
+      "basic": {
+        "capital": {"zh": "莫尔兹比港", "en": "Port Moresby"},
+        "population": {"zh": "约900万", "en": "Approx. 9 million"},
+        "area": {"zh": "46.3万平方公里", "en": "463,000 km²"},
+        "currency": {"zh": "基那(PGK)", "en": "Papua New Guinean Kina (PGK)"},
+        "language": {"zh": "英语、托克皮辛语", "en": "English, Tok Pisin"},
+        "gdp": {"zh": "约260亿美元", "en": "Approx. $26 billion"}
+      },
+      "description": {
+        "zh": "巴布亚新几内亚独立国,位于太平洋西南部,占据新几内亚岛东半部。巴布亚新几内亚拥有世界上最丰富的文化和语言多样性,有超过800种语言。",
+        "en": "The Independent State of Papua New Guinea is located in the southwestern Pacific, occupying the eastern half of New Guinea island. Papua New Guinea has the world's richest cultural and linguistic diversity, with over 800 languages."
+      },
+      "funFacts": {
+        "zh": [
+          "巴布亚新几内亚拥有世界上最多的语言,超过800种",
+          "巴布亚新几内亚是世界上文化多样性最丰富的国家之一",
+          "巴布亚新几内亚拥有世界上最大的蝴蝶——亚历山大女皇鸟翼凤蝶"
+        ],
+        "en": [
+          "Papua New Guinea has the most languages in the world, over 800",
+          "Papua New Guinea is one of the most culturally diverse countries in the world",
+          "Papua New Guinea is home to the world's largest butterfly, the Queen Alexandra's birdwing"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/巴布亚新几内亚",
+        "en": "https://en.wikipedia.org/wiki/Papua_New_Guinea"
+      }
+    },
+    {
+      "code": "pw",
+      "basic": {
+        "capital": {"zh": "恩吉鲁穆德", "en": "Ngerulmud"},
+        "population": {"zh": "约1.8万", "en": "Approx. 18,000"},
+        "area": {"zh": "459平方公里", "en": "459 km²"},
+        "currency": {"zh": "美元(USD)", "en": "US Dollar (USD)"},
+        "language": {"zh": "英语、帕劳语", "en": "English, Palauan"},
+        "gdp": {"zh": "约3亿美元", "en": "Approx. $300 million"}
+      },
+      "description": {
+        "zh": "帕劳共和国,位于西太平洋,由340多个岛屿组成。帕劳以其水母湖、珊瑚礁和二战遗迹而闻名,是世界著名的潜水天堂。",
+        "en": "The Republic of Palau is located in the Western Pacific, consisting of over 340 islands. Palau is famous for its Jellyfish Lake, coral reefs, and WWII relics, making it a world-renowned diving paradise."
+      },
+      "funFacts": {
+        "zh": [
+          "帕劳拥有世界上第一个鲨鱼保护区",
+          "帕劳的水母湖是世界上罕见的可以与无毒水母共游的湖泊",
+          "帕劳是世界上第一个禁止使用防晒霜的国家,以保护珊瑚礁"
+        ],
+        "en": [
+          "Palau created the world's first shark sanctuary",
+          "Palau's Jellyfish Lake is one of the rare places where you can swim with stingless jellyfish",
+          "Palau was the first country to ban sunscreen to protect its coral reefs"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/帕劳",
+        "en": "https://en.wikipedia.org/wiki/Palau"
+      }
+    },
+    {
+      "code": "sb",
+      "basic": {
+        "capital": {"zh": "霍尼亚拉", "en": "Honiara"},
+        "population": {"zh": "约70万", "en": "Approx. 700,000"},
+        "area": {"zh": "2.89万平方公里", "en": "28,900 km²"},
+        "currency": {"zh": "所罗门群岛元(SBD)", "en": "Solomon Islands Dollar (SBD)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约16亿美元", "en": "Approx. $1.6 billion"}
+      },
+      "description": {
+        "zh": "所罗门群岛,位于西南太平洋,由近1000个岛屿组成。所罗门群岛是二战太平洋战场的重要战区,拥有丰富的海洋资源和传统文化。",
+        "en": "Solomon Islands is located in the southwestern Pacific, consisting of nearly 1,000 islands. Solomon Islands was a major battleground in WWII's Pacific theater, with rich marine resources and traditional culture."
+      },
+      "funFacts": {
+        "zh": [
+          "所罗门群岛是二战太平洋战场瓜达尔卡纳尔战役的发生地",
+          "所罗门群岛拥有世界上最多样化的海洋生物之一",
+          "所罗门群岛的海底有大量二战沉船,是潜水爱好者的天堂"
+        ],
+        "en": [
+          "Solomon Islands was the site of the Battle of Guadalcanal in WWII",
+          "Solomon Islands has one of the most diverse marine ecosystems in the world",
+          "Solomon Islands has numerous WWII shipwrecks underwater, making it a diver's paradise"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/所罗门群岛",
+        "en": "https://en.wikipedia.org/wiki/Solomon_Islands"
+      }
+    },
+    {
+      "code": "to",
+      "basic": {
+        "capital": {"zh": "努库阿洛法", "en": "Nuku'alofa"},
+        "population": {"zh": "约11万", "en": "Approx. 110,000"},
+        "area": {"zh": "747平方公里", "en": "747 km²"},
+        "currency": {"zh": "潘加(TOP)", "en": "Tongan Pa'anga (TOP)"},
+        "language": {"zh": "英语、汤加语", "en": "English, Tongan"},
+        "gdp": {"zh": "约5亿美元", "en": "Approx. $500 million"}
+      },
+      "description": {
+        "zh": "汤加王国,位于南太平洋,由176个岛屿组成。汤加是太平洋地区唯一从未被殖民过的国家,至今仍保持君主制,被称为'友谊之岛'。",
+        "en": "The Kingdom of Tonga is located in the South Pacific, consisting of 176 islands. Tonga is the only country in the Pacific that was never colonized, maintains a monarchy, and is known as the 'Friendly Islands'."
+      },
+      "funFacts": {
+        "zh": [
+          "汤加是太平洋地区唯一从未被殖民过的国家",
+          "汤加是世界上第一个迎接新年的国家之一",
+          "汤加王国已有超过1000年的历史"
+        ],
+        "en": [
+          "Tonga is the only country in the Pacific that was never colonized",
+          "Tonga is one of the first countries in the world to celebrate the new year",
+          "The Kingdom of Tonga has over 1,000 years of history"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/汤加",
+        "en": "https://en.wikipedia.org/wiki/Tonga"
+      }
+    },
+    {
+      "code": "tv",
+      "basic": {
+        "capital": {"zh": "富纳富提", "en": "Funafuti"},
+        "population": {"zh": "约1.2万", "en": "Approx. 12,000"},
+        "area": {"zh": "26平方公里", "en": "26 km²"},
+        "currency": {"zh": "澳元(AUD)", "en": "Australian Dollar (AUD)"},
+        "language": {"zh": "英语、图瓦卢语", "en": "English, Tuvaluan"},
+        "gdp": {"zh": "约6000万美元", "en": "Approx. $60 million"}
+      },
+      "description": {
+        "zh": "图瓦卢,位于南太平洋,由9个环礁组成。图瓦卢是世界上第四小的国家,也是受海平面上升威胁最严重的国家之一,其国家域名.tv为其带来了重要收入。",
+        "en": "Tuvalu is located in the South Pacific, consisting of 9 atolls. Tuvalu is the world's fourth-smallest country and one of the most threatened by sea level rise. Its .tv domain name generates significant revenue for the country."
+      },
+      "funFacts": {
+        "zh": [
+          "图瓦卢是世界上第四小的国家",
+          "图瓦卢的国家域名.tv为其带来了重要收入",
+          "图瓦卢是世界上受海平面上升威胁最严重的国家之一"
+        ],
+        "en": [
+          "Tuvalu is the world's fourth-smallest country",
+          "Tuvalu's .tv domain name generates significant revenue for the nation",
+          "Tuvalu is one of the countries most threatened by rising sea levels"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/图瓦卢",
+        "en": "https://en.wikipedia.org/wiki/Tuvalu"
+      }
+    },
+    {
+      "code": "vu",
+      "basic": {
+        "capital": {"zh": "维拉港", "en": "Port Vila"},
+        "population": {"zh": "约31万", "en": "Approx. 310,000"},
+        "area": {"zh": "1.22万平方公里", "en": "12,200 km²"},
+        "currency": {"zh": "瓦图(VUV)", "en": "Vanuatu Vatu (VUV)"},
+        "language": {"zh": "比斯拉马语、英语、法语", "en": "Bislama, English, French"},
+        "gdp": {"zh": "约10亿美元", "en": "Approx. $1 billion"}
+      },
+      "description": {
+        "zh": "瓦努阿图共和国,位于南太平洋,由83个岛屿组成。瓦努阿图拥有活火山、蹦极发源地和丰富的传统文化,被誉为'世界上最幸福的国家'之一。",
+        "en": "The Republic of Vanuatu is located in the South Pacific, consisting of 83 islands. Vanuatu has active volcanoes, the birthplace of bungee jumping, and rich traditional culture, and has been named one of the 'happiest countries in the world'."
+      },
+      "funFacts": {
+        "zh": [
+          "瓦努阿图是现代蹦极的发源地",
+          "瓦努阿图拥有活火山亚苏尔火山,可以近距离观看岩浆湖",
+          "瓦努阿图曾被评为'世界上最幸福的国家'"
+        ],
+        "en": [
+          "Vanuatu is the birthplace of modern bungee jumping",
+          "Vanuatu has Mount Yasur, an active volcano where you can view a lava lake up close",
+          "Vanuatu has been rated as one of the 'happiest countries in the world'"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/瓦努阿图",
+        "en": "https://en.wikipedia.org/wiki/Vanuatu"
+      }
+    },
+    {
+      "code": "ws",
+      "basic": {
+        "capital": {"zh": "阿皮亚", "en": "Apia"},
+        "population": {"zh": "约20万", "en": "Approx. 200,000"},
+        "area": {"zh": "2842平方公里", "en": "2,842 km²"},
+        "currency": {"zh": "塔拉(WST)", "en": "Samoan Tala (WST)"},
+        "language": {"zh": "萨摩亚语、英语", "en": "Samoan, English"},
+        "gdp": {"zh": "约8.5亿美元", "en": "Approx. $850 million"}
+      },
+      "description": {
+        "zh": "萨摩亚独立国,位于南太平洋,由两个主岛和七个小岛组成。萨摩亚拥有丰富的波利尼西亚文化传统,以其美丽的海滩、瀑布和传统村落而闻名。",
+        "en": "The Independent State of Samoa is located in the South Pacific, consisting of two main islands and seven smaller islands. Samoa has rich Polynesian cultural traditions and is famous for its beautiful beaches, waterfalls, and traditional villages."
+      },
+      "funFacts": {
+        "zh": [
+          "萨摩亚是波利尼西亚文化的发源地之一",
+          "萨摩亚于2011年将国际日期变更线向东移动,成为最早迎接新一天的国家之一",
+          "萨摩亚是世界上第一个给予女性投票权的太平洋岛国"
+        ],
+        "en": [
+          "Samoa is one of the birthplaces of Polynesian culture",
+          "Samoa moved the International Date Line east in 2011 to become one of the first countries to greet each new day",
+          "Samoa was the first Pacific island nation to grant women the right to vote"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/萨摩亚",
+        "en": "https://en.wikipedia.org/wiki/Samoa"
+      }
     }
   ]
 }
