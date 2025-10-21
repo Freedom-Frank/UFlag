@@ -2913,6 +2913,2145 @@
         "zh": "https://zh.wikipedia.org/wiki/玻利维亚",
         "en": "https://en.wikipedia.org/wiki/Bolivia"
       }
+    },
+    {
+      "code": "af",
+      "basic": {
+        "capital": {"zh": "喀布尔", "en": "Kabul"},
+        "population": {"zh": "约4000万", "en": "Approx. 40 million"},
+        "area": {"zh": "65.2万平方公里", "en": "652,000 km²"},
+        "currency": {"zh": "阿富汗尼(AFN)", "en": "Afghan Afghani (AFN)"},
+        "language": {"zh": "普什图语、达里语", "en": "Pashto, Dari"},
+        "gdp": {"zh": "约200亿美元", "en": "Approx. $20 billion"}
+      },
+      "description": {
+        "zh": "阿富汗伊斯兰共和国,位于亚洲中南部的内陆国家,地处欧亚大陆的心脏地带。阿富汗拥有悠久的历史和多元的文化,是古代丝绸之路的重要枢纽。",
+        "en": "The Islamic Republic of Afghanistan is a landlocked country in South-Central Asia, located at the heart of Eurasia. Afghanistan has a long history and diverse culture, serving as a key hub on the ancient Silk Road."
+      },
+      "funFacts": {
+        "zh": [
+          "阿富汗被称为'帝国的坟场',历史上多个强大帝国都未能完全征服这片土地",
+          "阿富汗拥有世界上最优质的青金石矿藏",
+          "该国有超过50个民族,主要包括普什图人和塔吉克人"
+        ],
+        "en": [
+          "Afghanistan is known as the 'Graveyard of Empires' due to its resistance to foreign conquest",
+          "Afghanistan has some of the world's finest lapis lazuli deposits",
+          "The country has over 50 ethnic groups, mainly Pashtuns and Tajiks"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/阿富汗",
+        "en": "https://en.wikipedia.org/wiki/Afghanistan"
+      }
+    },
+    {
+      "code": "am",
+      "basic": {
+        "capital": {"zh": "埃里温", "en": "Yerevan"},
+        "population": {"zh": "约300万", "en": "Approx. 3 million"},
+        "area": {"zh": "2.98万平方公里", "en": "29,800 km²"},
+        "currency": {"zh": "德拉姆(AMD)", "en": "Armenian Dram (AMD)"},
+        "language": {"zh": "亚美尼亚语", "en": "Armenian"},
+        "gdp": {"zh": "约140亿美元", "en": "Approx. $14 billion"}
+      },
+      "description": {
+        "zh": "亚美尼亚共和国,位于西亚外高加索地区的内陆国家。亚美尼亚是世界上第一个将基督教定为国教的国家,拥有深厚的文化和历史传统。",
+        "en": "The Republic of Armenia is a landlocked country in the South Caucasus region of Western Asia. Armenia was the first nation to adopt Christianity as its state religion and has a rich cultural and historical heritage."
+      },
+      "funFacts": {
+        "zh": [
+          "亚美尼亚在公元301年成为世界上第一个基督教国家",
+          "亚美尼亚拥有世界上最古老的酿酒厂,历史可追溯到公元前6100年",
+          "国际象棋是亚美尼亚的必修课程"
+        ],
+        "en": [
+          "Armenia became the world's first Christian nation in 301 AD",
+          "Armenia has the world's oldest winery, dating back to 6100 BC",
+          "Chess is a mandatory subject in Armenian schools"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/亚美尼亚",
+        "en": "https://en.wikipedia.org/wiki/Armenia"
+      }
+    },
+    {
+      "code": "az",
+      "basic": {
+        "capital": {"zh": "巴库", "en": "Baku"},
+        "population": {"zh": "约1000万", "en": "Approx. 10 million"},
+        "area": {"zh": "8.66万平方公里", "en": "86,600 km²"},
+        "currency": {"zh": "马纳特(AZN)", "en": "Azerbaijani Manat (AZN)"},
+        "language": {"zh": "阿塞拜疆语", "en": "Azerbaijani"},
+        "gdp": {"zh": "约540亿美元", "en": "Approx. $54 billion"}
+      },
+      "description": {
+        "zh": "阿塞拜疆共和国,位于外高加索地区东部,濒临里海。阿塞拜疆是古代丝绸之路的重要站点,以其丰富的石油资源和独特的文化而闻名。",
+        "en": "The Republic of Azerbaijan is located in the eastern Caucasus region, bordering the Caspian Sea. Azerbaijan was an important stop on the ancient Silk Road, known for its rich oil resources and unique culture."
+      },
+      "funFacts": {
+        "zh": [
+          "阿塞拜疆被称为'火之国',因为其地下天然气自然燃烧的现象",
+          "巴库的火焰塔是世界上最高的火焰形建筑",
+          "阿塞拜疆是世界上第一个建立议会民主制的穆斯林国家"
+        ],
+        "en": [
+          "Azerbaijan is called the 'Land of Fire' due to naturally burning natural gas",
+          "Baku's Flame Towers are the world's tallest flame-shaped structures",
+          "Azerbaijan was the first Muslim country to establish parliamentary democracy"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/阿塞拜疆",
+        "en": "https://en.wikipedia.org/wiki/Azerbaijan"
+      }
+    },
+    {
+      "code": "bh",
+      "basic": {
+        "capital": {"zh": "麦纳麦", "en": "Manama"},
+        "population": {"zh": "约170万", "en": "Approx. 1.7 million"},
+        "area": {"zh": "760平方公里", "en": "760 km²"},
+        "currency": {"zh": "巴林第纳尔(BHD)", "en": "Bahraini Dinar (BHD)"},
+        "language": {"zh": "阿拉伯语", "en": "Arabic"},
+        "gdp": {"zh": "约390亿美元", "en": "Approx. $39 billion"}
+      },
+      "description": {
+        "zh": "巴林王国,是位于波斯湾西岸的岛国,由33个岛屿组成。巴林是海湾地区重要的金融中心,也是中东地区最早发现石油的国家之一。",
+        "en": "The Kingdom of Bahrain is an island nation on the western shores of the Persian Gulf, consisting of 33 islands. Bahrain is an important financial center in the Gulf region and one of the first Middle Eastern countries to discover oil."
+      },
+      "funFacts": {
+        "zh": [
+          "巴林是阿拉伯世界面积最小的国家",
+          "巴林是中东地区第一个发现石油的国家(1932年)",
+          "巴林拥有中东地区最自由的经济体之一"
+        ],
+        "en": [
+          "Bahrain is the smallest country in the Arab world",
+          "Bahrain was the first Gulf country to discover oil in 1932",
+          "Bahrain has one of the freest economies in the Middle East"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/巴林",
+        "en": "https://en.wikipedia.org/wiki/Bahrain"
+      }
+    },
+    {
+      "code": "bn",
+      "basic": {
+        "capital": {"zh": "斯里巴加湾市", "en": "Bandar Seri Begawan"},
+        "population": {"zh": "约44万", "en": "Approx. 440,000"},
+        "area": {"zh": "5765平方公里", "en": "5,765 km²"},
+        "currency": {"zh": "文莱元(BND)", "en": "Brunei Dollar (BND)"},
+        "language": {"zh": "马来语", "en": "Malay"},
+        "gdp": {"zh": "约140亿美元", "en": "Approx. $14 billion"}
+      },
+      "description": {
+        "zh": "文莱达鲁萨兰国,位于东南亚婆罗洲北岸的君主制国家。文莱是世界上最富裕的国家之一,以其丰富的石油和天然气资源而闻名。",
+        "en": "Brunei Darussalam is a monarchy located on the northern coast of Borneo in Southeast Asia. Brunei is one of the world's wealthiest nations, known for its abundant oil and natural gas resources."
+      },
+      "funFacts": {
+        "zh": [
+          "文莱苏丹是世界上最富有的王室成员之一",
+          "文莱拥有世界上最大的水上村落——甘榜亚逸",
+          "文莱是世界上少数几个不征收个人所得税的国家"
+        ],
+        "en": [
+          "The Sultan of Brunei is one of the world's wealthiest royals",
+          "Brunei has the world's largest water village, Kampong Ayer",
+          "Brunei is one of the few countries with no personal income tax"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/文莱",
+        "en": "https://en.wikipedia.org/wiki/Brunei"
+      }
+    },
+    {
+      "code": "bt",
+      "basic": {
+        "capital": {"zh": "廷布", "en": "Thimphu"},
+        "population": {"zh": "约77万", "en": "Approx. 770,000"},
+        "area": {"zh": "3.84万平方公里", "en": "38,400 km²"},
+        "currency": {"zh": "努尔特鲁姆(BTN)", "en": "Bhutanese Ngultrum (BTN)"},
+        "language": {"zh": "宗喀语", "en": "Dzongkha"},
+        "gdp": {"zh": "约26亿美元", "en": "Approx. $2.6 billion"}
+      },
+      "description": {
+        "zh": "不丹王国,位于喜马拉雅山脉东段南坡的内陆国家,介于中国和印度之间。不丹以'国民幸福总值'(GNH)而闻名,强调物质和精神发展的平衡。",
+        "en": "The Kingdom of Bhutan is a landlocked country in the Eastern Himalayas, situated between China and India. Bhutan is famous for its 'Gross National Happiness' (GNH) philosophy, emphasizing balanced material and spiritual development."
+      },
+      "funFacts": {
+        "zh": [
+          "不丹是世界上唯一用'国民幸福总值'(GNH)代替GDP衡量发展的国家",
+          "不丹禁止销售烟草,是世界上第一个全面禁烟的国家",
+          "不丹70%以上的国土被森林覆盖,宪法规定必须保持60%的森林覆盖率"
+        ],
+        "en": [
+          "Bhutan is the only country that measures development through Gross National Happiness instead of GDP",
+          "Bhutan banned tobacco sales, making it the first smoke-free nation",
+          "Over 70% of Bhutan is forested, with the constitution mandating at least 60% forest cover"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/不丹",
+        "en": "https://en.wikipedia.org/wiki/Bhutan"
+      }
+    },
+    {
+      "code": "ge",
+      "basic": {
+        "capital": {"zh": "第比利斯", "en": "Tbilisi"},
+        "population": {"zh": "约370万", "en": "Approx. 3.7 million"},
+        "area": {"zh": "6.97万平方公里", "en": "69,700 km²"},
+        "currency": {"zh": "拉里(GEL)", "en": "Georgian Lari (GEL)"},
+        "language": {"zh": "格鲁吉亚语", "en": "Georgian"},
+        "gdp": {"zh": "约180亿美元", "en": "Approx. $18 billion"}
+      },
+      "description": {
+        "zh": "格鲁吉亚,位于高加索地区的国家,地处欧亚大陆交界处。格鲁吉亚是世界上最古老的葡萄酒产区之一,拥有8000多年的酿酒历史。",
+        "en": "Georgia is a country in the Caucasus region, located at the crossroads of Europe and Asia. Georgia is one of the world's oldest wine-producing regions, with over 8,000 years of winemaking history."
+      },
+      "funFacts": {
+        "zh": [
+          "格鲁吉亚是葡萄酒的发源地,拥有8000多年的酿酒历史",
+          "格鲁吉亚字母是世界上14种独特字母系统之一",
+          "第比利斯的名字来自格鲁吉亚语'tbili',意为'温暖',因城市附近有温泉"
+        ],
+        "en": [
+          "Georgia is the birthplace of wine, with over 8,000 years of winemaking tradition",
+          "The Georgian alphabet is one of only 14 unique alphabets in the world",
+          "Tbilisi's name comes from 'tbili', meaning 'warm', due to the city's hot springs"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/格鲁吉亚",
+        "en": "https://en.wikipedia.org/wiki/Georgia_(country)"
+      }
+    },
+    {
+      "code": "jo",
+      "basic": {
+        "capital": {"zh": "安曼", "en": "Amman"},
+        "population": {"zh": "约1020万", "en": "Approx. 10.2 million"},
+        "area": {"zh": "8.93万平方公里", "en": "89,300 km²"},
+        "currency": {"zh": "约旦第纳尔(JOD)", "en": "Jordanian Dinar (JOD)"},
+        "language": {"zh": "阿拉伯语", "en": "Arabic"},
+        "gdp": {"zh": "约460亿美元", "en": "Approx. $46 billion"}
+      },
+      "description": {
+        "zh": "约旦哈希姆王国,位于西亚阿拉伯半岛的西北部。约旦拥有丰富的历史遗迹,包括世界新七大奇迹之一的佩特拉古城。",
+        "en": "The Hashemite Kingdom of Jordan is located in northwestern Arabia in Western Asia. Jordan has rich historical sites, including Petra, one of the New Seven Wonders of the World."
+      },
+      "funFacts": {
+        "zh": [
+          "佩特拉古城是世界新七大奇迹之一,有'玫瑰之城'的美称",
+          "死海是地球上海拔最低的水域,湖面低于海平面约430米",
+          "约旦是中东地区最稳定和安全的国家之一"
+        ],
+        "en": [
+          "Petra, known as the 'Rose City', is one of the New Seven Wonders of the World",
+          "The Dead Sea is the lowest point on Earth, about 430 meters below sea level",
+          "Jordan is one of the most stable and safe countries in the Middle East"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/约旦",
+        "en": "https://en.wikipedia.org/wiki/Jordan"
+      }
+    },
+    {
+      "code": "kg",
+      "basic": {
+        "capital": {"zh": "比什凯克", "en": "Bishkek"},
+        "population": {"zh": "约660万", "en": "Approx. 6.6 million"},
+        "area": {"zh": "19.99万平方公里", "en": "199,900 km²"},
+        "currency": {"zh": "索姆(KGS)", "en": "Kyrgyzstani Som (KGS)"},
+        "language": {"zh": "吉尔吉斯语、俄语", "en": "Kyrgyz, Russian"},
+        "gdp": {"zh": "约85亿美元", "en": "Approx. $8.5 billion"}
+      },
+      "description": {
+        "zh": "吉尔吉斯共和国,位于中亚的内陆国家,境内多山,有'中亚瑞士'之称。吉尔吉斯斯坦拥有壮丽的自然风光和独特的游牧文化。",
+        "en": "The Kyrgyz Republic is a landlocked country in Central Asia, known as the 'Switzerland of Central Asia' due to its mountainous terrain. Kyrgyzstan has stunning natural landscapes and unique nomadic culture."
+      },
+      "funFacts": {
+        "zh": [
+          "吉尔吉斯斯坦90%的国土是山地,被称为'中亚瑞士'",
+          "伊塞克湖是世界第二大高山湖泊,水质清澈且终年不冻",
+          "吉尔吉斯传统毡房(Yurt)是联合国教科文组织认定的非物质文化遗产"
+        ],
+        "en": [
+          "90% of Kyrgyzstan is mountainous, earning it the nickname 'Switzerland of Central Asia'",
+          "Lake Issyk-Kul is the world's second-largest alpine lake and never freezes",
+          "The Kyrgyz yurt is recognized as UNESCO Intangible Cultural Heritage"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/吉尔吉斯斯坦",
+        "en": "https://en.wikipedia.org/wiki/Kyrgyzstan"
+      }
+    },
+    {
+      "code": "kp",
+      "basic": {
+        "capital": {"zh": "平壤", "en": "Pyongyang"},
+        "population": {"zh": "约2580万", "en": "Approx. 25.8 million"},
+        "area": {"zh": "12.07万平方公里", "en": "120,700 km²"},
+        "currency": {"zh": "朝鲜圆(KPW)", "en": "North Korean Won (KPW)"},
+        "language": {"zh": "朝鲜语", "en": "Korean"},
+        "gdp": {"zh": "约280亿美元(估计)", "en": "Approx. $28 billion (estimated)"}
+      },
+      "description": {
+        "zh": "朝鲜民主主义人民共和国,简称朝鲜,位于朝鲜半岛北部。朝鲜是世界上最封闭的国家之一,实行计划经济体制。",
+        "en": "The Democratic People's Republic of Korea (DPRK), commonly known as North Korea, is located in the northern part of the Korean Peninsula. It is one of the world's most isolated countries, operating under a planned economy."
+      },
+      "funFacts": {
+        "zh": [
+          "朝鲜使用自己的历法,称为主体历,以金日成诞生年(1912年)为元年",
+          "朝鲜拥有世界上最大的体育场——绫罗岛五一体育场,可容纳15万人",
+          "平壤地铁是世界上最深的地铁系统之一,最深处达地下110米"
+        ],
+        "en": [
+          "North Korea uses its own calendar, the Juche calendar, starting from Kim Il-sung's birth year (1912)",
+          "The Rungrado 1st of May Stadium is the world's largest stadium, seating 150,000",
+          "Pyongyang Metro is one of the world's deepest metro systems, reaching 110 meters underground"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/朝鲜民主主义人民共和国",
+        "en": "https://en.wikipedia.org/wiki/North_Korea"
+      }
+    },
+    {
+      "code": "kw",
+      "basic": {
+        "capital": {"zh": "科威特城", "en": "Kuwait City"},
+        "population": {"zh": "约430万", "en": "Approx. 4.3 million"},
+        "area": {"zh": "1.78万平方公里", "en": "17,800 km²"},
+        "currency": {"zh": "科威特第纳尔(KWD)", "en": "Kuwaiti Dinar (KWD)"},
+        "language": {"zh": "阿拉伯语", "en": "Arabic"},
+        "gdp": {"zh": "约1200亿美元", "en": "Approx. $120 billion"}
+      },
+      "description": {
+        "zh": "科威特国,位于波斯湾西北岸的阿拉伯国家。科威特拥有丰富的石油储备,是世界主要石油出口国之一,人均GDP位居世界前列。",
+        "en": "The State of Kuwait is an Arab country on the northwestern shore of the Persian Gulf. Kuwait has abundant oil reserves and is one of the world's major oil exporters, with one of the highest GDPs per capita globally."
+      },
+      "funFacts": {
+        "zh": [
+          "科威特第纳尔是世界上价值最高的货币单位",
+          "科威特拥有世界第六大石油储量",
+          "科威特塔是该国的标志性建筑,也是中东地区的重要地标"
+        ],
+        "en": [
+          "The Kuwaiti Dinar is the highest-valued currency unit in the world",
+          "Kuwait has the world's sixth-largest oil reserves",
+          "The Kuwait Towers are an iconic landmark and symbol of modern Kuwait"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/科威特",
+        "en": "https://en.wikipedia.org/wiki/Kuwait"
+      }
+    },
+    {
+      "code": "lb",
+      "basic": {
+        "capital": {"zh": "贝鲁特", "en": "Beirut"},
+        "population": {"zh": "约680万", "en": "Approx. 6.8 million"},
+        "area": {"zh": "1.04万平方公里", "en": "10,400 km²"},
+        "currency": {"zh": "黎巴嫩镑(LBP)", "en": "Lebanese Pound (LBP)"},
+        "language": {"zh": "阿拉伯语、法语", "en": "Arabic, French"},
+        "gdp": {"zh": "约200亿美元", "en": "Approx. $20 billion"}
+      },
+      "description": {
+        "zh": "黎巴嫩共和国,位于西亚地中海东岸。黎巴嫩拥有悠久的历史文化,首都贝鲁特曾被誉为'中东的巴黎',是重要的金融和文化中心。",
+        "en": "The Lebanese Republic is located on the eastern shore of the Mediterranean Sea in Western Asia. Lebanon has a rich history and culture, with its capital Beirut once known as the 'Paris of the Middle East', an important financial and cultural center."
+      },
+      "funFacts": {
+        "zh": [
+          "黎巴嫩雪松是国家象征,出现在国旗上,有超过3000年历史",
+          "黎巴嫩是世界上唯一没有沙漠的阿拉伯国家",
+          "贝鲁特是世界上最古老的城市之一,已有5000多年历史"
+        ],
+        "en": [
+          "The Cedar of Lebanon is a national symbol on the flag, with trees over 3,000 years old",
+          "Lebanon is the only Arab country without a desert",
+          "Beirut is one of the world's oldest cities, with over 5,000 years of history"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/黎巴嫩",
+        "en": "https://en.wikipedia.org/wiki/Lebanon"
+      }
+    },
+    {
+      "code": "mv",
+      "basic": {
+        "capital": {"zh": "马累", "en": "Malé"},
+        "population": {"zh": "约54万", "en": "Approx. 540,000"},
+        "area": {"zh": "298平方公里", "en": "298 km²"},
+        "currency": {"zh": "拉菲亚(MVR)", "en": "Maldivian Rufiyaa (MVR)"},
+        "language": {"zh": "迪维希语", "en": "Dhivehi"},
+        "gdp": {"zh": "约56亿美元", "en": "Approx. $5.6 billion"}
+      },
+      "description": {
+        "zh": "马尔代夫共和国,位于印度洋上的岛国,由26个环礁、1192个珊瑚岛组成。马尔代夫以其碧蓝的海水、洁白的沙滩和丰富的海洋生物而闻名,是世界著名的旅游胜地。",
+        "en": "The Maldives is an island nation in the Indian Ocean, consisting of 26 atolls and 1,192 coral islands. The Maldives is famous for its crystal-clear waters, white sandy beaches, and rich marine life, making it a world-renowned tourist destination."
+      },
+      "funFacts": {
+        "zh": [
+          "马尔代夫是世界上最平坦的国家,平均海拔仅1.5米",
+          "马尔代夫是亚洲面积最小的国家",
+          "由于全球变暖和海平面上升,马尔代夫面临着被淹没的威胁"
+        ],
+        "en": [
+          "The Maldives is the world's flattest country, with an average elevation of only 1.5 meters",
+          "The Maldives is the smallest country in Asia by area",
+          "Due to global warming and rising sea levels, the Maldives faces the threat of submersion"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/马尔代夫",
+        "en": "https://en.wikipedia.org/wiki/Maldives"
+      }
+    },
+    {
+      "code": "om",
+      "basic": {
+        "capital": {"zh": "马斯喀特", "en": "Muscat"},
+        "population": {"zh": "约510万", "en": "Approx. 5.1 million"},
+        "area": {"zh": "30.95万平方公里", "en": "309,500 km²"},
+        "currency": {"zh": "阿曼里亚尔(OMR)", "en": "Omani Rial (OMR)"},
+        "language": {"zh": "阿拉伯语", "en": "Arabic"},
+        "gdp": {"zh": "约850亿美元", "en": "Approx. $85 billion"}
+      },
+      "description": {
+        "zh": "阿曼苏丹国,位于阿拉伯半岛东南沿海。阿曼是阿拉伯世界最古老的独立国家之一,拥有丰富的历史文化和壮丽的自然景观。",
+        "en": "The Sultanate of Oman is located on the southeastern coast of the Arabian Peninsula. Oman is one of the oldest independent states in the Arab world, with rich history, culture, and stunning natural landscapes."
+      },
+      "funFacts": {
+        "zh": [
+          "阿曼拥有世界上最大的单体乳香树林,乳香是古代重要的贸易商品",
+          "阿曼苏丹卡布斯大清真寺拥有世界第二大手工编织地毯",
+          "阿曼是阿拉伯半岛最稳定、最安全的国家之一"
+        ],
+        "en": [
+          "Oman has the world's largest frankincense forests; frankincense was a precious ancient trade commodity",
+          "The Sultan Qaboos Grand Mosque has the world's second-largest hand-woven carpet",
+          "Oman is one of the most stable and safe countries in the Arabian Peninsula"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/阿曼",
+        "en": "https://en.wikipedia.org/wiki/Oman"
+      }
+    },
+    {
+      "code": "qa",
+      "basic": {
+        "capital": {"zh": "多哈", "en": "Doha"},
+        "population": {"zh": "约290万", "en": "Approx. 2.9 million"},
+        "area": {"zh": "1.15万平方公里", "en": "11,500 km²"},
+        "currency": {"zh": "卡塔尔里亚尔(QAR)", "en": "Qatari Riyal (QAR)"},
+        "language": {"zh": "阿拉伯语", "en": "Arabic"},
+        "gdp": {"zh": "约1800亿美元", "en": "Approx. $180 billion"}
+      },
+      "description": {
+        "zh": "卡塔尔国,位于波斯湾西南岸的卡塔尔半岛上。卡塔尔拥有世界第三大天然气储量,是全球最富裕的国家之一,曾成功举办2022年FIFA世界杯。",
+        "en": "The State of Qatar is located on the Qatar Peninsula on the southwestern coast of the Persian Gulf. Qatar has the world's third-largest natural gas reserves and is one of the wealthiest countries globally, successfully hosting the 2022 FIFA World Cup."
+      },
+      "funFacts": {
+        "zh": [
+          "卡塔尔是2022年FIFA世界杯的举办国,也是首个举办世界杯的中东国家",
+          "卡塔尔拥有世界上最高的人均GDP之一",
+          "半岛电视台总部设在卡塔尔首都多哈"
+        ],
+        "en": [
+          "Qatar hosted the 2022 FIFA World Cup, the first Middle Eastern country to do so",
+          "Qatar has one of the highest GDPs per capita in the world",
+          "Al Jazeera Media Network is headquartered in Doha, Qatar"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/卡塔尔",
+        "en": "https://en.wikipedia.org/wiki/Qatar"
+      }
+    },
+    {
+      "code": "sy",
+      "basic": {
+        "capital": {"zh": "大马士革", "en": "Damascus"},
+        "population": {"zh": "约1800万", "en": "Approx. 18 million"},
+        "area": {"zh": "18.52万平方公里", "en": "185,200 km²"},
+        "currency": {"zh": "叙利亚镑(SYP)", "en": "Syrian Pound (SYP)"},
+        "language": {"zh": "阿拉伯语", "en": "Arabic"},
+        "gdp": {"zh": "约120亿美元(估计)", "en": "Approx. $12 billion (estimated)"}
+      },
+      "description": {
+        "zh": "阿拉伯叙利亚共和国,位于西亚地中海东岸。叙利亚拥有悠久的历史,是人类文明的重要发源地之一,大马士革被认为是世界上最古老的持续有人居住的城市。",
+        "en": "The Syrian Arab Republic is located on the eastern shore of the Mediterranean in Western Asia. Syria has a long history and is one of the cradles of human civilization. Damascus is considered the world's oldest continuously inhabited city."
+      },
+      "funFacts": {
+        "zh": [
+          "大马士革是世界上最古老的持续有人居住的城市,已有超过11000年历史",
+          "叙利亚是世界上最早的农业文明发源地之一",
+          "阿勒颇古城是世界文化遗产,拥有数千年的历史"
+        ],
+        "en": [
+          "Damascus is the world's oldest continuously inhabited city, with over 11,000 years of history",
+          "Syria is one of the earliest centers of agricultural civilization",
+          "The Ancient City of Aleppo is a UNESCO World Heritage Site with thousands of years of history"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/叙利亚",
+        "en": "https://en.wikipedia.org/wiki/Syria"
+      }
+    },
+    {
+      "code": "tj",
+      "basic": {
+        "capital": {"zh": "杜尚别", "en": "Dushanbe"},
+        "population": {"zh": "约960万", "en": "Approx. 9.6 million"},
+        "area": {"zh": "14.31万平方公里", "en": "143,100 km²"},
+        "currency": {"zh": "索莫尼(TJS)", "en": "Tajikistani Somoni (TJS)"},
+        "language": {"zh": "塔吉克语、俄语", "en": "Tajik, Russian"},
+        "gdp": {"zh": "约86亿美元", "en": "Approx. $8.6 billion"}
+      },
+      "description": {
+        "zh": "塔吉克斯坦共和国,位于中亚东南部的内陆国家,是中亚五国中唯一主体民族非突厥族系的国家。塔吉克斯坦多山,有'高山之国'的美誉。",
+        "en": "The Republic of Tajikistan is a landlocked country in southeastern Central Asia, the only Central Asian nation whose main ethnic group is not Turkic. Tajikistan is mountainous, known as the 'Land of Mountains'."
+      },
+      "funFacts": {
+        "zh": [
+          "塔吉克斯坦93%的国土是山地,拥有众多海拔超过7000米的高峰",
+          "帕米尔高原被称为'世界屋脊',大部分位于塔吉克斯坦境内",
+          "塔吉克斯坦拥有世界上最长的旗杆,高165米"
+        ],
+        "en": [
+          "93% of Tajikistan is mountainous, with numerous peaks over 7,000 meters",
+          "The Pamir Mountains, known as the 'Roof of the World', are mostly in Tajikistan",
+          "Tajikistan has the world's tallest flagpole at 165 meters"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/塔吉克斯坦",
+        "en": "https://en.wikipedia.org/wiki/Tajikistan"
+      }
+    },
+    {
+      "code": "tl",
+      "basic": {
+        "capital": {"zh": "帝力", "en": "Dili"},
+        "population": {"zh": "约130万", "en": "Approx. 1.3 million"},
+        "area": {"zh": "1.49万平方公里", "en": "14,900 km²"},
+        "currency": {"zh": "美元(USD)", "en": "US Dollar (USD)"},
+        "language": {"zh": "德顿语、葡萄牙语", "en": "Tetum, Portuguese"},
+        "gdp": {"zh": "约18亿美元", "en": "Approx. $1.8 billion"}
+      },
+      "description": {
+        "zh": "东帝汶民主共和国,位于东南亚努沙登加拉群岛东端。东帝汶于2002年独立,是21世纪第一个新独立的国家,也是亚洲最年轻的国家之一。",
+        "en": "The Democratic Republic of Timor-Leste is located at the eastern end of the Lesser Sunda Islands in Southeast Asia. Timor-Leste gained independence in 2002, making it the first new sovereign state of the 21st century and one of Asia's youngest nations."
+      },
+      "funFacts": {
+        "zh": [
+          "东帝汶是21世纪第一个独立的国家(2002年)",
+          "东帝汶是亚洲唯一以葡萄牙语为官方语言的国家",
+          "东帝汶拥有丰富的石油和天然气资源"
+        ],
+        "en": [
+          "Timor-Leste was the first country to gain independence in the 21st century (2002)",
+          "Timor-Leste is the only Asian country with Portuguese as an official language",
+          "Timor-Leste has significant oil and natural gas resources"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/东帝汶",
+        "en": "https://en.wikipedia.org/wiki/East_Timor"
+      }
+    },
+    {
+      "code": "tm",
+      "basic": {
+        "capital": {"zh": "阿什哈巴德", "en": "Ashgabat"},
+        "population": {"zh": "约610万", "en": "Approx. 6.1 million"},
+        "area": {"zh": "49.12万平方公里", "en": "491,200 km²"},
+        "currency": {"zh": "马纳特(TMT)", "en": "Turkmenistan Manat (TMT)"},
+        "language": {"zh": "土库曼语", "en": "Turkmen"},
+        "gdp": {"zh": "约450亿美元", "en": "Approx. $45 billion"}
+      },
+      "description": {
+        "zh": "土库曼斯坦,位于中亚西南部的内陆国家。土库曼斯坦拥有世界第四大天然气储量,首都阿什哈巴德以其大量白色大理石建筑而闻名,被称为'白色之城'。",
+        "en": "Turkmenistan is a landlocked country in southwestern Central Asia. It has the world's fourth-largest natural gas reserves. The capital Ashgabat is known as the 'White City' for its numerous white marble buildings."
+      },
+      "funFacts": {
+        "zh": [
+          "土库曼斯坦拥有世界第四大天然气储量",
+          "阿什哈巴德被吉尼斯世界纪录认定为世界上白色大理石建筑最密集的城市",
+          "达瓦扎天然气坑被称为'地狱之门',自1971年起持续燃烧至今"
+        ],
+        "en": [
+          "Turkmenistan has the world's fourth-largest natural gas reserves",
+          "Ashgabat holds the Guinness record for the highest density of white marble buildings",
+          "The Darvaza gas crater, known as the 'Door to Hell', has been burning continuously since 1971"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/土库曼斯坦",
+        "en": "https://en.wikipedia.org/wiki/Turkmenistan"
+      }
+    },
+    {
+      "code": "uz",
+      "basic": {
+        "capital": {"zh": "塔什干", "en": "Tashkent"},
+        "population": {"zh": "约3450万", "en": "Approx. 34.5 million"},
+        "area": {"zh": "44.89万平方公里", "en": "448,900 km²"},
+        "currency": {"zh": "乌兹别克斯坦索姆(UZS)", "en": "Uzbekistani Som (UZS)"},
+        "language": {"zh": "乌兹别克语", "en": "Uzbek"},
+        "gdp": {"zh": "约800亿美元", "en": "Approx. $80 billion"}
+      },
+      "description": {
+        "zh": "乌兹别克斯坦共和国,位于中亚的内陆国家,是古代丝绸之路的重要枢纽。乌兹别克斯坦拥有撒马尔罕、布哈拉等历史名城,文化遗产极为丰富。",
+        "en": "The Republic of Uzbekistan is a landlocked country in Central Asia, an important hub on the ancient Silk Road. Uzbekistan has historic cities like Samarkand and Bukhara, with exceptionally rich cultural heritage."
+      },
+      "funFacts": {
+        "zh": [
+          "撒马尔罕是世界上最古老的城市之一,拥有2750多年历史",
+          "乌兹别克斯坦是世界上仅有的两个双重内陆国之一(需跨越两个国家才能到达海洋)",
+          "布哈拉古城是联合国教科文组织世界文化遗产,保存了千年的伊斯兰建筑"
+        ],
+        "en": [
+          "Samarkand is one of the world's oldest cities, with over 2,750 years of history",
+          "Uzbekistan is one of only two doubly landlocked countries in the world",
+          "The Historic Centre of Bukhara is a UNESCO World Heritage Site preserving thousand-year-old Islamic architecture"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/乌兹别克斯坦",
+        "en": "https://en.wikipedia.org/wiki/Uzbekistan"
+      }
+    },
+    {
+      "code": "ye",
+      "basic": {
+        "capital": {"zh": "萨那", "en": "Sana'a"},
+        "population": {"zh": "约3000万", "en": "Approx. 30 million"},
+        "area": {"zh": "52.8万平方公里", "en": "528,000 km²"},
+        "currency": {"zh": "也门里亚尔(YER)", "en": "Yemeni Rial (YER)"},
+        "language": {"zh": "阿拉伯语", "en": "Arabic"},
+        "gdp": {"zh": "约270亿美元(估计)", "en": "Approx. $27 billion (estimated)"}
+      },
+      "description": {
+        "zh": "也门共和国,位于阿拉伯半岛南端。也门是阿拉伯世界古代文明的摇篮之一,拥有悠久的历史和独特的建筑风格,萨那古城以其独特的塔楼式建筑而闻名。",
+        "en": "The Republic of Yemen is located at the southern end of the Arabian Peninsula. Yemen is one of the cradles of ancient Arab civilization, with a long history and unique architectural style. The Old City of Sana'a is famous for its distinctive tower houses."
+      },
+      "funFacts": {
+        "zh": [
+          "也门是传说中示巴女王王国的所在地",
+          "萨那古城拥有世界上最独特的建筑风格之一——塔楼式多层土坯建筑",
+          "也门是咖啡摩卡的原产地,摩卡咖啡因也门港口城市摩卡而得名"
+        ],
+        "en": [
+          "Yemen is believed to be the location of the legendary Kingdom of Sheba",
+          "The Old City of Sana'a features one of the world's most unique architectural styles with multi-story tower houses",
+          "Yemen is the origin of Mocha coffee, named after the Yemeni port city of Mocha"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/也门",
+        "en": "https://en.wikipedia.org/wiki/Yemen"
+      }
+    },
+    {
+      "code": "ad",
+      "basic": {
+        "capital": {"zh": "安道尔城", "en": "Andorra la Vella"},
+        "population": {"zh": "约7.8万", "en": "Approx. 78,000"},
+        "area": {"zh": "468平方公里", "en": "468 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "加泰罗尼亚语", "en": "Catalan"},
+        "gdp": {"zh": "约32亿美元", "en": "Approx. $3.2 billion"}
+      },
+      "description": {
+        "zh": "安道尔公国,位于法国和西班牙之间的比利牛斯山脉东部的内陆小国。安道尔是世界上少数几个公国之一,以其滑雪胜地和免税购物而闻名。",
+        "en": "The Principality of Andorra is a small landlocked country in the eastern Pyrenees mountains between France and Spain. Andorra is one of the few remaining principalities in the world, famous for its ski resorts and tax-free shopping."
+      },
+      "funFacts": {
+        "zh": [
+          "安道尔是欧洲面积第六小的国家,也是世界上唯一以加泰罗尼亚语为官方语言的国家",
+          "安道尔拥有世界上最高的预期寿命之一",
+          "安道尔没有机场和铁路,最近的机场在西班牙和法国境内"
+        ],
+        "en": [
+          "Andorra is Europe's sixth-smallest country and the only country with Catalan as its official language",
+          "Andorra has one of the highest life expectancies in the world",
+          "Andorra has no airport or railway; the nearest airports are in Spain and France"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/安道尔",
+        "en": "https://en.wikipedia.org/wiki/Andorra"
+      }
+    },
+    {
+      "code": "al",
+      "basic": {
+        "capital": {"zh": "地拉那", "en": "Tirana"},
+        "population": {"zh": "约280万", "en": "Approx. 2.8 million"},
+        "area": {"zh": "2.87万平方公里", "en": "28,700 km²"},
+        "currency": {"zh": "列克(ALL)", "en": "Albanian Lek (ALL)"},
+        "language": {"zh": "阿尔巴尼亚语", "en": "Albanian"},
+        "gdp": {"zh": "约180亿美元", "en": "Approx. $18 billion"}
+      },
+      "description": {
+        "zh": "阿尔巴尼亚共和国,位于巴尔干半岛西南部,濒临亚得里亚海和爱奥尼亚海。阿尔巴尼亚拥有悠久的历史和美丽的海岸线,被誉为'山鹰之国'。",
+        "en": "The Republic of Albania is located in the southwestern Balkans, along the Adriatic and Ionian Seas. Albania has a long history and beautiful coastline, known as the 'Land of Eagles'."
+      },
+      "funFacts": {
+        "zh": [
+          "阿尔巴尼亚被称为'山鹰之国',国旗上就有双头鹰的图案",
+          "阿尔巴尼亚曾是欧洲唯一的官方无神论国家(1967-1991)",
+          "阿尔巴尼亚拥有超过750,000个碉堡,人均碉堡数量世界第一"
+        ],
+        "en": [
+          "Albania is called the 'Land of Eagles', with a double-headed eagle on its flag",
+          "Albania was once Europe's only officially atheist state (1967-1991)",
+          "Albania has over 750,000 bunkers, the highest number per capita in the world"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/阿尔巴尼亚",
+        "en": "https://en.wikipedia.org/wiki/Albania"
+      }
+    },
+    {
+      "code": "ba",
+      "basic": {
+        "capital": {"zh": "萨拉热窝", "en": "Sarajevo"},
+        "population": {"zh": "约330万", "en": "Approx. 3.3 million"},
+        "area": {"zh": "5.13万平方公里", "en": "51,300 km²"},
+        "currency": {"zh": "可兑换马克(BAM)", "en": "Convertible Mark (BAM)"},
+        "language": {"zh": "波斯尼亚语、塞尔维亚语、克罗地亚语", "en": "Bosnian, Serbian, Croatian"},
+        "gdp": {"zh": "约200亿美元", "en": "Approx. $20 billion"}
+      },
+      "description": {
+        "zh": "波斯尼亚和黑塞哥维那,位于巴尔干半岛中西部。这个多民族国家拥有丰富的文化遗产,首都萨拉热窝曾是1984年冬季奥运会的举办地。",
+        "en": "Bosnia and Herzegovina is located in the central-western Balkans. This multi-ethnic country has rich cultural heritage, and its capital Sarajevo hosted the 1984 Winter Olympics."
+      },
+      "funFacts": {
+        "zh": [
+          "萨拉热窝曾举办1984年冬季奥运会",
+          "莫斯塔尔古桥是联合国教科文组织世界遗产,建于16世纪",
+          "波黑是欧洲形状最像心形的国家"
+        ],
+        "en": [
+          "Sarajevo hosted the 1984 Winter Olympics",
+          "The Old Bridge in Mostar is a UNESCO World Heritage Site, built in the 16th century",
+          "Bosnia and Herzegovina has the most heart-shaped outline in Europe"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/波斯尼亚和黑塞哥维那",
+        "en": "https://en.wikipedia.org/wiki/Bosnia_and_Herzegovina"
+      }
+    },
+    {
+      "code": "by",
+      "basic": {
+        "capital": {"zh": "明斯克", "en": "Minsk"},
+        "population": {"zh": "约930万", "en": "Approx. 9.3 million"},
+        "area": {"zh": "20.76万平方公里", "en": "207,600 km²"},
+        "currency": {"zh": "白俄罗斯卢布(BYN)", "en": "Belarusian Ruble (BYN)"},
+        "language": {"zh": "白俄罗斯语、俄语", "en": "Belarusian, Russian"},
+        "gdp": {"zh": "约600亿美元", "en": "Approx. $60 billion"}
+      },
+      "description": {
+        "zh": "白俄罗斯共和国,位于东欧平原,是东欧的内陆国家。白俄罗斯拥有大片原始森林,其中包括欧洲最后的原始森林之一——比亚沃维耶扎原始森林。",
+        "en": "The Republic of Belarus is located on the East European Plain, a landlocked country in Eastern Europe. Belarus has vast primeval forests, including one of Europe's last primeval forests, Białowieża Forest."
+      },
+      "funFacts": {
+        "zh": [
+          "比亚沃维耶扎原始森林是欧洲最后的原始森林之一,也是欧洲野牛的家园",
+          "白俄罗斯40%的国土被森林覆盖",
+          "明斯克在二战中几乎被完全摧毁,战后重建成为现代化城市"
+        ],
+        "en": [
+          "Białowieża Forest is one of Europe's last primeval forests and home to European bison",
+          "40% of Belarus is covered by forests",
+          "Minsk was almost completely destroyed in WWII and rebuilt as a modern city"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/白俄罗斯",
+        "en": "https://en.wikipedia.org/wiki/Belarus"
+      }
+    },
+    {
+      "code": "cy",
+      "basic": {
+        "capital": {"zh": "尼科西亚", "en": "Nicosia"},
+        "population": {"zh": "约120万", "en": "Approx. 1.2 million"},
+        "area": {"zh": "9251平方公里", "en": "9,251 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "希腊语、土耳其语", "en": "Greek, Turkish"},
+        "gdp": {"zh": "约250亿美元", "en": "Approx. $25 billion"}
+      },
+      "description": {
+        "zh": "塞浦路斯共和国,位于地中海东部的岛国,地处欧洲、亚洲和非洲的交汇点。塞浦路斯拥有悠久的历史和美丽的海滩,是著名的旅游胜地。",
+        "en": "The Republic of Cyprus is an island country in the eastern Mediterranean, at the crossroads of Europe, Asia, and Africa. Cyprus has a long history and beautiful beaches, making it a popular tourist destination."
+      },
+      "funFacts": {
+        "zh": [
+          "塞浦路斯是传说中爱与美的女神阿芙罗狄蒂(维纳斯)的诞生地",
+          "尼科西亚是世界上最后一个分裂的首都",
+          "塞浦路斯拥有超过300天的日照,是欧洲阳光最充足的国家之一"
+        ],
+        "en": [
+          "Cyprus is the legendary birthplace of Aphrodite (Venus), the goddess of love and beauty",
+          "Nicosia is the world's last divided capital",
+          "Cyprus enjoys over 300 days of sunshine annually, one of Europe's sunniest countries"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/塞浦路斯",
+        "en": "https://en.wikipedia.org/wiki/Cyprus"
+      }
+    },
+    {
+      "code": "li",
+      "basic": {
+        "capital": {"zh": "瓦杜兹", "en": "Vaduz"},
+        "population": {"zh": "约3.9万", "en": "Approx. 39,000"},
+        "area": {"zh": "160平方公里", "en": "160 km²"},
+        "currency": {"zh": "瑞士法郎(CHF)", "en": "Swiss Franc (CHF)"},
+        "language": {"zh": "德语", "en": "German"},
+        "gdp": {"zh": "约65亿美元", "en": "Approx. $6.5 billion"}
+      },
+      "description": {
+        "zh": "列支敦士登公国,位于瑞士和奥地利之间的阿尔卑斯山区的内陆小国。列支敦士登是世界上最富裕的国家之一,以其金融服务业和精美的邮票而闻名。",
+        "en": "The Principality of Liechtenstein is a small landlocked country in the Alps between Switzerland and Austria. Liechtenstein is one of the world's wealthiest countries, known for its financial services and exquisite postage stamps."
+      },
+      "funFacts": {
+        "zh": [
+          "列支敦士登是世界上唯一一个完全位于阿尔卑斯山区的国家",
+          "列支敦士登是世界上人均GDP最高的国家之一",
+          "列支敦士登没有军队,国防由瑞士负责"
+        ],
+        "en": [
+          "Liechtenstein is the only country entirely located in the Alps",
+          "Liechtenstein has one of the highest GDPs per capita in the world",
+          "Liechtenstein has no army; its defense is handled by Switzerland"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/列支敦士登",
+        "en": "https://en.wikipedia.org/wiki/Liechtenstein"
+      }
+    },
+    {
+      "code": "mc",
+      "basic": {
+        "capital": {"zh": "摩纳哥城", "en": "Monaco"},
+        "population": {"zh": "约3.9万", "en": "Approx. 39,000"},
+        "area": {"zh": "2.02平方公里", "en": "2.02 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "法语", "en": "French"},
+        "gdp": {"zh": "约70亿美元", "en": "Approx. $7 billion"}
+      },
+      "description": {
+        "zh": "摩纳哥公国,位于法国南部地中海沿岸的城邦国家,是世界上第二小的国家。摩纳哥以其豪华赌场、游艇港和一级方程式赛车而闻名,也是世界上人口密度最高的国家。",
+        "en": "The Principality of Monaco is a city-state on the French Riviera in Western Europe, the world's second-smallest country. Monaco is famous for its luxury casinos, yacht-lined harbor, and Formula 1 Grand Prix, and has the world's highest population density."
+      },
+      "funFacts": {
+        "zh": [
+          "摩纳哥是世界上人口密度最高的国家",
+          "摩纳哥蒙特卡洛赌场是世界上最著名的赌场之一",
+          "摩纳哥F1大奖赛是一级方程式赛车最负盛名的赛事之一"
+        ],
+        "en": [
+          "Monaco has the world's highest population density",
+          "The Monte Carlo Casino is one of the world's most famous casinos",
+          "The Monaco Grand Prix is one of the most prestigious Formula 1 races"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/摩纳哥",
+        "en": "https://en.wikipedia.org/wiki/Monaco"
+      }
+    },
+    {
+      "code": "md",
+      "basic": {
+        "capital": {"zh": "基希讷乌", "en": "Chișinău"},
+        "population": {"zh": "约260万", "en": "Approx. 2.6 million"},
+        "area": {"zh": "3.35万平方公里", "en": "33,500 km²"},
+        "currency": {"zh": "摩尔多瓦列伊(MDL)", "en": "Moldovan Leu (MDL)"},
+        "language": {"zh": "罗马尼亚语", "en": "Romanian"},
+        "gdp": {"zh": "约140亿美元", "en": "Approx. $14 billion"}
+      },
+      "description": {
+        "zh": "摩尔多瓦共和国,位于东欧的内陆国家,夹在罗马尼亚和乌克兰之间。摩尔多瓦以其葡萄酒产业而闻名,拥有世界上最大的葡萄酒窖之一——米列什蒂·米茨葡萄酒窖。",
+        "en": "The Republic of Moldova is a landlocked country in Eastern Europe, between Romania and Ukraine. Moldova is famous for its wine industry and has one of the world's largest wine cellars, Mileștii Mici."
+      },
+      "funFacts": {
+        "zh": [
+          "摩尔多瓦拥有世界上最大的葡萄酒窖,总长达200公里",
+          "摩尔多瓦是世界上人均葡萄酒消费量最高的国家之一",
+          "摩尔多瓦的葡萄种植历史可以追溯到5000年前"
+        ],
+        "en": [
+          "Moldova has the world's largest wine cellar, stretching 200 kilometers",
+          "Moldova has one of the highest wine consumption rates per capita in the world",
+          "Moldova's wine-making history dates back 5,000 years"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/摩尔多瓦",
+        "en": "https://en.wikipedia.org/wiki/Moldova"
+      }
+    },
+    {
+      "code": "me",
+      "basic": {
+        "capital": {"zh": "波德戈里察", "en": "Podgorica"},
+        "population": {"zh": "约62万", "en": "Approx. 620,000"},
+        "area": {"zh": "1.38万平方公里", "en": "13,800 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "黑山语", "en": "Montenegrin"},
+        "gdp": {"zh": "约56亿美元", "en": "Approx. $5.6 billion"}
+      },
+      "description": {
+        "zh": "黑山,位于巴尔干半岛西南部,濒临亚得里亚海。黑山于2006年独立,是欧洲最年轻的国家之一,以其壮丽的山脉和美丽的海岸线而闻名。",
+        "en": "Montenegro is located in the southwestern Balkans, along the Adriatic Sea. It gained independence in 2006, making it one of Europe's youngest countries, known for its stunning mountains and beautiful coastline."
+      },
+      "funFacts": {
+        "zh": [
+          "黑山在2006年通过公投和平独立,是欧洲最年轻的国家之一",
+          "科托尔湾被誉为'欧洲最南端的峡湾'",
+          "黑山的名字在多种语言中都是'黑山'的意思"
+        ],
+        "en": [
+          "Montenegro peacefully gained independence through a referendum in 2006",
+          "The Bay of Kotor is called 'Europe's southernmost fjord'",
+          "Montenegro's name means 'Black Mountain' in various languages"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/黑山",
+        "en": "https://en.wikipedia.org/wiki/Montenegro"
+      }
+    },
+    {
+      "code": "mk",
+      "basic": {
+        "capital": {"zh": "斯科普里", "en": "Skopje"},
+        "population": {"zh": "约210万", "en": "Approx. 2.1 million"},
+        "area": {"zh": "2.57万平方公里", "en": "25,700 km²"},
+        "currency": {"zh": "代纳尔(MKD)", "en": "Denar (MKD)"},
+        "language": {"zh": "马其顿语", "en": "Macedonian"},
+        "gdp": {"zh": "约130亿美元", "en": "Approx. $13 billion"}
+      },
+      "description": {
+        "zh": "北马其顿共和国,位于巴尔干半岛中南部的内陆国家。北马其顿拥有悠久的历史,是古代马其顿王国的核心地区之一,也是亚历山大大帝的故乡。",
+        "en": "The Republic of North Macedonia is a landlocked country in the central-southern Balkans. It has a long history and was part of the core region of the ancient Kingdom of Macedon, homeland of Alexander the Great."
+      },
+      "funFacts": {
+        "zh": [
+          "北马其顿的奥赫里德湖是欧洲最古老和最深的湖泊之一",
+          "特蕾莎修女出生在斯科普里(当时属于奥斯曼帝国)",
+          "北马其顿2019年改名,在国名中加入'北'字以解决与希腊的争议"
+        ],
+        "en": [
+          "Lake Ohrid is one of Europe's oldest and deepest lakes",
+          "Mother Teresa was born in Skopje (then part of the Ottoman Empire)",
+          "The country added 'North' to its name in 2019 to resolve a dispute with Greece"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/北马其顿",
+        "en": "https://en.wikipedia.org/wiki/North_Macedonia"
+      }
+    },
+    {
+      "code": "mt",
+      "basic": {
+        "capital": {"zh": "瓦莱塔", "en": "Valletta"},
+        "population": {"zh": "约52万", "en": "Approx. 520,000"},
+        "area": {"zh": "316平方公里", "en": "316 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "马耳他语、英语", "en": "Maltese, English"},
+        "gdp": {"zh": "约160亿美元", "en": "Approx. $16 billion"}
+      },
+      "description": {
+        "zh": "马耳他共和国,位于地中海中部的岛国,地处欧洲和非洲之间。马耳他拥有7000多年的历史,是联合国教科文组织世界遗产的宝库,首都瓦莱塔被誉为欧洲最小的首都。",
+        "en": "The Republic of Malta is an island nation in the central Mediterranean, between Europe and Africa. Malta has over 7,000 years of history and is a treasure trove of UNESCO World Heritage Sites, with its capital Valletta being Europe's smallest capital."
+      },
+      "funFacts": {
+        "zh": [
+          "马耳他语是唯一使用拉丁字母书写的闪含语系语言",
+          "马耳他拥有世界上最古老的独立结构建筑——巨石庙",
+          "瓦莱塔是欧洲最小的首都,但整个城市都是联合国世界遗产"
+        ],
+        "en": [
+          "Maltese is the only Semitic language written in Latin script",
+          "Malta has the world's oldest free-standing structures, the Megalithic Temples",
+          "Valletta is Europe's smallest capital, but the entire city is a UNESCO World Heritage Site"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/马耳他",
+        "en": "https://en.wikipedia.org/wiki/Malta"
+      }
+    },
+    {
+      "code": "sm",
+      "basic": {
+        "capital": {"zh": "圣马力诺城", "en": "City of San Marino"},
+        "population": {"zh": "约3.4万", "en": "Approx. 34,000"},
+        "area": {"zh": "61平方公里", "en": "61 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "意大利语", "en": "Italian"},
+        "gdp": {"zh": "约17亿美元", "en": "Approx. $1.7 billion"}
+      },
+      "description": {
+        "zh": "圣马力诺共和国,位于意大利半岛东部,完全被意大利环绕的内陆国家。圣马力诺成立于公元301年,是世界上最古老的共和国,也是欧洲第三小的国家。",
+        "en": "The Republic of San Marino is located in the Italian Peninsula, completely surrounded by Italy. Founded in 301 AD, San Marino is the world's oldest republic and Europe's third-smallest country."
+      },
+      "funFacts": {
+        "zh": [
+          "圣马力诺是世界上最古老的共和国,成立于公元301年",
+          "圣马力诺是世界上唯一一个车辆数量多于人口的国家",
+          "圣马力诺从未被征服过,保持了1700多年的独立"
+        ],
+        "en": [
+          "San Marino is the world's oldest republic, founded in 301 AD",
+          "San Marino is the only country with more vehicles than people",
+          "San Marino has never been conquered, maintaining independence for over 1,700 years"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/圣马力诺",
+        "en": "https://en.wikipedia.org/wiki/San_Marino"
+      }
+    },
+    {
+      "code": "bf",
+      "basic": {
+        "capital": {"zh": "瓦加杜古", "en": "Ouagadougou"},
+        "population": {"zh": "约2200万", "en": "Approx. 22 million"},
+        "area": {"zh": "27.42万平方公里", "en": "274,200 km²"},
+        "currency": {"zh": "西非法郎(XOF)", "en": "West African CFA Franc (XOF)"},
+        "language": {"zh": "法语", "en": "French"},
+        "gdp": {"zh": "约190亿美元", "en": "Approx. $19 billion"}
+      },
+      "description": {
+        "zh": "布基纳法索,位于西非的内陆国家,国名意为'正直的人的国家'。布基纳法索拥有丰富的文化传统,以其传统音乐和手工艺品而闻名。",
+        "en": "Burkina Faso is a landlocked country in West Africa, whose name means 'Land of Honest People'. It has rich cultural traditions and is known for its traditional music and handicrafts."
+      },
+      "funFacts": {
+        "zh": [
+          "布基纳法索的国名意为'正直的人的国家'",
+          "瓦加杜古每两年举办一次非洲最大的电影节——泛非电影节",
+          "布基纳法索是世界上棉花产量最高的国家之一"
+        ],
+        "en": [
+          "Burkina Faso means 'Land of Honest People'",
+          "Ouagadougou hosts FESPACO, Africa's largest film festival, every two years",
+          "Burkina Faso is one of the world's leading cotton producers"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/布基纳法索",
+        "en": "https://en.wikipedia.org/wiki/Burkina_Faso"
+      }
+    },
+    {
+      "code": "bi",
+      "basic": {
+        "capital": {"zh": "基特加", "en": "Gitega"},
+        "population": {"zh": "约1250万", "en": "Approx. 12.5 million"},
+        "area": {"zh": "2.78万平方公里", "en": "27,800 km²"},
+        "currency": {"zh": "布隆迪法郎(BIF)", "en": "Burundian Franc (BIF)"},
+        "language": {"zh": "基隆迪语、法语", "en": "Kirundi, French"},
+        "gdp": {"zh": "约30亿美元", "en": "Approx. $3 billion"}
+      },
+      "description": {
+        "zh": "布隆迪共和国,位于东非大裂谷地区的内陆国家。布隆迪是非洲人口密度最高的国家之一,拥有美丽的坦噶尼喀湖景观。",
+        "en": "The Republic of Burundi is a landlocked country in the Great Rift Valley of East Africa. It is one of Africa's most densely populated countries, with beautiful Lake Tanganyika scenery."
+      },
+      "funFacts": {
+        "zh": [
+          "布隆迪是非洲人口密度最高的国家之一",
+          "布隆迪的鼓乐传统被联合国教科文组织列为非物质文化遗产",
+          "坦噶尼喀湖是世界第二深的湖泊"
+        ],
+        "en": [
+          "Burundi has one of the highest population densities in Africa",
+          "Burundian drumming is recognized as UNESCO Intangible Cultural Heritage",
+          "Lake Tanganyika is the world's second-deepest lake"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/布隆迪",
+        "en": "https://en.wikipedia.org/wiki/Burundi"
+      }
+    },
+    {
+      "code": "bj",
+      "basic": {
+        "capital": {"zh": "波多诺伏", "en": "Porto-Novo"},
+        "population": {"zh": "约1300万", "en": "Approx. 13 million"},
+        "area": {"zh": "11.26万平方公里", "en": "112,600 km²"},
+        "currency": {"zh": "西非法郎(XOF)", "en": "West African CFA Franc (XOF)"},
+        "language": {"zh": "法语", "en": "French"},
+        "gdp": {"zh": "约170亿美元", "en": "Approx. $17 billion"}
+      },
+      "description": {
+        "zh": "贝宁共和国,位于西非,濒临几内亚湾。贝宁是伏都教的发源地之一,拥有丰富的历史文化遗产,曾是古达荷美王国的所在地。",
+        "en": "The Republic of Benin is located in West Africa, along the Gulf of Guinea. Benin is one of the birthplaces of Voodoo and has rich historical and cultural heritage, once home to the Kingdom of Dahomey."
+      },
+      "funFacts": {
+        "zh": [
+          "贝宁是伏都教(Voodoo)的发源地之一",
+          "阿波美王宫是联合国世界文化遗产,展示了达荷美王国的历史",
+          "贝宁曾是非洲奴隶贸易的重要中心"
+        ],
+        "en": [
+          "Benin is one of the birthplaces of Voodoo religion",
+          "The Royal Palaces of Abomey are a UNESCO World Heritage Site showcasing the Kingdom of Dahomey",
+          "Benin was a major center of the African slave trade"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/贝宁",
+        "en": "https://en.wikipedia.org/wiki/Benin"
+      }
+    },
+    {
+      "code": "bw",
+      "basic": {
+        "capital": {"zh": "哈博罗内", "en": "Gaborone"},
+        "population": {"zh": "约250万", "en": "Approx. 2.5 million"},
+        "area": {"zh": "58.17万平方公里", "en": "581,700 km²"},
+        "currency": {"zh": "普拉(BWP)", "en": "Botswana Pula (BWP)"},
+        "language": {"zh": "英语、茨瓦纳语", "en": "English, Tswana"},
+        "gdp": {"zh": "约180亿美元", "en": "Approx. $18 billion"}
+      },
+      "description": {
+        "zh": "博茨瓦纳共和国,位于非洲南部的内陆国家。博茨瓦纳拥有世界上最大的内陆三角洲——奥卡万戈三角洲,是非洲野生动物的天堂,也是世界上最大的钻石生产国之一。",
+        "en": "The Republic of Botswana is a landlocked country in Southern Africa. It has the world's largest inland delta, the Okavango Delta, a paradise for African wildlife, and is one of the world's largest diamond producers."
+      },
+      "funFacts": {
+        "zh": [
+          "博茨瓦纳拥有世界上最大的内陆三角洲——奥卡万戈三角洲",
+          "博茨瓦纳是世界上最大的钻石生产国之一",
+          "博茨瓦纳约38%的国土是保护区和国家公园"
+        ],
+        "en": [
+          "Botswana has the world's largest inland delta, the Okavango Delta",
+          "Botswana is one of the world's largest diamond producers",
+          "About 38% of Botswana is protected as reserves and national parks"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/博茨瓦纳",
+        "en": "https://en.wikipedia.org/wiki/Botswana"
+      }
+    },
+    {
+      "code": "cd",
+      "basic": {
+        "capital": {"zh": "金沙萨", "en": "Kinshasa"},
+        "population": {"zh": "约9500万", "en": "Approx. 95 million"},
+        "area": {"zh": "234.5万平方公里", "en": "2.345 million km²"},
+        "currency": {"zh": "刚果法郎(CDF)", "en": "Congolese Franc (CDF)"},
+        "language": {"zh": "法语", "en": "French"},
+        "gdp": {"zh": "约550亿美元", "en": "Approx. $55 billion"}
+      },
+      "description": {
+        "zh": "刚果民主共和国,位于非洲中部,是非洲面积第二大的国家。刚果拥有世界第二大热带雨林和丰富的矿产资源,刚果河是世界上最深的河流。",
+        "en": "The Democratic Republic of the Congo is located in Central Africa and is Africa's second-largest country by area. It has the world's second-largest rainforest and abundant mineral resources, and the Congo River is the world's deepest river."
+      },
+      "funFacts": {
+        "zh": [
+          "刚果河是世界上最深的河流,深度超过220米",
+          "刚果盆地拥有世界第二大热带雨林,仅次于亚马逊雨林",
+          "刚果拥有世界上最丰富的钴矿储量,占全球储量的50%以上"
+        ],
+        "en": [
+          "The Congo River is the world's deepest river, exceeding 220 meters in depth",
+          "The Congo Basin has the world's second-largest rainforest after the Amazon",
+          "Congo has over 50% of the world's cobalt reserves"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/刚果民主共和国",
+        "en": "https://en.wikipedia.org/wiki/Democratic_Republic_of_the_Congo"
+      }
+    },
+    {
+      "code": "cf",
+      "basic": {
+        "capital": {"zh": "班吉", "en": "Bangui"},
+        "population": {"zh": "约530万", "en": "Approx. 5.3 million"},
+        "area": {"zh": "62.3万平方公里", "en": "623,000 km²"},
+        "currency": {"zh": "中非法郎(XAF)", "en": "Central African CFA Franc (XAF)"},
+        "language": {"zh": "法语、桑戈语", "en": "French, Sango"},
+        "gdp": {"zh": "约24亿美元", "en": "Approx. $2.4 billion"}
+      },
+      "description": {
+        "zh": "中非共和国,位于非洲中部的内陆国家,地处非洲大陆的地理中心。中非拥有丰富的野生动物资源和矿产资源,但也是世界上最不发达的国家之一。",
+        "en": "The Central African Republic is a landlocked country in Central Africa, located at the geographic center of the African continent. It has abundant wildlife and mineral resources but is also one of the world's least developed countries."
+      },
+      "funFacts": {
+        "zh": [
+          "中非共和国位于非洲大陆的地理中心",
+          "曼沃-贡达-圣弗洛里斯国家公园是联合国世界自然遗产",
+          "中非拥有丰富的钻石和黄金资源"
+        ],
+        "en": [
+          "The Central African Republic is at the geographic center of Africa",
+          "Manovo-Gounda St. Floris National Park is a UNESCO World Heritage Site",
+          "CAR has abundant diamond and gold resources"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/中非共和国",
+        "en": "https://en.wikipedia.org/wiki/Central_African_Republic"
+      }
+    },
+    {
+      "code": "cg",
+      "basic": {
+        "capital": {"zh": "布拉柴维尔", "en": "Brazzaville"},
+        "population": {"zh": "约580万", "en": "Approx. 5.8 million"},
+        "area": {"zh": "34.2万平方公里", "en": "342,000 km²"},
+        "currency": {"zh": "中非法郎(XAF)", "en": "Central African CFA Franc (XAF)"},
+        "language": {"zh": "法语", "en": "French"},
+        "gdp": {"zh": "约110亿美元", "en": "Approx. $11 billion"}
+      },
+      "description": {
+        "zh": "刚果共和国,又称刚果(布),位于非洲中西部。刚果(布)拥有丰富的石油资源和热带雨林,首都布拉柴维尔与刚果民主共和国首都金沙萨隔刚果河相望,是世界上距离最近的两个首都。",
+        "en": "The Republic of the Congo, also known as Congo-Brazzaville, is located in west-central Africa. It has abundant oil resources and rainforests. Its capital Brazzaville faces Kinshasa across the Congo River, making them the world's closest pair of capital cities."
+      },
+      "funFacts": {
+        "zh": [
+          "布拉柴维尔和金沙萨是世界上距离最近的两个首都,仅隔刚果河相望",
+          "刚果(布)约70%的国土被热带雨林覆盖",
+          "刚果(布)是中非地区重要的石油生产国"
+        ],
+        "en": [
+          "Brazzaville and Kinshasa are the world's closest capital cities, separated only by the Congo River",
+          "About 70% of Congo-Brazzaville is covered by rainforest",
+          "Congo-Brazzaville is a significant oil producer in Central Africa"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/刚果共和国",
+        "en": "https://en.wikipedia.org/wiki/Republic_of_the_Congo"
+      }
+    },
+    {
+      "code": "cv",
+      "basic": {
+        "capital": {"zh": "普拉亚", "en": "Praia"},
+        "population": {"zh": "约59万", "en": "Approx. 590,000"},
+        "area": {"zh": "4033平方公里", "en": "4,033 km²"},
+        "currency": {"zh": "佛得角埃斯库多(CVE)", "en": "Cape Verdean Escudo (CVE)"},
+        "language": {"zh": "葡萄牙语", "en": "Portuguese"},
+        "gdp": {"zh": "约20亿美元", "en": "Approx. $2 billion"}
+      },
+      "description": {
+        "zh": "佛得角共和国,位于大西洋中部的岛国,由10个火山岛组成。佛得角是非洲最稳定的民主国家之一,以其独特的克里奥尔文化和音乐而闻名。",
+        "en": "The Republic of Cabo Verde is an island nation in the central Atlantic Ocean, consisting of 10 volcanic islands. Cape Verde is one of Africa's most stable democracies, famous for its unique Creole culture and music."
+      },
+      "funFacts": {
+        "zh": [
+          "佛得角的名字意为'绿色海角',但实际上岛屿非常干旱",
+          "佛得角是著名歌手塞萨利亚·埃沃拉的故乡",
+          "佛得角是非洲人类发展指数最高的国家之一"
+        ],
+        "en": [
+          "Cape Verde means 'Green Cape', but the islands are actually very arid",
+          "Cape Verde is the homeland of famous singer Cesária Évora",
+          "Cape Verde has one of the highest Human Development Indexes in Africa"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/佛得角",
+        "en": "https://en.wikipedia.org/wiki/Cape_Verde"
+      }
+    },
+    {
+      "code": "dj",
+      "basic": {
+        "capital": {"zh": "吉布提市", "en": "Djibouti City"},
+        "population": {"zh": "约100万", "en": "Approx. 1 million"},
+        "area": {"zh": "2.32万平方公里", "en": "23,200 km²"},
+        "currency": {"zh": "吉布提法郎(DJF)", "en": "Djiboutian Franc (DJF)"},
+        "language": {"zh": "法语、阿拉伯语", "en": "French, Arabic"},
+        "gdp": {"zh": "约35亿美元", "en": "Approx. $3.5 billion"}
+      },
+      "description": {
+        "zh": "吉布提共和国,位于非洲之角,扼守红海与亚丁湾之间的曼德海峡。吉布提因其战略地理位置而成为重要的国际航运枢纽,拥有多个国家的军事基地。",
+        "en": "The Republic of Djibouti is located in the Horn of Africa, commanding the strait of Bab el-Mandeb between the Red Sea and Gulf of Aden. Due to its strategic location, Djibouti is an important international shipping hub with military bases from several countries."
+      },
+      "funFacts": {
+        "zh": [
+          "吉布提扼守世界上最重要的海上航道之一——曼德海峡",
+          "吉布提拥有多个国家的军事基地,包括美国、法国和中国",
+          "阿萨尔湖是非洲最低点,低于海平面155米"
+        ],
+        "en": [
+          "Djibouti controls the Bab el-Mandeb strait, one of the world's most important maritime passages",
+          "Djibouti hosts military bases from multiple countries including the US, France, and China",
+          "Lake Assal is Africa's lowest point, 155 meters below sea level"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/吉布提",
+        "en": "https://en.wikipedia.org/wiki/Djibouti"
+      }
+    },
+    {
+      "code": "er",
+      "basic": {
+        "capital": {"zh": "阿斯马拉", "en": "Asmara"},
+        "population": {"zh": "约360万", "en": "Approx. 3.6 million"},
+        "area": {"zh": "11.76万平方公里", "en": "117,600 km²"},
+        "currency": {"zh": "纳克法(ERN)", "en": "Eritrean Nakfa (ERN)"},
+        "language": {"zh": "提格雷尼亚语、阿拉伯语、英语", "en": "Tigrinya, Arabic, English"},
+        "gdp": {"zh": "约20亿美元", "en": "Approx. $2 billion"}
+      },
+      "description": {
+        "zh": "厄立特里亚国,位于非洲之角,濒临红海。厄立特里亚于1993年从埃塞俄比亚独立,首都阿斯马拉以其意大利殖民时期建筑而被列为世界文化遗产。",
+        "en": "The State of Eritrea is located in the Horn of Africa, along the Red Sea. Eritrea gained independence from Ethiopia in 1993. Its capital Asmara is a UNESCO World Heritage Site for its Italian colonial architecture."
+      },
+      "funFacts": {
+        "zh": [
+          "阿斯马拉因其保存完好的意大利殖民时期建筑被列为联合国世界文化遗产",
+          "厄立特里亚拥有非洲最长的红海海岸线之一",
+          "厄立特里亚的国名来自红海的古希腊语名称"
+        ],
+        "en": [
+          "Asmara is a UNESCO World Heritage Site for its well-preserved Italian colonial architecture",
+          "Eritrea has one of Africa's longest Red Sea coastlines",
+          "Eritrea's name derives from the ancient Greek name for the Red Sea"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/厄立特里亚",
+        "en": "https://en.wikipedia.org/wiki/Eritrea"
+      }
+    },
+    {
+      "code": "ga",
+      "basic": {
+        "capital": {"zh": "利伯维尔", "en": "Libreville"},
+        "population": {"zh": "约230万", "en": "Approx. 2.3 million"},
+        "area": {"zh": "26.77万平方公里", "en": "267,700 km²"},
+        "currency": {"zh": "中非法郎(XAF)", "en": "Central African CFA Franc (XAF)"},
+        "language": {"zh": "法语", "en": "French"},
+        "gdp": {"zh": "约180亿美元", "en": "Approx. $18 billion"}
+      },
+      "description": {
+        "zh": "加蓬共和国,位于非洲中西部,濒临大西洋。加蓬拥有丰富的石油和矿产资源,88%的国土被热带雨林覆盖,是非洲森林覆盖率最高的国家之一。",
+        "en": "The Gabonese Republic is located in west-central Africa, along the Atlantic Ocean. Gabon has abundant oil and mineral resources, with 88% of its territory covered by rainforest, making it one of Africa's most forested countries."
+      },
+      "funFacts": {
+        "zh": [
+          "加蓬88%的国土被热带雨林覆盖,是非洲森林覆盖率最高的国家",
+          "加蓬拥有13个国家公园,致力于生态保护",
+          "加蓬是非洲人均GDP最高的国家之一"
+        ],
+        "en": [
+          "88% of Gabon is covered by rainforest, the highest percentage in Africa",
+          "Gabon has 13 national parks dedicated to ecological conservation",
+          "Gabon has one of the highest GDPs per capita in Africa"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/加蓬",
+        "en": "https://en.wikipedia.org/wiki/Gabon"
+      }
+    },
+    {
+      "code": "gm",
+      "basic": {
+        "capital": {"zh": "班珠尔", "en": "Banjul"},
+        "population": {"zh": "约250万", "en": "Approx. 2.5 million"},
+        "area": {"zh": "1.13万平方公里", "en": "11,300 km²"},
+        "currency": {"zh": "达拉西(GMD)", "en": "Gambian Dalasi (GMD)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约20亿美元", "en": "Approx. $2 billion"}
+      },
+      "description": {
+        "zh": "冈比亚共和国,位于西非,是非洲大陆最小的国家。冈比亚几乎被塞内加尔完全包围,国土沿冈比亚河两岸延伸,形状狭长独特。",
+        "en": "The Republic of The Gambia is located in West Africa and is Africa's smallest mainland country. Almost entirely surrounded by Senegal, Gambia extends along both banks of the Gambia River in a unique narrow shape."
+      },
+      "funFacts": {
+        "zh": [
+          "冈比亚是非洲大陆最小的国家",
+          "冈比亚几乎被塞内加尔完全包围,仅有很短的大西洋海岸线",
+          "冈比亚河贯穿全国,是国家的生命线"
+        ],
+        "en": [
+          "The Gambia is Africa's smallest mainland country",
+          "The Gambia is almost entirely surrounded by Senegal, with only a short Atlantic coastline",
+          "The Gambia River runs through the entire country and is its lifeline"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/冈比亚",
+        "en": "https://en.wikipedia.org/wiki/The_Gambia"
+      }
+    },
+    {
+      "code": "gn",
+      "basic": {
+        "capital": {"zh": "科纳克里", "en": "Conakry"},
+        "population": {"zh": "约1370万", "en": "Approx. 13.7 million"},
+        "area": {"zh": "24.59万平方公里", "en": "245,900 km²"},
+        "currency": {"zh": "几内亚法郎(GNF)", "en": "Guinean Franc (GNF)"},
+        "language": {"zh": "法语", "en": "French"},
+        "gdp": {"zh": "约160亿美元", "en": "Approx. $16 billion"}
+      },
+      "description": {
+        "zh": "几内亚共和国,位于西非,濒临大西洋。几内亚拥有世界上最丰富的铝土矿储量,被称为'地质奇迹',同时也是西非主要河流尼日尔河、塞内加尔河和冈比亚河的发源地。",
+        "en": "The Republic of Guinea is located in West Africa, along the Atlantic Ocean. Guinea has the world's largest bauxite reserves and is called a 'geological miracle'. It is also the source of major West African rivers: the Niger, Senegal, and Gambia."
+      },
+      "funFacts": {
+        "zh": [
+          "几内亚拥有世界上最大的铝土矿储量,占全球储量的三分之一",
+          "几内亚是西非主要河流的发源地,被称为'西非水塔'",
+          "几内亚拥有丰富的传统音乐文化,是非洲打击乐的重要中心"
+        ],
+        "en": [
+          "Guinea has the world's largest bauxite reserves, about one-third of global reserves",
+          "Guinea is the source of major West African rivers, called the 'Water Tower of West Africa'",
+          "Guinea has a rich tradition of music and is an important center for African percussion"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/几内亚",
+        "en": "https://en.wikipedia.org/wiki/Guinea"
+      }
+    },
+    {
+      "code": "gq",
+      "basic": {
+        "capital": {"zh": "马拉博", "en": "Malabo"},
+        "population": {"zh": "约150万", "en": "Approx. 1.5 million"},
+        "area": {"zh": "2.81万平方公里", "en": "28,100 km²"},
+        "currency": {"zh": "中非法郎(XAF)", "en": "Central African CFA Franc (XAF)"},
+        "language": {"zh": "西班牙语、法语", "en": "Spanish, French"},
+        "gdp": {"zh": "约120亿美元", "en": "Approx. $12 billion"}
+      },
+      "description": {
+        "zh": "赤道几内亚共和国,位于非洲中西部,是非洲唯一以西班牙语为官方语言的国家。赤道几内亚由大陆部分和几个岛屿组成,拥有丰富的石油和天然气资源。",
+        "en": "The Republic of Equatorial Guinea is located in west-central Africa and is the only African country with Spanish as an official language. It consists of a mainland region and several islands, with abundant oil and gas resources."
+      },
+      "funFacts": {
+        "zh": [
+          "赤道几内亚是撒哈拉以南非洲唯一以西班牙语为官方语言的国家",
+          "首都马拉博位于比奥科岛上,与大陆部分隔海相望",
+          "赤道几内亚拥有丰富的石油资源,人均GDP位居非洲前列"
+        ],
+        "en": [
+          "Equatorial Guinea is the only sub-Saharan African country with Spanish as an official language",
+          "The capital Malabo is located on Bioko Island, separated from the mainland",
+          "Equatorial Guinea has abundant oil resources and one of Africa's highest GDPs per capita"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/赤道几内亚",
+        "en": "https://en.wikipedia.org/wiki/Equatorial_Guinea"
+      }
+    },
+    {
+      "code": "gw",
+      "basic": {
+        "capital": {"zh": "比绍", "en": "Bissau"},
+        "population": {"zh": "约200万", "en": "Approx. 2 million"},
+        "area": {"zh": "3.61万平方公里", "en": "36,100 km²"},
+        "currency": {"zh": "西非法郎(XOF)", "en": "West African CFA Franc (XOF)"},
+        "language": {"zh": "葡萄牙语", "en": "Portuguese"},
+        "gdp": {"zh": "约15亿美元", "en": "Approx. $1.5 billion"}
+      },
+      "description": {
+        "zh": "几内亚比绍共和国,位于西非,濒临大西洋。几内亚比绍拥有美丽的海岸线和群岛,比热戈斯群岛是联合国教科文组织生物圈保护区。",
+        "en": "The Republic of Guinea-Bissau is located in West Africa, along the Atlantic Ocean. It has a beautiful coastline and archipelago, with the Bijagós Islands designated as a UNESCO Biosphere Reserve."
+      },
+      "funFacts": {
+        "zh": [
+          "比热戈斯群岛是联合国教科文组织生物圈保护区,拥有丰富的海洋生物",
+          "几内亚比绍是世界上主要的腰果生产国之一",
+          "几内亚比绍拥有独特的克里奥尔文化"
+        ],
+        "en": [
+          "The Bijagós Islands are a UNESCO Biosphere Reserve with rich marine biodiversity",
+          "Guinea-Bissau is one of the world's major cashew producers",
+          "Guinea-Bissau has a unique Creole culture"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/几内亚比绍",
+        "en": "https://en.wikipedia.org/wiki/Guinea-Bissau"
+      }
+    },
+    {
+      "code": "km",
+      "basic": {
+        "capital": {"zh": "莫罗尼", "en": "Moroni"},
+        "population": {"zh": "约89万", "en": "Approx. 890,000"},
+        "area": {"zh": "1862平方公里", "en": "1,862 km²"},
+        "currency": {"zh": "科摩罗法郎(KMF)", "en": "Comorian Franc (KMF)"},
+        "language": {"zh": "科摩罗语、阿拉伯语、法语", "en": "Comorian, Arabic, French"},
+        "gdp": {"zh": "约13亿美元", "en": "Approx. $1.3 billion"}
+      },
+      "description": {
+        "zh": "科摩罗联盟,位于印度洋西部的岛国,由三个主要岛屿组成。科摩罗以其香草、依兰依兰和丁香生产而闻名,被称为'香料群岛'。",
+        "en": "The Union of the Comoros is an island nation in the western Indian Ocean, consisting of three main islands. Comoros is known for its vanilla, ylang-ylang, and clove production, called the 'Spice Islands'."
+      },
+      "funFacts": {
+        "zh": [
+          "科摩罗是世界上最大的依兰依兰精油生产国",
+          "科摩罗群岛被称为'香料群岛',盛产香草和丁香",
+          "科摩罗是非洲最小的国家之一"
+        ],
+        "en": [
+          "Comoros is the world's largest producer of ylang-ylang essential oil",
+          "The Comoros Islands are called the 'Spice Islands' for their vanilla and cloves",
+          "Comoros is one of Africa's smallest countries"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/科摩罗",
+        "en": "https://en.wikipedia.org/wiki/Comoros"
+      }
+    },
+    {
+      "code": "lr",
+      "basic": {
+        "capital": {"zh": "蒙罗维亚", "en": "Monrovia"},
+        "population": {"zh": "约520万", "en": "Approx. 5.2 million"},
+        "area": {"zh": "11.14万平方公里", "en": "111,400 km²"},
+        "currency": {"zh": "利比里亚元(LRD)", "en": "Liberian Dollar (LRD)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约35亿美元", "en": "Approx. $3.5 billion"}
+      },
+      "description": {
+        "zh": "利比里亚共和国,位于西非,濒临大西洋。利比里亚由获得自由的美国黑奴于1847年建立,是非洲最古老的共和国之一,国名意为'自由之地'。",
+        "en": "The Republic of Liberia is located in West Africa, along the Atlantic Ocean. Founded in 1847 by freed American slaves, Liberia is one of Africa's oldest republics, with its name meaning 'Land of the Free'."
+      },
+      "funFacts": {
+        "zh": [
+          "利比里亚是非洲最古老的共和国之一,由获得自由的美国黑奴建立",
+          "利比里亚的国旗和国徽深受美国影响",
+          "利比里亚是世界上主要的船籍登记国之一"
+        ],
+        "en": [
+          "Liberia is one of Africa's oldest republics, founded by freed American slaves",
+          "Liberia's flag and coat of arms are heavily influenced by the United States",
+          "Liberia is one of the world's major ship registry countries"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/利比里亚",
+        "en": "https://en.wikipedia.org/wiki/Liberia"
+      }
+    },
+    {
+      "code": "ls",
+      "basic": {
+        "capital": {"zh": "马塞卢", "en": "Maseru"},
+        "population": {"zh": "约220万", "en": "Approx. 2.2 million"},
+        "area": {"zh": "3.04万平方公里", "en": "30,400 km²"},
+        "currency": {"zh": "洛蒂(LSL)", "en": "Lesotho Loti (LSL)"},
+        "language": {"zh": "塞索托语、英语", "en": "Sesotho, English"},
+        "gdp": {"zh": "约23亿美元", "en": "Approx. $2.3 billion"}
+      },
+      "description": {
+        "zh": "莱索托王国,是世界上最大的国中国,完全被南非包围。莱索托是世界上海拔最高的国家,其最低点海拔也超过1400米,被称为'天空之国'。",
+        "en": "The Kingdom of Lesotho is the world's largest enclave, completely surrounded by South Africa. Lesotho is the world's highest-elevation country, with its lowest point above 1,400 meters, called the 'Kingdom in the Sky'."
+      },
+      "funFacts": {
+        "zh": [
+          "莱索托是世界上唯一全境海拔超过1000米的国家",
+          "莱索托完全被南非包围,是世界上最大的国中国",
+          "莱索托以其优质钻石而闻名,曾出产世界第15大钻石"
+        ],
+        "en": [
+          "Lesotho is the only country in the world entirely above 1,000 meters elevation",
+          "Lesotho is completely surrounded by South Africa, the world's largest enclave",
+          "Lesotho is famous for its high-quality diamonds, including the world's 15th-largest diamond"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/莱索托",
+        "en": "https://en.wikipedia.org/wiki/Lesotho"
+      }
+    },
+    {
+      "code": "ly",
+      "basic": {
+        "capital": {"zh": "的黎波里", "en": "Tripoli"},
+        "population": {"zh": "约680万", "en": "Approx. 6.8 million"},
+        "area": {"zh": "176万平方公里", "en": "1,760,000 km²"},
+        "currency": {"zh": "利比亚第纳尔(LYD)", "en": "Libyan Dinar (LYD)"},
+        "language": {"zh": "阿拉伯语", "en": "Arabic"},
+        "gdp": {"zh": "约480亿美元", "en": "Approx. $48 billion"}
+      },
+      "description": {
+        "zh": "利比亚国,位于北非,拥有地中海最长的海岸线。利比亚拥有丰富的石油资源,是非洲重要的石油生产国。利比亚大部分地区被撒哈拉沙漠覆盖。",
+        "en": "The State of Libya is located in North Africa with the longest Mediterranean coastline. Libya has abundant oil resources and is a major oil producer in Africa. Most of Libya is covered by the Sahara Desert."
+      },
+      "funFacts": {
+        "zh": [
+          "利比亚90%以上的领土被撒哈拉沙漠覆盖",
+          "利比亚拥有非洲最大的石油储量",
+          "利比亚曾经修建了世界上最大的人工河工程——大人工河"
+        ],
+        "en": [
+          "Over 90% of Libya is covered by the Sahara Desert",
+          "Libya has the largest proven oil reserves in Africa",
+          "Libya built the Great Man-Made River, the world's largest irrigation project"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/利比亚",
+        "en": "https://en.wikipedia.org/wiki/Libya"
+      }
+    },
+    {
+      "code": "mg",
+      "basic": {
+        "capital": {"zh": "塔那那利佛", "en": "Antananarivo"},
+        "population": {"zh": "约2800万", "en": "Approx. 28 million"},
+        "area": {"zh": "58.7万平方公里", "en": "587,000 km²"},
+        "currency": {"zh": "马达加斯加阿里亚里(MGA)", "en": "Malagasy Ariary (MGA)"},
+        "language": {"zh": "马达加斯加语、法语", "en": "Malagasy, French"},
+        "gdp": {"zh": "约140亿美元", "en": "Approx. $14 billion"}
+      },
+      "description": {
+        "zh": "马达加斯加共和国,位于印度洋西部,是世界第四大岛国。由于长期的地理隔离,马达加斯加拥有极其丰富的独特生物多样性,90%的物种为岛上特有。",
+        "en": "The Republic of Madagascar is located in the western Indian Ocean and is the world's fourth-largest island. Due to long geographic isolation, Madagascar has exceptionally rich and unique biodiversity, with 90% of species found nowhere else."
+      },
+      "funFacts": {
+        "zh": [
+          "马达加斯加是世界上生物多样性最丰富的地区之一,90%的物种为特有种",
+          "马达加斯加是狐猴的唯一原生栖息地",
+          "马达加斯加是世界上最大的香草出口国,占全球产量的80%"
+        ],
+        "en": [
+          "Madagascar is one of the world's biodiversity hotspots, with 90% endemic species",
+          "Madagascar is the only natural habitat of lemurs",
+          "Madagascar is the world's largest vanilla exporter, producing 80% of global supply"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/马达加斯加",
+        "en": "https://en.wikipedia.org/wiki/Madagascar"
+      }
+    },
+    {
+      "code": "ml",
+      "basic": {
+        "capital": {"zh": "巴马科", "en": "Bamako"},
+        "population": {"zh": "约2100万", "en": "Approx. 21 million"},
+        "area": {"zh": "124万平方公里", "en": "1,240,000 km²"},
+        "currency": {"zh": "西非法郎(XOF)", "en": "West African CFA Franc (XOF)"},
+        "language": {"zh": "法语", "en": "French"},
+        "gdp": {"zh": "约180亿美元", "en": "Approx. $18 billion"}
+      },
+      "description": {
+        "zh": "马里共和国,位于西非内陆,是西非面积第二大国。马里拥有悠久的历史,曾是古马里帝国的所在地,以廷巴克图等历史名城闻名。",
+        "en": "The Republic of Mali is a landlocked country in West Africa and the second-largest country in the region. Mali has a rich history, once home to the Mali Empire, famous for historic cities like Timbuktu."
+      },
+      "funFacts": {
+        "zh": [
+          "马里古城廷巴克图曾是非洲重要的学术和贸易中心",
+          "马里是非洲第三大黄金生产国",
+          "马里的杰内大清真寺是世界上最大的泥砖建筑"
+        ],
+        "en": [
+          "The ancient city of Timbuktu was a major center of learning and trade in Africa",
+          "Mali is the third-largest gold producer in Africa",
+          "The Great Mosque of Djenné in Mali is the world's largest mud-brick structure"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/马里共和国",
+        "en": "https://en.wikipedia.org/wiki/Mali"
+      }
+    },
+    {
+      "code": "mr",
+      "basic": {
+        "capital": {"zh": "努瓦克肖特", "en": "Nouakchott"},
+        "population": {"zh": "约460万", "en": "Approx. 4.6 million"},
+        "area": {"zh": "103万平方公里", "en": "1,030,000 km²"},
+        "currency": {"zh": "毛里塔尼亚乌吉亚(MRU)", "en": "Mauritanian Ouguiya (MRU)"},
+        "language": {"zh": "阿拉伯语", "en": "Arabic"},
+        "gdp": {"zh": "约80亿美元", "en": "Approx. $8 billion"}
+      },
+      "description": {
+        "zh": "毛里塔尼亚伊斯兰共和国,位于西非西北部,地跨撒哈拉沙漠和萨赫勒地区。毛里塔尼亚拥有丰富的铁矿资源和渔业资源。",
+        "en": "The Islamic Republic of Mauritania is located in northwestern Africa, spanning the Sahara Desert and Sahel region. Mauritania has rich iron ore deposits and fishing resources."
+      },
+      "funFacts": {
+        "zh": [
+          "毛里塔尼亚是世界上最后几个废除奴隶制的国家之一(1981年)",
+          "毛里塔尼亚拥有世界上最长的货运列车之一,长达3公里",
+          "毛里塔尼亚90%的国土被沙漠覆盖"
+        ],
+        "en": [
+          "Mauritania was one of the last countries to abolish slavery (1981)",
+          "Mauritania has one of the world's longest trains, up to 3 km long",
+          "90% of Mauritania is covered by desert"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/毛里塔尼亚",
+        "en": "https://en.wikipedia.org/wiki/Mauritania"
+      }
+    },
+    {
+      "code": "mu",
+      "basic": {
+        "capital": {"zh": "路易港", "en": "Port Louis"},
+        "population": {"zh": "约127万", "en": "Approx. 1.27 million"},
+        "area": {"zh": "2040平方公里", "en": "2,040 km²"},
+        "currency": {"zh": "毛里求斯卢比(MUR)", "en": "Mauritian Rupee (MUR)"},
+        "language": {"zh": "英语、法语", "en": "English, French"},
+        "gdp": {"zh": "约140亿美元", "en": "Approx. $14 billion"}
+      },
+      "description": {
+        "zh": "毛里求斯共和国,位于印度洋西南部,是一个火山岛国。毛里求斯以其美丽的海滩、珊瑚礁和独特的生态系统闻名,是著名的旅游胜地和非洲经济最发达的国家之一。",
+        "en": "The Republic of Mauritius is located in the southwestern Indian Ocean and is a volcanic island nation. Mauritius is famous for its beautiful beaches, coral reefs, and unique ecosystems, making it a popular tourist destination and one of Africa's most developed economies."
+      },
+      "funFacts": {
+        "zh": [
+          "毛里求斯是已灭绝的渡渡鸟的唯一栖息地",
+          "毛里求斯是非洲人均GDP最高的国家之一",
+          "马克·吐温曾说:'上帝先创造了毛里求斯,再仿照毛里求斯创造了天堂'"
+        ],
+        "en": [
+          "Mauritius was the only home of the now-extinct dodo bird",
+          "Mauritius has one of the highest GDP per capita in Africa",
+          "Mark Twain said: 'God created Mauritius first, and then heaven was copied after Mauritius'"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/毛里求斯",
+        "en": "https://en.wikipedia.org/wiki/Mauritius"
+      }
+    },
+    {
+      "code": "mw",
+      "basic": {
+        "capital": {"zh": "利隆圭", "en": "Lilongwe"},
+        "population": {"zh": "约1900万", "en": "Approx. 19 million"},
+        "area": {"zh": "11.8万平方公里", "en": "118,000 km²"},
+        "currency": {"zh": "马拉维克瓦查(MWK)", "en": "Malawian Kwacha (MWK)"},
+        "language": {"zh": "英语、齐切瓦语", "en": "English, Chichewa"},
+        "gdp": {"zh": "约120亿美元", "en": "Approx. $12 billion"}
+      },
+      "description": {
+        "zh": "马拉维共和国,位于东南非洲的内陆国家。马拉维湖占据该国东部边界,是非洲第三大湖。马拉维以其壮观的自然景观和丰富的淡水鱼类而闻名,被称为'非洲的温暖之心'。",
+        "en": "The Republic of Malawi is a landlocked country in southeastern Africa. Lake Malawi occupies the eastern border and is Africa's third-largest lake. Malawi is known for its spectacular landscapes and abundant freshwater fish, called the 'Warm Heart of Africa'."
+      },
+      "funFacts": {
+        "zh": [
+          "马拉维湖拥有世界上种类最多的淡水鱼,超过1000种",
+          "马拉维被称为'非洲的温暖之心',因其人民的友善而闻名",
+          "马拉维是世界上人口密度最高的非洲国家之一"
+        ],
+        "en": [
+          "Lake Malawi has more fish species than any other lake in the world, over 1,000 species",
+          "Malawi is called the 'Warm Heart of Africa' for its friendly people",
+          "Malawi is one of the most densely populated countries in Africa"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/马拉维",
+        "en": "https://en.wikipedia.org/wiki/Malawi"
+      }
+    },
+    {
+      "code": "na",
+      "basic": {
+        "capital": {"zh": "温得和克", "en": "Windhoek"},
+        "population": {"zh": "约260万", "en": "Approx. 2.6 million"},
+        "area": {"zh": "82.4万平方公里", "en": "824,000 km²"},
+        "currency": {"zh": "纳米比亚元(NAD)", "en": "Namibian Dollar (NAD)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约120亿美元", "en": "Approx. $12 billion"}
+      },
+      "description": {
+        "zh": "纳米比亚共和国,位于非洲西南部,拥有大西洋海岸线。纳米比亚拥有世界上最古老的纳米布沙漠和壮观的鱼河峡谷,以其独特的自然景观和丰富的野生动物而闻名。",
+        "en": "The Republic of Namibia is located in southwestern Africa with an Atlantic coastline. Namibia is home to the world's oldest Namib Desert and the spectacular Fish River Canyon, famous for its unique landscapes and abundant wildlife."
+      },
+      "funFacts": {
+        "zh": [
+          "纳米比亚拥有世界上最古老的沙漠——纳米布沙漠,已有8000万年历史",
+          "纳米比亚是世界上人口密度最低的国家之一",
+          "纳米比亚的骷髅海岸因众多沉船残骸而闻名"
+        ],
+        "en": [
+          "Namibia has the world's oldest desert, the Namib Desert, 80 million years old",
+          "Namibia is one of the least densely populated countries in the world",
+          "Namibia's Skeleton Coast is famous for numerous shipwrecks"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/纳米比亚",
+        "en": "https://en.wikipedia.org/wiki/Namibia"
+      }
+    },
+    {
+      "code": "ne",
+      "basic": {
+        "capital": {"zh": "尼亚美", "en": "Niamey"},
+        "population": {"zh": "约2500万", "en": "Approx. 25 million"},
+        "area": {"zh": "127万平方公里", "en": "1,270,000 km²"},
+        "currency": {"zh": "西非法郎(XOF)", "en": "West African CFA Franc (XOF)"},
+        "language": {"zh": "法语", "en": "French"},
+        "gdp": {"zh": "约140亿美元", "en": "Approx. $14 billion"}
+      },
+      "description": {
+        "zh": "尼日尔共和国,位于西非内陆,是世界上最热的国家之一。尼日尔大部分地区被撒哈拉沙漠覆盖,拥有丰富的铀矿资源。",
+        "en": "The Republic of Niger is a landlocked country in West Africa and one of the hottest countries in the world. Most of Niger is covered by the Sahara Desert, and it has rich uranium deposits."
+      },
+      "funFacts": {
+        "zh": [
+          "尼日尔是世界上最热的国家之一,年平均气温超过30°C",
+          "尼日尔是世界第五大铀生产国",
+          "尼日尔拥有非洲最大的铀矿储量之一"
+        ],
+        "en": [
+          "Niger is one of the hottest countries in the world, with annual average temperature over 30°C",
+          "Niger is the world's fifth-largest uranium producer",
+          "Niger has one of Africa's largest uranium reserves"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/尼日尔",
+        "en": "https://en.wikipedia.org/wiki/Niger"
+      }
+    },
+    {
+      "code": "sc",
+      "basic": {
+        "capital": {"zh": "维多利亚", "en": "Victoria"},
+        "population": {"zh": "约10万", "en": "Approx. 100,000"},
+        "area": {"zh": "459平方公里", "en": "459 km²"},
+        "currency": {"zh": "塞舌尔卢比(SCR)", "en": "Seychellois Rupee (SCR)"},
+        "language": {"zh": "英语、法语、塞舌尔克里奥尔语", "en": "English, French, Seychellois Creole"},
+        "gdp": {"zh": "约15亿美元", "en": "Approx. $1.5 billion"}
+      },
+      "description": {
+        "zh": "塞舌尔共和国,位于印度洋西部,由115个岛屿组成。塞舌尔以其原始的海滩、珊瑚礁和独特的生物多样性而闻名,是世界著名的豪华旅游目的地。",
+        "en": "The Republic of Seychelles is located in the western Indian Ocean, consisting of 115 islands. Seychelles is famous for its pristine beaches, coral reefs, and unique biodiversity, making it a world-renowned luxury tourist destination."
+      },
+      "funFacts": {
+        "zh": [
+          "塞舌尔是非洲最小的国家",
+          "塞舌尔拥有世界上最大的海椰子,重达25公斤",
+          "塞舌尔是世界上唯一拥有两处联合国教科文组织世界自然遗产的群岛国家"
+        ],
+        "en": [
+          "Seychelles is the smallest country in Africa",
+          "Seychelles has the world's largest seed, the coco de mer, weighing up to 25 kg",
+          "Seychelles is the only archipelago nation with two UNESCO World Natural Heritage Sites"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/塞舌尔",
+        "en": "https://en.wikipedia.org/wiki/Seychelles"
+      }
+    },
+    {
+      "code": "sd",
+      "basic": {
+        "capital": {"zh": "喀土穆", "en": "Khartoum"},
+        "population": {"zh": "约4400万", "en": "Approx. 44 million"},
+        "area": {"zh": "188万平方公里", "en": "1,880,000 km²"},
+        "currency": {"zh": "苏丹镑(SDG)", "en": "Sudanese Pound (SDG)"},
+        "language": {"zh": "阿拉伯语、英语", "en": "Arabic, English"},
+        "gdp": {"zh": "约340亿美元", "en": "Approx. $34 billion"}
+      },
+      "description": {
+        "zh": "苏丹共和国,位于东北非洲,是非洲面积第三大国。苏丹拥有古老的努比亚文明遗址和金字塔,青尼罗河和白尼罗河在首都喀土穆汇合。",
+        "en": "The Republic of Sudan is located in northeastern Africa and is the third-largest country in Africa. Sudan has ancient Nubian civilization sites and pyramids, with the Blue Nile and White Nile converging in the capital Khartoum."
+      },
+      "funFacts": {
+        "zh": [
+          "苏丹拥有的金字塔数量比埃及还多,超过200座",
+          "苏丹是古代努比亚文明的发源地",
+          "青尼罗河和白尼罗河在苏丹首都喀土穆汇合形成尼罗河"
+        ],
+        "en": [
+          "Sudan has more pyramids than Egypt, over 200 pyramids",
+          "Sudan is the birthplace of the ancient Nubian civilization",
+          "The Blue Nile and White Nile merge in Khartoum to form the Nile River"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/苏丹共和国",
+        "en": "https://en.wikipedia.org/wiki/Sudan"
+      }
+    },
+    {
+      "code": "sl",
+      "basic": {
+        "capital": {"zh": "弗里敦", "en": "Freetown"},
+        "population": {"zh": "约800万", "en": "Approx. 8 million"},
+        "area": {"zh": "7.18万平方公里", "en": "71,800 km²"},
+        "currency": {"zh": "塞拉利昂利昂(SLL)", "en": "Sierra Leonean Leone (SLL)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约40亿美元", "en": "Approx. $4 billion"}
+      },
+      "description": {
+        "zh": "塞拉利昂共和国,位于西非大西洋沿岸。塞拉利昂拥有丰富的钻石和矿产资源,首都弗里敦最初由获释的奴隶建立。",
+        "en": "The Republic of Sierra Leone is located on the Atlantic coast of West Africa. Sierra Leone has rich diamond and mineral resources, and its capital Freetown was originally founded by freed slaves."
+      },
+      "funFacts": {
+        "zh": [
+          "塞拉利昂的首都弗里敦由获释的奴隶建立,意为'自由城'",
+          "塞拉利昂曾出产世界第三大钻石'塞拉利昂之星',重969.8克拉",
+          "塞拉利昂拥有世界上最大的天然深水港之一"
+        ],
+        "en": [
+          "Freetown was founded by freed slaves, meaning 'Free Town'",
+          "Sierra Leone produced the world's third-largest diamond, the 'Star of Sierra Leone', weighing 969.8 carats",
+          "Sierra Leone has one of the world's largest natural deep-water harbors"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/塞拉利昂",
+        "en": "https://en.wikipedia.org/wiki/Sierra_Leone"
+      }
+    },
+    {
+      "code": "so",
+      "basic": {
+        "capital": {"zh": "摩加迪沙", "en": "Mogadishu"},
+        "population": {"zh": "约1600万", "en": "Approx. 16 million"},
+        "area": {"zh": "63.8万平方公里", "en": "638,000 km²"},
+        "currency": {"zh": "索马里先令(SOS)", "en": "Somali Shilling (SOS)"},
+        "language": {"zh": "索马里语、阿拉伯语", "en": "Somali, Arabic"},
+        "gdp": {"zh": "约80亿美元", "en": "Approx. $8 billion"}
+      },
+      "description": {
+        "zh": "索马里联邦共和国,位于非洲之角,拥有非洲大陆最长的海岸线。索马里战略位置重要,扼守亚丁湾和印度洋航道。",
+        "en": "The Federal Republic of Somalia is located in the Horn of Africa with the longest coastline on the African continent. Somalia has a strategic location, controlling the Gulf of Aden and Indian Ocean shipping lanes."
+      },
+      "funFacts": {
+        "zh": [
+          "索马里拥有非洲大陆最长的海岸线,超过3300公里",
+          "索马里位于'非洲之角',是非洲大陆最东端",
+          "索马里是骆驼数量最多的国家之一,骆驼被称为'沙漠之舟'"
+        ],
+        "en": [
+          "Somalia has the longest coastline in mainland Africa, over 3,300 km",
+          "Somalia is located in the 'Horn of Africa', the easternmost point of the continent",
+          "Somalia has one of the largest camel populations in the world, called 'ships of the desert'"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/索马里",
+        "en": "https://en.wikipedia.org/wiki/Somalia"
+      }
+    },
+    {
+      "code": "ss",
+      "basic": {
+        "capital": {"zh": "朱巴", "en": "Juba"},
+        "population": {"zh": "约1100万", "en": "Approx. 11 million"},
+        "area": {"zh": "64.4万平方公里", "en": "644,000 km²"},
+        "currency": {"zh": "南苏丹镑(SSP)", "en": "South Sudanese Pound (SSP)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约30亿美元", "en": "Approx. $3 billion"}
+      },
+      "description": {
+        "zh": "南苏丹共和国,位于东北非洲,是世界上最年轻的国家,于2011年独立。南苏丹拥有丰富的石油资源和尼罗河流域的广阔湿地。",
+        "en": "The Republic of South Sudan is located in northeastern Africa and is the world's youngest country, gaining independence in 2011. South Sudan has rich oil resources and vast wetlands in the Nile basin."
+      },
+      "funFacts": {
+        "zh": [
+          "南苏丹是世界上最年轻的国家,于2011年7月9日独立",
+          "南苏丹拥有非洲最大的湿地系统——苏德沼泽",
+          "南苏丹是白尼罗河的主要水源地"
+        ],
+        "en": [
+          "South Sudan is the world's youngest country, gaining independence on July 9, 2011",
+          "South Sudan has Africa's largest wetland system, the Sudd swamp",
+          "South Sudan is the main source of the White Nile"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/南苏丹",
+        "en": "https://en.wikipedia.org/wiki/South_Sudan"
+      }
+    },
+    {
+      "code": "st",
+      "basic": {
+        "capital": {"zh": "圣多美", "en": "São Tomé"},
+        "population": {"zh": "约22万", "en": "Approx. 220,000"},
+        "area": {"zh": "964平方公里", "en": "964 km²"},
+        "currency": {"zh": "圣多美和普林西比多布拉(STN)", "en": "São Tomé and Príncipe Dobra (STN)"},
+        "language": {"zh": "葡萄牙语", "en": "Portuguese"},
+        "gdp": {"zh": "约5亿美元", "en": "Approx. $500 million"}
+      },
+      "description": {
+        "zh": "圣多美和普林西比民主共和国,位于几内亚湾,由圣多美岛和普林西比岛组成。这个火山岛国以其可可种植和独特的热带雨林生态系统而闻名。",
+        "en": "The Democratic Republic of São Tomé and Príncipe is located in the Gulf of Guinea, consisting of São Tomé and Príncipe islands. This volcanic island nation is famous for its cocoa cultivation and unique tropical rainforest ecosystems."
+      },
+      "funFacts": {
+        "zh": [
+          "圣多美和普林西比是非洲第二小的国家",
+          "圣多美和普林西比是世界上主要的优质可可生产国之一",
+          "圣多美和普林西比位于赤道附近,是观察日食的理想地点"
+        ],
+        "en": [
+          "São Tomé and Príncipe is the second-smallest country in Africa",
+          "São Tomé and Príncipe is one of the world's major producers of fine cocoa",
+          "Located near the equator, São Tomé and Príncipe is an ideal location for solar eclipse observation"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/圣多美和普林西比",
+        "en": "https://en.wikipedia.org/wiki/São_Tomé_and_Príncipe"
+      }
+    },
+    {
+      "code": "sz",
+      "basic": {
+        "capital": {"zh": "姆巴巴纳", "en": "Mbabane"},
+        "population": {"zh": "约120万", "en": "Approx. 1.2 million"},
+        "area": {"zh": "1.73万平方公里", "en": "17,300 km²"},
+        "currency": {"zh": "斯威士兰里兰吉尼(SZL)", "en": "Swazi Lilangeni (SZL)"},
+        "language": {"zh": "英语、斯瓦蒂语", "en": "English, Swati"},
+        "gdp": {"zh": "约45亿美元", "en": "Approx. $4.5 billion"}
+      },
+      "description": {
+        "zh": "斯威士兰王国(现名埃斯瓦提尼),位于南部非洲,是非洲最后一个绝对君主制国家。斯威士兰以其传统文化节日和自然保护区而闻名。",
+        "en": "The Kingdom of Eswatini (formerly Swaziland) is located in Southern Africa and is Africa's last absolute monarchy. Eswatini is known for its traditional cultural festivals and nature reserves."
+      },
+      "funFacts": {
+        "zh": [
+          "斯威士兰是非洲最后一个绝对君主制国家",
+          "斯威士兰于2018年将国名改为埃斯瓦提尼",
+          "斯威士兰的芦苇舞节是南部非洲最大的文化活动之一"
+        ],
+        "en": [
+          "Eswatini is Africa's last absolute monarchy",
+          "The country changed its name from Swaziland to Eswatini in 2018",
+          "Eswatini's Umhlanga (Reed Dance) is one of Southern Africa's largest cultural events"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/斯威士兰",
+        "en": "https://en.wikipedia.org/wiki/Eswatini"
+      }
+    },
+    {
+      "code": "td",
+      "basic": {
+        "capital": {"zh": "恩贾梅纳", "en": "N'Djamena"},
+        "population": {"zh": "约1700万", "en": "Approx. 17 million"},
+        "area": {"zh": "128万平方公里", "en": "1,280,000 km²"},
+        "currency": {"zh": "中非法郎(XAF)", "en": "Central African CFA Franc (XAF)"},
+        "language": {"zh": "法语、阿拉伯语", "en": "French, Arabic"},
+        "gdp": {"zh": "约110亿美元", "en": "Approx. $11 billion"}
+      },
+      "description": {
+        "zh": "乍得共和国,位于中非,是非洲第五大国。乍得拥有撒哈拉沙漠、萨赫勒地带和热带草原三种气候带,乍得湖是非洲重要的淡水湖之一。",
+        "en": "The Republic of Chad is located in Central Africa and is the fifth-largest country in Africa. Chad has three climate zones: the Sahara Desert, Sahel, and tropical savanna. Lake Chad is one of Africa's major freshwater lakes."
+      },
+      "funFacts": {
+        "zh": [
+          "乍得是非洲第五大国,但没有海岸线",
+          "乍得湖曾是世界第六大湖,但由于气候变化已缩小90%",
+          "乍得发现了世界上最古老的原始人类化石之一'撒赫勒人猿'"
+        ],
+        "en": [
+          "Chad is the fifth-largest country in Africa but is landlocked",
+          "Lake Chad was once the world's sixth-largest lake but has shrunk by 90% due to climate change",
+          "Chad is where one of the oldest hominid fossils, Sahelanthropus, was discovered"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/乍得",
+        "en": "https://en.wikipedia.org/wiki/Chad"
+      }
+    },
+    {
+      "code": "tg",
+      "basic": {
+        "capital": {"zh": "洛美", "en": "Lomé"},
+        "population": {"zh": "约840万", "en": "Approx. 8.4 million"},
+        "area": {"zh": "5.68万平方公里", "en": "56,800 km²"},
+        "currency": {"zh": "西非法郎(XOF)", "en": "West African CFA Franc (XOF)"},
+        "language": {"zh": "法语", "en": "French"},
+        "gdp": {"zh": "约70亿美元", "en": "Approx. $7 billion"}
+      },
+      "description": {
+        "zh": "多哥共和国,位于西非,是世界上最狭长的国家之一。多哥拥有美丽的海滩和丰富的磷酸盐矿藏,首都洛美是重要的港口城市。",
+        "en": "The Togolese Republic is located in West Africa and is one of the world's most elongated countries. Togo has beautiful beaches and rich phosphate deposits, with its capital Lomé being an important port city."
+      },
+      "funFacts": {
+        "zh": [
+          "多哥是世界上最狭长的国家之一,南北长约550公里,东西宽仅50-150公里",
+          "多哥是世界第五大磷酸盐生产国",
+          "多哥的首都洛美拥有西非最大的港口之一"
+        ],
+        "en": [
+          "Togo is one of the world's most elongated countries, 550 km long but only 50-150 km wide",
+          "Togo is the world's fifth-largest phosphate producer",
+          "Lomé, Togo's capital, has one of the largest ports in West Africa"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/多哥",
+        "en": "https://en.wikipedia.org/wiki/Togo"
+      }
+    },
+    {
+      "code": "zm",
+      "basic": {
+        "capital": {"zh": "卢萨卡", "en": "Lusaka"},
+        "population": {"zh": "约1900万", "en": "Approx. 19 million"},
+        "area": {"zh": "75.3万平方公里", "en": "753,000 km²"},
+        "currency": {"zh": "赞比亚克瓦查(ZMW)", "en": "Zambian Kwacha (ZMW)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约230亿美元", "en": "Approx. $23 billion"}
+      },
+      "description": {
+        "zh": "赞比亚共和国,位于南部非洲,是一个内陆国家。赞比亚以壮观的维多利亚瀑布、丰富的铜矿资源和众多的国家公园而闻名,是非洲重要的野生动物保护区。",
+        "en": "The Republic of Zambia is located in Southern Africa and is a landlocked country. Zambia is famous for the spectacular Victoria Falls, rich copper deposits, and numerous national parks, making it an important wildlife conservation area in Africa."
+      },
+      "funFacts": {
+        "zh": [
+          "赞比亚拥有世界七大自然奇观之一的维多利亚瀑布",
+          "赞比亚是世界第七大铜生产国",
+          "赞比亚拥有非洲最大的人工湖之一——卡里巴湖"
+        ],
+        "en": [
+          "Zambia is home to Victoria Falls, one of the Seven Natural Wonders of the World",
+          "Zambia is the world's seventh-largest copper producer",
+          "Zambia has Lake Kariba, one of Africa's largest man-made lakes"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/赞比亚",
+        "en": "https://en.wikipedia.org/wiki/Zambia"
+      }
     }
   ]
 }
