@@ -568,7 +568,7 @@ async function init() {
 // 加载翻译数据
 async function loadTranslations() {
     try {
-        const response = await fetch('i18n.json');
+        const response = await fetch('../../data/i18n/i18n.json');
         if (response.ok) {
             const data = await response.json();
             i18n.setTranslations(data);
@@ -588,7 +588,7 @@ async function loadTranslations() {
 
             console.log(`✅ 语言设置为: ${preferredLanguage}`);
         } else {
-            throw new Error('无法加载i18n.json');
+            throw new Error('无法加载 i18n.json');
         }
     } catch (error) {
         console.warn('翻译数据加载失败:', error.message);
@@ -629,13 +629,13 @@ function saveStats() {
 // 加载国家数据
 async function loadCountriesData() {
     try {
-        const response = await fetch('countries_un.json');
+        const response = await fetch('../../data/countries/countries_un.json');
         if (response.ok) {
             const data = await response.json();
             allCountries = data.countries;
             console.log(`成功加载 ${allCountries.length} 个国家数据`);
         } else {
-            throw new Error('无法加载countries_un.json');
+            throw new Error('无法加载 countries_un.json');
         }
     } catch (error) {
         console.log('使用示例数据:', error.message);
@@ -1019,7 +1019,7 @@ function displayFlags() {
         // 设置图片
         const img = flagCard.querySelector('.flag-img');
         if (img) {
-            img.src = `pics/${country.code}.png`;
+            img.src = `../../assets/images/flags/${country.code}.png`;
             img.alt = i18n.getCountryName(country);
             img.onerror = function() {
                 this.src = `https://via.placeholder.com/200x140/f0f0f0/999?text=${country.code.toUpperCase()}`;
@@ -1066,6 +1066,11 @@ function displayFlags() {
         
         container.appendChild(flagCard);
     });
+
+    // 为所有国旗卡片添加点击事件
+    if (typeof attachFlagClickEvents === 'function') {
+        attachFlagClickEvents();
+    }
 }
 
 // 停止计时器
@@ -1173,7 +1178,7 @@ function showQuestion() {
             const templateContent = flagTemplate.content.cloneNode(true);
             const img = templateContent.querySelector('.question-flag');
             if (img) {
-                img.src = `pics/${q.correct.code}.png`;
+                img.src = `../../assets/images/flags/${q.correct.code}.png`;
                 img.alt = '国旗';
                 img.onerror = function() {
                     this.src = `https://via.placeholder.com/360x240/f0f0f0/999?text=${q.correct.code.toUpperCase()}`;
@@ -1243,7 +1248,7 @@ function showQuestion() {
                     button.onclick = () => checkAnswer(opt.code, q.correct.code);
                     // 记录选项代码，便于统一判题上色
                     button.dataset.code = opt.code;
-                    img.src = `pics/${opt.code}.png`;
+                    img.src = `../../assets/images/flags/${opt.code}.png`;
                     img.alt = opt.nameCN;
                     img.onerror = function() {
                         this.src = `https://via.placeholder.com/200x120/f0f0f0/999?text=${opt.code.toUpperCase()}`;
@@ -1432,7 +1437,7 @@ function displayWrongAnswers() {
                 // 设置国旗图片
                 const flagImg = templateContent.querySelector('.wrong-flag');
                 if (flagImg) {
-                    flagImg.src = `pics/${wrong.correctCountry.code}.png`;
+                    flagImg.src = `../../assets/images/flags/${wrong.correctCountry.code}.png`;
                     flagImg.alt = '国旗';
                     flagImg.onerror = function() {
                         this.src = `https://via.placeholder.com/200x120/f0f0f0/999?text=${wrong.correctCountry.code.toUpperCase()}`;
@@ -1485,7 +1490,7 @@ function displayWrongAnswers() {
                 // 设置正确国旗
                 const correctFlag = templateContent.querySelector('.flag-option.correct .comparison-flag');
                 if (correctFlag) {
-                    correctFlag.src = `pics/${wrong.correctCountry.code}.png`;
+                    correctFlag.src = `../../assets/images/flags/${wrong.correctCountry.code}.png`;
                     correctFlag.alt = '正确国旗';
                     correctFlag.onerror = function() {
                         this.src = `https://via.placeholder.com/150x100/f0f0f0/999?text=${wrong.correctCountry.code.toUpperCase()}`;
@@ -1495,7 +1500,7 @@ function displayWrongAnswers() {
                 // 设置错误国旗
                 const wrongFlag = templateContent.querySelector('.flag-option.wrong .comparison-flag');
                 if (wrongFlag) {
-                    wrongFlag.src = `pics/${wrong.selectedCountry.code}.png`;
+                    wrongFlag.src = `../../assets/images/flags/${wrong.selectedCountry.code}.png`;
                     wrongFlag.alt = '错误国旗';
                     wrongFlag.onerror = function() {
                         this.src = `https://via.placeholder.com/150x100/f0f0f0/999?text=${wrong.selectedCountry.code.toUpperCase()}`;
@@ -2193,7 +2198,7 @@ const EnhancedMemorySystem = {
             return `
                 <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px;">
                     <div style="width:100%;height:90px;background:#f8f9fa;border:1px solid #e9ecef;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
-                        <img src="pics/${code}.png" alt="${titleCN}" style="max-width:100%;max-height:100%;object-fit:contain;" onerror="this.src='https://via.placeholder.com/160x100/f0f0f0/999?text=${code.toUpperCase()}'" />
+                        <img src="../../assets/images/flags/${code}.png" alt="${titleCN}" style="max-width:100%;max-height:100%;object-fit:contain;" onerror="this.src='https://via.placeholder.com/160x100/f0f0f0/999?text=${code.toUpperCase()}'" />
                     </div>
                     <div style="text-align:center;">
                         <div style="font-size:13px;color:#1f2937;font-weight:600;">${titleCN}</div>
@@ -2331,7 +2336,7 @@ const EnhancedMemorySystem = {
 
             const flagImg = templateContent.querySelector('.study-flag-img');
             if (flagImg) {
-                flagImg.src = `pics/${flagCode}.png`;
+                flagImg.src = `../../assets/images/flags/${flagCode}.png`;
                 flagImg.alt = countryInfo?.nameCN || flagCode.toUpperCase();
                 flagImg.onerror = function() {
                     this.src = `https://via.placeholder.com/300x200/f0f0f0/999?text=${flagCode.toUpperCase()}`;
@@ -2494,14 +2499,14 @@ const EnhancedMemorySystem = {
     // 添加加载国家数据的方法
     async loadCountriesData() {
         try {
-            const response = await fetch('countries_un.json');
+            const response = await fetch('../../data/countries/countries_un.json');
             if (response.ok) {
                 const data = await response.json();
                 allCountries = data.countries;
                 console.log(`成功加载 ${allCountries.length} 个国家数据`);
                 return true;
             } else {
-                throw new Error('无法加载countries_un.json');
+                throw new Error('无法加载 countries_un.json');
             }
         } catch (error) {
             console.log('使用示例数据:', error.message);
@@ -3528,7 +3533,7 @@ async function loadI18nData() {
     try {
         console.log('Loading i18n data...');
         // 添加缓存破坏参数
-        const response = await fetch('i18n.json?t=' + Date.now());
+        const response = await fetch('../../data/i18n/i18n.json?t=' + Date.now());
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -3699,7 +3704,7 @@ function updateWrongAnswersContent() {
             const wrongAnswerItem = element.closest('.wrong-answer-item');
             if (wrongAnswerItem) {
                 // 查找相关的国家代码信息
-                const flagImg = wrongAnswerItem.querySelector('img[src*="pics/"]');
+                const flagImg = wrongAnswerItem.querySelector('img[src*="flags/"]');
                 if (flagImg) {
                     const src = flagImg.getAttribute('src');
                     const match = src.match(/pics\/([a-z]{2})\.png/);
@@ -5461,6 +5466,8 @@ let applyGlobeInertia = null; // 惯性旋转函数
 let starField = null; // 星空对象
 let starOpacities = null; // 星星透明度数组（用于闪烁）
 let starTwinkleSpeed = null; // 星星闪烁速度数组
+let autoRotateEnabled = true; // 地球自动旋转开关
+let isDraggingGlobe = false; // 是否正在拖拽地球
 
 // Canvas纹理相关变量
 let worldCanvas = null;
@@ -5814,11 +5821,11 @@ async function loadWorldData() {
         // 优先尝试加载详细地图数据
         let response;
         try {
-            response = await fetch('./world_detailed.geojson');
+            response = await fetch('../../assets/geo/world_detailed.geojson');
             if (!response.ok) throw new Error('详细地图数据不存在');
         } catch (e) {
             console.log('📍 使用简化地图数据...');
-            response = await fetch('./world_simple.geojson');
+            response = await fetch('../../assets/geo/world_simple.geojson');
         }
 
         worldData = await response.json();
@@ -5982,6 +5989,8 @@ function addGlobeControls() {
 
     canvas.addEventListener('mousedown', (event) => {
         isDragging = true;
+        isDraggingGlobe = true; // 标记正在拖拽
+        autoRotateEnabled = false; // 停止自动旋转
         rotationVelocity = { x: 0, y: 0 }; // 停止惯性
         previousMousePosition = { x: event.clientX, y: event.clientY };
         canvas.style.cursor = 'grabbing';
@@ -6016,12 +6025,28 @@ function addGlobeControls() {
 
     canvas.addEventListener('mouseup', () => {
         isDragging = false;
+        isDraggingGlobe = false;
         canvas.style.cursor = 'grab';
+
+        // 5秒后重新启用自动旋转
+        setTimeout(() => {
+            if (!isDraggingGlobe) {
+                autoRotateEnabled = true;
+            }
+        }, 5000);
     });
 
     canvas.addEventListener('mouseleave', () => {
         isDragging = false;
+        isDraggingGlobe = false;
         canvas.style.cursor = 'default';
+
+        // 5秒后重新启用自动旋转
+        setTimeout(() => {
+            if (!isDraggingGlobe) {
+                autoRotateEnabled = true;
+            }
+        }, 5000);
     });
 
     // 平滑滚轮缩放
@@ -6263,7 +6288,7 @@ function showCountryFlag(countryData) {
     const countryNameEn = popup.querySelector('.popup-country-name-en');
     const countryContinent = popup.querySelector('.popup-country-continent');
 
-    flagImg.src = `pics/${country.code}.png`;
+    flagImg.src = `../../assets/images/flags/${country.code}.png`;
     flagImg.alt = `${country.nameCN}国旗`;
     countryNameCn.textContent = country.nameCN;
     countryNameEn.textContent = country.nameEN;
@@ -6317,6 +6342,11 @@ function animateGlobe() {
             }
             alphaAttribute.needsUpdate = true;
         }
+    }
+
+    // 地球自动旋转（当未拖拽且启用自动旋转时）
+    if (earth && autoRotateEnabled && !isDraggingGlobe) {
+        earth.rotation.y += 0.001; // 缓慢自转
     }
 
     // 应用惯性旋转效果
@@ -6398,3 +6428,342 @@ window.emergencyRecovery = function() {
 };
 
 console.log('💡 如果页面显示异常，请在控制台输入: emergencyRecovery()');
+
+// ===== 国家详情模态窗口功能 =====
+let countriesInfoData = null;
+let wikiCache = new Map(); // 维基百科内容缓存
+
+// 加载国家详细信息数据
+async function loadCountriesInfo() {
+    if (countriesInfoData) {
+        return countriesInfoData;
+    }
+
+    try {
+        const response = await fetch('../../data/countries/countries_info.json');
+        if (!response.ok) {
+            throw new Error('Failed to load countries info');
+        }
+        const data = await response.json();
+        countriesInfoData = data.countries || [];
+        console.log('✅ 国家详细信息数据加载完成:', countriesInfoData.length, '个国家');
+        return countriesInfoData;
+    } catch (error) {
+        console.warn('⚠️ 国家详细信息数据加载失败:', error);
+        countriesInfoData = [];
+        return [];
+    }
+}
+
+// 获取国家详细信息
+function getCountryInfo(countryCode) {
+    if (!countriesInfoData) {
+        return null;
+    }
+    return countriesInfoData.find(c => c.code === countryCode);
+}
+
+// 显示国家详情模态窗口
+async function showCountryDetail(country) {
+    const modal = document.getElementById('country-detail-modal');
+    if (!modal) {
+        console.error('模态窗口元素未找到');
+        return;
+    }
+
+    // 确保已加载国家详细信息数据
+    await loadCountriesInfo();
+
+    // 获取国家详细信息
+    const countryInfo = getCountryInfo(country.code);
+    const currentLang = i18n.currentLanguage || 'zh';
+
+    // 设置国旗和标题
+    const modalFlag = modal.querySelector('.modal-flag');
+    const primaryName = modal.querySelector('.modal-country-name-primary');
+    const secondaryName = modal.querySelector('.modal-country-name-secondary');
+
+    modalFlag.src = `../../assets/images/flags/${country.code}.png`;
+    modalFlag.alt = country.nameCN;
+
+    if (currentLang === 'en') {
+        primaryName.textContent = country.nameEN;
+        secondaryName.textContent = country.nameCN;
+    } else {
+        primaryName.textContent = country.nameCN;
+        secondaryName.textContent = country.nameEN;
+    }
+
+    // 填充基本信息
+    if (countryInfo && countryInfo.basic) {
+        const fields = ['capital', 'population', 'area', 'currency', 'language', 'gdp'];
+        fields.forEach(field => {
+            const element = modal.querySelector(`[data-field="${field}"]`);
+            if (element && countryInfo.basic[field]) {
+                element.textContent = countryInfo.basic[field][currentLang] || '-';
+            }
+        });
+    } else {
+        // 如果没有详细信息,显示占位符
+        const valueElements = modal.querySelectorAll('.info-value');
+        valueElements.forEach(el => {
+            el.textContent = currentLang === 'en' ? 'Data coming soon' : '数据即将添加';
+        });
+    }
+
+    // 填充国家简介
+    const description = modal.querySelector('.country-description');
+    if (countryInfo && countryInfo.description) {
+        description.textContent = countryInfo.description[currentLang] ||
+            (currentLang === 'en' ? 'Description coming soon...' : '简介即将添加...');
+    } else {
+        description.textContent = currentLang === 'en' ? 'Description coming soon...' : '简介即将添加...';
+    }
+
+    // 填充有趣的事实
+    const funFactsList = modal.querySelector('.fun-facts-list');
+    funFactsList.innerHTML = '';
+    if (countryInfo && countryInfo.funFacts && countryInfo.funFacts[currentLang]) {
+        countryInfo.funFacts[currentLang].forEach(fact => {
+            const li = document.createElement('li');
+            li.textContent = fact;
+            funFactsList.appendChild(li);
+        });
+    } else {
+        const li = document.createElement('li');
+        li.textContent = currentLang === 'en' ? 'Fun facts coming soon...' : '有趣的事实即将添加...';
+        funFactsList.appendChild(li);
+    }
+
+    // 重置维基百科内容区域
+    const wikiContent = modal.querySelector('.wiki-content');
+    wikiContent.style.display = 'none';
+    wikiContent.innerHTML = `
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p data-i18n="countryDetail.loading">正在加载详细信息...</p>
+        </div>
+    `;
+
+    // 设置"了解更多"按钮
+    const learnMoreBtn = modal.querySelector('.learn-more-btn');
+    learnMoreBtn.onclick = () => loadWikipediaContent(country, countryInfo, currentLang);
+
+    // 显示模态窗口
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // 防止背景滚动
+}
+
+// 加载维基百科内容
+async function loadWikipediaContent(country, countryInfo, lang) {
+    const modal = document.getElementById('country-detail-modal');
+    const wikiContent = modal.querySelector('.wiki-content');
+    const learnMoreBtn = modal.querySelector('.learn-more-btn');
+
+    // 如果内容区域已显示,则折叠
+    if (wikiContent.style.display === 'block') {
+        wikiContent.style.display = 'none';
+        learnMoreBtn.innerHTML = `<span data-i18n="countryDetail.learnMore">📖 从维基百科了解更多</span>`;
+        return;
+    }
+
+    // 显示加载状态
+    wikiContent.style.display = 'block';
+    learnMoreBtn.innerHTML = `<span data-i18n="countryDetail.loading">⏳ 正在加载...</span>`;
+
+    // 检查缓存
+    const cacheKey = `${country.code}_${lang}`;
+    if (wikiCache.has(cacheKey)) {
+        wikiContent.innerHTML = wikiCache.get(cacheKey);
+        learnMoreBtn.innerHTML = `<span data-i18n="countryDetail.collapse">🔼 收起详细信息</span>`;
+        return;
+    }
+
+    try {
+        // 构建维基百科 API URL
+        const wikiLang = lang === 'en' ? 'en' : 'zh';
+        const searchTerm = lang === 'en' ? country.nameEN : country.nameCN;
+        const apiUrl = `https://${wikiLang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(searchTerm)}`;
+
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error('Wikipedia API request failed');
+        }
+
+        const data = await response.json();
+
+        // 构建内容HTML
+        let contentHtml = '';
+
+        if (data.extract) {
+            contentHtml += `<p style="margin: 0 0 16px 0; line-height: 1.8; color: var(--text-primary);">${data.extract}</p>`;
+        }
+
+        if (data.thumbnail && data.thumbnail.source) {
+            contentHtml += `
+                <img src="${data.thumbnail.source}"
+                     alt="${data.title}"
+                     style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            `;
+        }
+
+        // 添加维基百科链接
+        const wikiUrl = countryInfo?.wikiUrl?.[lang] || data.content_urls?.desktop?.page || '#';
+        contentHtml += `
+            <a href="${wikiUrl}"
+               target="_blank"
+               rel="noopener noreferrer"
+               style="display: inline-block; margin-top: 12px; color: var(--primary-light); text-decoration: none; font-weight: 500;">
+                🔗 ${lang === 'en' ? 'Read more on Wikipedia' : '在维基百科上阅读更多'} →
+            </a>
+        `;
+
+        // 缓存内容
+        wikiCache.set(cacheKey, contentHtml);
+
+        // 显示内容
+        wikiContent.innerHTML = contentHtml;
+        learnMoreBtn.innerHTML = `<span data-i18n="countryDetail.collapse">🔼 收起详细信息</span>`;
+
+        // 保存到本地存储(可选)
+        saveWikiToLocalStorage(cacheKey, contentHtml);
+
+    } catch (error) {
+        console.error('加载维基百科内容失败:', error);
+        wikiContent.innerHTML = `
+            <p style="color: var(--text-muted); text-align: center;">
+                ${lang === 'en' ? '❌ Failed to load content. Please check your internet connection.' : '❌ 加载失败,请检查网络连接。'}
+            </p>
+            <a href="${countryInfo?.wikiUrl?.[lang] || '#'}"
+               target="_blank"
+               rel="noopener noreferrer"
+               style="display: inline-block; margin-top: 12px; color: var(--primary-light); text-decoration: none; font-weight: 500;">
+                🔗 ${lang === 'en' ? 'Visit Wikipedia directly' : '直接访问维基百科'} →
+            </a>
+        `;
+        learnMoreBtn.innerHTML = `<span data-i18n="countryDetail.collapse">🔼 收起详细信息</span>`;
+    }
+}
+
+// 关闭国家详情模态窗口
+function closeCountryDetail() {
+    const modal = document.getElementById('country-detail-modal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = ''; // 恢复背景滚动
+    }
+}
+
+// 保存维基百科内容到本地存储
+function saveWikiToLocalStorage(key, content) {
+    try {
+        const stored = JSON.parse(localStorage.getItem('wikiCache') || '{}');
+        stored[key] = {
+            content: content,
+            timestamp: Date.now()
+        };
+
+        // 只保留最近50个缓存
+        const entries = Object.entries(stored);
+        if (entries.length > 50) {
+            entries.sort((a, b) => b[1].timestamp - a[1].timestamp);
+            const newStored = Object.fromEntries(entries.slice(0, 50));
+            localStorage.setItem('wikiCache', JSON.stringify(newStored));
+        } else {
+            localStorage.setItem('wikiCache', JSON.stringify(stored));
+        }
+    } catch (error) {
+        console.warn('保存到本地存储失败:', error);
+    }
+}
+
+// 从本地存储加载维基百科缓存
+function loadWikiFromLocalStorage() {
+    try {
+        const stored = JSON.parse(localStorage.getItem('wikiCache') || '{}');
+        const now = Date.now();
+        const maxAge = 7 * 24 * 60 * 60 * 1000; // 7天
+
+        Object.entries(stored).forEach(([key, value]) => {
+            if (now - value.timestamp < maxAge) {
+                wikiCache.set(key, value.content);
+            }
+        });
+
+        console.log('✅ 从本地存储加载了', wikiCache.size, '个维基百科缓存');
+    } catch (error) {
+        console.warn('从本地存储加载缓存失败:', error);
+    }
+}
+
+// 初始化国家详情模态窗口
+function initCountryDetailModal() {
+    const modal = document.getElementById('country-detail-modal');
+    if (!modal) {
+        console.warn('国家详情模态窗口元素未找到');
+        return;
+    }
+
+    // 关闭按钮事件
+    const closeBtn = modal.querySelector('.modal-close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeCountryDetail);
+    }
+
+    // 点击遮罩层关闭
+    const overlay = modal.querySelector('.modal-overlay');
+    if (overlay) {
+        overlay.addEventListener('click', closeCountryDetail);
+    }
+
+    // ESC键关闭
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+            closeCountryDetail();
+        }
+    });
+
+    // 加载本地存储的缓存
+    loadWikiFromLocalStorage();
+
+    console.log('✅ 国家详情模态窗口初始化完成');
+}
+
+// 为国旗卡片添加点击事件
+function attachFlagClickEvents() {
+    // 等待DOM更新后再添加事件监听
+    setTimeout(() => {
+        const flagCards = document.querySelectorAll('.flag-card');
+        console.log('为', flagCards.length, '个国旗卡片添加点击事件');
+
+        flagCards.forEach((card, index) => {
+            // 移除旧的事件监听器
+            const newCard = card.cloneNode(true);
+            card.parentNode.replaceChild(newCard, card);
+
+            // 添加新的点击事件
+            newCard.addEventListener('click', () => {
+                const country = filteredCountries[index];
+                if (country) {
+                    console.log('点击国旗:', country.nameCN);
+                    showCountryDetail(country);
+                }
+            });
+
+            // 添加悬停效果
+            newCard.style.cursor = 'pointer';
+        });
+    }, 100);
+}
+
+// 在初始化时调用
+window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        initCountryDetailModal();
+    }, 500);
+});
+
+// 导出到全局作用域,以便在其他地方调用
+window.showCountryDetail = showCountryDetail;
+window.closeCountryDetail = closeCountryDetail;
+window.attachFlagClickEvents = attachFlagClickEvents;

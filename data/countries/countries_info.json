@@ -1,0 +1,1771 @@
+{
+  "countries": [
+    {
+      "code": "cn",
+      "basic": {
+        "capital": {"zh": "北京", "en": "Beijing"},
+        "population": {"zh": "约14.1亿", "en": "Approx. 1.41 billion"},
+        "area": {"zh": "960万平方公里", "en": "9.6 million km²"},
+        "currency": {"zh": "人民币(CNY)", "en": "Renminbi (CNY)"},
+        "language": {"zh": "汉语", "en": "Chinese"},
+        "gdp": {"zh": "约18万亿美元", "en": "Approx. $18 trillion"}
+      },
+      "description": {
+        "zh": "中华人民共和国,简称中国,是位于东亚的社会主义国家,也是世界上人口最多的国家。中国拥有五千年悠久历史和灿烂文化,是世界四大文明古国之一。",
+        "en": "The People's Republic of China, commonly known as China, is a socialist country located in East Asia and the world's most populous nation. China has a rich history spanning 5,000 years and is one of the world's four ancient civilizations."
+      },
+      "funFacts": {
+        "zh": [
+          "中国是世界上最早发明纸张、火药、指南针和印刷术的国家",
+          "长城总长度超过21,000公里,是世界上最长的人造建筑",
+          "中国有56个民族,汉族占总人口的91%以上"
+        ],
+        "en": [
+          "China invented paper, gunpowder, the compass, and printing",
+          "The Great Wall stretches over 21,000 km, the longest man-made structure",
+          "China has 56 ethnic groups, with Han Chinese comprising over 91% of the population"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/中华人民共和国",
+        "en": "https://en.wikipedia.org/wiki/China"
+      }
+    },
+    {
+      "code": "us",
+      "basic": {
+        "capital": {"zh": "华盛顿哥伦比亚特区", "en": "Washington, D.C."},
+        "population": {"zh": "约3.3亿", "en": "Approx. 330 million"},
+        "area": {"zh": "983万平方公里", "en": "9.83 million km²"},
+        "currency": {"zh": "美元(USD)", "en": "US Dollar (USD)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约25万亿美元", "en": "Approx. $25 trillion"}
+      },
+      "description": {
+        "zh": "美利坚合众国,简称美国,是位于北美洲的联邦共和制国家,由50个州和华盛顿哥伦比亚特区组成。美国是世界上最大的经济体和军事强国。",
+        "en": "The United States of America is a federal republic in North America, consisting of 50 states and Washington, D.C. The U.S. is the world's largest economy and military power."
+      },
+      "funFacts": {
+        "zh": [
+          "美国国旗上的50颗星代表50个州,13条条纹代表最初的13个殖民地",
+          "美国是世界上第三大国家,仅次于俄罗斯和加拿大",
+          "美元是世界上使用最广泛的货币"
+        ],
+        "en": [
+          "The 50 stars on the US flag represent the 50 states, and the 13 stripes represent the original 13 colonies",
+          "The US is the world's third-largest country by area, after Russia and Canada",
+          "The US dollar is the most widely used currency in the world"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/美国",
+        "en": "https://en.wikipedia.org/wiki/United_States"
+      }
+    },
+    {
+      "code": "jp",
+      "basic": {
+        "capital": {"zh": "东京", "en": "Tokyo"},
+        "population": {"zh": "约1.25亿", "en": "Approx. 125 million"},
+        "area": {"zh": "37.8万平方公里", "en": "378,000 km²"},
+        "currency": {"zh": "日元(JPY)", "en": "Japanese Yen (JPY)"},
+        "language": {"zh": "日语", "en": "Japanese"},
+        "gdp": {"zh": "约4.2万亿美元", "en": "Approx. $4.2 trillion"}
+      },
+      "description": {
+        "zh": "日本国,简称日本,是位于东亚的岛国,由四个主要岛屿和数千个小岛组成。日本是世界第三大经济体,以其先进的科技和独特的文化闻名于世。",
+        "en": "Japan is an island country in East Asia, consisting of four main islands and thousands of smaller ones. It is the world's third-largest economy, renowned for its advanced technology and unique culture."
+      },
+      "funFacts": {
+        "zh": [
+          "日本国旗被称为'日章旗',红色圆形代表太阳",
+          "日本是世界上预期寿命最长的国家之一",
+          "日本拥有超过6,800座岛屿"
+        ],
+        "en": [
+          "Japan's flag is called 'Hinomaru', with the red circle representing the sun",
+          "Japan has one of the highest life expectancies in the world",
+          "Japan consists of over 6,800 islands"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/日本",
+        "en": "https://en.wikipedia.org/wiki/Japan"
+      }
+    },
+    {
+      "code": "gb",
+      "basic": {
+        "capital": {"zh": "伦敦", "en": "London"},
+        "population": {"zh": "约6700万", "en": "Approx. 67 million"},
+        "area": {"zh": "24.3万平方公里", "en": "243,000 km²"},
+        "currency": {"zh": "英镑(GBP)", "en": "Pound Sterling (GBP)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约3.1万亿美元", "en": "Approx. $3.1 trillion"}
+      },
+      "description": {
+        "zh": "大不列颠及北爱尔兰联合王国,简称英国,是位于欧洲西北部的岛国。英国是世界上第一个工业化国家,在历史上曾建立了世界上最大的殖民帝国。",
+        "en": "The United Kingdom of Great Britain and Northern Ireland is an island country in northwestern Europe. The UK was the world's first industrialized nation and once established the largest colonial empire in history."
+      },
+      "funFacts": {
+        "zh": [
+          "英国国旗被称为'米字旗'或'联合杰克',由英格兰、苏格兰和北爱尔兰的旗帜组合而成",
+          "伦敦是世界上最古老的地铁系统所在地",
+          "英语是世界上使用最广泛的第二语言"
+        ],
+        "en": [
+          "The UK flag is called the 'Union Jack', combining the flags of England, Scotland, and Northern Ireland",
+          "London is home to the world's oldest underground railway system",
+          "English is the most widely spoken second language in the world"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/英国",
+        "en": "https://en.wikipedia.org/wiki/United_Kingdom"
+      }
+    },
+    {
+      "code": "fr",
+      "basic": {
+        "capital": {"zh": "巴黎", "en": "Paris"},
+        "population": {"zh": "约6700万", "en": "Approx. 67 million"},
+        "area": {"zh": "64.3万平方公里", "en": "643,000 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "法语", "en": "French"},
+        "gdp": {"zh": "约2.9万亿美元", "en": "Approx. $2.9 trillion"}
+      },
+      "description": {
+        "zh": "法兰西共和国,简称法国,是位于西欧的共和制国家。法国是世界上最受欢迎的旅游目的地,以其艺术、文化、美食和时尚闻名于世。",
+        "en": "The French Republic, commonly known as France, is a republic in Western Europe. France is the world's most popular tourist destination, renowned for its art, culture, cuisine, and fashion."
+      },
+      "funFacts": {
+        "zh": [
+          "法国国旗被称为'三色旗',蓝白红三色代表自由、平等、博爱",
+          "埃菲尔铁塔是世界上参观人数最多的付费纪念碑",
+          "法国拥有世界上最多的诺贝尔文学奖得主"
+        ],
+        "en": [
+          "The French flag is called the 'Tricolore', with blue, white, and red representing liberty, equality, and fraternity",
+          "The Eiffel Tower is the most-visited paid monument in the world",
+          "France has the most Nobel Prize winners in Literature"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/法国",
+        "en": "https://en.wikipedia.org/wiki/France"
+      }
+    },
+    {
+      "code": "de",
+      "basic": {
+        "capital": {"zh": "柏林", "en": "Berlin"},
+        "population": {"zh": "约8300万", "en": "Approx. 83 million"},
+        "area": {"zh": "35.7万平方公里", "en": "357,000 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "德语", "en": "German"},
+        "gdp": {"zh": "约4.2万亿美元", "en": "Approx. $4.2 trillion"}
+      },
+      "description": {
+        "zh": "德意志联邦共和国,简称德国,是位于中欧的联邦议会共和制国家。德国是欧洲最大经济体,在科技、工程和制造业方面处于世界领先地位。",
+        "en": "The Federal Republic of Germany is a federal parliamentary republic in Central Europe. Germany is Europe's largest economy and a world leader in technology, engineering, and manufacturing."
+      },
+      "funFacts": {
+        "zh": [
+          "德国国旗的黑红金三色源于19世纪的德国统一运动",
+          "德国拥有世界上最发达的高速公路系统之一,部分路段不限速",
+          "德国是世界上最大的啤酒生产国之一,每年举办慕尼黑啤酒节"
+        ],
+        "en": [
+          "The black-red-gold colors of Germany's flag originated from 19th-century unification movements",
+          "Germany has one of the world's most advanced highway systems, with some sections having no speed limit",
+          "Germany is one of the world's largest beer producers, hosting the famous Oktoberfest annually"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/德国",
+        "en": "https://en.wikipedia.org/wiki/Germany"
+      }
+    },
+    {
+      "code": "in",
+      "basic": {
+        "capital": {"zh": "新德里", "en": "New Delhi"},
+        "population": {"zh": "约14亿", "en": "Approx. 1.4 billion"},
+        "area": {"zh": "328万平方公里", "en": "3.28 million km²"},
+        "currency": {"zh": "印度卢比(INR)", "en": "Indian Rupee (INR)"},
+        "language": {"zh": "印地语、英语", "en": "Hindi, English"},
+        "gdp": {"zh": "约3.7万亿美元", "en": "Approx. $3.7 trillion"}
+      },
+      "description": {
+        "zh": "印度共和国,简称印度,是位于南亚的联邦议会制共和国。印度是世界第二人口大国,拥有悠久的历史文化和多元的宗教传统。",
+        "en": "The Republic of India is a federal parliamentary republic in South Asia. India is the world's second-most populous country with a rich history and diverse religious traditions."
+      },
+      "funFacts": {
+        "zh": [
+          "印度国旗中央的轮子是阿育王法轮,有24根辐条",
+          "印度是世界上最大的民主国家",
+          "印度有22种官方语言和数百种地方语言"
+        ],
+        "en": [
+          "The wheel in India's flag is the Ashoka Chakra with 24 spokes",
+          "India is the world's largest democracy",
+          "India has 22 official languages and hundreds of local languages"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/印度",
+        "en": "https://en.wikipedia.org/wiki/India"
+      }
+    },
+    {
+      "code": "br",
+      "basic": {
+        "capital": {"zh": "巴西利亚", "en": "Brasília"},
+        "population": {"zh": "约2.1亿", "en": "Approx. 210 million"},
+        "area": {"zh": "851万平方公里", "en": "8.51 million km²"},
+        "currency": {"zh": "巴西雷亚尔(BRL)", "en": "Brazilian Real (BRL)"},
+        "language": {"zh": "葡萄牙语", "en": "Portuguese"},
+        "gdp": {"zh": "约1.9万亿美元", "en": "Approx. $1.9 trillion"}
+      },
+      "description": {
+        "zh": "巴西联邦共和国,简称巴西,是南美洲最大的国家。巴西拥有世界上最大的热带雨林——亚马逊雨林,被誉为'地球之肺'。",
+        "en": "The Federative Republic of Brazil is the largest country in South America. Brazil is home to the Amazon Rainforest, the world's largest tropical rainforest, known as the 'lungs of the Earth'."
+      },
+      "funFacts": {
+        "zh": [
+          "巴西国旗上的27颗星代表26个州和1个联邦区",
+          "巴西是世界上最大的咖啡生产国",
+          "巴西狂欢节是世界上最大的节日庆典之一"
+        ],
+        "en": [
+          "The 27 stars on Brazil's flag represent 26 states and 1 federal district",
+          "Brazil is the world's largest coffee producer",
+          "Brazil's Carnival is one of the world's largest festival celebrations"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/巴西",
+        "en": "https://en.wikipedia.org/wiki/Brazil"
+      }
+    },
+    {
+      "code": "ca",
+      "basic": {
+        "capital": {"zh": "渥太华", "en": "Ottawa"},
+        "population": {"zh": "约3800万", "en": "Approx. 38 million"},
+        "area": {"zh": "998万平方公里", "en": "9.98 million km²"},
+        "currency": {"zh": "加拿大元(CAD)", "en": "Canadian Dollar (CAD)"},
+        "language": {"zh": "英语、法语", "en": "English, French"},
+        "gdp": {"zh": "约2.1万亿美元", "en": "Approx. $2.1 trillion"}
+      },
+      "description": {
+        "zh": "加拿大,是位于北美洲北部的联邦制国家。加拿大是世界上面积第二大的国家,以其壮丽的自然风光和多元文化著称。",
+        "en": "Canada is a federal state in northern North America. It is the world's second-largest country by area, known for its stunning natural landscapes and multiculturalism."
+      },
+      "funFacts": {
+        "zh": [
+          "加拿大国旗上的枫叶是国家的象征",
+          "加拿大拥有世界上最长的海岸线",
+          "加拿大是世界上教育程度最高的国家之一"
+        ],
+        "en": [
+          "The maple leaf on Canada's flag is a national symbol",
+          "Canada has the world's longest coastline",
+          "Canada is one of the world's most educated countries"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/加拿大",
+        "en": "https://en.wikipedia.org/wiki/Canada"
+      }
+    },
+    {
+      "code": "au",
+      "basic": {
+        "capital": {"zh": "堪培拉", "en": "Canberra"},
+        "population": {"zh": "约2600万", "en": "Approx. 26 million"},
+        "area": {"zh": "769万平方公里", "en": "7.69 million km²"},
+        "currency": {"zh": "澳大利亚元(AUD)", "en": "Australian Dollar (AUD)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约1.7万亿美元", "en": "Approx. $1.7 trillion"}
+      },
+      "description": {
+        "zh": "澳大利亚联邦,简称澳大利亚,是位于大洋洲的联邦制君主立宪制国家。澳大利亚拥有独特的生态系统和众多特有物种。",
+        "en": "The Commonwealth of Australia is a federal constitutional monarchy in Oceania. Australia has unique ecosystems and many endemic species."
+      },
+      "funFacts": {
+        "zh": [
+          "澳大利亚国旗上的南十字星座代表其南半球位置",
+          "澳大利亚是世界上唯一占据整个大陆的国家",
+          "大堡礁是世界上最大的珊瑚礁系统"
+        ],
+        "en": [
+          "The Southern Cross constellation on Australia's flag represents its Southern Hemisphere location",
+          "Australia is the only country that occupies an entire continent",
+          "The Great Barrier Reef is the world's largest coral reef system"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/澳大利亚",
+        "en": "https://en.wikipedia.org/wiki/Australia"
+      }
+    },
+    {
+      "code": "ru",
+      "basic": {
+        "capital": {"zh": "莫斯科", "en": "Moscow"},
+        "population": {"zh": "约1.44亿", "en": "Approx. 144 million"},
+        "area": {"zh": "1710万平方公里", "en": "17.1 million km²"},
+        "currency": {"zh": "俄罗斯卢布(RUB)", "en": "Russian Ruble (RUB)"},
+        "language": {"zh": "俄语", "en": "Russian"},
+        "gdp": {"zh": "约2.2万亿美元", "en": "Approx. $2.2 trillion"}
+      },
+      "description": {
+        "zh": "俄罗斯联邦,简称俄罗斯,是世界上面积最大的国家,横跨欧亚大陆。俄罗斯拥有丰富的自然资源和悠久的历史文化。",
+        "en": "The Russian Federation is the world's largest country by area, spanning Europe and Asia. Russia has abundant natural resources and a rich historical culture."
+      },
+      "funFacts": {
+        "zh": [
+          "俄罗斯国旗的白蓝红三色代表东正教传统",
+          "俄罗斯横跨11个时区",
+          "西伯利亚铁路是世界上最长的铁路线"
+        ],
+        "en": [
+          "The white-blue-red colors of Russia's flag represent Orthodox Christian tradition",
+          "Russia spans 11 time zones",
+          "The Trans-Siberian Railway is the world's longest railway line"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/俄罗斯",
+        "en": "https://en.wikipedia.org/wiki/Russia"
+      }
+    },
+    {
+      "code": "kr",
+      "basic": {
+        "capital": {"zh": "首尔", "en": "Seoul"},
+        "population": {"zh": "约5200万", "en": "Approx. 52 million"},
+        "area": {"zh": "10万平方公里", "en": "100,000 km²"},
+        "currency": {"zh": "韩元(KRW)", "en": "South Korean Won (KRW)"},
+        "language": {"zh": "韩语", "en": "Korean"},
+        "gdp": {"zh": "约1.8万亿美元", "en": "Approx. $1.8 trillion"}
+      },
+      "description": {
+        "zh": "大韩民国,简称韩国,是位于东亚朝鲜半岛南部的共和制国家。韩国是全球重要的科技和文化输出国,以半导体、汽车和流行文化闻名。",
+        "en": "The Republic of Korea, commonly known as South Korea, is a republic in the southern part of the Korean Peninsula in East Asia. South Korea is a major global exporter of technology and culture, known for semiconductors, automobiles, and pop culture."
+      },
+      "funFacts": {
+        "zh": [
+          "韩国国旗太极旗中央的太极图代表宇宙的和谐",
+          "韩国是世界上互联网速度最快的国家之一",
+          "韩流(K-pop)文化在全球拥有数亿粉丝"
+        ],
+        "en": [
+          "The Taegeuk (yin-yang) in South Korea's flag represents cosmic harmony",
+          "South Korea has one of the fastest internet speeds in the world",
+          "Korean Wave (K-pop) culture has hundreds of millions of fans globally"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/大韩民国",
+        "en": "https://en.wikipedia.org/wiki/South_Korea"
+      }
+    },
+    {
+      "code": "it",
+      "basic": {
+        "capital": {"zh": "罗马", "en": "Rome"},
+        "population": {"zh": "约6000万", "en": "Approx. 60 million"},
+        "area": {"zh": "30.1万平方公里", "en": "301,000 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "意大利语", "en": "Italian"},
+        "gdp": {"zh": "约2.1万亿美元", "en": "Approx. $2.1 trillion"}
+      },
+      "description": {
+        "zh": "意大利共和国,简称意大利,是位于南欧的议会制共和国。意大利是文艺复兴的发源地,拥有世界上最多的世界文化遗产。",
+        "en": "The Italian Republic is a parliamentary republic in Southern Europe. Italy is the birthplace of the Renaissance and has the most UNESCO World Heritage Sites in the world."
+      },
+      "funFacts": {
+        "zh": [
+          "意大利国旗的绿白红三色代表希望、信念和博爱",
+          "意大利拥有55处联合国教科文组织世界遗产",
+          "披萨和意大利面是意大利对世界美食的重要贡献"
+        ],
+        "en": [
+          "The green-white-red colors of Italy's flag represent hope, faith, and charity",
+          "Italy has 55 UNESCO World Heritage Sites",
+          "Pizza and pasta are Italy's major contributions to world cuisine"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/意大利",
+        "en": "https://en.wikipedia.org/wiki/Italy"
+      }
+    },
+    {
+      "code": "mx",
+      "basic": {
+        "capital": {"zh": "墨西哥城", "en": "Mexico City"},
+        "population": {"zh": "约1.29亿", "en": "Approx. 129 million"},
+        "area": {"zh": "196万平方公里", "en": "1.96 million km²"},
+        "currency": {"zh": "墨西哥比索(MXN)", "en": "Mexican Peso (MXN)"},
+        "language": {"zh": "西班牙语", "en": "Spanish"},
+        "gdp": {"zh": "约1.4万亿美元", "en": "Approx. $1.4 trillion"}
+      },
+      "description": {
+        "zh": "墨西哥合众国,简称墨西哥,是位于北美洲南部的联邦共和国。墨西哥是古代玛雅和阿兹特克文明的发源地,拥有丰富的文化遗产。",
+        "en": "The United Mexican States, commonly known as Mexico, is a federal republic in southern North America. Mexico is the birthplace of ancient Mayan and Aztec civilizations with rich cultural heritage."
+      },
+      "funFacts": {
+        "zh": [
+          "墨西哥国旗中央的图案是一只鹰站在仙人掌上吃蛇",
+          "墨西哥是世界上最大的西班牙语国家",
+          "墨西哥的亡灵节是联合国非物质文化遗产"
+        ],
+        "en": [
+          "The center of Mexico's flag shows an eagle perched on a cactus eating a snake",
+          "Mexico is the world's largest Spanish-speaking country",
+          "Mexico's Day of the Dead is a UNESCO Intangible Cultural Heritage"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/墨西哥",
+        "en": "https://en.wikipedia.org/wiki/Mexico"
+      }
+    },
+    {
+      "code": "id",
+      "basic": {
+        "capital": {"zh": "雅加达", "en": "Jakarta"},
+        "population": {"zh": "约2.76亿", "en": "Approx. 276 million"},
+        "area": {"zh": "191万平方公里", "en": "1.91 million km²"},
+        "currency": {"zh": "印尼盾(IDR)", "en": "Indonesian Rupiah (IDR)"},
+        "language": {"zh": "印尼语", "en": "Indonesian"},
+        "gdp": {"zh": "约1.3万亿美元", "en": "Approx. $1.3 trillion"}
+      },
+      "description": {
+        "zh": "印度尼西亚共和国,简称印尼,是位于东南亚的群岛国家,由17,000多个岛屿组成。印尼是世界上最大的群岛国家和最大的穆斯林人口国家。",
+        "en": "The Republic of Indonesia is an archipelagic country in Southeast Asia, consisting of over 17,000 islands. Indonesia is the world's largest archipelago and the country with the largest Muslim population."
+      },
+      "funFacts": {
+        "zh": [
+          "印尼国旗的红白两色象征勇气和纯洁",
+          "印尼拥有世界上最多的活火山",
+          "科莫多龙是印尼特有的世界上最大的蜥蜴"
+        ],
+        "en": [
+          "The red and white colors of Indonesia's flag symbolize courage and purity",
+          "Indonesia has the most active volcanoes in the world",
+          "The Komodo dragon, the world's largest lizard, is endemic to Indonesia"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/印度尼西亚",
+        "en": "https://en.wikipedia.org/wiki/Indonesia"
+      }
+    },
+    {
+      "code": "tr",
+      "basic": {
+        "capital": {"zh": "安卡拉", "en": "Ankara"},
+        "population": {"zh": "约8500万", "en": "Approx. 85 million"},
+        "area": {"zh": "78.4万平方公里", "en": "784,000 km²"},
+        "currency": {"zh": "土耳其里拉(TRY)", "en": "Turkish Lira (TRY)"},
+        "language": {"zh": "土耳其语", "en": "Turkish"},
+        "gdp": {"zh": "约9050亿美元", "en": "Approx. $905 billion"}
+      },
+      "description": {
+        "zh": "土耳其共和国,简称土耳其,是横跨欧亚两洲的国家。土耳其是古代东罗马帝国和奥斯曼帝国的继承者,拥有深厚的历史文化底蕴。",
+        "en": "The Republic of Turkey is a transcontinental country spanning Europe and Asia. Turkey is the successor to the Byzantine and Ottoman Empires with deep historical and cultural heritage."
+      },
+      "funFacts": {
+        "zh": [
+          "土耳其国旗上的新月和星星是伊斯兰文化的象征",
+          "伊斯坦布尔是世界上唯一横跨两大洲的城市",
+          "土耳其是世界上最大的榛子生产国"
+        ],
+        "en": [
+          "The crescent and star on Turkey's flag are symbols of Islamic culture",
+          "Istanbul is the only city in the world that spans two continents",
+          "Turkey is the world's largest producer of hazelnuts"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/土耳其",
+        "en": "https://en.wikipedia.org/wiki/Turkey"
+      }
+    },
+    {
+      "code": "sa",
+      "basic": {
+        "capital": {"zh": "利雅得", "en": "Riyadh"},
+        "population": {"zh": "约3500万", "en": "Approx. 35 million"},
+        "area": {"zh": "215万平方公里", "en": "2.15 million km²"},
+        "currency": {"zh": "沙特里亚尔(SAR)", "en": "Saudi Riyal (SAR)"},
+        "language": {"zh": "阿拉伯语", "en": "Arabic"},
+        "gdp": {"zh": "约1万亿美元", "en": "Approx. $1 trillion"}
+      },
+      "description": {
+        "zh": "沙特阿拉伯王国,简称沙特,是位于西亚阿拉伯半岛的君主制国家。沙特是伊斯兰教的诞生地,拥有麦加和麦地那两大圣城。",
+        "en": "The Kingdom of Saudi Arabia is a monarchy on the Arabian Peninsula in Western Asia. Saudi Arabia is the birthplace of Islam and home to the holy cities of Mecca and Medina."
+      },
+      "funFacts": {
+        "zh": [
+          "沙特国旗上的阿拉伯文是伊斯兰教信仰宣言",
+          "沙特是世界上最大的石油出口国",
+          "每年有数百万穆斯林前往麦加朝觐"
+        ],
+        "en": [
+          "The Arabic script on Saudi Arabia's flag is the Islamic declaration of faith",
+          "Saudi Arabia is the world's largest oil exporter",
+          "Millions of Muslims make the pilgrimage to Mecca annually"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/沙特阿拉伯",
+        "en": "https://en.wikipedia.org/wiki/Saudi_Arabia"
+      }
+    },
+    {
+      "code": "ar",
+      "basic": {
+        "capital": {"zh": "布宜诺斯艾利斯", "en": "Buenos Aires"},
+        "population": {"zh": "约4600万", "en": "Approx. 46 million"},
+        "area": {"zh": "278万平方公里", "en": "2.78 million km²"},
+        "currency": {"zh": "阿根廷比索(ARS)", "en": "Argentine Peso (ARS)"},
+        "language": {"zh": "西班牙语", "en": "Spanish"},
+        "gdp": {"zh": "约6300亿美元", "en": "Approx. $630 billion"}
+      },
+      "description": {
+        "zh": "阿根廷共和国,简称阿根廷,是位于南美洲南部的联邦共和国。阿根廷拥有丰富的自然资源和多元的文化,是拉丁美洲重要国家之一。",
+        "en": "The Argentine Republic is a federal republic in southern South America. Argentina has abundant natural resources and diverse culture, and is one of Latin America's major countries."
+      },
+      "funFacts": {
+        "zh": [
+          "阿根廷国旗上的太阳被称为'五月太阳',纪念独立运动",
+          "阿根廷是探戈舞的发源地",
+          "阿根廷足球队曾多次赢得世界杯冠军"
+        ],
+        "en": [
+          "The sun on Argentina's flag is called the 'Sun of May', commemorating independence",
+          "Argentina is the birthplace of tango dance",
+          "Argentina's football team has won multiple World Cup championships"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/阿根廷",
+        "en": "https://en.wikipedia.org/wiki/Argentina"
+      }
+    },
+    {
+      "code": "za",
+      "basic": {
+        "capital": {"zh": "比勒陀利亚、开普敦、布隆方丹", "en": "Pretoria, Cape Town, Bloemfontein"},
+        "population": {"zh": "约6000万", "en": "Approx. 60 million"},
+        "area": {"zh": "122万平方公里", "en": "1.22 million km²"},
+        "currency": {"zh": "南非兰特(ZAR)", "en": "South African Rand (ZAR)"},
+        "language": {"zh": "11种官方语言", "en": "11 official languages"},
+        "gdp": {"zh": "约4200亿美元", "en": "Approx. $420 billion"}
+      },
+      "description": {
+        "zh": "南非共和国,简称南非,是位于非洲最南端的共和国。南非是非洲工业化程度最高的国家,拥有丰富的矿产资源和独特的野生动物。",
+        "en": "The Republic of South Africa is a republic at the southern tip of Africa. South Africa is Africa's most industrialized country with rich mineral resources and unique wildlife."
+      },
+      "funFacts": {
+        "zh": [
+          "南非国旗融合了六种颜色,象征国家的多元文化",
+          "南非拥有三个首都,分别负责行政、立法和司法",
+          "南非是世界上生物多样性最丰富的国家之一"
+        ],
+        "en": [
+          "South Africa's flag combines six colors, symbolizing the nation's diversity",
+          "South Africa has three capitals for administrative, legislative, and judicial functions",
+          "South Africa is one of the world's most biodiverse countries"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/南非",
+        "en": "https://en.wikipedia.org/wiki/South_Africa"
+      }
+    },
+    {
+      "code": "eg",
+      "basic": {
+        "capital": {"zh": "开罗", "en": "Cairo"},
+        "population": {"zh": "约1.04亿", "en": "Approx. 104 million"},
+        "area": {"zh": "100万平方公里", "en": "1 million km²"},
+        "currency": {"zh": "埃及镑(EGP)", "en": "Egyptian Pound (EGP)"},
+        "language": {"zh": "阿拉伯语", "en": "Arabic"},
+        "gdp": {"zh": "约4760亿美元", "en": "Approx. $476 billion"}
+      },
+      "description": {
+        "zh": "阿拉伯埃及共和国,简称埃及,是位于北非的共和国。埃及是世界四大文明古国之一,以金字塔和古埃及文明闻名于世。",
+        "en": "The Arab Republic of Egypt is a republic in North Africa. Egypt is one of the world's four ancient civilizations, famous for its pyramids and ancient Egyptian civilization."
+      },
+      "funFacts": {
+        "zh": [
+          "埃及国旗上的金鹰是萨拉丁之鹰,象征力量",
+          "吉萨大金字塔是古代世界七大奇迹中唯一现存的",
+          "尼罗河是世界上最长的河流之一"
+        ],
+        "en": [
+          "The golden eagle on Egypt's flag is the Eagle of Saladin, symbolizing strength",
+          "The Great Pyramid of Giza is the only surviving ancient wonder of the world",
+          "The Nile is one of the world's longest rivers"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/埃及",
+        "en": "https://en.wikipedia.org/wiki/Egypt"
+      }
+    },
+    {
+      "code": "es",
+      "basic": {
+        "capital": {"zh": "马德里", "en": "Madrid"},
+        "population": {"zh": "约4700万", "en": "Approx. 47 million"},
+        "area": {"zh": "50.6万平方公里", "en": "506,000 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "西班牙语", "en": "Spanish"},
+        "gdp": {"zh": "约1.4万亿美元", "en": "Approx. $1.4 trillion"}
+      },
+      "description": {
+        "zh": "西班牙王国,简称西班牙,是位于欧洲西南部伊比利亚半岛的君主立宪制国家。西班牙曾是世界上最强大的殖民帝国之一,对拉丁美洲文化影响深远。",
+        "en": "The Kingdom of Spain is a constitutional monarchy on the Iberian Peninsula in southwestern Europe. Spain was once one of the world's most powerful colonial empires with profound influence on Latin American culture."
+      },
+      "funFacts": {
+        "zh": [
+          "西班牙国旗上的国徽包含了历史上各王国的标志",
+          "西班牙语是世界上第二大母语",
+          "西班牙的弗拉明戈舞是联合国非物质文化遗产"
+        ],
+        "en": [
+          "Spain's coat of arms on the flag includes symbols of historical kingdoms",
+          "Spanish is the world's second most spoken native language",
+          "Spanish flamenco dance is a UNESCO Intangible Cultural Heritage"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/西班牙",
+        "en": "https://en.wikipedia.org/wiki/Spain"
+      }
+    },
+    {
+      "code": "th",
+      "basic": {
+        "capital": {"zh": "曼谷", "en": "Bangkok"},
+        "population": {"zh": "约7000万", "en": "Approx. 70 million"},
+        "area": {"zh": "51.3万平方公里", "en": "513,000 km²"},
+        "currency": {"zh": "泰铢(THB)", "en": "Thai Baht (THB)"},
+        "language": {"zh": "泰语", "en": "Thai"},
+        "gdp": {"zh": "约5400亿美元", "en": "Approx. $540 billion"}
+      },
+      "description": {
+        "zh": "泰王国,简称泰国,是位于东南亚中南半岛的君主立宪制国家。泰国以其美丽的海滩、丰富的文化和热情好客的人民而闻名。",
+        "en": "The Kingdom of Thailand is a constitutional monarchy on the Indochinese Peninsula in Southeast Asia. Thailand is known for its beautiful beaches, rich culture, and hospitable people."
+      },
+      "funFacts": {
+        "zh": [
+          "泰国国旗的五条横纹代表国家、宗教和国王",
+          "泰国是世界上唯一未被西方殖民的东南亚国家",
+          "泰式按摩是联合国非物质文化遗产"
+        ],
+        "en": [
+          "The five horizontal stripes on Thailand's flag represent the nation, religion, and king",
+          "Thailand is the only Southeast Asian country never colonized by Western powers",
+          "Thai massage is a UNESCO Intangible Cultural Heritage"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/泰国",
+        "en": "https://en.wikipedia.org/wiki/Thailand"
+      }
+    },
+    {
+      "code": "nl",
+      "basic": {
+        "capital": {"zh": "阿姆斯特丹", "en": "Amsterdam"},
+        "population": {"zh": "约1750万", "en": "Approx. 17.5 million"},
+        "area": {"zh": "4.15万平方公里", "en": "41,500 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "荷兰语", "en": "Dutch"},
+        "gdp": {"zh": "约1.1万亿美元", "en": "Approx. $1.1 trillion"}
+      },
+      "description": {
+        "zh": "荷兰王国,通称荷兰,是位于西欧的君主立宪制国家。荷兰以风车、郁金香和运河闻名,是世界上最自由和宽容的国家之一。",
+        "en": "The Kingdom of the Netherlands is a constitutional monarchy in Western Europe. The Netherlands is famous for windmills, tulips, and canals, and is one of the world's most liberal and tolerant countries."
+      },
+      "funFacts": {
+        "zh": [
+          "荷兰国旗是世界上最古老的三色旗之一",
+          "荷兰约四分之一的国土低于海平面",
+          "阿姆斯特丹有超过1,200座桥梁,比威尼斯还多"
+        ],
+        "en": [
+          "The Dutch flag is one of the oldest tricolor flags in the world",
+          "About a quarter of the Netherlands is below sea level",
+          "Amsterdam has over 1,200 bridges, more than Venice"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/荷兰",
+        "en": "https://en.wikipedia.org/wiki/Netherlands"
+      }
+    },
+    {
+      "code": "ch",
+      "basic": {
+        "capital": {"zh": "伯尔尼", "en": "Bern"},
+        "population": {"zh": "约870万", "en": "Approx. 8.7 million"},
+        "area": {"zh": "4.13万平方公里", "en": "41,300 km²"},
+        "currency": {"zh": "瑞士法郎(CHF)", "en": "Swiss Franc (CHF)"},
+        "language": {"zh": "德语、法语、意大利语", "en": "German, French, Italian"},
+        "gdp": {"zh": "约8130亿美元", "en": "Approx. $813 billion"}
+      },
+      "description": {
+        "zh": "瑞士联邦,简称瑞士,是位于中欧的联邦制国家。瑞士以其中立政策、精密制造业和银行业闻名于世。",
+        "en": "The Swiss Confederation is a federal state in Central Europe. Switzerland is renowned for its neutrality policy, precision manufacturing, and banking industry."
+      },
+      "funFacts": {
+        "zh": [
+          "瑞士国旗是世界上仅有的两个正方形国旗之一",
+          "瑞士拥有世界上最长的铁路隧道",
+          "瑞士巧克力和瑞士手表享誉全球"
+        ],
+        "en": [
+          "Switzerland's flag is one of only two square national flags in the world",
+          "Switzerland has the world's longest railway tunnel",
+          "Swiss chocolate and Swiss watches are world-famous"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/瑞士",
+        "en": "https://en.wikipedia.org/wiki/Switzerland"
+      }
+    },
+    {
+      "code": "se",
+      "basic": {
+        "capital": {"zh": "斯德哥尔摩", "en": "Stockholm"},
+        "population": {"zh": "约1040万", "en": "Approx. 10.4 million"},
+        "area": {"zh": "45万平方公里", "en": "450,000 km²"},
+        "currency": {"zh": "瑞典克朗(SEK)", "en": "Swedish Krona (SEK)"},
+        "language": {"zh": "瑞典语", "en": "Swedish"},
+        "gdp": {"zh": "约5930亿美元", "en": "Approx. $593 billion"}
+      },
+      "description": {
+        "zh": "瑞典王国,简称瑞典,是位于北欧斯堪的纳维亚半岛的君主立宪制国家。瑞典以其高福利社会制度和创新能力著称。",
+        "en": "The Kingdom of Sweden is a constitutional monarchy on the Scandinavian Peninsula in Northern Europe. Sweden is known for its high-welfare social system and innovation capacity."
+      },
+      "funFacts": {
+        "zh": [
+          "瑞典国旗的蓝底金十字是北欧十字旗的代表",
+          "瑞典是诺贝尔奖的故乡",
+          "宜家(IKEA)和沃尔沃都来自瑞典"
+        ],
+        "en": [
+          "Sweden's blue and gold Nordic cross flag is iconic",
+          "Sweden is the home of the Nobel Prize",
+          "IKEA and Volvo both originated in Sweden"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/瑞典",
+        "en": "https://en.wikipedia.org/wiki/Sweden"
+      }
+    },
+    {
+      "code": "no",
+      "basic": {
+        "capital": {"zh": "奥斯陆", "en": "Oslo"},
+        "population": {"zh": "约550万", "en": "Approx. 5.5 million"},
+        "area": {"zh": "38.5万平方公里", "en": "385,000 km²"},
+        "currency": {"zh": "挪威克朗(NOK)", "en": "Norwegian Krone (NOK)"},
+        "language": {"zh": "挪威语", "en": "Norwegian"},
+        "gdp": {"zh": "约4850亿美元", "en": "Approx. $485 billion"}
+      },
+      "description": {
+        "zh": "挪威王国,简称挪威,是位于北欧斯堪的纳维亚半岛西部的君主立宪制国家。挪威以其壮丽的峡湾景观和丰富的石油资源闻名。",
+        "en": "The Kingdom of Norway is a constitutional monarchy in western Scandinavia. Norway is famous for its spectacular fjord landscapes and abundant oil resources."
+      },
+      "funFacts": {
+        "zh": [
+          "挪威国旗也采用了北欧十字设计",
+          "挪威是世界上人均GDP最高的国家之一",
+          "挪威峡湾被列入世界自然遗产"
+        ],
+        "en": [
+          "Norway's flag also features the Nordic cross design",
+          "Norway has one of the highest GDP per capita in the world",
+          "Norwegian fjords are UNESCO World Heritage sites"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/挪威",
+        "en": "https://en.wikipedia.org/wiki/Norway"
+      }
+    },
+    {
+      "code": "dk",
+      "basic": {
+        "capital": {"zh": "哥本哈根", "en": "Copenhagen"},
+        "population": {"zh": "约590万", "en": "Approx. 5.9 million"},
+        "area": {"zh": "4.29万平方公里", "en": "42,900 km²"},
+        "currency": {"zh": "丹麦克朗(DKK)", "en": "Danish Krone (DKK)"},
+        "language": {"zh": "丹麦语", "en": "Danish"},
+        "gdp": {"zh": "约4050亿美元", "en": "Approx. $405 billion"}
+      },
+      "description": {
+        "zh": "丹麦王国,简称丹麦,是位于北欧的君主立宪制国家。丹麦是世界上最幸福的国家之一,以其童话故事和现代设计著称。",
+        "en": "The Kingdom of Denmark is a constitutional monarchy in Northern Europe. Denmark is one of the world's happiest countries, famous for fairy tales and modern design."
+      },
+      "funFacts": {
+        "zh": [
+          "丹麦国旗Dannebrog是世界上最古老的仍在使用的国旗",
+          "安徒生童话诞生于丹麦",
+          "乐高积木是丹麦的发明"
+        ],
+        "en": [
+          "Denmark's Dannebrog is the oldest continuously used national flag",
+          "Hans Christian Andersen's fairy tales originated in Denmark",
+          "LEGO was invented in Denmark"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/丹麦",
+        "en": "https://en.wikipedia.org/wiki/Denmark"
+      }
+    },
+    {
+      "code": "fi",
+      "basic": {
+        "capital": {"zh": "赫尔辛基", "en": "Helsinki"},
+        "population": {"zh": "约555万", "en": "Approx. 5.55 million"},
+        "area": {"zh": "33.8万平方公里", "en": "338,000 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "芬兰语、瑞典语", "en": "Finnish, Swedish"},
+        "gdp": {"zh": "约2970亿美元", "en": "Approx. $297 billion"}
+      },
+      "description": {
+        "zh": "芬兰共和国,简称芬兰,是位于北欧的议会制共和国。芬兰以其优质的教育系统、桑拿文化和北极光闻名。",
+        "en": "The Republic of Finland is a parliamentary republic in Northern Europe. Finland is renowned for its excellent education system, sauna culture, and northern lights."
+      },
+      "funFacts": {
+        "zh": [
+          "芬兰国旗采用蓝色北欧十字,象征湖泊和天空",
+          "芬兰的教育系统被认为是世界上最好的",
+          "圣诞老人的故乡在芬兰的拉普兰"
+        ],
+        "en": [
+          "Finland's flag features a blue Nordic cross symbolizing lakes and sky",
+          "Finland's education system is considered the world's best",
+          "Santa Claus's hometown is in Finnish Lapland"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/芬兰",
+        "en": "https://en.wikipedia.org/wiki/Finland"
+      }
+    },
+    {
+      "code": "pl",
+      "basic": {
+        "capital": {"zh": "华沙", "en": "Warsaw"},
+        "population": {"zh": "约3800万", "en": "Approx. 38 million"},
+        "area": {"zh": "31.3万平方公里", "en": "313,000 km²"},
+        "currency": {"zh": "波兰兹罗提(PLN)", "en": "Polish Zloty (PLN)"},
+        "language": {"zh": "波兰语", "en": "Polish"},
+        "gdp": {"zh": "约6880亿美元", "en": "Approx. $688 billion"}
+      },
+      "description": {
+        "zh": "波兰共和国,简称波兰,是位于中欧的共和制国家。波兰拥有悠久的历史和丰富的文化遗产,是欧洲重要的经济体之一。",
+        "en": "The Republic of Poland is a republic in Central Europe. Poland has a long history and rich cultural heritage, and is one of Europe's major economies."
+      },
+      "funFacts": {
+        "zh": [
+          "波兰国旗的白红两色源于国徽中的白鹰",
+          "居里夫人和肖邦都出生于波兰",
+          "波兰的奥斯威辛集中营是重要的历史遗址"
+        ],
+        "en": [
+          "Poland's white and red flag colors come from the white eagle on its coat of arms",
+          "Marie Curie and Chopin were both born in Poland",
+          "Auschwitz concentration camp in Poland is a significant historical site"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/波兰",
+        "en": "https://en.wikipedia.org/wiki/Poland"
+      }
+    },
+    {
+      "code": "pt",
+      "basic": {
+        "capital": {"zh": "里斯本", "en": "Lisbon"},
+        "population": {"zh": "约1030万", "en": "Approx. 10.3 million"},
+        "area": {"zh": "9.22万平方公里", "en": "92,200 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "葡萄牙语", "en": "Portuguese"},
+        "gdp": {"zh": "约2800亿美元", "en": "Approx. $280 billion"}
+      },
+      "description": {
+        "zh": "葡萄牙共和国,简称葡萄牙,是位于欧洲西南部伊比利亚半岛的共和制国家。葡萄牙曾是大航海时代的先驱,对世界历史产生了深远影响。",
+        "en": "The Portuguese Republic is a republic on the Iberian Peninsula in southwestern Europe. Portugal was a pioneer of the Age of Discovery and had a profound impact on world history."
+      },
+      "funFacts": {
+        "zh": [
+          "葡萄牙国旗上的仪器是浑天仪,象征航海时代",
+          "葡萄牙语是世界第六大语言",
+          "葡萄牙的波尔图酒和蛋挞世界闻名"
+        ],
+        "en": [
+          "The armillary sphere on Portugal's flag symbolizes the Age of Discovery",
+          "Portuguese is the world's sixth most spoken language",
+          "Portugal's Port wine and Pastel de Nata are world-famous"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/葡萄牙",
+        "en": "https://en.wikipedia.org/wiki/Portugal"
+      }
+    },
+    {
+      "code": "gr",
+      "basic": {
+        "capital": {"zh": "雅典", "en": "Athens"},
+        "population": {"zh": "约1070万", "en": "Approx. 10.7 million"},
+        "area": {"zh": "13.2万平方公里", "en": "132,000 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "希腊语", "en": "Greek"},
+        "gdp": {"zh": "约2190亿美元", "en": "Approx. $219 billion"}
+      },
+      "description": {
+        "zh": "希腊共和国,简称希腊,是位于欧洲东南部的共和制国家。希腊是西方文明的发源地,拥有悠久的历史和灿烂的古代文化。",
+        "en": "The Hellenic Republic, commonly known as Greece, is a republic in southeastern Europe. Greece is the cradle of Western civilization with a long history and brilliant ancient culture."
+      },
+      "funFacts": {
+        "zh": [
+          "希腊国旗的蓝白条纹代表海洋和天空",
+          "奥林匹克运动会起源于古希腊",
+          "希腊拥有超过6,000个岛屿"
+        ],
+        "en": [
+          "The blue and white stripes on Greece's flag represent the sea and sky",
+          "The Olympic Games originated in ancient Greece",
+          "Greece has over 6,000 islands"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/希腊",
+        "en": "https://en.wikipedia.org/wiki/Greece"
+      }
+    },
+    {
+      "code": "at",
+      "basic": {
+        "capital": {"zh": "维也纳", "en": "Vienna"},
+        "population": {"zh": "约900万", "en": "Approx. 9 million"},
+        "area": {"zh": "8.39万平方公里", "en": "83,900 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "德语", "en": "German"},
+        "gdp": {"zh": "约4800亿美元", "en": "Approx. $480 billion"}
+      },
+      "description": {
+        "zh": "奥地利共和国,简称奥地利,是位于中欧的内陆国家。奥地利以其音乐传统、阿尔卑斯山景观和历史文化遗产著称。",
+        "en": "The Republic of Austria is a landlocked country in Central Europe. Austria is renowned for its musical tradition, Alpine landscapes, and historical cultural heritage."
+      },
+      "funFacts": {
+        "zh": [
+          "奥地利国旗是世界上最古老的国旗之一",
+          "莫扎特、海顿和施特劳斯都来自奥地利",
+          "维也纳连续多年被评为世界最宜居城市"
+        ],
+        "en": [
+          "Austria's flag is one of the oldest in the world",
+          "Mozart, Haydn, and Strauss all came from Austria",
+          "Vienna has been rated the world's most livable city for many years"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/奥地利",
+        "en": "https://en.wikipedia.org/wiki/Austria"
+      }
+    },
+    {
+      "code": "be",
+      "basic": {
+        "capital": {"zh": "布鲁塞尔", "en": "Brussels"},
+        "population": {"zh": "约1160万", "en": "Approx. 11.6 million"},
+        "area": {"zh": "3.05万平方公里", "en": "30,500 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "荷兰语、法语、德语", "en": "Dutch, French, German"},
+        "gdp": {"zh": "约5940亿美元", "en": "Approx. $594 billion"}
+      },
+      "description": {
+        "zh": "比利时王国,简称比利时,是位于西欧的君主立宪制国家。比利时是欧盟和北约的总部所在地,被称为'欧洲的心脏'。",
+        "en": "The Kingdom of Belgium is a constitutional monarchy in Western Europe. Belgium hosts EU and NATO headquarters and is called the 'Heart of Europe'."
+      },
+      "funFacts": {
+        "zh": [
+          "比利时国旗的黑黄红三色源于布拉班特公国",
+          "比利时巧克力和华夫饼世界闻名",
+          "布鲁塞尔有超过800种啤酒"
+        ],
+        "en": [
+          "Belgium's black-yellow-red flag colors come from the Duchy of Brabant",
+          "Belgian chocolate and waffles are world-famous",
+          "Brussels has over 800 types of beer"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/比利时",
+        "en": "https://en.wikipedia.org/wiki/Belgium"
+      }
+    },
+    {
+      "code": "ie",
+      "basic": {
+        "capital": {"zh": "都柏林", "en": "Dublin"},
+        "population": {"zh": "约500万", "en": "Approx. 5 million"},
+        "area": {"zh": "7.03万平方公里", "en": "70,300 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "爱尔兰语、英语", "en": "Irish, English"},
+        "gdp": {"zh": "约5290亿美元", "en": "Approx. $529 billion"}
+      },
+      "description": {
+        "zh": "爱尔兰,是位于欧洲西部的岛国。爱尔兰被称为'翡翠岛',以其绿色景观、凯尔特文化和文学传统闻名。",
+        "en": "Ireland is an island country in western Europe. Known as the 'Emerald Isle', Ireland is famous for its green landscapes, Celtic culture, and literary tradition."
+      },
+      "funFacts": {
+        "zh": [
+          "爱尔兰国旗的绿白橙三色象征和平与统一",
+          "圣帕特里克节起源于爱尔兰",
+          "爱尔兰产生了四位诺贝尔文学奖得主"
+        ],
+        "en": [
+          "Ireland's green-white-orange flag symbolizes peace and unity",
+          "St. Patrick's Day originated in Ireland",
+          "Ireland has produced four Nobel Prize winners in Literature"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/爱尔兰",
+        "en": "https://en.wikipedia.org/wiki/Republic_of_Ireland"
+      }
+    },
+    {
+      "code": "cz",
+      "basic": {
+        "capital": {"zh": "布拉格", "en": "Prague"},
+        "population": {"zh": "约1070万", "en": "Approx. 10.7 million"},
+        "area": {"zh": "7.89万平方公里", "en": "78,900 km²"},
+        "currency": {"zh": "捷克克朗(CZK)", "en": "Czech Koruna (CZK)"},
+        "language": {"zh": "捷克语", "en": "Czech"},
+        "gdp": {"zh": "约2900亿美元", "en": "Approx. $290 billion"}
+      },
+      "description": {
+        "zh": "捷克共和国,简称捷克,是位于中欧的内陆国家。捷克以其美丽的中世纪城镇、啤酒文化和丰富的历史遗产著称。",
+        "en": "The Czech Republic is a landlocked country in Central Europe. The Czech Republic is known for its beautiful medieval towns, beer culture, and rich historical heritage."
+      },
+      "funFacts": {
+        "zh": [
+          "捷克国旗与菲律宾国旗相似,但含义不同",
+          "捷克是世界上人均啤酒消费量最高的国家",
+          "布拉格被称为'千塔之城'"
+        ],
+        "en": [
+          "The Czech flag is similar to the Philippine flag but with different meaning",
+          "Czech Republic has the highest beer consumption per capita in the world",
+          "Prague is called the 'City of a Hundred Spires'"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/捷克",
+        "en": "https://en.wikipedia.org/wiki/Czech_Republic"
+      }
+    },
+    {
+      "code": "ro",
+      "basic": {
+        "capital": {"zh": "布加勒斯特", "en": "Bucharest"},
+        "population": {"zh": "约1920万", "en": "Approx. 19.2 million"},
+        "area": {"zh": "23.8万平方公里", "en": "238,000 km²"},
+        "currency": {"zh": "罗马尼亚列伊(RON)", "en": "Romanian Leu (RON)"},
+        "language": {"zh": "罗马尼亚语", "en": "Romanian"},
+        "gdp": {"zh": "约3010亿美元", "en": "Approx. $301 billion"}
+      },
+      "description": {
+        "zh": "罗马尼亚,是位于东南欧的共和制国家。罗马尼亚以其喀尔巴阡山脉、黑海海岸和德古拉传说闻名。",
+        "en": "Romania is a republic in Southeastern Europe. Romania is known for its Carpathian Mountains, Black Sea coast, and Dracula legend."
+      },
+      "funFacts": {
+        "zh": [
+          "罗马尼亚国旗与乍得国旗几乎相同",
+          "德古拉城堡位于罗马尼亚的特兰西瓦尼亚",
+          "罗马尼亚拥有欧洲最大的熊群"
+        ],
+        "en": [
+          "Romania's flag is nearly identical to Chad's flag",
+          "Dracula's Castle is in Transylvania, Romania",
+          "Romania has Europe's largest bear population"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/罗马尼亚",
+        "en": "https://en.wikipedia.org/wiki/Romania"
+      }
+    },
+    {
+      "code": "ua",
+      "basic": {
+        "capital": {"zh": "基辅", "en": "Kyiv"},
+        "population": {"zh": "约4100万", "en": "Approx. 41 million"},
+        "area": {"zh": "60.4万平方公里", "en": "604,000 km²"},
+        "currency": {"zh": "乌克兰格里夫纳(UAH)", "en": "Ukrainian Hryvnia (UAH)"},
+        "language": {"zh": "乌克兰语", "en": "Ukrainian"},
+        "gdp": {"zh": "约1610亿美元", "en": "Approx. $161 billion"}
+      },
+      "description": {
+        "zh": "乌克兰,是位于东欧的共和制国家。乌克兰是欧洲面积第二大的国家,拥有肥沃的黑土地,被称为'欧洲粮仓'。",
+        "en": "Ukraine is a republic in Eastern Europe. Ukraine is Europe's second-largest country by area with fertile black soil, known as the 'Breadbasket of Europe'."
+      },
+      "funFacts": {
+        "zh": [
+          "乌克兰国旗的蓝黄两色代表蓝天和麦田",
+          "切尔诺贝利核电站位于乌克兰",
+          "乌克兰是世界第五大小麦出口国"
+        ],
+        "en": [
+          "Ukraine's blue and yellow flag represents blue sky and wheat fields",
+          "The Chernobyl nuclear power plant is located in Ukraine",
+          "Ukraine is the world's fifth-largest wheat exporter"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/乌克兰",
+        "en": "https://en.wikipedia.org/wiki/Ukraine"
+      }
+    },
+    {
+      "code": "hu",
+      "basic": {
+        "capital": {"zh": "布达佩斯", "en": "Budapest"},
+        "population": {"zh": "约970万", "en": "Approx. 9.7 million"},
+        "area": {"zh": "9.3万平方公里", "en": "93,000 km²"},
+        "currency": {"zh": "匈牙利福林(HUF)", "en": "Hungarian Forint (HUF)"},
+        "language": {"zh": "匈牙利语", "en": "Hungarian"},
+        "gdp": {"zh": "约1810亿美元", "en": "Approx. $181 billion"}
+      },
+      "description": {
+        "zh": "匈牙利,是位于中欧的内陆国家。匈牙利以其温泉文化、美丽的多瑙河畔景观和独特的马扎尔文化著称。",
+        "en": "Hungary is a landlocked country in Central Europe. Hungary is known for its thermal bath culture, beautiful Danube riverside scenery, and unique Magyar culture."
+      },
+      "funFacts": {
+        "zh": [
+          "匈牙利国旗的红白绿三色代表力量、忠诚和希望",
+          "布达佩斯拥有世界上最大的温泉系统",
+          "魔方是匈牙利人发明的"
+        ],
+        "en": [
+          "Hungary's red-white-green flag represents strength, fidelity, and hope",
+          "Budapest has the world's largest thermal water cave system",
+          "The Rubik's Cube was invented by a Hungarian"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/匈牙利",
+        "en": "https://en.wikipedia.org/wiki/Hungary"
+      }
+    },
+    {
+      "code": "sg",
+      "basic": {
+        "capital": {"zh": "新加坡", "en": "Singapore"},
+        "population": {"zh": "约580万", "en": "Approx. 5.8 million"},
+        "area": {"zh": "728平方公里", "en": "728 km²"},
+        "currency": {"zh": "新加坡元(SGD)", "en": "Singapore Dollar (SGD)"},
+        "language": {"zh": "英语、华语、马来语、泰米尔语", "en": "English, Mandarin, Malay, Tamil"},
+        "gdp": {"zh": "约4660亿美元", "en": "Approx. $466 billion"}
+      },
+      "description": {
+        "zh": "新加坡共和国,简称新加坡,是位于东南亚的城市国家。新加坡是全球最重要的金融中心之一,以其高效的政府管理和清廉著称。",
+        "en": "The Republic of Singapore is a city-state in Southeast Asia. Singapore is one of the world's most important financial centers, known for its efficient government and low corruption."
+      },
+      "funFacts": {
+        "zh": [
+          "新加坡国旗的新月代表新兴国家,五颗星代表民主、和平等理想",
+          "新加坡是世界上最小的国家之一,但却是亚洲四小龙之一",
+          "新加坡樟宜机场连续多年被评为世界最佳机场"
+        ],
+        "en": [
+          "Singapore's crescent moon represents an emerging nation, and the five stars represent ideals like democracy and peace",
+          "Singapore is one of the world's smallest countries but one of Asia's Four Tigers",
+          "Singapore Changi Airport has been rated the world's best airport for many years"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/新加坡",
+        "en": "https://en.wikipedia.org/wiki/Singapore"
+      }
+    },
+    {
+      "code": "my",
+      "basic": {
+        "capital": {"zh": "吉隆坡", "en": "Kuala Lumpur"},
+        "population": {"zh": "约3300万", "en": "Approx. 33 million"},
+        "area": {"zh": "33万平方公里", "en": "330,000 km²"},
+        "currency": {"zh": "马来西亚林吉特(MYR)", "en": "Malaysian Ringgit (MYR)"},
+        "language": {"zh": "马来语", "en": "Malay"},
+        "gdp": {"zh": "约4070亿美元", "en": "Approx. $407 billion"}
+      },
+      "description": {
+        "zh": "马来西亚,是位于东南亚的联邦制君主立宪制国家。马来西亚由马来半岛和婆罗洲北部组成,拥有多元的文化和丰富的自然资源。",
+        "en": "Malaysia is a federal constitutional monarchy in Southeast Asia. Malaysia consists of the Malay Peninsula and northern Borneo, with diverse cultures and rich natural resources."
+      },
+      "funFacts": {
+        "zh": [
+          "马来西亚国旗的14道红白条纹代表13个州和联邦政府",
+          "吉隆坡的双子塔曾是世界最高的双塔建筑",
+          "马来西亚是世界上最大的棕榈油生产国"
+        ],
+        "en": [
+          "Malaysia's 14 red and white stripes represent 13 states and the federal government",
+          "Kuala Lumpur's Petronas Twin Towers were once the world's tallest twin buildings",
+          "Malaysia is the world's largest palm oil producer"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/马来西亚",
+        "en": "https://en.wikipedia.org/wiki/Malaysia"
+      }
+    },
+    {
+      "code": "ph",
+      "basic": {
+        "capital": {"zh": "马尼拉", "en": "Manila"},
+        "population": {"zh": "约1.13亿", "en": "Approx. 113 million"},
+        "area": {"zh": "30万平方公里", "en": "300,000 km²"},
+        "currency": {"zh": "菲律宾比索(PHP)", "en": "Philippine Peso (PHP)"},
+        "language": {"zh": "菲律宾语、英语", "en": "Filipino, English"},
+        "gdp": {"zh": "约4040亿美元", "en": "Approx. $404 billion"}
+      },
+      "description": {
+        "zh": "菲律宾共和国,简称菲律宾,是位于西太平洋的群岛国家,由7,000多个岛屿组成。菲律宾是亚洲唯一以天主教为主的国家。",
+        "en": "The Republic of the Philippines is an archipelagic country in the western Pacific Ocean, consisting of over 7,000 islands. The Philippines is Asia's only predominantly Catholic country."
+      },
+      "funFacts": {
+        "zh": [
+          "菲律宾国旗的太阳有8道光芒,代表最早起义的8个省",
+          "菲律宾人是世界上最热情好客的民族之一",
+          "菲律宾拥有世界上最小的火山和最小的灵长类动物"
+        ],
+        "en": [
+          "The sun on the Philippine flag has 8 rays representing the first 8 provinces to revolt",
+          "Filipinos are among the world's most hospitable people",
+          "The Philippines has the world's smallest volcano and smallest primate"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/菲律宾",
+        "en": "https://en.wikipedia.org/wiki/Philippines"
+      }
+    },
+    {
+      "code": "vn",
+      "basic": {
+        "capital": {"zh": "河内", "en": "Hanoi"},
+        "population": {"zh": "约9800万", "en": "Approx. 98 million"},
+        "area": {"zh": "33.1万平方公里", "en": "331,000 km²"},
+        "currency": {"zh": "越南盾(VND)", "en": "Vietnamese Dong (VND)"},
+        "language": {"zh": "越南语", "en": "Vietnamese"},
+        "gdp": {"zh": "约4090亿美元", "en": "Approx. $409 billion"}
+      },
+      "description": {
+        "zh": "越南社会主义共和国,简称越南,是位于东南亚中南半岛东部的社会主义国家。越南拥有狭长的海岸线和丰富的文化遗产。",
+        "en": "The Socialist Republic of Vietnam is a socialist country in eastern Indochina. Vietnam has a long coastline and rich cultural heritage."
+      },
+      "funFacts": {
+        "zh": [
+          "越南国旗的金星代表工人、农民、士兵、知识分子和青年五个阶级",
+          "越南咖啡产量居世界第二位",
+          "下龙湾是世界自然遗产,拥有数千座石灰岩岛屿"
+        ],
+        "en": [
+          "The golden star on Vietnam's flag represents five classes: workers, farmers, soldiers, intellectuals, and youth",
+          "Vietnam is the world's second-largest coffee producer",
+          "Ha Long Bay is a UNESCO World Heritage site with thousands of limestone islands"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/越南",
+        "en": "https://en.wikipedia.org/wiki/Vietnam"
+      }
+    },
+    {
+      "code": "pk",
+      "basic": {
+        "capital": {"zh": "伊斯兰堡", "en": "Islamabad"},
+        "population": {"zh": "约2.3亿", "en": "Approx. 230 million"},
+        "area": {"zh": "88.1万平方公里", "en": "881,000 km²"},
+        "currency": {"zh": "巴基斯坦卢比(PKR)", "en": "Pakistani Rupee (PKR)"},
+        "language": {"zh": "乌尔都语、英语", "en": "Urdu, English"},
+        "gdp": {"zh": "约3760亿美元", "en": "Approx. $376 billion"}
+      },
+      "description": {
+        "zh": "巴基斯坦伊斯兰共和国,简称巴基斯坦,是位于南亚的伊斯兰共和国。巴基斯坦是世界第五人口大国,拥有悠久的印度河流域文明。",
+        "en": "The Islamic Republic of Pakistan is an Islamic republic in South Asia. Pakistan is the world's fifth-most populous country with ancient Indus Valley civilization."
+      },
+      "funFacts": {
+        "zh": [
+          "巴基斯坦国旗的新月和星星是伊斯兰的象征",
+          "喀喇昆仑公路是世界上海拔最高的国际公路",
+          "巴基斯坦拥有世界第二高峰乔戈里峰(K2)"
+        ],
+        "en": [
+          "The crescent and star on Pakistan's flag are symbols of Islam",
+          "The Karakoram Highway is the world's highest international road",
+          "Pakistan has K2, the world's second-highest mountain"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/巴基斯坦",
+        "en": "https://en.wikipedia.org/wiki/Pakistan"
+      }
+    },
+    {
+      "code": "bd",
+      "basic": {
+        "capital": {"zh": "达卡", "en": "Dhaka"},
+        "population": {"zh": "约1.7亿", "en": "Approx. 170 million"},
+        "area": {"zh": "14.8万平方公里", "en": "148,000 km²"},
+        "currency": {"zh": "孟加拉塔卡(BDT)", "en": "Bangladeshi Taka (BDT)"},
+        "language": {"zh": "孟加拉语", "en": "Bengali"},
+        "gdp": {"zh": "约4160亿美元", "en": "Approx. $416 billion"}
+      },
+      "description": {
+        "zh": "孟加拉人民共和国,简称孟加拉国,是位于南亚的共和制国家。孟加拉国是世界上人口密度最高的国家之一,拥有世界上最大的三角洲。",
+        "en": "The People's Republic of Bangladesh is a republic in South Asia. Bangladesh is one of the world's most densely populated countries with the world's largest delta."
+      },
+      "funFacts": {
+        "zh": [
+          "孟加拉国国旗的红色圆形代表太阳和为独立牺牲的烈士",
+          "孟加拉国是世界上最大的黄麻生产国",
+          "孟加拉湾的红树林是世界上最大的红树林之一"
+        ],
+        "en": [
+          "The red circle on Bangladesh's flag represents the sun and martyrs of independence",
+          "Bangladesh is the world's largest jute producer",
+          "The Sundarbans mangrove forest in Bangladesh is one of the world's largest"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/孟加拉国",
+        "en": "https://en.wikipedia.org/wiki/Bangladesh"
+      }
+    },
+    {
+      "code": "il",
+      "basic": {
+        "capital": {"zh": "耶路撒冷", "en": "Jerusalem"},
+        "population": {"zh": "约930万", "en": "Approx. 9.3 million"},
+        "area": {"zh": "2.27万平方公里", "en": "22,700 km²"},
+        "currency": {"zh": "新谢克尔(ILS)", "en": "New Shekel (ILS)"},
+        "language": {"zh": "希伯来语、阿拉伯语", "en": "Hebrew, Arabic"},
+        "gdp": {"zh": "约5280亿美元", "en": "Approx. $528 billion"}
+      },
+      "description": {
+        "zh": "以色列国,简称以色列,是位于西亚的犹太国家。以色列是中东地区唯一的发达国家,以其高科技产业和创新能力闻名。",
+        "en": "The State of Israel is a Jewish state in Western Asia. Israel is the only developed country in the Middle East, known for its high-tech industry and innovation."
+      },
+      "funFacts": {
+        "zh": [
+          "以色列国旗的大卫之星是犹太教的象征",
+          "以色列是世界上人均创业公司最多的国家",
+          "死海是地球上最低的陆地点"
+        ],
+        "en": [
+          "The Star of David on Israel's flag is a symbol of Judaism",
+          "Israel has the most startups per capita in the world",
+          "The Dead Sea is the lowest point on Earth's land surface"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/以色列",
+        "en": "https://en.wikipedia.org/wiki/Israel"
+      }
+    },
+    {
+      "code": "ae",
+      "basic": {
+        "capital": {"zh": "阿布扎比", "en": "Abu Dhabi"},
+        "population": {"zh": "约1000万", "en": "Approx. 10 million"},
+        "area": {"zh": "8.36万平方公里", "en": "83,600 km²"},
+        "currency": {"zh": "阿联酋迪拉姆(AED)", "en": "UAE Dirham (AED)"},
+        "language": {"zh": "阿拉伯语", "en": "Arabic"},
+        "gdp": {"zh": "约5070亿美元", "en": "Approx. $507 billion"}
+      },
+      "description": {
+        "zh": "阿拉伯联合酋长国,简称阿联酋,是位于阿拉伯半岛东部的联邦制君主国。阿联酋以其丰富的石油资源和现代化城市迪拜、阿布扎比闻名。",
+        "en": "The United Arab Emirates is a federal monarchy on the eastern Arabian Peninsula. The UAE is known for its abundant oil resources and modern cities like Dubai and Abu Dhabi."
+      },
+      "funFacts": {
+        "zh": [
+          "阿联酋国旗的四种颜色代表阿拉伯统一",
+          "迪拜的哈利法塔是世界上最高的建筑",
+          "阿联酋拥有世界上最豪华的酒店之一——帆船酒店"
+        ],
+        "en": [
+          "The four colors of the UAE flag represent Arab unity",
+          "Dubai's Burj Khalifa is the world's tallest building",
+          "The UAE has one of the world's most luxurious hotels, the Burj Al Arab"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/阿拉伯联合酋长国",
+        "en": "https://en.wikipedia.org/wiki/United_Arab_Emirates"
+      }
+    },
+    {
+      "code": "ir",
+      "basic": {
+        "capital": {"zh": "德黑兰", "en": "Tehran"},
+        "population": {"zh": "约8700万", "en": "Approx. 87 million"},
+        "area": {"zh": "164万平方公里", "en": "1.64 million km²"},
+        "currency": {"zh": "伊朗里亚尔(IRR)", "en": "Iranian Rial (IRR)"},
+        "language": {"zh": "波斯语", "en": "Persian"},
+        "gdp": {"zh": "约3880亿美元", "en": "Approx. $388 billion"}
+      },
+      "description": {
+        "zh": "伊朗伊斯兰共和国,简称伊朗,是位于西亚的伊斯兰共和国。伊朗是世界上最古老的文明之一,古波斯帝国的继承者,拥有丰富的历史文化遗产。",
+        "en": "The Islamic Republic of Iran is an Islamic republic in Western Asia. Iran is one of the world's oldest civilizations, successor to the ancient Persian Empire, with rich historical and cultural heritage."
+      },
+      "funFacts": {
+        "zh": [
+          "伊朗国旗中央的图案是真主的文字艺术设计",
+          "波斯波利斯遗址是古波斯帝国的都城遗迹",
+          "伊朗是世界上最大的藏红花生产国"
+        ],
+        "en": [
+          "The central emblem on Iran's flag is a stylized word for Allah",
+          "Persepolis is the ruins of the ancient Persian Empire's capital",
+          "Iran is the world's largest saffron producer"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/伊朗",
+        "en": "https://en.wikipedia.org/wiki/Iran"
+      }
+    },
+    {
+      "code": "iq",
+      "basic": {
+        "capital": {"zh": "巴格达", "en": "Baghdad"},
+        "population": {"zh": "约4200万", "en": "Approx. 42 million"},
+        "area": {"zh": "43.8万平方公里", "en": "438,000 km²"},
+        "currency": {"zh": "伊拉克第纳尔(IQD)", "en": "Iraqi Dinar (IQD)"},
+        "language": {"zh": "阿拉伯语、库尔德语", "en": "Arabic, Kurdish"},
+        "gdp": {"zh": "约2640亿美元", "en": "Approx. $264 billion"}
+      },
+      "description": {
+        "zh": "伊拉克共和国,简称伊拉克,是位于西亚两河流域的共和国。伊拉克是世界上最古老的文明之一,美索不达米亚文明的发源地。",
+        "en": "The Republic of Iraq is a republic in Mesopotamia in Western Asia. Iraq is one of the world's oldest civilizations, the birthplace of Mesopotamian civilization."
+      },
+      "funFacts": {
+        "zh": [
+          "伊拉克国旗上的'真主至大'用库法体书写",
+          "巴比伦空中花园曾是古代世界七大奇迹之一",
+          "底格里斯河和幼发拉底河孕育了人类最早的文明"
+        ],
+        "en": [
+          "'God is Great' on Iraq's flag is written in Kufic script",
+          "The Hanging Gardens of Babylon were one of the Seven Wonders of the Ancient World",
+          "The Tigris and Euphrates rivers nurtured humanity's earliest civilizations"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/伊拉克",
+        "en": "https://en.wikipedia.org/wiki/Iraq"
+      }
+    },
+    {
+      "code": "ng",
+      "basic": {
+        "capital": {"zh": "阿布贾", "en": "Abuja"},
+        "population": {"zh": "约2.18亿", "en": "Approx. 218 million"},
+        "area": {"zh": "92.4万平方公里", "en": "924,000 km²"},
+        "currency": {"zh": "奈拉(NGN)", "en": "Naira (NGN)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约4770亿美元", "en": "Approx. $477 billion"}
+      },
+      "description": {
+        "zh": "尼日利亚联邦共和国,简称尼日利亚,是位于西非的联邦共和国。尼日利亚是非洲人口最多的国家,也是非洲最大的经济体。",
+        "en": "The Federal Republic of Nigeria is a federal republic in West Africa. Nigeria is Africa's most populous country and largest economy."
+      },
+      "funFacts": {
+        "zh": [
+          "尼日利亚国旗的绿白绿三色代表农业和和平",
+          "尼日利亚的诺莱坞电影产业仅次于好莱坞和宝莱坞",
+          "尼日利亚拥有250多个民族"
+        ],
+        "en": [
+          "Nigeria's green-white-green flag represents agriculture and peace",
+          "Nigeria's Nollywood film industry is second only to Hollywood and Bollywood",
+          "Nigeria has over 250 ethnic groups"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/尼日利亚",
+        "en": "https://en.wikipedia.org/wiki/Nigeria"
+      }
+    },
+    {
+      "code": "et",
+      "basic": {
+        "capital": {"zh": "亚的斯亚贝巴", "en": "Addis Ababa"},
+        "population": {"zh": "约1.2亿", "en": "Approx. 120 million"},
+        "area": {"zh": "110万平方公里", "en": "1.1 million km²"},
+        "currency": {"zh": "比尔(ETB)", "en": "Birr (ETB)"},
+        "language": {"zh": "阿姆哈拉语", "en": "Amharic"},
+        "gdp": {"zh": "约1270亿美元", "en": "Approx. $127 billion"}
+      },
+      "description": {
+        "zh": "埃塞俄比亚联邦民主共和国,简称埃塞俄比亚,是位于非洲东北部的内陆国家。埃塞俄比亚是非洲最古老的国家之一,拥有三千年历史。",
+        "en": "The Federal Democratic Republic of Ethiopia is a landlocked country in northeastern Africa. Ethiopia is one of Africa's oldest countries with 3,000 years of history."
+      },
+      "funFacts": {
+        "zh": [
+          "埃塞俄比亚国旗的星星代表国家的多样性和统一",
+          "埃塞俄比亚是咖啡的发源地",
+          "埃塞俄比亚是非洲唯一未被殖民的国家"
+        ],
+        "en": [
+          "The star on Ethiopia's flag represents the nation's diversity and unity",
+          "Ethiopia is the birthplace of coffee",
+          "Ethiopia is the only African country never colonized"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/埃塞俄比亚",
+        "en": "https://en.wikipedia.org/wiki/Ethiopia"
+      }
+    },
+    {
+      "code": "ke",
+      "basic": {
+        "capital": {"zh": "内罗毕", "en": "Nairobi"},
+        "population": {"zh": "约5400万", "en": "Approx. 54 million"},
+        "area": {"zh": "58万平方公里", "en": "580,000 km²"},
+        "currency": {"zh": "肯尼亚先令(KES)", "en": "Kenyan Shilling (KES)"},
+        "language": {"zh": "斯瓦希里语、英语", "en": "Swahili, English"},
+        "gdp": {"zh": "约1180亿美元", "en": "Approx. $118 billion"}
+      },
+      "description": {
+        "zh": "肯尼亚共和国,简称肯尼亚,是位于东非的共和国。肯尼亚以其丰富的野生动物资源和马赛马拉大草原闻名于世。",
+        "en": "The Republic of Kenya is a republic in East Africa. Kenya is world-famous for its abundant wildlife and the Masai Mara savanna."
+      },
+      "funFacts": {
+        "zh": [
+          "肯尼亚国旗中央的盾牌和长矛代表国家防卫",
+          "肯尼亚的马拉河是动物大迁徙的重要地点",
+          "肯尼亚长跑运动员在国际比赛中屡获佳绩"
+        ],
+        "en": [
+          "The shield and spears in Kenya's flag center represent national defense",
+          "Kenya's Mara River is a key location for the Great Migration",
+          "Kenyan long-distance runners excel in international competitions"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/肯尼亚",
+        "en": "https://en.wikipedia.org/wiki/Kenya"
+      }
+    },
+    {
+      "code": "dz",
+      "basic": {
+        "capital": {"zh": "阿尔及尔", "en": "Algiers"},
+        "population": {"zh": "约4500万", "en": "Approx. 45 million"},
+        "area": {"zh": "238万平方公里", "en": "2.38 million km²"},
+        "currency": {"zh": "阿尔及利亚第纳尔(DZD)", "en": "Algerian Dinar (DZD)"},
+        "language": {"zh": "阿拉伯语", "en": "Arabic"},
+        "gdp": {"zh": "约1950亿美元", "en": "Approx. $195 billion"}
+      },
+      "description": {
+        "zh": "阿尔及利亚民主人民共和国,简称阿尔及利亚,是位于北非的共和国。阿尔及利亚是非洲面积最大的国家,大部分领土为撒哈拉沙漠。",
+        "en": "The People's Democratic Republic of Algeria is a republic in North Africa. Algeria is Africa's largest country by area, with most of its territory in the Sahara Desert."
+      },
+      "funFacts": {
+        "zh": [
+          "阿尔及利亚国旗的新月和星星是伊斯兰的象征",
+          "阿尔及利亚拥有七处世界文化遗产",
+          "撒哈拉沙漠占阿尔及利亚国土面积的80%以上"
+        ],
+        "en": [
+          "The crescent and star on Algeria's flag are symbols of Islam",
+          "Algeria has seven UNESCO World Heritage sites",
+          "The Sahara Desert covers over 80% of Algeria's territory"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/阿尔及利亚",
+        "en": "https://en.wikipedia.org/wiki/Algeria"
+      }
+    },
+    {
+      "code": "cl",
+      "basic": {
+        "capital": {"zh": "圣地亚哥", "en": "Santiago"},
+        "population": {"zh": "约1950万", "en": "Approx. 19.5 million"},
+        "area": {"zh": "75.6万平方公里", "en": "756,000 km²"},
+        "currency": {"zh": "智利比索(CLP)", "en": "Chilean Peso (CLP)"},
+        "language": {"zh": "西班牙语", "en": "Spanish"},
+        "gdp": {"zh": "约3010亿美元", "en": "Approx. $301 billion"}
+      },
+      "description": {
+        "zh": "智利共和国,简称智利,是位于南美洲西南部的共和国。智利是世界上最狭长的国家,东临安第斯山脉,西濒太平洋。",
+        "en": "The Republic of Chile is a republic in southwestern South America. Chile is the world's longest and narrowest country, bordered by the Andes Mountains to the east and the Pacific Ocean to the west."
+      },
+      "funFacts": {
+        "zh": [
+          "智利国旗的白星代表进步和荣誉",
+          "智利拥有世界上最干燥的沙漠——阿塔卡马沙漠",
+          "复活节岛的摩艾石像是智利的著名景观"
+        ],
+        "en": [
+          "The white star on Chile's flag represents progress and honor",
+          "Chile has the world's driest desert, the Atacama Desert",
+          "Easter Island's Moai statues are a famous Chilean landmark"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/智利",
+        "en": "https://en.wikipedia.org/wiki/Chile"
+      }
+    },
+    {
+      "code": "co",
+      "basic": {
+        "capital": {"zh": "波哥大", "en": "Bogotá"},
+        "population": {"zh": "约5200万", "en": "Approx. 52 million"},
+        "area": {"zh": "114万平方公里", "en": "1.14 million km²"},
+        "currency": {"zh": "哥伦比亚比索(COP)", "en": "Colombian Peso (COP)"},
+        "language": {"zh": "西班牙语", "en": "Spanish"},
+        "gdp": {"zh": "约3430亿美元", "en": "Approx. $343 billion"}
+      },
+      "description": {
+        "zh": "哥伦比亚共和国,简称哥伦比亚,是位于南美洲西北部的共和国。哥伦比亚是世界上生物多样性第二丰富的国家,拥有丰富的咖啡和翡翠资源。",
+        "en": "The Republic of Colombia is a republic in northwestern South America. Colombia is the world's second most biodiverse country with abundant coffee and emerald resources."
+      },
+      "funFacts": {
+        "zh": [
+          "哥伦比亚国旗的黄色代表黄金,蓝色代表海洋,红色代表独立战争",
+          "哥伦比亚是世界上最大的祖母绿生产国",
+          "哥伦比亚咖啡是世界上最好的咖啡之一"
+        ],
+        "en": [
+          "Yellow on Colombia's flag represents gold, blue the ocean, and red the wars of independence",
+          "Colombia is the world's largest emerald producer",
+          "Colombian coffee is among the world's finest"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/哥伦比亚",
+        "en": "https://en.wikipedia.org/wiki/Colombia"
+      }
+    },
+    {
+      "code": "pe",
+      "basic": {
+        "capital": {"zh": "利马", "en": "Lima"},
+        "population": {"zh": "约3400万", "en": "Approx. 34 million"},
+        "area": {"zh": "128万平方公里", "en": "1.28 million km²"},
+        "currency": {"zh": "秘鲁新索尔(PEN)", "en": "Peruvian Sol (PEN)"},
+        "language": {"zh": "西班牙语", "en": "Spanish"},
+        "gdp": {"zh": "约2420亿美元", "en": "Approx. $242 billion"}
+      },
+      "description": {
+        "zh": "秘鲁共和国,简称秘鲁,是位于南美洲西部的共和国。秘鲁是古印加帝国的所在地,拥有马丘比丘等世界著名遗迹。",
+        "en": "The Republic of Peru is a republic in western South America. Peru was home to the ancient Inca Empire and has world-famous sites like Machu Picchu."
+      },
+      "funFacts": {
+        "zh": [
+          "秘鲁国旗的红白两色代表爱国和和平",
+          "马丘比丘是世界新七大奇迹之一",
+          "秘鲁的纳斯卡线条至今仍是未解之谜"
+        ],
+        "en": [
+          "Red and white on Peru's flag represent patriotism and peace",
+          "Machu Picchu is one of the New Seven Wonders of the World",
+          "Peru's Nazca Lines remain a mystery to this day"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/秘鲁",
+        "en": "https://en.wikipedia.org/wiki/Peru"
+      }
+    },
+    {
+      "code": "ve",
+      "basic": {
+        "capital": {"zh": "加拉加斯", "en": "Caracas"},
+        "population": {"zh": "约2800万", "en": "Approx. 28 million"},
+        "area": {"zh": "91.6万平方公里", "en": "916,000 km²"},
+        "currency": {"zh": "玻利瓦尔(VES)", "en": "Bolívar (VES)"},
+        "language": {"zh": "西班牙语", "en": "Spanish"},
+        "gdp": {"zh": "约980亿美元", "en": "Approx. $98 billion"}
+      },
+      "description": {
+        "zh": "委内瑞拉玻利瓦尔共和国,简称委内瑞拉,是位于南美洲北部的共和国。委内瑞拉拥有世界上最大的石油储量和最高的瀑布——天使瀑布。",
+        "en": "The Bolivarian Republic of Venezuela is a republic in northern South America. Venezuela has the world's largest oil reserves and the world's highest waterfall, Angel Falls."
+      },
+      "funFacts": {
+        "zh": [
+          "委内瑞拉国旗的八颗星代表独立时的八个省份",
+          "天使瀑布落差达979米,是世界最高瀑布",
+          "委内瑞拉曾多次赢得国际选美大赛冠军"
+        ],
+        "en": [
+          "The eight stars on Venezuela's flag represent the eight provinces at independence",
+          "Angel Falls has a height of 979 meters, the world's highest waterfall",
+          "Venezuela has won numerous international beauty pageant titles"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/委内瑞拉",
+        "en": "https://en.wikipedia.org/wiki/Venezuela"
+      }
+    },
+    {
+      "code": "nz",
+      "basic": {
+        "capital": {"zh": "惠灵顿", "en": "Wellington"},
+        "population": {"zh": "约510万", "en": "Approx. 5.1 million"},
+        "area": {"zh": "26.8万平方公里", "en": "268,000 km²"},
+        "currency": {"zh": "新西兰元(NZD)", "en": "New Zealand Dollar (NZD)"},
+        "language": {"zh": "英语、毛利语", "en": "English, Māori"},
+        "gdp": {"zh": "约2470亿美元", "en": "Approx. $247 billion"}
+      },
+      "description": {
+        "zh": "新西兰,是位于太平洋西南部的岛国。新西兰以其壮丽的自然风光、毛利文化和《指环王》拍摄地闻名于世。",
+        "en": "New Zealand is an island country in the southwestern Pacific Ocean. New Zealand is famous for its stunning natural landscapes, Māori culture, and as the filming location for The Lord of the Rings."
+      },
+      "funFacts": {
+        "zh": [
+          "新西兰国旗上的南十字星座代表其南半球位置",
+          "新西兰是世界上最后一个被人类发现的主要陆地",
+          "新西兰的几维鸟是国家象征"
+        ],
+        "en": [
+          "The Southern Cross on New Zealand's flag represents its Southern Hemisphere location",
+          "New Zealand was the last major landmass discovered by humans",
+          "The kiwi bird is New Zealand's national symbol"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/新西兰",
+        "en": "https://en.wikipedia.org/wiki/New_Zealand"
+      }
+    }
+  ]
+}

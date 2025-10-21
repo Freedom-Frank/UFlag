@@ -290,6 +290,20 @@
         "selectHelp": "点击"
       },
       "loading": "正在加载3D地球仪..."
+    },
+    "countryDetail": {
+      "basicInfo": "基本信息",
+      "capital": "首都",
+      "population": "人口",
+      "area": "面积",
+      "currency": "货币",
+      "language": "语言",
+      "gdp": "GDP",
+      "introduction": "国家简介",
+      "funFacts": "有趣的事实",
+      "learnMore": "📖 从维基百科了解更多",
+      "loading": "正在加载详细信息...",
+      "collapse": "🔼 收起详细信息"
     }
   },
   "en": {
@@ -583,6 +597,20 @@
         "selectHelp": "Click"
       },
       "loading": "Loading 3D globe..."
+    },
+    "countryDetail": {
+      "basicInfo": "Basic Information",
+      "capital": "Capital",
+      "population": "Population",
+      "area": "Area",
+      "currency": "Currency",
+      "language": "Language",
+      "gdp": "GDP",
+      "introduction": "Introduction",
+      "funFacts": "Fun Facts",
+      "learnMore": "📖 Learn More from Wikipedia",
+      "loading": "Loading details...",
+      "collapse": "🔼 Collapse Details"
     },
     "sponsorBadge": {
       "title": "This website is supported by Asia Simulation Alliance"

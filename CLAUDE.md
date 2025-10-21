@@ -8,7 +8,7 @@
 
 ## 项目概览
 
-**FlagLore** (环球识旗) 是一个用于学习和识别世界各国国旗的教育性网络应用程序。它为200多个国家和地区提供浏览、记忆训练和知识测试功能。
+**UFlag** 是一个用于学习和识别世界各国国旗的教育性网络应用程序。它为200多个国家和地区提供浏览、记忆训练和知识测试功能。
 
 ## 开发环境
 
@@ -24,30 +24,45 @@
 3. 在现代浏览器中进行测试
 
 ### 关键文件
-- `index.html` - 项目介绍着陆页
-- `homepage.html` - 主应用程序界面
-- `script.js` - 核心应用程序逻辑（约100KB）
-- `styles.css` - 主要样式表，包含CSS变量和响应式设计
-- `countries.json` - 完整国家数据（200+条目）
+- `index.html` - 项目介绍着陆页（根目录）
+- `src/pages/homepage.html` - 主应用程序界面
+- `src/js/script.js` - 核心应用程序逻辑（约270KB）
+- `src/css/styles.css` - 主要样式表，包含CSS变量和响应式设计
+- `data/countries/countries_un.json` - 联合国成员国数据（200+条目）
 
 ## 项目结构
 
 ```
-FlagLore/
-├── index.html              # 入口着陆页
-├── homepage.html           # 主应用程序
-├── script.js               # 核心JavaScript逻辑
-├── styles.css              # 主要样式
-├── countries.json          # 完整国家数据
-├── countries_un.json       # 联合国成员国数据
-├── countries_and_oganizations.json  # 国家和组织数据
-├── lists/                  # 组织成员列表
-│   ├── un_list.txt         # 联合国成员
-│   ├── g20_list.txt        # G20成员
-│   ├── eu_list.txt         # 欧盟成员
-│   ├── au_list.txt         # 非盟成员
-│   └── cn_diplomatic.txt   # 中国外交关系国家
-└── pics/                   # 国旗图片（200+ PNG文件）
+UFlag/
+├── index.html                 # 入口着陆页
+├── src/                       # 源代码目录
+│   ├── pages/                 # HTML 页面
+│   │   └── homepage.html      # 主应用程序
+│   ├── js/                    # JavaScript 文件
+│   │   ├── script.js          # 核心应用逻辑
+│   │   └── i18n-core.js       # 国际化核心模块
+│   └── css/                   # 样式文件
+│       └── styles.css         # 主样式表
+├── data/                      # 数据文件
+│   ├── countries/             # 国家数据
+│   │   ├── countries_un.json  # 联合国成员国
+│   │   ├── countries_and_oganizations.json  # 国家和组织
+│   │   └── countries.json     # 完整国家数据（如果存在）
+│   ├── i18n/                  # 国际化数据
+│   │   └── i18n.json          # 翻译数据
+│   └── lists/                 # 组织成员列表
+│       ├── un_list.txt        # 联合国成员
+│       ├── g20_list.txt       # G20成员
+│       ├── eu_list.txt        # 欧盟成员
+│       ├── au_list.txt        # 非盟成员
+│       └── cn_diplomatic.txt  # 中国外交关系国家
+└── assets/                    # 静态资源
+    ├── images/                # 图片资源
+    │   ├── flags/             # 国旗图片（200+ PNG文件）
+    │   └── ASIASIM.png        # 赞助商标志
+    └── geo/                   # 地理数据
+        ├── world_detailed.geojson  # 详细世界地图
+        └── world_simple.geojson    # 简化世界地图
 ```
 
 ## 数据结构
@@ -113,8 +128,9 @@ FlagLore/
 
 ### 文件结构注意事项
 - 所有引用使用相对路径
-- 图片从`pics/`目录加载
-- JSON数据文件在根目录
+- 国旗图片从 `assets/images/flags/` 目录加载
+- JSON 数据文件在 `data/` 目录下按类型分类
+- 源代码文件在 `src/` 目录下按类型组织
 
 ## 开发说明
 
