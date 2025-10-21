@@ -5874,9 +5874,16 @@ function createCountryMeshes() {
         if (!feature.geometry || !feature.geometry.coordinates) return;
 
         // 标准化国家属性
+        let rawCode = (feature.id || feature.properties.ISO_A2 || feature.properties.iso_a2 || feature.properties.code || '').toLowerCase();
+
+        // 处理台湾的特殊ISO代码 "CN-TW" -> "tw"
+        if (rawCode === 'cn-tw') {
+            rawCode = 'tw';
+        }
+
         const countryProps = {
             name: feature.properties.name || feature.properties.NAME || feature.properties.NAME_EN,
-            code: (feature.id || feature.properties.ISO_A2 || feature.properties.iso_a2 || feature.properties.code || '').toLowerCase(),
+            code: rawCode,
             name_cn: feature.properties.cname || feature.properties.NAME_CN || feature.properties.name_cn,
             name_en: feature.properties.name || feature.properties.NAME_EN || feature.properties.name_en || feature.properties.NAME,
             continent: feature.properties.region || feature.properties.continent
@@ -5884,16 +5891,36 @@ function createCountryMeshes() {
 
         if (!countryProps.code) return;
 
+        // 台湾使用与中国相同的颜色键
+        const colorKey = (countryProps.code === 'tw') ? 'cn' : countryProps.code;
+
         // 为每个国家生成显示颜色和ID颜色
         let displayColor, idColor;
 
-        if (countryColorMap[countryProps.code]) {
-            displayColor = countryColorMap[countryProps.code].hex;
-            idColor = countryColorMap[countryProps.code].idColor;
+        if (countryColorMap[colorKey]) {
+            displayColor = countryColorMap[colorKey].hex;
+            // 为台湾生成独立的ID颜色（用于点击检测）
+            if (countryProps.code === 'tw' && !countryColorMap[countryProps.code]) {
+                const id = idCounter++;
+                const r = (id & 0xFF);
+                const g = ((id >> 8) & 0xFF);
+                const b = ((id >> 16) & 0xFF);
+                idColor = `rgb(${r},${g},${b})`;
+
+                // 为台湾单独存储ID映射
+                countryColorMap[countryProps.code] = {
+                    hex: displayColor,
+                    idColor: idColor,
+                    country: countryProps
+                };
+                countryIdMap[idColor] = countryProps.code;
+            } else {
+                idColor = countryColorMap[colorKey].idColor;
+            }
         } else {
             // 显示颜色（鲜艳的地图颜色）
             const continent = countryProps.continent || 'default';
-            const colorHex = getCountryColor(continent, countryProps.code, featureIndex);
+            const colorHex = getCountryColor(continent, colorKey, featureIndex);
             displayColor = '#' + colorHex.toString(16).padStart(6, '0');
 
             // ID颜色（唯一的RGB值用于检测）
@@ -5904,12 +5931,21 @@ function createCountryMeshes() {
             idColor = `rgb(${r},${g},${b})`;
 
             // 存储映射
-            countryColorMap[countryProps.code] = {
+            countryColorMap[colorKey] = {
                 hex: displayColor,
                 idColor: idColor,
                 country: countryProps
             };
-            countryIdMap[idColor] = countryProps.code;
+            countryIdMap[idColor] = colorKey;
+
+            // 如果是台湾，也为台湾代码存储一份
+            if (countryProps.code === 'tw') {
+                countryColorMap[countryProps.code] = {
+                    hex: displayColor,
+                    idColor: idColor,
+                    country: countryProps
+                };
+            }
         }
 
         // 绘制多边形到显示Canvas
@@ -6126,8 +6162,12 @@ function addGlobeEventListeners() {
             if (countryData && countryData.code) {
                 hoveredCountryCode = countryData.code;
 
-                // 如果是新的国家，重绘Canvas高亮
-                if (hoveredCountryCode !== lastHoveredCountryCode) {
+                // 将台湾统一为中国（用于高亮比较）
+                const normalizedCode = (hoveredCountryCode === 'tw') ? 'cn' : hoveredCountryCode;
+                const lastNormalizedCode = (lastHoveredCountryCode === 'tw') ? 'cn' : lastHoveredCountryCode;
+
+                // 如果是新的国家，重绘Canvas高亮（传入原始代码，让redrawCanvasWithHighlight处理）
+                if (normalizedCode !== lastNormalizedCode) {
                     redrawCanvasWithHighlight(hoveredCountryCode);
                     lastHoveredCountryCode = hoveredCountryCode;
                     canvas.style.cursor = 'pointer';
@@ -6194,15 +6234,29 @@ function redrawCanvasWithHighlight(highlightCountryCode) {
         return [x, y];
     };
 
+    // 如果高亮的是中国或台湾，两者都应该被高亮
+    const highlightCodes = [];
+    if (highlightCountryCode === 'cn' || highlightCountryCode === 'tw') {
+        highlightCodes.push('cn', 'tw');
+    } else if (highlightCountryCode) {
+        highlightCodes.push(highlightCountryCode);
+    }
+
     // 绘制所有国家
     worldData.features.forEach((feature) => {
         if (!feature.geometry || !feature.geometry.coordinates) return;
 
-        const countryCode = (feature.id || feature.properties.ISO_A2 || feature.properties.iso_a2 || feature.properties.code || '').toLowerCase();
+        let countryCode = (feature.id || feature.properties.ISO_A2 || feature.properties.iso_a2 || feature.properties.code || '').toLowerCase();
+
+        // 处理台湾的特殊ISO代码 "CN-TW" -> "tw"
+        if (countryCode === 'cn-tw') {
+            countryCode = 'tw';
+        }
+
         const colorData = countryColorMap[countryCode];
         if (!colorData) return;
 
-        const isHighlighted = countryCode === highlightCountryCode;
+        const isHighlighted = highlightCodes.includes(countryCode);
         const fillColor = colorData.hex;
 
         // 绘制多边形
@@ -6254,8 +6308,15 @@ function redrawCanvasWithHighlight(highlightCountryCode) {
 function showCountryFlag(countryData) {
     console.log('🏁 点击国家:', countryData);
 
+    // 将台湾映射到中国
+    let searchCode = countryData.code;
+    if (searchCode === 'tw' || searchCode === 'taiwan') {
+        searchCode = 'cn';
+        console.log('🇨🇳 台湾地区 -> 映射到中国');
+    }
+
     // 改进的国家匹配逻辑
-    let country = allCountries.find(c => c.code === countryData.code);
+    let country = allCountries.find(c => c.code === searchCode);
 
     // 如果通过代码找不到，尝试通过名称匹配
     if (!country) {
@@ -6271,7 +6332,7 @@ function showCountryFlag(countryData) {
     if (!country) {
         console.warn('未找到国家数据:', countryData);
         country = {
-            code: countryData.code || 'unknown',
+            code: searchCode || 'unknown',
             nameCN: countryData.name_cn || countryData.name || '未知国家',
             nameEN: countryData.name_en || countryData.name || 'Unknown Country',
             continent: '未知大洲'
