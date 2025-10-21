@@ -1766,6 +1766,1153 @@
         "zh": "https://zh.wikipedia.org/wiki/新西兰",
         "en": "https://en.wikipedia.org/wiki/New_Zealand"
       }
+    },
+    {
+      "code": "is",
+      "basic": {
+        "capital": {"zh": "雷克雅未克", "en": "Reykjavik"},
+        "population": {"zh": "约37万", "en": "Approx. 370,000"},
+        "area": {"zh": "10.3万平方公里", "en": "103,000 km²"},
+        "currency": {"zh": "冰岛克朗(ISK)", "en": "Icelandic Króna (ISK)"},
+        "language": {"zh": "冰岛语", "en": "Icelandic"},
+        "gdp": {"zh": "约270亿美元", "en": "Approx. $27 billion"}
+      },
+      "description": {
+        "zh": "冰岛共和国,简称冰岛,是北大西洋中的岛国,位于格陵兰岛和挪威之间。冰岛是世界上火山活动最活跃的地区之一,拥有壮观的冰川、间歇泉和北极光。",
+        "en": "Iceland is an island country in the North Atlantic, located between Greenland and Norway. Iceland is one of the most volcanically active regions in the world, featuring spectacular glaciers, geysers, and the Northern Lights."
+      },
+      "funFacts": {
+        "zh": [
+          "冰岛是世界上最和平的国家,没有常备军队",
+          "冰岛议会成立于930年,是世界上最古老的议会之一",
+          "冰岛人均出版书籍数量全球第一"
+        ],
+        "en": [
+          "Iceland is the world's most peaceful country and has no standing army",
+          "Iceland's parliament, established in 930 AD, is one of the oldest in the world",
+          "Iceland publishes more books per capita than any other country"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/冰岛",
+        "en": "https://en.wikipedia.org/wiki/Iceland"
+      }
+    },
+    {
+      "code": "hr",
+      "basic": {
+        "capital": {"zh": "萨格勒布", "en": "Zagreb"},
+        "population": {"zh": "约390万", "en": "Approx. 3.9 million"},
+        "area": {"zh": "5.67万平方公里", "en": "56,700 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "克罗地亚语", "en": "Croatian"},
+        "gdp": {"zh": "约680亿美元", "en": "Approx. $68 billion"}
+      },
+      "description": {
+        "zh": "克罗地亚共和国,简称克罗地亚,位于欧洲东南部巴尔干半岛。克罗地亚拥有美丽的亚得里亚海海岸线、古老的城市和丰富的历史文化遗产。",
+        "en": "Croatia is located in Southeast Europe on the Balkan Peninsula. Croatia boasts a beautiful Adriatic coastline, ancient cities, and a rich historical and cultural heritage."
+      },
+      "funFacts": {
+        "zh": [
+          "克罗地亚国旗的红白格子图案源自中世纪盾徽",
+          "领带(Cravat)起源于克罗地亚",
+          "克罗地亚有10处联合国教科文组织世界遗产"
+        ],
+        "en": [
+          "The red-and-white checkerboard pattern on Croatia's flag originates from medieval coat of arms",
+          "The necktie (Cravat) originated in Croatia",
+          "Croatia has 10 UNESCO World Heritage Sites"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/克罗地亚",
+        "en": "https://en.wikipedia.org/wiki/Croatia"
+      }
+    },
+    {
+      "code": "rs",
+      "basic": {
+        "capital": {"zh": "贝尔格莱德", "en": "Belgrade"},
+        "population": {"zh": "约690万", "en": "Approx. 6.9 million"},
+        "area": {"zh": "8.8万平方公里", "en": "88,000 km²"},
+        "currency": {"zh": "塞尔维亚第纳尔(RSD)", "en": "Serbian Dinar (RSD)"},
+        "language": {"zh": "塞尔维亚语", "en": "Serbian"},
+        "gdp": {"zh": "约630亿美元", "en": "Approx. $63 billion"}
+      },
+      "description": {
+        "zh": "塞尔维亚共和国,简称塞尔维亚,位于欧洲东南部巴尔干半岛中部。塞尔维亚拥有丰富的历史文化,是多瑙河和萨瓦河的交汇之地。",
+        "en": "Serbia is located in the central Balkans in Southeast Europe. Serbia has a rich history and culture, and lies at the confluence of the Danube and Sava rivers."
+      },
+      "funFacts": {
+        "zh": [
+          "塞尔维亚国旗采用泛斯拉夫颜色:红、蓝、白",
+          "尼古拉·特斯拉出生于现今塞尔维亚境内",
+          "贝尔格莱德是欧洲最古老的城市之一"
+        ],
+        "en": [
+          "Serbia's flag uses the Pan-Slavic colors: red, blue, and white",
+          "Nikola Tesla was born in present-day Serbia",
+          "Belgrade is one of the oldest cities in Europe"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/塞尔维亚",
+        "en": "https://en.wikipedia.org/wiki/Serbia"
+      }
+    },
+    {
+      "code": "bg",
+      "basic": {
+        "capital": {"zh": "索非亚", "en": "Sofia"},
+        "population": {"zh": "约690万", "en": "Approx. 6.9 million"},
+        "area": {"zh": "11.1万平方公里", "en": "111,000 km²"},
+        "currency": {"zh": "列弗(BGN)", "en": "Lev (BGN)"},
+        "language": {"zh": "保加利亚语", "en": "Bulgarian"},
+        "gdp": {"zh": "约840亿美元", "en": "Approx. $84 billion"}
+      },
+      "description": {
+        "zh": "保加利亚共和国,简称保加利亚,位于欧洲东南部巴尔干半岛。保加利亚是西里尔字母的发源地,拥有悠久的历史和丰富的文化遗产。",
+        "en": "Bulgaria is located in Southeast Europe on the Balkan Peninsula. Bulgaria is the birthplace of the Cyrillic alphabet and has a long history and rich cultural heritage."
+      },
+      "funFacts": {
+        "zh": [
+          "保加利亚国旗的白、绿、红三色代表和平、农业和勇气",
+          "保加利亚是世界上玫瑰油的主要生产国",
+          "保加利亚人点头表示'不',摇头表示'是'"
+        ],
+        "en": [
+          "Bulgaria's white, green, and red flag represents peace, agriculture, and courage",
+          "Bulgaria is a major producer of rose oil in the world",
+          "Bulgarians nod to mean 'no' and shake their heads to mean 'yes'"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/保加利亚",
+        "en": "https://en.wikipedia.org/wiki/Bulgaria"
+      }
+    },
+    {
+      "code": "sk",
+      "basic": {
+        "capital": {"zh": "布拉迪斯拉发", "en": "Bratislava"},
+        "population": {"zh": "约540万", "en": "Approx. 5.4 million"},
+        "area": {"zh": "4.9万平方公里", "en": "49,000 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "斯洛伐克语", "en": "Slovak"},
+        "gdp": {"zh": "约1150亿美元", "en": "Approx. $115 billion"}
+      },
+      "description": {
+        "zh": "斯洛伐克共和国,简称斯洛伐克,位于欧洲中部。斯洛伐克以其美丽的喀尔巴阡山脉、中世纪城堡和温泉小镇而闻名。",
+        "en": "Slovakia is located in Central Europe. Slovakia is known for its beautiful Carpathian Mountains, medieval castles, and spa towns."
+      },
+      "funFacts": {
+        "zh": [
+          "斯洛伐克国旗上的双十字来自拜占庭传统",
+          "斯洛伐克拥有超过180座城堡和遗址",
+          "斯洛伐克是世界上人均汽车产量最高的国家之一"
+        ],
+        "en": [
+          "The double cross on Slovakia's flag comes from Byzantine tradition",
+          "Slovakia has over 180 castles and castle ruins",
+          "Slovakia is one of the world's highest per capita car producers"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/斯洛伐克",
+        "en": "https://en.wikipedia.org/wiki/Slovakia"
+      }
+    },
+    {
+      "code": "si",
+      "basic": {
+        "capital": {"zh": "卢布尔雅那", "en": "Ljubljana"},
+        "population": {"zh": "约210万", "en": "Approx. 2.1 million"},
+        "area": {"zh": "2.03万平方公里", "en": "20,300 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "斯洛文尼亚语", "en": "Slovenian"},
+        "gdp": {"zh": "约630亿美元", "en": "Approx. $63 billion"}
+      },
+      "description": {
+        "zh": "斯洛文尼亚共和国,简称斯洛文尼亚,位于欧洲中南部。斯洛文尼亚拥有阿尔卑斯山脉、亚得里亚海海岸和广袤的森林,被誉为欧洲的绿色心脏。",
+        "en": "Slovenia is located in south-central Europe. Slovenia features the Alps, an Adriatic coastline, and extensive forests, earning it the title of Europe's Green Heart."
+      },
+      "funFacts": {
+        "zh": [
+          "斯洛文尼亚国旗上的特里格拉夫山是国家最高峰",
+          "斯洛文尼亚森林覆盖率超过60%",
+          "斯洛文尼亚是欧洲最早实现全民免费教育的国家之一"
+        ],
+        "en": [
+          "Mount Triglav on Slovenia's coat of arms is the country's highest peak",
+          "Over 60% of Slovenia is covered by forests",
+          "Slovenia was one of the first European countries to achieve universal free education"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/斯洛文尼亚",
+        "en": "https://en.wikipedia.org/wiki/Slovenia"
+      }
+    },
+    {
+      "code": "lt",
+      "basic": {
+        "capital": {"zh": "维尔纽斯", "en": "Vilnius"},
+        "population": {"zh": "约280万", "en": "Approx. 2.8 million"},
+        "area": {"zh": "6.53万平方公里", "en": "65,300 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "立陶宛语", "en": "Lithuanian"},
+        "gdp": {"zh": "约670亿美元", "en": "Approx. $67 billion"}
+      },
+      "description": {
+        "zh": "立陶宛共和国,简称立陶宛,位于欧洲东北部波罗的海东岸,是波罗的海三国之一。立陶宛拥有深厚的历史底蕴和美丽的自然风光。",
+        "en": "Lithuania is located on the eastern shore of the Baltic Sea in northeastern Europe, one of the three Baltic states. Lithuania has a deep historical heritage and beautiful natural landscapes."
+      },
+      "funFacts": {
+        "zh": [
+          "立陶宛国旗的黄、绿、红三色代表太阳、森林和勇气",
+          "立陶宛语是现存最古老的印欧语言之一",
+          "立陶宛在1990年成为第一个脱离苏联独立的国家"
+        ],
+        "en": [
+          "Lithuania's yellow, green, and red flag represents the sun, forests, and courage",
+          "Lithuanian is one of the oldest surviving Indo-European languages",
+          "Lithuania was the first country to declare independence from the Soviet Union in 1990"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/立陶宛",
+        "en": "https://en.wikipedia.org/wiki/Lithuania"
+      }
+    },
+    {
+      "code": "lv",
+      "basic": {
+        "capital": {"zh": "里加", "en": "Riga"},
+        "population": {"zh": "约190万", "en": "Approx. 1.9 million"},
+        "area": {"zh": "6.46万平方公里", "en": "64,600 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "拉脱维亚语", "en": "Latvian"},
+        "gdp": {"zh": "约400亿美元", "en": "Approx. $40 billion"}
+      },
+      "description": {
+        "zh": "拉脱维亚共和国,简称拉脱维亚,位于欧洲东北部波罗的海东岸,是波罗的海三国之一。拉脱维亚拥有美丽的海滩、森林和新艺术建筑。",
+        "en": "Latvia is located on the eastern shore of the Baltic Sea in northeastern Europe, one of the three Baltic states. Latvia features beautiful beaches, forests, and Art Nouveau architecture."
+      },
+      "funFacts": {
+        "zh": [
+          "拉脱维亚国旗是世界上最古老的国旗之一,可追溯到13世纪",
+          "里加拥有欧洲最集中的新艺术建筑",
+          "拉脱维亚森林覆盖率超过50%"
+        ],
+        "en": [
+          "Latvia's flag is one of the oldest in the world, dating back to the 13th century",
+          "Riga has the highest concentration of Art Nouveau architecture in Europe",
+          "Over 50% of Latvia is covered by forests"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/拉脱维亚",
+        "en": "https://en.wikipedia.org/wiki/Latvia"
+      }
+    },
+    {
+      "code": "ee",
+      "basic": {
+        "capital": {"zh": "塔林", "en": "Tallinn"},
+        "population": {"zh": "约130万", "en": "Approx. 1.3 million"},
+        "area": {"zh": "4.52万平方公里", "en": "45,200 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "爱沙尼亚语", "en": "Estonian"},
+        "gdp": {"zh": "约380亿美元", "en": "Approx. $38 billion"}
+      },
+      "description": {
+        "zh": "爱沙尼亚共和国,简称爱沙尼亚,位于欧洲东北部波罗的海东岸,是波罗的海三国之一。爱沙尼亚是世界上数字化程度最高的国家之一。",
+        "en": "Estonia is located on the eastern shore of the Baltic Sea in northeastern Europe, one of the three Baltic states. Estonia is one of the most digitally advanced countries in the world."
+      },
+      "funFacts": {
+        "zh": [
+          "爱沙尼亚是Skype的诞生地",
+          "爱沙尼亚拥有世界上最先进的电子政务系统",
+          "爱沙尼亚人均初创企业数量全球领先"
+        ],
+        "en": [
+          "Estonia is the birthplace of Skype",
+          "Estonia has the world's most advanced e-government system",
+          "Estonia has one of the highest numbers of startups per capita globally"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/爱沙尼亚",
+        "en": "https://en.wikipedia.org/wiki/Estonia"
+      }
+    },
+    {
+      "code": "lu",
+      "basic": {
+        "capital": {"zh": "卢森堡市", "en": "Luxembourg City"},
+        "population": {"zh": "约63万", "en": "Approx. 630,000"},
+        "area": {"zh": "2586平方公里", "en": "2,586 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "卢森堡语、法语、德语", "en": "Luxembourgish, French, German"},
+        "gdp": {"zh": "约860亿美元", "en": "Approx. $86 billion"}
+      },
+      "description": {
+        "zh": "卢森堡大公国,简称卢森堡,位于欧洲西北部,是欧洲内陆小国之一。卢森堡是世界上最富裕的国家之一,也是欧盟和北约的创始成员国。",
+        "en": "The Grand Duchy of Luxembourg is located in northwestern Europe, one of Europe's small landlocked countries. Luxembourg is one of the wealthiest countries in the world and a founding member of the EU and NATO."
+      },
+      "funFacts": {
+        "zh": [
+          "卢森堡是世界上唯一的大公国",
+          "卢森堡人均GDP位居世界前列",
+          "卢森堡拥有三种官方语言"
+        ],
+        "en": [
+          "Luxembourg is the world's only Grand Duchy",
+          "Luxembourg has one of the highest GDP per capita in the world",
+          "Luxembourg has three official languages"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/卢森堡",
+        "en": "https://en.wikipedia.org/wiki/Luxembourg"
+      }
+    },
+    {
+      "code": "th",
+      "basic": {
+        "capital": {"zh": "曼谷", "en": "Bangkok"},
+        "population": {"zh": "约7000万", "en": "Approx. 70 million"},
+        "area": {"zh": "51.3万平方公里", "en": "513,000 km²"},
+        "currency": {"zh": "泰铢(THB)", "en": "Thai Baht (THB)"},
+        "language": {"zh": "泰语", "en": "Thai"},
+        "gdp": {"zh": "约5050亿美元", "en": "Approx. $505 billion"}
+      },
+      "description": {
+        "zh": "泰王国,简称泰国,位于东南亚中南半岛中部。泰国是世界著名的旅游胜地,以其佛教寺庙、热带海滩和独特的文化而闻名。",
+        "en": "The Kingdom of Thailand is located in the center of the Indochinese Peninsula in Southeast Asia. Thailand is a world-famous tourist destination, known for its Buddhist temples, tropical beaches, and unique culture."
+      },
+      "funFacts": {
+        "zh": [
+          "泰国是东南亚唯一从未被殖民的国家",
+          "泰国有超过40,000座佛教寺庙",
+          "泰国的国王是世界上在位时间最长的君主之一"
+        ],
+        "en": [
+          "Thailand is the only Southeast Asian country never colonized",
+          "Thailand has over 40,000 Buddhist temples",
+          "Thailand's monarchy is one of the longest-reigning in the world"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/泰国",
+        "en": "https://en.wikipedia.org/wiki/Thailand"
+      }
+    },
+    {
+      "code": "mm",
+      "basic": {
+        "capital": {"zh": "内比都", "en": "Naypyidaw"},
+        "population": {"zh": "约5400万", "en": "Approx. 54 million"},
+        "area": {"zh": "67.7万平方公里", "en": "677,000 km²"},
+        "currency": {"zh": "缅元(MMK)", "en": "Myanmar Kyat (MMK)"},
+        "language": {"zh": "缅甸语", "en": "Burmese"},
+        "gdp": {"zh": "约650亿美元", "en": "Approx. $65 billion"}
+      },
+      "description": {
+        "zh": "缅甸联邦共和国,简称缅甸,位于东南亚中南半岛西部。缅甸拥有丰富的自然资源、悠久的佛教传统和众多历史遗迹。",
+        "en": "The Republic of the Union of Myanmar is located in western Indochina in Southeast Asia. Myanmar has abundant natural resources, a long Buddhist tradition, and numerous historical sites."
+      },
+      "funFacts": {
+        "zh": [
+          "缅甸拥有世界上最大的铜锣,重达90吨",
+          "缅甸是世界上翡翠和红宝石的主要产地",
+          "仰光大金塔是世界上最古老的佛塔之一"
+        ],
+        "en": [
+          "Myanmar has the world's largest gong, weighing 90 tons",
+          "Myanmar is a major source of jade and rubies in the world",
+          "The Shwedagon Pagoda in Yangon is one of the oldest stupas in the world"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/缅甸",
+        "en": "https://en.wikipedia.org/wiki/Myanmar"
+      }
+    },
+    {
+      "code": "kh",
+      "basic": {
+        "capital": {"zh": "金边", "en": "Phnom Penh"},
+        "population": {"zh": "约1670万", "en": "Approx. 16.7 million"},
+        "area": {"zh": "18.1万平方公里", "en": "181,000 km²"},
+        "currency": {"zh": "瑞尔(KHR)", "en": "Riel (KHR)"},
+        "language": {"zh": "高棉语", "en": "Khmer"},
+        "gdp": {"zh": "约270亿美元", "en": "Approx. $27 billion"}
+      },
+      "description": {
+        "zh": "柬埔寨王国,简称柬埔寨,位于东南亚中南半岛南部。柬埔寨以其世界文化遗产吴哥窟、丰富的历史文化和美丽的自然风光而闻名。",
+        "en": "The Kingdom of Cambodia is located in southern Indochina in Southeast Asia. Cambodia is famous for the World Heritage Site Angkor Wat, its rich history and culture, and beautiful natural scenery."
+      },
+      "funFacts": {
+        "zh": [
+          "吴哥窟是世界上最大的宗教建筑群",
+          "柬埔寨国旗是世界上唯一将建筑物作为主要图案的国旗",
+          "柬埔寨的洞里萨湖是东南亚最大的淡水湖"
+        ],
+        "en": [
+          "Angkor Wat is the world's largest religious monument complex",
+          "Cambodia's flag is the only national flag featuring a building as its central design",
+          "Cambodia's Tonle Sap Lake is the largest freshwater lake in Southeast Asia"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/柬埔寨",
+        "en": "https://en.wikipedia.org/wiki/Cambodia"
+      }
+    },
+    {
+      "code": "la",
+      "basic": {
+        "capital": {"zh": "万象", "en": "Vientiane"},
+        "population": {"zh": "约730万", "en": "Approx. 7.3 million"},
+        "area": {"zh": "23.7万平方公里", "en": "237,000 km²"},
+        "currency": {"zh": "基普(LAK)", "en": "Kip (LAK)"},
+        "language": {"zh": "老挝语", "en": "Lao"},
+        "gdp": {"zh": "约190亿美元", "en": "Approx. $19 billion"}
+      },
+      "description": {
+        "zh": "老挝人民民主共和国,简称老挝,位于东南亚中南半岛北部,是东南亚唯一的内陆国。老挝以其宁静的佛教文化、原始森林和湄公河风光而闻名。",
+        "en": "The Lao People's Democratic Republic is located in northern Indochina in Southeast Asia, the only landlocked country in Southeast Asia. Laos is known for its serene Buddhist culture, pristine forests, and Mekong River scenery."
+      },
+      "funFacts": {
+        "zh": [
+          "老挝是世界上人均未爆炸弹药最多的国家",
+          "老挝拥有超过20,000座佛教寺庙",
+          "老挝是东南亚咖啡生产的重要国家"
+        ],
+        "en": [
+          "Laos has the most unexploded ordnance per capita in the world",
+          "Laos has over 20,000 Buddhist temples",
+          "Laos is an important coffee producer in Southeast Asia"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/老挝",
+        "en": "https://en.wikipedia.org/wiki/Laos"
+      }
+    },
+    {
+      "code": "mn",
+      "basic": {
+        "capital": {"zh": "乌兰巴托", "en": "Ulaanbaatar"},
+        "population": {"zh": "约330万", "en": "Approx. 3.3 million"},
+        "area": {"zh": "156万平方公里", "en": "1.56 million km²"},
+        "currency": {"zh": "图格里克(MNT)", "en": "Tugrik (MNT)"},
+        "language": {"zh": "蒙古语", "en": "Mongolian"},
+        "gdp": {"zh": "约150亿美元", "en": "Approx. $15 billion"}
+      },
+      "description": {
+        "zh": "蒙古国,简称蒙古,位于东亚北部,是世界第二大内陆国。蒙古以其辽阔的草原、游牧文化和成吉思汗的历史遗产而闻名。",
+        "en": "Mongolia is located in northern East Asia, the world's second-largest landlocked country. Mongolia is famous for its vast grasslands, nomadic culture, and the historical legacy of Genghis Khan."
+      },
+      "funFacts": {
+        "zh": [
+          "蒙古是世界上人口密度最低的国家",
+          "蒙古拥有世界上最后的游牧民族之一",
+          "成吉思汗建立了历史上最大的陆地帝国"
+        ],
+        "en": [
+          "Mongolia has the lowest population density in the world",
+          "Mongolia is home to one of the world's last nomadic peoples",
+          "Genghis Khan established the largest contiguous land empire in history"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/蒙古国",
+        "en": "https://en.wikipedia.org/wiki/Mongolia"
+      }
+    },
+    {
+      "code": "np",
+      "basic": {
+        "capital": {"zh": "加德满都", "en": "Kathmandu"},
+        "population": {"zh": "约3000万", "en": "Approx. 30 million"},
+        "area": {"zh": "14.7万平方公里", "en": "147,000 km²"},
+        "currency": {"zh": "尼泊尔卢比(NPR)", "en": "Nepalese Rupee (NPR)"},
+        "language": {"zh": "尼泊尔语", "en": "Nepali"},
+        "gdp": {"zh": "约360亿美元", "en": "Approx. $36 billion"}
+      },
+      "description": {
+        "zh": "尼泊尔联邦民主共和国,简称尼泊尔,位于喜马拉雅山脉南麓,是世界上唯一一个非矩形国旗的国家。尼泊尔以其雪山、佛教文化和登山运动而闻名。",
+        "en": "The Federal Democratic Republic of Nepal is located at the southern foot of the Himalayas, the only country with a non-rectangular flag. Nepal is famous for its snow-capped mountains, Buddhist culture, and mountaineering."
+      },
+      "funFacts": {
+        "zh": [
+          "尼泊尔国旗是世界上唯一的非矩形国旗",
+          "珠穆朗玛峰位于尼泊尔和中国边境",
+          "尼泊尔是佛教创始人释迦牟尼的诞生地"
+        ],
+        "en": [
+          "Nepal's flag is the world's only non-rectangular national flag",
+          "Mount Everest is located on the Nepal-China border",
+          "Nepal is the birthplace of Gautama Buddha, the founder of Buddhism"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/尼泊尔",
+        "en": "https://en.wikipedia.org/wiki/Nepal"
+      }
+    },
+    {
+      "code": "lk",
+      "basic": {
+        "capital": {"zh": "科伦坡", "en": "Colombo"},
+        "population": {"zh": "约2200万", "en": "Approx. 22 million"},
+        "area": {"zh": "6.56万平方公里", "en": "65,600 km²"},
+        "currency": {"zh": "斯里兰卡卢比(LKR)", "en": "Sri Lankan Rupee (LKR)"},
+        "language": {"zh": "僧伽罗语、泰米尔语", "en": "Sinhala, Tamil"},
+        "gdp": {"zh": "约840亿美元", "en": "Approx. $84 billion"}
+      },
+      "description": {
+        "zh": "斯里兰卡民主社会主义共和国,简称斯里兰卡,是位于印度洋的岛国。斯里兰卡以其美丽的海滩、茶叶种植园和丰富的历史文化遗产而闻名。",
+        "en": "The Democratic Socialist Republic of Sri Lanka is an island country in the Indian Ocean. Sri Lanka is famous for its beautiful beaches, tea plantations, and rich historical and cultural heritage."
+      },
+      "funFacts": {
+        "zh": [
+          "斯里兰卡国旗上的狮子代表僧伽罗人,叶子代表少数民族",
+          "斯里兰卡是世界上最大的茶叶出口国之一",
+          "斯里兰卡拥有8处联合国教科文组织世界遗产"
+        ],
+        "en": [
+          "The lion on Sri Lanka's flag represents the Sinhalese people, and the leaves represent minorities",
+          "Sri Lanka is one of the world's largest tea exporters",
+          "Sri Lanka has 8 UNESCO World Heritage Sites"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/斯里兰卡",
+        "en": "https://en.wikipedia.org/wiki/Sri_Lanka"
+      }
+    },
+    {
+      "code": "kz",
+      "basic": {
+        "capital": {"zh": "阿斯塔纳", "en": "Astana"},
+        "population": {"zh": "约1900万", "en": "Approx. 19 million"},
+        "area": {"zh": "272万平方公里", "en": "2.72 million km²"},
+        "currency": {"zh": "坚戈(KZT)", "en": "Tenge (KZT)"},
+        "language": {"zh": "哈萨克语、俄语", "en": "Kazakh, Russian"},
+        "gdp": {"zh": "约2200亿美元", "en": "Approx. $220 billion"}
+      },
+      "description": {
+        "zh": "哈萨克斯坦共和国,简称哈萨克斯坦,是世界上最大的内陆国,横跨欧亚两洲。哈萨克斯坦拥有丰富的石油和矿产资源,以及广袤的草原和沙漠。",
+        "en": "The Republic of Kazakhstan is the world's largest landlocked country, spanning Europe and Asia. Kazakhstan has abundant oil and mineral resources, as well as vast grasslands and deserts."
+      },
+      "funFacts": {
+        "zh": [
+          "哈萨克斯坦是世界上最大的内陆国",
+          "哈萨克斯坦拥有拜科努尔航天发射场,是世界上第一个航天发射场",
+          "哈萨克斯坦的苹果被认为是世界上所有苹果的祖先"
+        ],
+        "en": [
+          "Kazakhstan is the world's largest landlocked country",
+          "Kazakhstan hosts the Baikonur Cosmodrome, the world's first spaceport",
+          "Kazakhstan's apples are believed to be the ancestors of all apples worldwide"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/哈萨克斯坦",
+        "en": "https://en.wikipedia.org/wiki/Kazakhstan"
+      }
+    },
+    {
+      "code": "eg",
+      "basic": {
+        "capital": {"zh": "开罗", "en": "Cairo"},
+        "population": {"zh": "约1.04亿", "en": "Approx. 104 million"},
+        "area": {"zh": "100万平方公里", "en": "1 million km²"},
+        "currency": {"zh": "埃及镑(EGP)", "en": "Egyptian Pound (EGP)"},
+        "language": {"zh": "阿拉伯语", "en": "Arabic"},
+        "gdp": {"zh": "约4040亿美元", "en": "Approx. $404 billion"}
+      },
+      "description": {
+        "zh": "阿拉伯埃及共和国,简称埃及,位于非洲东北角,是世界四大文明古国之一。埃及以其金字塔、狮身人面像和尼罗河文明而闻名于世。",
+        "en": "The Arab Republic of Egypt is located in the northeastern corner of Africa, one of the world's four ancient civilizations. Egypt is famous for its pyramids, the Sphinx, and Nile River civilization."
+      },
+      "funFacts": {
+        "zh": [
+          "埃及国旗的红白黑三色代表革命、纯洁和黑暗时期的结束",
+          "吉萨金字塔是世界七大奇迹中唯一幸存至今的",
+          "苏伊士运河连接地中海和红海,是世界上最重要的航运通道之一"
+        ],
+        "en": [
+          "Egypt's red, white, and black flag represents revolution, purity, and the end of dark times",
+          "The Great Pyramid of Giza is the only surviving wonder of the ancient world",
+          "The Suez Canal connects the Mediterranean and Red Seas, one of the world's most important shipping routes"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/埃及",
+        "en": "https://en.wikipedia.org/wiki/Egypt"
+      }
+    },
+    {
+      "code": "za",
+      "basic": {
+        "capital": {"zh": "比勒陀利亚(行政)、开普敦(立法)、布隆方丹(司法)", "en": "Pretoria (Executive), Cape Town (Legislative), Bloemfontein (Judicial)"},
+        "population": {"zh": "约6000万", "en": "Approx. 60 million"},
+        "area": {"zh": "122万平方公里", "en": "1.22 million km²"},
+        "currency": {"zh": "南非兰特(ZAR)", "en": "South African Rand (ZAR)"},
+        "language": {"zh": "英语、祖鲁语等11种官方语言", "en": "English, Zulu, and 9 other official languages"},
+        "gdp": {"zh": "约4050亿美元", "en": "Approx. $405 billion"}
+      },
+      "description": {
+        "zh": "南非共和国,简称南非,位于非洲大陆最南端。南非是非洲最发达的国家之一,以其丰富的矿产资源、多元文化和野生动物而闻名。",
+        "en": "The Republic of South Africa is located at the southern tip of the African continent. South Africa is one of Africa's most developed countries, known for its mineral resources, diverse cultures, and wildlife."
+      },
+      "funFacts": {
+        "zh": [
+          "南非拥有三个首都,是世界上唯一的三首都国家",
+          "南非拥有11种官方语言,是世界上官方语言最多的国家之一",
+          "南非是世界上最大的黄金和钻石生产国之一"
+        ],
+        "en": [
+          "South Africa has three capital cities, the only country in the world with three capitals",
+          "South Africa has 11 official languages, one of the most in the world",
+          "South Africa is one of the world's largest producers of gold and diamonds"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/南非",
+        "en": "https://en.wikipedia.org/wiki/South_Africa"
+      }
+    },
+    {
+      "code": "ma",
+      "basic": {
+        "capital": {"zh": "拉巴特", "en": "Rabat"},
+        "population": {"zh": "约3700万", "en": "Approx. 37 million"},
+        "area": {"zh": "71万平方公里", "en": "710,000 km²"},
+        "currency": {"zh": "摩洛哥迪拉姆(MAD)", "en": "Moroccan Dirham (MAD)"},
+        "language": {"zh": "阿拉伯语、柏柏尔语", "en": "Arabic, Berber"},
+        "gdp": {"zh": "约1320亿美元", "en": "Approx. $132 billion"}
+      },
+      "description": {
+        "zh": "摩洛哥王国,简称摩洛哥,位于非洲西北端。摩洛哥拥有丰富的历史文化遗产,以其蓝色城市、撒哈拉沙漠和古老的麦地那而闻名。",
+        "en": "The Kingdom of Morocco is located at the northwestern tip of Africa. Morocco has a rich historical and cultural heritage, famous for its blue cities, the Sahara Desert, and ancient medinas."
+      },
+      "funFacts": {
+        "zh": [
+          "摩洛哥国旗上的绿色五角星代表所罗门之印",
+          "摩洛哥是世界上最大的磷酸盐生产国",
+          "摩洛哥的非斯古城拥有世界上最古老的大学之一"
+        ],
+        "en": [
+          "The green pentagram on Morocco's flag represents the Seal of Solomon",
+          "Morocco is the world's largest producer of phosphates",
+          "The ancient city of Fez houses one of the world's oldest universities"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/摩洛哥",
+        "en": "https://en.wikipedia.org/wiki/Morocco"
+      }
+    },
+    {
+      "code": "tn",
+      "basic": {
+        "capital": {"zh": "突尼斯", "en": "Tunis"},
+        "population": {"zh": "约1200万", "en": "Approx. 12 million"},
+        "area": {"zh": "16.4万平方公里", "en": "164,000 km²"},
+        "currency": {"zh": "突尼斯第纳尔(TND)", "en": "Tunisian Dinar (TND)"},
+        "language": {"zh": "阿拉伯语", "en": "Arabic"},
+        "gdp": {"zh": "约470亿美元", "en": "Approx. $47 billion"}
+      },
+      "description": {
+        "zh": "突尼斯共和国,简称突尼斯,位于非洲北端。突尼斯拥有丰富的古罗马遗址和地中海海岸线,是阿拉伯之春的发源地。",
+        "en": "The Republic of Tunisia is located at the northern tip of Africa. Tunisia has rich Roman ruins and a Mediterranean coastline, and is the birthplace of the Arab Spring."
+      },
+      "funFacts": {
+        "zh": [
+          "突尼斯的迦太基遗址是联合国教科文组织世界遗产",
+          "突尼斯是阿拉伯之春运动的发源地",
+          "突尼斯拥有非洲最好的海滩之一"
+        ],
+        "en": [
+          "The ruins of Carthage in Tunisia are a UNESCO World Heritage Site",
+          "Tunisia is the birthplace of the Arab Spring movement",
+          "Tunisia has some of the best beaches in Africa"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/突尼斯",
+        "en": "https://en.wikipedia.org/wiki/Tunisia"
+      }
+    },
+    {
+      "code": "gh",
+      "basic": {
+        "capital": {"zh": "阿克拉", "en": "Accra"},
+        "population": {"zh": "约3200万", "en": "Approx. 32 million"},
+        "area": {"zh": "23.9万平方公里", "en": "239,000 km²"},
+        "currency": {"zh": "加纳塞地(GHS)", "en": "Ghanaian Cedi (GHS)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约770亿美元", "en": "Approx. $77 billion"}
+      },
+      "description": {
+        "zh": "加纳共和国,简称加纳,位于西非几内亚湾北岸。加纳是非洲第一个获得独立的撒哈拉以南国家,以其可可生产和稳定的民主制度而闻名。",
+        "en": "The Republic of Ghana is located on the northern coast of the Gulf of Guinea in West Africa. Ghana was the first sub-Saharan African country to gain independence, known for its cocoa production and stable democracy."
+      },
+      "funFacts": {
+        "zh": [
+          "加纳国旗的黑星象征非洲自由",
+          "加纳是世界上第二大可可生产国",
+          "加纳是撒哈拉以南非洲第一个获得独立的国家"
+        ],
+        "en": [
+          "The black star on Ghana's flag symbolizes African freedom",
+          "Ghana is the world's second-largest cocoa producer",
+          "Ghana was the first sub-Saharan African country to gain independence"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/加纳",
+        "en": "https://en.wikipedia.org/wiki/Ghana"
+      }
+    },
+    {
+      "code": "ci",
+      "basic": {
+        "capital": {"zh": "亚穆苏克罗", "en": "Yamoussoukro"},
+        "population": {"zh": "约2700万", "en": "Approx. 27 million"},
+        "area": {"zh": "32.2万平方公里", "en": "322,000 km²"},
+        "currency": {"zh": "西非法郎(XOF)", "en": "West African CFA Franc (XOF)"},
+        "language": {"zh": "法语", "en": "French"},
+        "gdp": {"zh": "约700亿美元", "en": "Approx. $70 billion"}
+      },
+      "description": {
+        "zh": "科特迪瓦共和国,又称象牙海岸,位于西非。科特迪瓦是世界最大的可可生产国,经济在西非国家中较为发达。",
+        "en": "The Republic of Côte d'Ivoire, also known as Ivory Coast, is located in West Africa. Côte d'Ivoire is the world's largest cocoa producer and has a relatively developed economy among West African countries."
+      },
+      "funFacts": {
+        "zh": [
+          "科特迪瓦国旗的橙、白、绿三色代表北部草原、和平统一和南部森林",
+          "科特迪瓦是世界上最大的可可生产国",
+          "亚穆苏克罗的和平圣母大教堂是世界上最大的教堂之一"
+        ],
+        "en": [
+          "Côte d'Ivoire's orange, white, and green flag represents northern savannas, peace and unity, and southern forests",
+          "Côte d'Ivoire is the world's largest cocoa producer",
+          "The Basilica of Our Lady of Peace in Yamoussoukro is one of the world's largest churches"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/科特迪瓦",
+        "en": "https://en.wikipedia.org/wiki/Ivory_Coast"
+      }
+    },
+    {
+      "code": "sn",
+      "basic": {
+        "capital": {"zh": "达喀尔", "en": "Dakar"},
+        "population": {"zh": "约1700万", "en": "Approx. 17 million"},
+        "area": {"zh": "19.7万平方公里", "en": "197,000 km²"},
+        "currency": {"zh": "西非法郎(XOF)", "en": "West African CFA Franc (XOF)"},
+        "language": {"zh": "法语", "en": "French"},
+        "gdp": {"zh": "约280亿美元", "en": "Approx. $28 billion"}
+      },
+      "description": {
+        "zh": "塞内加尔共和国,简称塞内加尔,位于西非最西端。塞内加尔以其稳定的民主制度、丰富的音乐文化和达喀尔拉力赛而闻名。",
+        "en": "The Republic of Senegal is located at the westernmost point of West Africa. Senegal is known for its stable democracy, rich musical culture, and the Dakar Rally."
+      },
+      "funFacts": {
+        "zh": [
+          "塞内加尔国旗上的绿星代表希望和伊斯兰信仰",
+          "达喀尔拉力赛虽然现在在南美举行,但最初终点在塞内加尔首都达喀尔",
+          "塞内加尔从未发生过军事政变,是西非最稳定的民主国家之一"
+        ],
+        "en": [
+          "The green star on Senegal's flag represents hope and Islamic faith",
+          "The Dakar Rally, though now held in South America, originally finished in Senegal's capital Dakar",
+          "Senegal has never experienced a military coup and is one of West Africa's most stable democracies"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/塞内加尔",
+        "en": "https://en.wikipedia.org/wiki/Senegal"
+      }
+    },
+    {
+      "code": "ug",
+      "basic": {
+        "capital": {"zh": "坎帕拉", "en": "Kampala"},
+        "population": {"zh": "约4700万", "en": "Approx. 47 million"},
+        "area": {"zh": "24.1万平方公里", "en": "241,000 km²"},
+        "currency": {"zh": "乌干达先令(UGX)", "en": "Ugandan Shilling (UGX)"},
+        "language": {"zh": "英语、斯瓦希里语", "en": "English, Swahili"},
+        "gdp": {"zh": "约450亿美元", "en": "Approx. $45 billion"}
+      },
+      "description": {
+        "zh": "乌干达共和国,简称乌干达,位于东非内陆。乌干达被称为'非洲明珠',拥有丰富的野生动物资源和维多利亚湖的一部分。",
+        "en": "The Republic of Uganda is a landlocked country in East Africa. Known as the 'Pearl of Africa', Uganda has rich wildlife resources and part of Lake Victoria."
+      },
+      "funFacts": {
+        "zh": [
+          "乌干达国旗中央的灰冠鹤是国家象征",
+          "乌干达拥有世界上一半的山地大猩猩",
+          "维多利亚湖是非洲最大的湖泊,乌干达拥有其大部分湖岸线"
+        ],
+        "en": [
+          "The grey crowned crane in the center of Uganda's flag is the national symbol",
+          "Uganda is home to half of the world's mountain gorillas",
+          "Lake Victoria is Africa's largest lake, and Uganda has most of its shoreline"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/乌干达",
+        "en": "https://en.wikipedia.org/wiki/Uganda"
+      }
+    },
+    {
+      "code": "tz",
+      "basic": {
+        "capital": {"zh": "多多马", "en": "Dodoma"},
+        "population": {"zh": "约6100万", "en": "Approx. 61 million"},
+        "area": {"zh": "94.7万平方公里", "en": "947,000 km²"},
+        "currency": {"zh": "坦桑尼亚先令(TZS)", "en": "Tanzanian Shilling (TZS)"},
+        "language": {"zh": "斯瓦希里语、英语", "en": "Swahili, English"},
+        "gdp": {"zh": "约750亿美元", "en": "Approx. $75 billion"}
+      },
+      "description": {
+        "zh": "坦桑尼亚联合共和国,简称坦桑尼亚,位于东非。坦桑尼亚拥有乞力马扎罗山、塞伦盖蒂国家公园和桑给巴尔岛等著名景点。",
+        "en": "The United Republic of Tanzania is located in East Africa. Tanzania is home to Mount Kilimanjaro, Serengeti National Park, and the island of Zanzibar."
+      },
+      "funFacts": {
+        "zh": [
+          "坦桑尼亚国旗的绿色、蓝色、黄色和黑色代表自然资源、海洋、矿产和人民",
+          "乞力马扎罗山是非洲最高峰,海拔5895米",
+          "坦桑尼亚的塞伦盖蒂国家公园是世界上最著名的野生动物保护区之一"
+        ],
+        "en": [
+          "Tanzania's green, blue, yellow, and black flag represents natural resources, oceans, minerals, and people",
+          "Mount Kilimanjaro is Africa's highest peak at 5,895 meters",
+          "Tanzania's Serengeti National Park is one of the world's most famous wildlife reserves"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/坦桑尼亚",
+        "en": "https://en.wikipedia.org/wiki/Tanzania"
+      }
+    },
+    {
+      "code": "rw",
+      "basic": {
+        "capital": {"zh": "基加利", "en": "Kigali"},
+        "population": {"zh": "约1300万", "en": "Approx. 13 million"},
+        "area": {"zh": "2.63万平方公里", "en": "26,300 km²"},
+        "currency": {"zh": "卢旺达法郎(RWF)", "en": "Rwandan Franc (RWF)"},
+        "language": {"zh": "卢旺达语、英语、法语", "en": "Kinyarwanda, English, French"},
+        "gdp": {"zh": "约130亿美元", "en": "Approx. $13 billion"}
+      },
+      "description": {
+        "zh": "卢旺达共和国,简称卢旺达,位于东非内陆。卢旺达被称为'千丘之国',近年来经济发展迅速,以其清洁和安全的环境而闻名。",
+        "en": "The Republic of Rwanda is a landlocked country in East Africa. Known as the 'Land of a Thousand Hills', Rwanda has experienced rapid economic development and is famous for its clean and safe environment."
+      },
+      "funFacts": {
+        "zh": [
+          "卢旺达是世界上女性议员比例最高的国家",
+          "卢旺达在2008年成为第一个禁止塑料袋的非洲国家",
+          "卢旺达拥有世界上最后的山地大猩猩栖息地之一"
+        ],
+        "en": [
+          "Rwanda has the highest proportion of female parliamentarians in the world",
+          "Rwanda became the first African country to ban plastic bags in 2008",
+          "Rwanda is home to one of the last habitats for mountain gorillas"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/卢旺达",
+        "en": "https://en.wikipedia.org/wiki/Rwanda"
+      }
+    },
+    {
+      "code": "cm",
+      "basic": {
+        "capital": {"zh": "雅温得", "en": "Yaoundé"},
+        "population": {"zh": "约2700万", "en": "Approx. 27 million"},
+        "area": {"zh": "47.5万平方公里", "en": "475,000 km²"},
+        "currency": {"zh": "中非法郎(XAF)", "en": "Central African CFA Franc (XAF)"},
+        "language": {"zh": "法语、英语", "en": "French, English"},
+        "gdp": {"zh": "约450亿美元", "en": "Approx. $45 billion"}
+      },
+      "description": {
+        "zh": "喀麦隆共和国,简称喀麦隆,位于中非西部。喀麦隆被称为'小非洲',因为它拥有非洲大陆几乎所有的地理和文化特征。",
+        "en": "The Republic of Cameroon is located in western Central Africa. Cameroon is called 'Africa in miniature' because it exhibits all the major geographical and cultural features of the continent."
+      },
+      "funFacts": {
+        "zh": [
+          "喀麦隆国旗的绿、红、黄三色代表森林、独立和太阳",
+          "喀麦隆是非洲足球强国,曾5次获得非洲国家杯冠军",
+          "喀麦隆山是西非最高峰,海拔4095米"
+        ],
+        "en": [
+          "Cameroon's green, red, and yellow flag represents forests, independence, and the sun",
+          "Cameroon is an African football powerhouse, having won the Africa Cup of Nations 5 times",
+          "Mount Cameroon is the highest peak in West Africa at 4,095 meters"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/喀麦隆",
+        "en": "https://en.wikipedia.org/wiki/Cameroon"
+      }
+    },
+    {
+      "code": "ao",
+      "basic": {
+        "capital": {"zh": "罗安达", "en": "Luanda"},
+        "population": {"zh": "约3400万", "en": "Approx. 34 million"},
+        "area": {"zh": "124.7万平方公里", "en": "1.247 million km²"},
+        "currency": {"zh": "宽扎(AOA)", "en": "Kwanza (AOA)"},
+        "language": {"zh": "葡萄牙语", "en": "Portuguese"},
+        "gdp": {"zh": "约1060亿美元", "en": "Approx. $106 billion"}
+      },
+      "description": {
+        "zh": "安哥拉共和国,简称安哥拉,位于非洲西南部。安哥拉拥有丰富的石油和钻石资源,是非洲第二大石油生产国。",
+        "en": "The Republic of Angola is located in southwestern Africa. Angola has abundant oil and diamond resources and is Africa's second-largest oil producer."
+      },
+      "funFacts": {
+        "zh": [
+          "安哥拉国旗上的弯刀和齿轮代表农民和工人",
+          "安哥拉是非洲第二大石油生产国",
+          "安哥拉首都罗安达曾被评为世界上生活成本最高的城市"
+        ],
+        "en": [
+          "The machete and gear on Angola's flag represent farmers and workers",
+          "Angola is Africa's second-largest oil producer",
+          "Angola's capital Luanda was once ranked the world's most expensive city to live in"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/安哥拉",
+        "en": "https://en.wikipedia.org/wiki/Angola"
+      }
+    },
+    {
+      "code": "mz",
+      "basic": {
+        "capital": {"zh": "马普托", "en": "Maputo"},
+        "population": {"zh": "约3200万", "en": "Approx. 32 million"},
+        "area": {"zh": "80.1万平方公里", "en": "801,000 km²"},
+        "currency": {"zh": "梅蒂卡尔(MZN)", "en": "Metical (MZN)"},
+        "language": {"zh": "葡萄牙语", "en": "Portuguese"},
+        "gdp": {"zh": "约170亿美元", "en": "Approx. $17 billion"}
+      },
+      "description": {
+        "zh": "莫桑比克共和国,简称莫桑比克,位于非洲东南部。莫桑比克拥有漫长的印度洋海岸线,以其美丽的海滩和丰富的海洋生物而闻名。",
+        "en": "The Republic of Mozambique is located in southeastern Africa. Mozambique has a long Indian Ocean coastline, famous for its beautiful beaches and rich marine life."
+      },
+      "funFacts": {
+        "zh": [
+          "莫桑比克国旗是世界上唯一带有现代步枪图案的国旗",
+          "莫桑比克拥有世界上最大的腰果产量之一",
+          "莫桑比克的戈龙戈萨国家公园正在进行非洲最成功的野生动物恢复项目之一"
+        ],
+        "en": [
+          "Mozambique's flag is the only national flag featuring a modern rifle",
+          "Mozambique has one of the world's largest cashew nut productions",
+          "Mozambique's Gorongosa National Park is undergoing one of Africa's most successful wildlife restoration projects"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/莫桑比克",
+        "en": "https://en.wikipedia.org/wiki/Mozambique"
+      }
+    },
+    {
+      "code": "zw",
+      "basic": {
+        "capital": {"zh": "哈拉雷", "en": "Harare"},
+        "population": {"zh": "约1500万", "en": "Approx. 15 million"},
+        "area": {"zh": "39.1万平方公里", "en": "391,000 km²"},
+        "currency": {"zh": "美元、南非兰特等", "en": "US Dollar, South African Rand, etc."},
+        "language": {"zh": "英语、绍纳语", "en": "English, Shona"},
+        "gdp": {"zh": "约310亿美元", "en": "Approx. $31 billion"}
+      },
+      "description": {
+        "zh": "津巴布韦共和国,简称津巴布韦,位于非洲南部。津巴布韦以其壮观的维多利亚瀑布、大津巴布韦遗址和丰富的野生动物而闻名。",
+        "en": "The Republic of Zimbabwe is located in southern Africa. Zimbabwe is famous for the spectacular Victoria Falls, Great Zimbabwe ruins, and abundant wildlife."
+      },
+      "funFacts": {
+        "zh": [
+          "津巴布韦国旗上的鸟是津巴布韦鸟,来自大津巴布韦遗址",
+          "维多利亚瀑布是世界上最大的瀑布幕之一",
+          "大津巴布韦遗址是撒哈拉以南非洲最大的古代石造建筑"
+        ],
+        "en": [
+          "The bird on Zimbabwe's flag is the Zimbabwe bird from the Great Zimbabwe ruins",
+          "Victoria Falls is one of the largest waterfalls in the world",
+          "Great Zimbabwe is the largest ancient stone structure in sub-Saharan Africa"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/津巴布韦",
+        "en": "https://en.wikipedia.org/wiki/Zimbabwe"
+      }
+    },
+    {
+      "code": "ar",
+      "basic": {
+        "capital": {"zh": "布宜诺斯艾利斯", "en": "Buenos Aires"},
+        "population": {"zh": "约4600万", "en": "Approx. 46 million"},
+        "area": {"zh": "278万平方公里", "en": "2.78 million km²"},
+        "currency": {"zh": "阿根廷比索(ARS)", "en": "Argentine Peso (ARS)"},
+        "language": {"zh": "西班牙语", "en": "Spanish"},
+        "gdp": {"zh": "约6320亿美元", "en": "Approx. $632 billion"}
+      },
+      "description": {
+        "zh": "阿根廷共和国,简称阿根廷,位于南美洲南部。阿根廷以其探戈舞、足球文化、潘帕斯草原和安第斯山脉而闻名于世。",
+        "en": "The Argentine Republic is located in southern South America. Argentina is famous for tango dance, football culture, the Pampas grasslands, and the Andes Mountains."
+      },
+      "funFacts": {
+        "zh": [
+          "阿根廷国旗上的太阳是五月太阳,纪念独立运动",
+          "阿根廷是世界上第八大国家",
+          "阿根廷拥有世界上最宽的街道之一——七九大道"
+        ],
+        "en": [
+          "The sun on Argentina's flag is the Sun of May, commemorating independence",
+          "Argentina is the world's eighth-largest country",
+          "Argentina has one of the world's widest avenues, Avenida 9 de Julio"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/阿根廷",
+        "en": "https://en.wikipedia.org/wiki/Argentina"
+      }
+    },
+    {
+      "code": "uy",
+      "basic": {
+        "capital": {"zh": "蒙得维的亚", "en": "Montevideo"},
+        "population": {"zh": "约350万", "en": "Approx. 3.5 million"},
+        "area": {"zh": "17.6万平方公里", "en": "176,000 km²"},
+        "currency": {"zh": "乌拉圭比索(UYU)", "en": "Uruguayan Peso (UYU)"},
+        "language": {"zh": "西班牙语", "en": "Spanish"},
+        "gdp": {"zh": "约710亿美元", "en": "Approx. $71 billion"}
+      },
+      "description": {
+        "zh": "乌拉圭东岸共和国,简称乌拉圭,位于南美洲东南部。乌拉圭是南美洲最稳定和最富裕的国家之一,以其民主制度和社会福利而闻名。",
+        "en": "The Oriental Republic of Uruguay is located in southeastern South America. Uruguay is one of the most stable and prosperous countries in South America, known for its democracy and social welfare."
+      },
+      "funFacts": {
+        "zh": [
+          "乌拉圭国旗上的九条蓝白条纹代表独立时的九个省",
+          "乌拉圭是世界上第一个为所有公民提供免费笔记本电脑的国家",
+          "乌拉圭曾两次赢得足球世界杯冠军"
+        ],
+        "en": [
+          "The nine blue and white stripes on Uruguay's flag represent the nine provinces at independence",
+          "Uruguay was the first country to provide free laptops to all citizens",
+          "Uruguay has won the FIFA World Cup twice"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/乌拉圭",
+        "en": "https://en.wikipedia.org/wiki/Uruguay"
+      }
+    },
+    {
+      "code": "py",
+      "basic": {
+        "capital": {"zh": "亚松森", "en": "Asunción"},
+        "population": {"zh": "约710万", "en": "Approx. 7.1 million"},
+        "area": {"zh": "40.7万平方公里", "en": "407,000 km²"},
+        "currency": {"zh": "瓜拉尼(PYG)", "en": "Guaraní (PYG)"},
+        "language": {"zh": "西班牙语、瓜拉尼语", "en": "Spanish, Guaraní"},
+        "gdp": {"zh": "约430亿美元", "en": "Approx. $43 billion"}
+      },
+      "description": {
+        "zh": "巴拉圭共和国,简称巴拉圭,位于南美洲中部,是南美洲的内陆国之一。巴拉圭以其双语文化和伊瓜苏瀑布而闻名。",
+        "en": "The Republic of Paraguay is located in central South America, one of the landlocked countries in South America. Paraguay is known for its bilingual culture and Iguazu Falls."
+      },
+      "funFacts": {
+        "zh": [
+          "巴拉圭国旗是世界上唯一两面图案不同的国旗",
+          "巴拉圭是南美洲唯一仍在广泛使用土著语言的国家",
+          "巴拉圭拥有世界上最大的水电站之一——伊泰普大坝"
+        ],
+        "en": [
+          "Paraguay's flag is the only national flag with different designs on each side",
+          "Paraguay is the only South American country where an indigenous language is still widely spoken",
+          "Paraguay has one of the world's largest hydroelectric dams, Itaipu Dam"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/巴拉圭",
+        "en": "https://en.wikipedia.org/wiki/Paraguay"
+      }
+    },
+    {
+      "code": "ec",
+      "basic": {
+        "capital": {"zh": "基多", "en": "Quito"},
+        "population": {"zh": "约1800万", "en": "Approx. 18 million"},
+        "area": {"zh": "28.4万平方公里", "en": "284,000 km²"},
+        "currency": {"zh": "美元(USD)", "en": "US Dollar (USD)"},
+        "language": {"zh": "西班牙语", "en": "Spanish"},
+        "gdp": {"zh": "约1150亿美元", "en": "Approx. $115 billion"}
+      },
+      "description": {
+        "zh": "厄瓜多尔共和国,简称厄瓜多尔,位于南美洲西北部。厄瓜多尔因赤道横贯其境内而得名,拥有加拉帕戈斯群岛和亚马逊雨林。",
+        "en": "The Republic of Ecuador is located in northwestern South America. Ecuador is named after the equator that crosses it, and is home to the Galápagos Islands and Amazon rainforest."
+      },
+      "funFacts": {
+        "zh": [
+          "厄瓜多尔的国名意为'赤道',因赤道横贯其境内",
+          "加拉帕戈斯群岛是达尔文进化论的灵感来源地",
+          "基多是世界上第二高的首都,海拔2850米"
+        ],
+        "en": [
+          "Ecuador's name means 'equator' as it crosses the country",
+          "The Galápagos Islands inspired Darwin's theory of evolution",
+          "Quito is the world's second-highest capital city at 2,850 meters"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/厄瓜多尔",
+        "en": "https://en.wikipedia.org/wiki/Ecuador"
+      }
+    },
+    {
+      "code": "bo",
+      "basic": {
+        "capital": {"zh": "苏克雷(法定)、拉巴斯(实际)", "en": "Sucre (Constitutional), La Paz (De facto)"},
+        "population": {"zh": "约1200万", "en": "Approx. 12 million"},
+        "area": {"zh": "109.8万平方公里", "en": "1.098 million km²"},
+        "currency": {"zh": "玻利维亚诺(BOB)", "en": "Boliviano (BOB)"},
+        "language": {"zh": "西班牙语、克丘亚语、艾马拉语", "en": "Spanish, Quechua, Aymara"},
+        "gdp": {"zh": "约440亿美元", "en": "Approx. $44 billion"}
+      },
+      "description": {
+        "zh": "多民族玻利维亚国,简称玻利维亚,位于南美洲中部,是南美洲的内陆国之一。玻利维亚拥有世界上最大的盐沼乌尤尼盐湖和丰富的土著文化。",
+        "en": "The Plurinational State of Bolivia is located in central South America, one of the landlocked countries in South America. Bolivia has the world's largest salt flat, Salar de Uyuni, and rich indigenous culture."
+      },
+      "funFacts": {
+        "zh": [
+          "玻利维亚拥有世界上最大的盐沼——乌尤尼盐湖",
+          "拉巴斯是世界上海拔最高的行政首都,海拔3650米",
+          "玻利维亚拥有36种官方语言,是世界上官方语言最多的国家之一"
+        ],
+        "en": [
+          "Bolivia has the world's largest salt flat, Salar de Uyuni",
+          "La Paz is the world's highest administrative capital at 3,650 meters",
+          "Bolivia has 36 official languages, one of the most in the world"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/玻利维亚",
+        "en": "https://en.wikipedia.org/wiki/Bolivia"
+      }
     }
   ]
 }
