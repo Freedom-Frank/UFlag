@@ -2324,6 +2324,595 @@
         "zh": "https://zh.wikipedia.org/wiki/哈萨克斯坦",
         "en": "https://en.wikipedia.org/wiki/Kazakhstan"
       }
+    },
+    {
+      "code": "eg",
+      "basic": {
+        "capital": {"zh": "开罗", "en": "Cairo"},
+        "population": {"zh": "约1.04亿", "en": "Approx. 104 million"},
+        "area": {"zh": "100万平方公里", "en": "1 million km²"},
+        "currency": {"zh": "埃及镑(EGP)", "en": "Egyptian Pound (EGP)"},
+        "language": {"zh": "阿拉伯语", "en": "Arabic"},
+        "gdp": {"zh": "约4040亿美元", "en": "Approx. $404 billion"}
+      },
+      "description": {
+        "zh": "阿拉伯埃及共和国,简称埃及,位于非洲东北角,是世界四大文明古国之一。埃及以其金字塔、狮身人面像和尼罗河文明而闻名于世。",
+        "en": "The Arab Republic of Egypt is located in the northeastern corner of Africa, one of the world's four ancient civilizations. Egypt is famous for its pyramids, the Sphinx, and Nile River civilization."
+      },
+      "funFacts": {
+        "zh": [
+          "埃及国旗的红白黑三色代表革命、纯洁和黑暗时期的结束",
+          "吉萨金字塔是世界七大奇迹中唯一幸存至今的",
+          "苏伊士运河连接地中海和红海,是世界上最重要的航运通道之一"
+        ],
+        "en": [
+          "Egypt's red, white, and black flag represents revolution, purity, and the end of dark times",
+          "The Great Pyramid of Giza is the only surviving wonder of the ancient world",
+          "The Suez Canal connects the Mediterranean and Red Seas, one of the world's most important shipping routes"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/埃及",
+        "en": "https://en.wikipedia.org/wiki/Egypt"
+      }
+    },
+    {
+      "code": "za",
+      "basic": {
+        "capital": {"zh": "比勒陀利亚(行政)、开普敦(立法)、布隆方丹(司法)", "en": "Pretoria (Executive), Cape Town (Legislative), Bloemfontein (Judicial)"},
+        "population": {"zh": "约6000万", "en": "Approx. 60 million"},
+        "area": {"zh": "122万平方公里", "en": "1.22 million km²"},
+        "currency": {"zh": "南非兰特(ZAR)", "en": "South African Rand (ZAR)"},
+        "language": {"zh": "英语、祖鲁语等11种官方语言", "en": "English, Zulu, and 9 other official languages"},
+        "gdp": {"zh": "约4050亿美元", "en": "Approx. $405 billion"}
+      },
+      "description": {
+        "zh": "南非共和国,简称南非,位于非洲大陆最南端。南非是非洲最发达的国家之一,以其丰富的矿产资源、多元文化和野生动物而闻名。",
+        "en": "The Republic of South Africa is located at the southern tip of the African continent. South Africa is one of Africa's most developed countries, known for its mineral resources, diverse cultures, and wildlife."
+      },
+      "funFacts": {
+        "zh": [
+          "南非拥有三个首都,是世界上唯一的三首都国家",
+          "南非拥有11种官方语言,是世界上官方语言最多的国家之一",
+          "南非是世界上最大的黄金和钻石生产国之一"
+        ],
+        "en": [
+          "South Africa has three capital cities, the only country in the world with three capitals",
+          "South Africa has 11 official languages, one of the most in the world",
+          "South Africa is one of the world's largest producers of gold and diamonds"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/南非",
+        "en": "https://en.wikipedia.org/wiki/South_Africa"
+      }
+    },
+    {
+      "code": "ma",
+      "basic": {
+        "capital": {"zh": "拉巴特", "en": "Rabat"},
+        "population": {"zh": "约3700万", "en": "Approx. 37 million"},
+        "area": {"zh": "71万平方公里", "en": "710,000 km²"},
+        "currency": {"zh": "摩洛哥迪拉姆(MAD)", "en": "Moroccan Dirham (MAD)"},
+        "language": {"zh": "阿拉伯语、柏柏尔语", "en": "Arabic, Berber"},
+        "gdp": {"zh": "约1320亿美元", "en": "Approx. $132 billion"}
+      },
+      "description": {
+        "zh": "摩洛哥王国,简称摩洛哥,位于非洲西北端。摩洛哥拥有丰富的历史文化遗产,以其蓝色城市、撒哈拉沙漠和古老的麦地那而闻名。",
+        "en": "The Kingdom of Morocco is located at the northwestern tip of Africa. Morocco has a rich historical and cultural heritage, famous for its blue cities, the Sahara Desert, and ancient medinas."
+      },
+      "funFacts": {
+        "zh": [
+          "摩洛哥国旗上的绿色五角星代表所罗门之印",
+          "摩洛哥是世界上最大的磷酸盐生产国",
+          "摩洛哥的非斯古城拥有世界上最古老的大学之一"
+        ],
+        "en": [
+          "The green pentagram on Morocco's flag represents the Seal of Solomon",
+          "Morocco is the world's largest producer of phosphates",
+          "The ancient city of Fez houses one of the world's oldest universities"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/摩洛哥",
+        "en": "https://en.wikipedia.org/wiki/Morocco"
+      }
+    },
+    {
+      "code": "tn",
+      "basic": {
+        "capital": {"zh": "突尼斯", "en": "Tunis"},
+        "population": {"zh": "约1200万", "en": "Approx. 12 million"},
+        "area": {"zh": "16.4万平方公里", "en": "164,000 km²"},
+        "currency": {"zh": "突尼斯第纳尔(TND)", "en": "Tunisian Dinar (TND)"},
+        "language": {"zh": "阿拉伯语", "en": "Arabic"},
+        "gdp": {"zh": "约470亿美元", "en": "Approx. $47 billion"}
+      },
+      "description": {
+        "zh": "突尼斯共和国,简称突尼斯,位于非洲北端。突尼斯拥有丰富的古罗马遗址和地中海海岸线,是阿拉伯之春的发源地。",
+        "en": "The Republic of Tunisia is located at the northern tip of Africa. Tunisia has rich Roman ruins and a Mediterranean coastline, and is the birthplace of the Arab Spring."
+      },
+      "funFacts": {
+        "zh": [
+          "突尼斯的迦太基遗址是联合国教科文组织世界遗产",
+          "突尼斯是阿拉伯之春运动的发源地",
+          "突尼斯拥有非洲最好的海滩之一"
+        ],
+        "en": [
+          "The ruins of Carthage in Tunisia are a UNESCO World Heritage Site",
+          "Tunisia is the birthplace of the Arab Spring movement",
+          "Tunisia has some of the best beaches in Africa"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/突尼斯",
+        "en": "https://en.wikipedia.org/wiki/Tunisia"
+      }
+    },
+    {
+      "code": "gh",
+      "basic": {
+        "capital": {"zh": "阿克拉", "en": "Accra"},
+        "population": {"zh": "约3200万", "en": "Approx. 32 million"},
+        "area": {"zh": "23.9万平方公里", "en": "239,000 km²"},
+        "currency": {"zh": "加纳塞地(GHS)", "en": "Ghanaian Cedi (GHS)"},
+        "language": {"zh": "英语", "en": "English"},
+        "gdp": {"zh": "约770亿美元", "en": "Approx. $77 billion"}
+      },
+      "description": {
+        "zh": "加纳共和国,简称加纳,位于西非几内亚湾北岸。加纳是非洲第一个获得独立的撒哈拉以南国家,以其可可生产和稳定的民主制度而闻名。",
+        "en": "The Republic of Ghana is located on the northern coast of the Gulf of Guinea in West Africa. Ghana was the first sub-Saharan African country to gain independence, known for its cocoa production and stable democracy."
+      },
+      "funFacts": {
+        "zh": [
+          "加纳国旗的黑星象征非洲自由",
+          "加纳是世界上第二大可可生产国",
+          "加纳是撒哈拉以南非洲第一个获得独立的国家"
+        ],
+        "en": [
+          "The black star on Ghana's flag symbolizes African freedom",
+          "Ghana is the world's second-largest cocoa producer",
+          "Ghana was the first sub-Saharan African country to gain independence"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/加纳",
+        "en": "https://en.wikipedia.org/wiki/Ghana"
+      }
+    },
+    {
+      "code": "ci",
+      "basic": {
+        "capital": {"zh": "亚穆苏克罗", "en": "Yamoussoukro"},
+        "population": {"zh": "约2700万", "en": "Approx. 27 million"},
+        "area": {"zh": "32.2万平方公里", "en": "322,000 km²"},
+        "currency": {"zh": "西非法郎(XOF)", "en": "West African CFA Franc (XOF)"},
+        "language": {"zh": "法语", "en": "French"},
+        "gdp": {"zh": "约700亿美元", "en": "Approx. $70 billion"}
+      },
+      "description": {
+        "zh": "科特迪瓦共和国,又称象牙海岸,位于西非。科特迪瓦是世界最大的可可生产国,经济在西非国家中较为发达。",
+        "en": "The Republic of Côte d'Ivoire, also known as Ivory Coast, is located in West Africa. Côte d'Ivoire is the world's largest cocoa producer and has a relatively developed economy among West African countries."
+      },
+      "funFacts": {
+        "zh": [
+          "科特迪瓦国旗的橙、白、绿三色代表北部草原、和平统一和南部森林",
+          "科特迪瓦是世界上最大的可可生产国",
+          "亚穆苏克罗的和平圣母大教堂是世界上最大的教堂之一"
+        ],
+        "en": [
+          "Côte d'Ivoire's orange, white, and green flag represents northern savannas, peace and unity, and southern forests",
+          "Côte d'Ivoire is the world's largest cocoa producer",
+          "The Basilica of Our Lady of Peace in Yamoussoukro is one of the world's largest churches"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/科特迪瓦",
+        "en": "https://en.wikipedia.org/wiki/Ivory_Coast"
+      }
+    },
+    {
+      "code": "sn",
+      "basic": {
+        "capital": {"zh": "达喀尔", "en": "Dakar"},
+        "population": {"zh": "约1700万", "en": "Approx. 17 million"},
+        "area": {"zh": "19.7万平方公里", "en": "197,000 km²"},
+        "currency": {"zh": "西非法郎(XOF)", "en": "West African CFA Franc (XOF)"},
+        "language": {"zh": "法语", "en": "French"},
+        "gdp": {"zh": "约280亿美元", "en": "Approx. $28 billion"}
+      },
+      "description": {
+        "zh": "塞内加尔共和国,简称塞内加尔,位于西非最西端。塞内加尔以其稳定的民主制度、丰富的音乐文化和达喀尔拉力赛而闻名。",
+        "en": "The Republic of Senegal is located at the westernmost point of West Africa. Senegal is known for its stable democracy, rich musical culture, and the Dakar Rally."
+      },
+      "funFacts": {
+        "zh": [
+          "塞内加尔国旗上的绿星代表希望和伊斯兰信仰",
+          "达喀尔拉力赛虽然现在在南美举行,但最初终点在塞内加尔首都达喀尔",
+          "塞内加尔从未发生过军事政变,是西非最稳定的民主国家之一"
+        ],
+        "en": [
+          "The green star on Senegal's flag represents hope and Islamic faith",
+          "The Dakar Rally, though now held in South America, originally finished in Senegal's capital Dakar",
+          "Senegal has never experienced a military coup and is one of West Africa's most stable democracies"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/塞内加尔",
+        "en": "https://en.wikipedia.org/wiki/Senegal"
+      }
+    },
+    {
+      "code": "ug",
+      "basic": {
+        "capital": {"zh": "坎帕拉", "en": "Kampala"},
+        "population": {"zh": "约4700万", "en": "Approx. 47 million"},
+        "area": {"zh": "24.1万平方公里", "en": "241,000 km²"},
+        "currency": {"zh": "乌干达先令(UGX)", "en": "Ugandan Shilling (UGX)"},
+        "language": {"zh": "英语、斯瓦希里语", "en": "English, Swahili"},
+        "gdp": {"zh": "约450亿美元", "en": "Approx. $45 billion"}
+      },
+      "description": {
+        "zh": "乌干达共和国,简称乌干达,位于东非内陆。乌干达被称为'非洲明珠',拥有丰富的野生动物资源和维多利亚湖的一部分。",
+        "en": "The Republic of Uganda is a landlocked country in East Africa. Known as the 'Pearl of Africa', Uganda has rich wildlife resources and part of Lake Victoria."
+      },
+      "funFacts": {
+        "zh": [
+          "乌干达国旗中央的灰冠鹤是国家象征",
+          "乌干达拥有世界上一半的山地大猩猩",
+          "维多利亚湖是非洲最大的湖泊,乌干达拥有其大部分湖岸线"
+        ],
+        "en": [
+          "The grey crowned crane in the center of Uganda's flag is the national symbol",
+          "Uganda is home to half of the world's mountain gorillas",
+          "Lake Victoria is Africa's largest lake, and Uganda has most of its shoreline"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/乌干达",
+        "en": "https://en.wikipedia.org/wiki/Uganda"
+      }
+    },
+    {
+      "code": "tz",
+      "basic": {
+        "capital": {"zh": "多多马", "en": "Dodoma"},
+        "population": {"zh": "约6100万", "en": "Approx. 61 million"},
+        "area": {"zh": "94.7万平方公里", "en": "947,000 km²"},
+        "currency": {"zh": "坦桑尼亚先令(TZS)", "en": "Tanzanian Shilling (TZS)"},
+        "language": {"zh": "斯瓦希里语、英语", "en": "Swahili, English"},
+        "gdp": {"zh": "约750亿美元", "en": "Approx. $75 billion"}
+      },
+      "description": {
+        "zh": "坦桑尼亚联合共和国,简称坦桑尼亚,位于东非。坦桑尼亚拥有乞力马扎罗山、塞伦盖蒂国家公园和桑给巴尔岛等著名景点。",
+        "en": "The United Republic of Tanzania is located in East Africa. Tanzania is home to Mount Kilimanjaro, Serengeti National Park, and the island of Zanzibar."
+      },
+      "funFacts": {
+        "zh": [
+          "坦桑尼亚国旗的绿色、蓝色、黄色和黑色代表自然资源、海洋、矿产和人民",
+          "乞力马扎罗山是非洲最高峰,海拔5895米",
+          "坦桑尼亚的塞伦盖蒂国家公园是世界上最著名的野生动物保护区之一"
+        ],
+        "en": [
+          "Tanzania's green, blue, yellow, and black flag represents natural resources, oceans, minerals, and people",
+          "Mount Kilimanjaro is Africa's highest peak at 5,895 meters",
+          "Tanzania's Serengeti National Park is one of the world's most famous wildlife reserves"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/坦桑尼亚",
+        "en": "https://en.wikipedia.org/wiki/Tanzania"
+      }
+    },
+    {
+      "code": "rw",
+      "basic": {
+        "capital": {"zh": "基加利", "en": "Kigali"},
+        "population": {"zh": "约1300万", "en": "Approx. 13 million"},
+        "area": {"zh": "2.63万平方公里", "en": "26,300 km²"},
+        "currency": {"zh": "卢旺达法郎(RWF)", "en": "Rwandan Franc (RWF)"},
+        "language": {"zh": "卢旺达语、英语、法语", "en": "Kinyarwanda, English, French"},
+        "gdp": {"zh": "约130亿美元", "en": "Approx. $13 billion"}
+      },
+      "description": {
+        "zh": "卢旺达共和国,简称卢旺达,位于东非内陆。卢旺达被称为'千丘之国',近年来经济发展迅速,以其清洁和安全的环境而闻名。",
+        "en": "The Republic of Rwanda is a landlocked country in East Africa. Known as the 'Land of a Thousand Hills', Rwanda has experienced rapid economic development and is famous for its clean and safe environment."
+      },
+      "funFacts": {
+        "zh": [
+          "卢旺达是世界上女性议员比例最高的国家",
+          "卢旺达在2008年成为第一个禁止塑料袋的非洲国家",
+          "卢旺达拥有世界上最后的山地大猩猩栖息地之一"
+        ],
+        "en": [
+          "Rwanda has the highest proportion of female parliamentarians in the world",
+          "Rwanda became the first African country to ban plastic bags in 2008",
+          "Rwanda is home to one of the last habitats for mountain gorillas"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/卢旺达",
+        "en": "https://en.wikipedia.org/wiki/Rwanda"
+      }
+    },
+    {
+      "code": "cm",
+      "basic": {
+        "capital": {"zh": "雅温得", "en": "Yaoundé"},
+        "population": {"zh": "约2700万", "en": "Approx. 27 million"},
+        "area": {"zh": "47.5万平方公里", "en": "475,000 km²"},
+        "currency": {"zh": "中非法郎(XAF)", "en": "Central African CFA Franc (XAF)"},
+        "language": {"zh": "法语、英语", "en": "French, English"},
+        "gdp": {"zh": "约450亿美元", "en": "Approx. $45 billion"}
+      },
+      "description": {
+        "zh": "喀麦隆共和国,简称喀麦隆,位于中非西部。喀麦隆被称为'小非洲',因为它拥有非洲大陆几乎所有的地理和文化特征。",
+        "en": "The Republic of Cameroon is located in western Central Africa. Cameroon is called 'Africa in miniature' because it exhibits all the major geographical and cultural features of the continent."
+      },
+      "funFacts": {
+        "zh": [
+          "喀麦隆国旗的绿、红、黄三色代表森林、独立和太阳",
+          "喀麦隆是非洲足球强国,曾5次获得非洲国家杯冠军",
+          "喀麦隆山是西非最高峰,海拔4095米"
+        ],
+        "en": [
+          "Cameroon's green, red, and yellow flag represents forests, independence, and the sun",
+          "Cameroon is an African football powerhouse, having won the Africa Cup of Nations 5 times",
+          "Mount Cameroon is the highest peak in West Africa at 4,095 meters"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/喀麦隆",
+        "en": "https://en.wikipedia.org/wiki/Cameroon"
+      }
+    },
+    {
+      "code": "ao",
+      "basic": {
+        "capital": {"zh": "罗安达", "en": "Luanda"},
+        "population": {"zh": "约3400万", "en": "Approx. 34 million"},
+        "area": {"zh": "124.7万平方公里", "en": "1.247 million km²"},
+        "currency": {"zh": "宽扎(AOA)", "en": "Kwanza (AOA)"},
+        "language": {"zh": "葡萄牙语", "en": "Portuguese"},
+        "gdp": {"zh": "约1060亿美元", "en": "Approx. $106 billion"}
+      },
+      "description": {
+        "zh": "安哥拉共和国,简称安哥拉,位于非洲西南部。安哥拉拥有丰富的石油和钻石资源,是非洲第二大石油生产国。",
+        "en": "The Republic of Angola is located in southwestern Africa. Angola has abundant oil and diamond resources and is Africa's second-largest oil producer."
+      },
+      "funFacts": {
+        "zh": [
+          "安哥拉国旗上的弯刀和齿轮代表农民和工人",
+          "安哥拉是非洲第二大石油生产国",
+          "安哥拉首都罗安达曾被评为世界上生活成本最高的城市"
+        ],
+        "en": [
+          "The machete and gear on Angola's flag represent farmers and workers",
+          "Angola is Africa's second-largest oil producer",
+          "Angola's capital Luanda was once ranked the world's most expensive city to live in"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/安哥拉",
+        "en": "https://en.wikipedia.org/wiki/Angola"
+      }
+    },
+    {
+      "code": "mz",
+      "basic": {
+        "capital": {"zh": "马普托", "en": "Maputo"},
+        "population": {"zh": "约3200万", "en": "Approx. 32 million"},
+        "area": {"zh": "80.1万平方公里", "en": "801,000 km²"},
+        "currency": {"zh": "梅蒂卡尔(MZN)", "en": "Metical (MZN)"},
+        "language": {"zh": "葡萄牙语", "en": "Portuguese"},
+        "gdp": {"zh": "约170亿美元", "en": "Approx. $17 billion"}
+      },
+      "description": {
+        "zh": "莫桑比克共和国,简称莫桑比克,位于非洲东南部。莫桑比克拥有漫长的印度洋海岸线,以其美丽的海滩和丰富的海洋生物而闻名。",
+        "en": "The Republic of Mozambique is located in southeastern Africa. Mozambique has a long Indian Ocean coastline, famous for its beautiful beaches and rich marine life."
+      },
+      "funFacts": {
+        "zh": [
+          "莫桑比克国旗是世界上唯一带有现代步枪图案的国旗",
+          "莫桑比克拥有世界上最大的腰果产量之一",
+          "莫桑比克的戈龙戈萨国家公园正在进行非洲最成功的野生动物恢复项目之一"
+        ],
+        "en": [
+          "Mozambique's flag is the only national flag featuring a modern rifle",
+          "Mozambique has one of the world's largest cashew nut productions",
+          "Mozambique's Gorongosa National Park is undergoing one of Africa's most successful wildlife restoration projects"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/莫桑比克",
+        "en": "https://en.wikipedia.org/wiki/Mozambique"
+      }
+    },
+    {
+      "code": "zw",
+      "basic": {
+        "capital": {"zh": "哈拉雷", "en": "Harare"},
+        "population": {"zh": "约1500万", "en": "Approx. 15 million"},
+        "area": {"zh": "39.1万平方公里", "en": "391,000 km²"},
+        "currency": {"zh": "美元、南非兰特等", "en": "US Dollar, South African Rand, etc."},
+        "language": {"zh": "英语、绍纳语", "en": "English, Shona"},
+        "gdp": {"zh": "约310亿美元", "en": "Approx. $31 billion"}
+      },
+      "description": {
+        "zh": "津巴布韦共和国,简称津巴布韦,位于非洲南部。津巴布韦以其壮观的维多利亚瀑布、大津巴布韦遗址和丰富的野生动物而闻名。",
+        "en": "The Republic of Zimbabwe is located in southern Africa. Zimbabwe is famous for the spectacular Victoria Falls, Great Zimbabwe ruins, and abundant wildlife."
+      },
+      "funFacts": {
+        "zh": [
+          "津巴布韦国旗上的鸟是津巴布韦鸟,来自大津巴布韦遗址",
+          "维多利亚瀑布是世界上最大的瀑布幕之一",
+          "大津巴布韦遗址是撒哈拉以南非洲最大的古代石造建筑"
+        ],
+        "en": [
+          "The bird on Zimbabwe's flag is the Zimbabwe bird from the Great Zimbabwe ruins",
+          "Victoria Falls is one of the largest waterfalls in the world",
+          "Great Zimbabwe is the largest ancient stone structure in sub-Saharan Africa"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/津巴布韦",
+        "en": "https://en.wikipedia.org/wiki/Zimbabwe"
+      }
+    },
+    {
+      "code": "ar",
+      "basic": {
+        "capital": {"zh": "布宜诺斯艾利斯", "en": "Buenos Aires"},
+        "population": {"zh": "约4600万", "en": "Approx. 46 million"},
+        "area": {"zh": "278万平方公里", "en": "2.78 million km²"},
+        "currency": {"zh": "阿根廷比索(ARS)", "en": "Argentine Peso (ARS)"},
+        "language": {"zh": "西班牙语", "en": "Spanish"},
+        "gdp": {"zh": "约6320亿美元", "en": "Approx. $632 billion"}
+      },
+      "description": {
+        "zh": "阿根廷共和国,简称阿根廷,位于南美洲南部。阿根廷以其探戈舞、足球文化、潘帕斯草原和安第斯山脉而闻名于世。",
+        "en": "The Argentine Republic is located in southern South America. Argentina is famous for tango dance, football culture, the Pampas grasslands, and the Andes Mountains."
+      },
+      "funFacts": {
+        "zh": [
+          "阿根廷国旗上的太阳是五月太阳,纪念独立运动",
+          "阿根廷是世界上第八大国家",
+          "阿根廷拥有世界上最宽的街道之一——七九大道"
+        ],
+        "en": [
+          "The sun on Argentina's flag is the Sun of May, commemorating independence",
+          "Argentina is the world's eighth-largest country",
+          "Argentina has one of the world's widest avenues, Avenida 9 de Julio"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/阿根廷",
+        "en": "https://en.wikipedia.org/wiki/Argentina"
+      }
+    },
+    {
+      "code": "uy",
+      "basic": {
+        "capital": {"zh": "蒙得维的亚", "en": "Montevideo"},
+        "population": {"zh": "约350万", "en": "Approx. 3.5 million"},
+        "area": {"zh": "17.6万平方公里", "en": "176,000 km²"},
+        "currency": {"zh": "乌拉圭比索(UYU)", "en": "Uruguayan Peso (UYU)"},
+        "language": {"zh": "西班牙语", "en": "Spanish"},
+        "gdp": {"zh": "约710亿美元", "en": "Approx. $71 billion"}
+      },
+      "description": {
+        "zh": "乌拉圭东岸共和国,简称乌拉圭,位于南美洲东南部。乌拉圭是南美洲最稳定和最富裕的国家之一,以其民主制度和社会福利而闻名。",
+        "en": "The Oriental Republic of Uruguay is located in southeastern South America. Uruguay is one of the most stable and prosperous countries in South America, known for its democracy and social welfare."
+      },
+      "funFacts": {
+        "zh": [
+          "乌拉圭国旗上的九条蓝白条纹代表独立时的九个省",
+          "乌拉圭是世界上第一个为所有公民提供免费笔记本电脑的国家",
+          "乌拉圭曾两次赢得足球世界杯冠军"
+        ],
+        "en": [
+          "The nine blue and white stripes on Uruguay's flag represent the nine provinces at independence",
+          "Uruguay was the first country to provide free laptops to all citizens",
+          "Uruguay has won the FIFA World Cup twice"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/乌拉圭",
+        "en": "https://en.wikipedia.org/wiki/Uruguay"
+      }
+    },
+    {
+      "code": "py",
+      "basic": {
+        "capital": {"zh": "亚松森", "en": "Asunción"},
+        "population": {"zh": "约710万", "en": "Approx. 7.1 million"},
+        "area": {"zh": "40.7万平方公里", "en": "407,000 km²"},
+        "currency": {"zh": "瓜拉尼(PYG)", "en": "Guaraní (PYG)"},
+        "language": {"zh": "西班牙语、瓜拉尼语", "en": "Spanish, Guaraní"},
+        "gdp": {"zh": "约430亿美元", "en": "Approx. $43 billion"}
+      },
+      "description": {
+        "zh": "巴拉圭共和国,简称巴拉圭,位于南美洲中部,是南美洲的内陆国之一。巴拉圭以其双语文化和伊瓜苏瀑布而闻名。",
+        "en": "The Republic of Paraguay is located in central South America, one of the landlocked countries in South America. Paraguay is known for its bilingual culture and Iguazu Falls."
+      },
+      "funFacts": {
+        "zh": [
+          "巴拉圭国旗是世界上唯一两面图案不同的国旗",
+          "巴拉圭是南美洲唯一仍在广泛使用土著语言的国家",
+          "巴拉圭拥有世界上最大的水电站之一——伊泰普大坝"
+        ],
+        "en": [
+          "Paraguay's flag is the only national flag with different designs on each side",
+          "Paraguay is the only South American country where an indigenous language is still widely spoken",
+          "Paraguay has one of the world's largest hydroelectric dams, Itaipu Dam"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/巴拉圭",
+        "en": "https://en.wikipedia.org/wiki/Paraguay"
+      }
+    },
+    {
+      "code": "ec",
+      "basic": {
+        "capital": {"zh": "基多", "en": "Quito"},
+        "population": {"zh": "约1800万", "en": "Approx. 18 million"},
+        "area": {"zh": "28.4万平方公里", "en": "284,000 km²"},
+        "currency": {"zh": "美元(USD)", "en": "US Dollar (USD)"},
+        "language": {"zh": "西班牙语", "en": "Spanish"},
+        "gdp": {"zh": "约1150亿美元", "en": "Approx. $115 billion"}
+      },
+      "description": {
+        "zh": "厄瓜多尔共和国,简称厄瓜多尔,位于南美洲西北部。厄瓜多尔因赤道横贯其境内而得名,拥有加拉帕戈斯群岛和亚马逊雨林。",
+        "en": "The Republic of Ecuador is located in northwestern South America. Ecuador is named after the equator that crosses it, and is home to the Galápagos Islands and Amazon rainforest."
+      },
+      "funFacts": {
+        "zh": [
+          "厄瓜多尔的国名意为'赤道',因赤道横贯其境内",
+          "加拉帕戈斯群岛是达尔文进化论的灵感来源地",
+          "基多是世界上第二高的首都,海拔2850米"
+        ],
+        "en": [
+          "Ecuador's name means 'equator' as it crosses the country",
+          "The Galápagos Islands inspired Darwin's theory of evolution",
+          "Quito is the world's second-highest capital city at 2,850 meters"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/厄瓜多尔",
+        "en": "https://en.wikipedia.org/wiki/Ecuador"
+      }
+    },
+    {
+      "code": "bo",
+      "basic": {
+        "capital": {"zh": "苏克雷(法定)、拉巴斯(实际)", "en": "Sucre (Constitutional), La Paz (De facto)"},
+        "population": {"zh": "约1200万", "en": "Approx. 12 million"},
+        "area": {"zh": "109.8万平方公里", "en": "1.098 million km²"},
+        "currency": {"zh": "玻利维亚诺(BOB)", "en": "Boliviano (BOB)"},
+        "language": {"zh": "西班牙语、克丘亚语、艾马拉语", "en": "Spanish, Quechua, Aymara"},
+        "gdp": {"zh": "约440亿美元", "en": "Approx. $44 billion"}
+      },
+      "description": {
+        "zh": "多民族玻利维亚国,简称玻利维亚,位于南美洲中部,是南美洲的内陆国之一。玻利维亚拥有世界上最大的盐沼乌尤尼盐湖和丰富的土著文化。",
+        "en": "The Plurinational State of Bolivia is located in central South America, one of the landlocked countries in South America. Bolivia has the world's largest salt flat, Salar de Uyuni, and rich indigenous culture."
+      },
+      "funFacts": {
+        "zh": [
+          "玻利维亚拥有世界上最大的盐沼——乌尤尼盐湖",
+          "拉巴斯是世界上海拔最高的行政首都,海拔3650米",
+          "玻利维亚拥有36种官方语言,是世界上官方语言最多的国家之一"
+        ],
+        "en": [
+          "Bolivia has the world's largest salt flat, Salar de Uyuni",
+          "La Paz is the world's highest administrative capital at 3,650 meters",
+          "Bolivia has 36 official languages, one of the most in the world"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/玻利维亚",
+        "en": "https://en.wikipedia.org/wiki/Bolivia"
+      }
     }
   ]
 }
