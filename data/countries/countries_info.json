@@ -1766,6 +1766,564 @@
         "zh": "https://zh.wikipedia.org/wiki/新西兰",
         "en": "https://en.wikipedia.org/wiki/New_Zealand"
       }
+    },
+    {
+      "code": "is",
+      "basic": {
+        "capital": {"zh": "雷克雅未克", "en": "Reykjavik"},
+        "population": {"zh": "约37万", "en": "Approx. 370,000"},
+        "area": {"zh": "10.3万平方公里", "en": "103,000 km²"},
+        "currency": {"zh": "冰岛克朗(ISK)", "en": "Icelandic Króna (ISK)"},
+        "language": {"zh": "冰岛语", "en": "Icelandic"},
+        "gdp": {"zh": "约270亿美元", "en": "Approx. $27 billion"}
+      },
+      "description": {
+        "zh": "冰岛共和国,简称冰岛,是北大西洋中的岛国,位于格陵兰岛和挪威之间。冰岛是世界上火山活动最活跃的地区之一,拥有壮观的冰川、间歇泉和北极光。",
+        "en": "Iceland is an island country in the North Atlantic, located between Greenland and Norway. Iceland is one of the most volcanically active regions in the world, featuring spectacular glaciers, geysers, and the Northern Lights."
+      },
+      "funFacts": {
+        "zh": [
+          "冰岛是世界上最和平的国家,没有常备军队",
+          "冰岛议会成立于930年,是世界上最古老的议会之一",
+          "冰岛人均出版书籍数量全球第一"
+        ],
+        "en": [
+          "Iceland is the world's most peaceful country and has no standing army",
+          "Iceland's parliament, established in 930 AD, is one of the oldest in the world",
+          "Iceland publishes more books per capita than any other country"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/冰岛",
+        "en": "https://en.wikipedia.org/wiki/Iceland"
+      }
+    },
+    {
+      "code": "hr",
+      "basic": {
+        "capital": {"zh": "萨格勒布", "en": "Zagreb"},
+        "population": {"zh": "约390万", "en": "Approx. 3.9 million"},
+        "area": {"zh": "5.67万平方公里", "en": "56,700 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "克罗地亚语", "en": "Croatian"},
+        "gdp": {"zh": "约680亿美元", "en": "Approx. $68 billion"}
+      },
+      "description": {
+        "zh": "克罗地亚共和国,简称克罗地亚,位于欧洲东南部巴尔干半岛。克罗地亚拥有美丽的亚得里亚海海岸线、古老的城市和丰富的历史文化遗产。",
+        "en": "Croatia is located in Southeast Europe on the Balkan Peninsula. Croatia boasts a beautiful Adriatic coastline, ancient cities, and a rich historical and cultural heritage."
+      },
+      "funFacts": {
+        "zh": [
+          "克罗地亚国旗的红白格子图案源自中世纪盾徽",
+          "领带(Cravat)起源于克罗地亚",
+          "克罗地亚有10处联合国教科文组织世界遗产"
+        ],
+        "en": [
+          "The red-and-white checkerboard pattern on Croatia's flag originates from medieval coat of arms",
+          "The necktie (Cravat) originated in Croatia",
+          "Croatia has 10 UNESCO World Heritage Sites"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/克罗地亚",
+        "en": "https://en.wikipedia.org/wiki/Croatia"
+      }
+    },
+    {
+      "code": "rs",
+      "basic": {
+        "capital": {"zh": "贝尔格莱德", "en": "Belgrade"},
+        "population": {"zh": "约690万", "en": "Approx. 6.9 million"},
+        "area": {"zh": "8.8万平方公里", "en": "88,000 km²"},
+        "currency": {"zh": "塞尔维亚第纳尔(RSD)", "en": "Serbian Dinar (RSD)"},
+        "language": {"zh": "塞尔维亚语", "en": "Serbian"},
+        "gdp": {"zh": "约630亿美元", "en": "Approx. $63 billion"}
+      },
+      "description": {
+        "zh": "塞尔维亚共和国,简称塞尔维亚,位于欧洲东南部巴尔干半岛中部。塞尔维亚拥有丰富的历史文化,是多瑙河和萨瓦河的交汇之地。",
+        "en": "Serbia is located in the central Balkans in Southeast Europe. Serbia has a rich history and culture, and lies at the confluence of the Danube and Sava rivers."
+      },
+      "funFacts": {
+        "zh": [
+          "塞尔维亚国旗采用泛斯拉夫颜色:红、蓝、白",
+          "尼古拉·特斯拉出生于现今塞尔维亚境内",
+          "贝尔格莱德是欧洲最古老的城市之一"
+        ],
+        "en": [
+          "Serbia's flag uses the Pan-Slavic colors: red, blue, and white",
+          "Nikola Tesla was born in present-day Serbia",
+          "Belgrade is one of the oldest cities in Europe"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/塞尔维亚",
+        "en": "https://en.wikipedia.org/wiki/Serbia"
+      }
+    },
+    {
+      "code": "bg",
+      "basic": {
+        "capital": {"zh": "索非亚", "en": "Sofia"},
+        "population": {"zh": "约690万", "en": "Approx. 6.9 million"},
+        "area": {"zh": "11.1万平方公里", "en": "111,000 km²"},
+        "currency": {"zh": "列弗(BGN)", "en": "Lev (BGN)"},
+        "language": {"zh": "保加利亚语", "en": "Bulgarian"},
+        "gdp": {"zh": "约840亿美元", "en": "Approx. $84 billion"}
+      },
+      "description": {
+        "zh": "保加利亚共和国,简称保加利亚,位于欧洲东南部巴尔干半岛。保加利亚是西里尔字母的发源地,拥有悠久的历史和丰富的文化遗产。",
+        "en": "Bulgaria is located in Southeast Europe on the Balkan Peninsula. Bulgaria is the birthplace of the Cyrillic alphabet and has a long history and rich cultural heritage."
+      },
+      "funFacts": {
+        "zh": [
+          "保加利亚国旗的白、绿、红三色代表和平、农业和勇气",
+          "保加利亚是世界上玫瑰油的主要生产国",
+          "保加利亚人点头表示'不',摇头表示'是'"
+        ],
+        "en": [
+          "Bulgaria's white, green, and red flag represents peace, agriculture, and courage",
+          "Bulgaria is a major producer of rose oil in the world",
+          "Bulgarians nod to mean 'no' and shake their heads to mean 'yes'"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/保加利亚",
+        "en": "https://en.wikipedia.org/wiki/Bulgaria"
+      }
+    },
+    {
+      "code": "sk",
+      "basic": {
+        "capital": {"zh": "布拉迪斯拉发", "en": "Bratislava"},
+        "population": {"zh": "约540万", "en": "Approx. 5.4 million"},
+        "area": {"zh": "4.9万平方公里", "en": "49,000 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "斯洛伐克语", "en": "Slovak"},
+        "gdp": {"zh": "约1150亿美元", "en": "Approx. $115 billion"}
+      },
+      "description": {
+        "zh": "斯洛伐克共和国,简称斯洛伐克,位于欧洲中部。斯洛伐克以其美丽的喀尔巴阡山脉、中世纪城堡和温泉小镇而闻名。",
+        "en": "Slovakia is located in Central Europe. Slovakia is known for its beautiful Carpathian Mountains, medieval castles, and spa towns."
+      },
+      "funFacts": {
+        "zh": [
+          "斯洛伐克国旗上的双十字来自拜占庭传统",
+          "斯洛伐克拥有超过180座城堡和遗址",
+          "斯洛伐克是世界上人均汽车产量最高的国家之一"
+        ],
+        "en": [
+          "The double cross on Slovakia's flag comes from Byzantine tradition",
+          "Slovakia has over 180 castles and castle ruins",
+          "Slovakia is one of the world's highest per capita car producers"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/斯洛伐克",
+        "en": "https://en.wikipedia.org/wiki/Slovakia"
+      }
+    },
+    {
+      "code": "si",
+      "basic": {
+        "capital": {"zh": "卢布尔雅那", "en": "Ljubljana"},
+        "population": {"zh": "约210万", "en": "Approx. 2.1 million"},
+        "area": {"zh": "2.03万平方公里", "en": "20,300 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "斯洛文尼亚语", "en": "Slovenian"},
+        "gdp": {"zh": "约630亿美元", "en": "Approx. $63 billion"}
+      },
+      "description": {
+        "zh": "斯洛文尼亚共和国,简称斯洛文尼亚,位于欧洲中南部。斯洛文尼亚拥有阿尔卑斯山脉、亚得里亚海海岸和广袤的森林,被誉为欧洲的绿色心脏。",
+        "en": "Slovenia is located in south-central Europe. Slovenia features the Alps, an Adriatic coastline, and extensive forests, earning it the title of Europe's Green Heart."
+      },
+      "funFacts": {
+        "zh": [
+          "斯洛文尼亚国旗上的特里格拉夫山是国家最高峰",
+          "斯洛文尼亚森林覆盖率超过60%",
+          "斯洛文尼亚是欧洲最早实现全民免费教育的国家之一"
+        ],
+        "en": [
+          "Mount Triglav on Slovenia's coat of arms is the country's highest peak",
+          "Over 60% of Slovenia is covered by forests",
+          "Slovenia was one of the first European countries to achieve universal free education"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/斯洛文尼亚",
+        "en": "https://en.wikipedia.org/wiki/Slovenia"
+      }
+    },
+    {
+      "code": "lt",
+      "basic": {
+        "capital": {"zh": "维尔纽斯", "en": "Vilnius"},
+        "population": {"zh": "约280万", "en": "Approx. 2.8 million"},
+        "area": {"zh": "6.53万平方公里", "en": "65,300 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "立陶宛语", "en": "Lithuanian"},
+        "gdp": {"zh": "约670亿美元", "en": "Approx. $67 billion"}
+      },
+      "description": {
+        "zh": "立陶宛共和国,简称立陶宛,位于欧洲东北部波罗的海东岸,是波罗的海三国之一。立陶宛拥有深厚的历史底蕴和美丽的自然风光。",
+        "en": "Lithuania is located on the eastern shore of the Baltic Sea in northeastern Europe, one of the three Baltic states. Lithuania has a deep historical heritage and beautiful natural landscapes."
+      },
+      "funFacts": {
+        "zh": [
+          "立陶宛国旗的黄、绿、红三色代表太阳、森林和勇气",
+          "立陶宛语是现存最古老的印欧语言之一",
+          "立陶宛在1990年成为第一个脱离苏联独立的国家"
+        ],
+        "en": [
+          "Lithuania's yellow, green, and red flag represents the sun, forests, and courage",
+          "Lithuanian is one of the oldest surviving Indo-European languages",
+          "Lithuania was the first country to declare independence from the Soviet Union in 1990"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/立陶宛",
+        "en": "https://en.wikipedia.org/wiki/Lithuania"
+      }
+    },
+    {
+      "code": "lv",
+      "basic": {
+        "capital": {"zh": "里加", "en": "Riga"},
+        "population": {"zh": "约190万", "en": "Approx. 1.9 million"},
+        "area": {"zh": "6.46万平方公里", "en": "64,600 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "拉脱维亚语", "en": "Latvian"},
+        "gdp": {"zh": "约400亿美元", "en": "Approx. $40 billion"}
+      },
+      "description": {
+        "zh": "拉脱维亚共和国,简称拉脱维亚,位于欧洲东北部波罗的海东岸,是波罗的海三国之一。拉脱维亚拥有美丽的海滩、森林和新艺术建筑。",
+        "en": "Latvia is located on the eastern shore of the Baltic Sea in northeastern Europe, one of the three Baltic states. Latvia features beautiful beaches, forests, and Art Nouveau architecture."
+      },
+      "funFacts": {
+        "zh": [
+          "拉脱维亚国旗是世界上最古老的国旗之一,可追溯到13世纪",
+          "里加拥有欧洲最集中的新艺术建筑",
+          "拉脱维亚森林覆盖率超过50%"
+        ],
+        "en": [
+          "Latvia's flag is one of the oldest in the world, dating back to the 13th century",
+          "Riga has the highest concentration of Art Nouveau architecture in Europe",
+          "Over 50% of Latvia is covered by forests"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/拉脱维亚",
+        "en": "https://en.wikipedia.org/wiki/Latvia"
+      }
+    },
+    {
+      "code": "ee",
+      "basic": {
+        "capital": {"zh": "塔林", "en": "Tallinn"},
+        "population": {"zh": "约130万", "en": "Approx. 1.3 million"},
+        "area": {"zh": "4.52万平方公里", "en": "45,200 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "爱沙尼亚语", "en": "Estonian"},
+        "gdp": {"zh": "约380亿美元", "en": "Approx. $38 billion"}
+      },
+      "description": {
+        "zh": "爱沙尼亚共和国,简称爱沙尼亚,位于欧洲东北部波罗的海东岸,是波罗的海三国之一。爱沙尼亚是世界上数字化程度最高的国家之一。",
+        "en": "Estonia is located on the eastern shore of the Baltic Sea in northeastern Europe, one of the three Baltic states. Estonia is one of the most digitally advanced countries in the world."
+      },
+      "funFacts": {
+        "zh": [
+          "爱沙尼亚是Skype的诞生地",
+          "爱沙尼亚拥有世界上最先进的电子政务系统",
+          "爱沙尼亚人均初创企业数量全球领先"
+        ],
+        "en": [
+          "Estonia is the birthplace of Skype",
+          "Estonia has the world's most advanced e-government system",
+          "Estonia has one of the highest numbers of startups per capita globally"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/爱沙尼亚",
+        "en": "https://en.wikipedia.org/wiki/Estonia"
+      }
+    },
+    {
+      "code": "lu",
+      "basic": {
+        "capital": {"zh": "卢森堡市", "en": "Luxembourg City"},
+        "population": {"zh": "约63万", "en": "Approx. 630,000"},
+        "area": {"zh": "2586平方公里", "en": "2,586 km²"},
+        "currency": {"zh": "欧元(EUR)", "en": "Euro (EUR)"},
+        "language": {"zh": "卢森堡语、法语、德语", "en": "Luxembourgish, French, German"},
+        "gdp": {"zh": "约860亿美元", "en": "Approx. $86 billion"}
+      },
+      "description": {
+        "zh": "卢森堡大公国,简称卢森堡,位于欧洲西北部,是欧洲内陆小国之一。卢森堡是世界上最富裕的国家之一,也是欧盟和北约的创始成员国。",
+        "en": "The Grand Duchy of Luxembourg is located in northwestern Europe, one of Europe's small landlocked countries. Luxembourg is one of the wealthiest countries in the world and a founding member of the EU and NATO."
+      },
+      "funFacts": {
+        "zh": [
+          "卢森堡是世界上唯一的大公国",
+          "卢森堡人均GDP位居世界前列",
+          "卢森堡拥有三种官方语言"
+        ],
+        "en": [
+          "Luxembourg is the world's only Grand Duchy",
+          "Luxembourg has one of the highest GDP per capita in the world",
+          "Luxembourg has three official languages"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/卢森堡",
+        "en": "https://en.wikipedia.org/wiki/Luxembourg"
+      }
+    },
+    {
+      "code": "th",
+      "basic": {
+        "capital": {"zh": "曼谷", "en": "Bangkok"},
+        "population": {"zh": "约7000万", "en": "Approx. 70 million"},
+        "area": {"zh": "51.3万平方公里", "en": "513,000 km²"},
+        "currency": {"zh": "泰铢(THB)", "en": "Thai Baht (THB)"},
+        "language": {"zh": "泰语", "en": "Thai"},
+        "gdp": {"zh": "约5050亿美元", "en": "Approx. $505 billion"}
+      },
+      "description": {
+        "zh": "泰王国,简称泰国,位于东南亚中南半岛中部。泰国是世界著名的旅游胜地,以其佛教寺庙、热带海滩和独特的文化而闻名。",
+        "en": "The Kingdom of Thailand is located in the center of the Indochinese Peninsula in Southeast Asia. Thailand is a world-famous tourist destination, known for its Buddhist temples, tropical beaches, and unique culture."
+      },
+      "funFacts": {
+        "zh": [
+          "泰国是东南亚唯一从未被殖民的国家",
+          "泰国有超过40,000座佛教寺庙",
+          "泰国的国王是世界上在位时间最长的君主之一"
+        ],
+        "en": [
+          "Thailand is the only Southeast Asian country never colonized",
+          "Thailand has over 40,000 Buddhist temples",
+          "Thailand's monarchy is one of the longest-reigning in the world"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/泰国",
+        "en": "https://en.wikipedia.org/wiki/Thailand"
+      }
+    },
+    {
+      "code": "mm",
+      "basic": {
+        "capital": {"zh": "内比都", "en": "Naypyidaw"},
+        "population": {"zh": "约5400万", "en": "Approx. 54 million"},
+        "area": {"zh": "67.7万平方公里", "en": "677,000 km²"},
+        "currency": {"zh": "缅元(MMK)", "en": "Myanmar Kyat (MMK)"},
+        "language": {"zh": "缅甸语", "en": "Burmese"},
+        "gdp": {"zh": "约650亿美元", "en": "Approx. $65 billion"}
+      },
+      "description": {
+        "zh": "缅甸联邦共和国,简称缅甸,位于东南亚中南半岛西部。缅甸拥有丰富的自然资源、悠久的佛教传统和众多历史遗迹。",
+        "en": "The Republic of the Union of Myanmar is located in western Indochina in Southeast Asia. Myanmar has abundant natural resources, a long Buddhist tradition, and numerous historical sites."
+      },
+      "funFacts": {
+        "zh": [
+          "缅甸拥有世界上最大的铜锣,重达90吨",
+          "缅甸是世界上翡翠和红宝石的主要产地",
+          "仰光大金塔是世界上最古老的佛塔之一"
+        ],
+        "en": [
+          "Myanmar has the world's largest gong, weighing 90 tons",
+          "Myanmar is a major source of jade and rubies in the world",
+          "The Shwedagon Pagoda in Yangon is one of the oldest stupas in the world"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/缅甸",
+        "en": "https://en.wikipedia.org/wiki/Myanmar"
+      }
+    },
+    {
+      "code": "kh",
+      "basic": {
+        "capital": {"zh": "金边", "en": "Phnom Penh"},
+        "population": {"zh": "约1670万", "en": "Approx. 16.7 million"},
+        "area": {"zh": "18.1万平方公里", "en": "181,000 km²"},
+        "currency": {"zh": "瑞尔(KHR)", "en": "Riel (KHR)"},
+        "language": {"zh": "高棉语", "en": "Khmer"},
+        "gdp": {"zh": "约270亿美元", "en": "Approx. $27 billion"}
+      },
+      "description": {
+        "zh": "柬埔寨王国,简称柬埔寨,位于东南亚中南半岛南部。柬埔寨以其世界文化遗产吴哥窟、丰富的历史文化和美丽的自然风光而闻名。",
+        "en": "The Kingdom of Cambodia is located in southern Indochina in Southeast Asia. Cambodia is famous for the World Heritage Site Angkor Wat, its rich history and culture, and beautiful natural scenery."
+      },
+      "funFacts": {
+        "zh": [
+          "吴哥窟是世界上最大的宗教建筑群",
+          "柬埔寨国旗是世界上唯一将建筑物作为主要图案的国旗",
+          "柬埔寨的洞里萨湖是东南亚最大的淡水湖"
+        ],
+        "en": [
+          "Angkor Wat is the world's largest religious monument complex",
+          "Cambodia's flag is the only national flag featuring a building as its central design",
+          "Cambodia's Tonle Sap Lake is the largest freshwater lake in Southeast Asia"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/柬埔寨",
+        "en": "https://en.wikipedia.org/wiki/Cambodia"
+      }
+    },
+    {
+      "code": "la",
+      "basic": {
+        "capital": {"zh": "万象", "en": "Vientiane"},
+        "population": {"zh": "约730万", "en": "Approx. 7.3 million"},
+        "area": {"zh": "23.7万平方公里", "en": "237,000 km²"},
+        "currency": {"zh": "基普(LAK)", "en": "Kip (LAK)"},
+        "language": {"zh": "老挝语", "en": "Lao"},
+        "gdp": {"zh": "约190亿美元", "en": "Approx. $19 billion"}
+      },
+      "description": {
+        "zh": "老挝人民民主共和国,简称老挝,位于东南亚中南半岛北部,是东南亚唯一的内陆国。老挝以其宁静的佛教文化、原始森林和湄公河风光而闻名。",
+        "en": "The Lao People's Democratic Republic is located in northern Indochina in Southeast Asia, the only landlocked country in Southeast Asia. Laos is known for its serene Buddhist culture, pristine forests, and Mekong River scenery."
+      },
+      "funFacts": {
+        "zh": [
+          "老挝是世界上人均未爆炸弹药最多的国家",
+          "老挝拥有超过20,000座佛教寺庙",
+          "老挝是东南亚咖啡生产的重要国家"
+        ],
+        "en": [
+          "Laos has the most unexploded ordnance per capita in the world",
+          "Laos has over 20,000 Buddhist temples",
+          "Laos is an important coffee producer in Southeast Asia"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/老挝",
+        "en": "https://en.wikipedia.org/wiki/Laos"
+      }
+    },
+    {
+      "code": "mn",
+      "basic": {
+        "capital": {"zh": "乌兰巴托", "en": "Ulaanbaatar"},
+        "population": {"zh": "约330万", "en": "Approx. 3.3 million"},
+        "area": {"zh": "156万平方公里", "en": "1.56 million km²"},
+        "currency": {"zh": "图格里克(MNT)", "en": "Tugrik (MNT)"},
+        "language": {"zh": "蒙古语", "en": "Mongolian"},
+        "gdp": {"zh": "约150亿美元", "en": "Approx. $15 billion"}
+      },
+      "description": {
+        "zh": "蒙古国,简称蒙古,位于东亚北部,是世界第二大内陆国。蒙古以其辽阔的草原、游牧文化和成吉思汗的历史遗产而闻名。",
+        "en": "Mongolia is located in northern East Asia, the world's second-largest landlocked country. Mongolia is famous for its vast grasslands, nomadic culture, and the historical legacy of Genghis Khan."
+      },
+      "funFacts": {
+        "zh": [
+          "蒙古是世界上人口密度最低的国家",
+          "蒙古拥有世界上最后的游牧民族之一",
+          "成吉思汗建立了历史上最大的陆地帝国"
+        ],
+        "en": [
+          "Mongolia has the lowest population density in the world",
+          "Mongolia is home to one of the world's last nomadic peoples",
+          "Genghis Khan established the largest contiguous land empire in history"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/蒙古国",
+        "en": "https://en.wikipedia.org/wiki/Mongolia"
+      }
+    },
+    {
+      "code": "np",
+      "basic": {
+        "capital": {"zh": "加德满都", "en": "Kathmandu"},
+        "population": {"zh": "约3000万", "en": "Approx. 30 million"},
+        "area": {"zh": "14.7万平方公里", "en": "147,000 km²"},
+        "currency": {"zh": "尼泊尔卢比(NPR)", "en": "Nepalese Rupee (NPR)"},
+        "language": {"zh": "尼泊尔语", "en": "Nepali"},
+        "gdp": {"zh": "约360亿美元", "en": "Approx. $36 billion"}
+      },
+      "description": {
+        "zh": "尼泊尔联邦民主共和国,简称尼泊尔,位于喜马拉雅山脉南麓,是世界上唯一一个非矩形国旗的国家。尼泊尔以其雪山、佛教文化和登山运动而闻名。",
+        "en": "The Federal Democratic Republic of Nepal is located at the southern foot of the Himalayas, the only country with a non-rectangular flag. Nepal is famous for its snow-capped mountains, Buddhist culture, and mountaineering."
+      },
+      "funFacts": {
+        "zh": [
+          "尼泊尔国旗是世界上唯一的非矩形国旗",
+          "珠穆朗玛峰位于尼泊尔和中国边境",
+          "尼泊尔是佛教创始人释迦牟尼的诞生地"
+        ],
+        "en": [
+          "Nepal's flag is the world's only non-rectangular national flag",
+          "Mount Everest is located on the Nepal-China border",
+          "Nepal is the birthplace of Gautama Buddha, the founder of Buddhism"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/尼泊尔",
+        "en": "https://en.wikipedia.org/wiki/Nepal"
+      }
+    },
+    {
+      "code": "lk",
+      "basic": {
+        "capital": {"zh": "科伦坡", "en": "Colombo"},
+        "population": {"zh": "约2200万", "en": "Approx. 22 million"},
+        "area": {"zh": "6.56万平方公里", "en": "65,600 km²"},
+        "currency": {"zh": "斯里兰卡卢比(LKR)", "en": "Sri Lankan Rupee (LKR)"},
+        "language": {"zh": "僧伽罗语、泰米尔语", "en": "Sinhala, Tamil"},
+        "gdp": {"zh": "约840亿美元", "en": "Approx. $84 billion"}
+      },
+      "description": {
+        "zh": "斯里兰卡民主社会主义共和国,简称斯里兰卡,是位于印度洋的岛国。斯里兰卡以其美丽的海滩、茶叶种植园和丰富的历史文化遗产而闻名。",
+        "en": "The Democratic Socialist Republic of Sri Lanka is an island country in the Indian Ocean. Sri Lanka is famous for its beautiful beaches, tea plantations, and rich historical and cultural heritage."
+      },
+      "funFacts": {
+        "zh": [
+          "斯里兰卡国旗上的狮子代表僧伽罗人,叶子代表少数民族",
+          "斯里兰卡是世界上最大的茶叶出口国之一",
+          "斯里兰卡拥有8处联合国教科文组织世界遗产"
+        ],
+        "en": [
+          "The lion on Sri Lanka's flag represents the Sinhalese people, and the leaves represent minorities",
+          "Sri Lanka is one of the world's largest tea exporters",
+          "Sri Lanka has 8 UNESCO World Heritage Sites"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/斯里兰卡",
+        "en": "https://en.wikipedia.org/wiki/Sri_Lanka"
+      }
+    },
+    {
+      "code": "kz",
+      "basic": {
+        "capital": {"zh": "阿斯塔纳", "en": "Astana"},
+        "population": {"zh": "约1900万", "en": "Approx. 19 million"},
+        "area": {"zh": "272万平方公里", "en": "2.72 million km²"},
+        "currency": {"zh": "坚戈(KZT)", "en": "Tenge (KZT)"},
+        "language": {"zh": "哈萨克语、俄语", "en": "Kazakh, Russian"},
+        "gdp": {"zh": "约2200亿美元", "en": "Approx. $220 billion"}
+      },
+      "description": {
+        "zh": "哈萨克斯坦共和国,简称哈萨克斯坦,是世界上最大的内陆国,横跨欧亚两洲。哈萨克斯坦拥有丰富的石油和矿产资源,以及广袤的草原和沙漠。",
+        "en": "The Republic of Kazakhstan is the world's largest landlocked country, spanning Europe and Asia. Kazakhstan has abundant oil and mineral resources, as well as vast grasslands and deserts."
+      },
+      "funFacts": {
+        "zh": [
+          "哈萨克斯坦是世界上最大的内陆国",
+          "哈萨克斯坦拥有拜科努尔航天发射场,是世界上第一个航天发射场",
+          "哈萨克斯坦的苹果被认为是世界上所有苹果的祖先"
+        ],
+        "en": [
+          "Kazakhstan is the world's largest landlocked country",
+          "Kazakhstan hosts the Baikonur Cosmodrome, the world's first spaceport",
+          "Kazakhstan's apples are believed to be the ancestors of all apples worldwide"
+        ]
+      },
+      "wikiUrl": {
+        "zh": "https://zh.wikipedia.org/wiki/哈萨克斯坦",
+        "en": "https://en.wikipedia.org/wiki/Kazakhstan"
+      }
     }
   ]
 }
