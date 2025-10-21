@@ -27,6 +27,13 @@
         "features": "特征分类",
         "continents": "大洲分类"
       },
+      "philosophy": {
+        "title": "认识世界，从认识国旗开始",
+        "paragraph1": "在信息交织的全球化时代，\"认识世界\"似乎是一个庞大而遥远的命题，然而我们往往忽略了，最好的起点就藏在那些飘扬的旗帜里。一面<span class=\"philosophy-highlight\">国旗</span>，不只是一块布、几种颜色或几个图案，它是一个国家浓缩的符号，也是一把轻盈而深刻的钥匙，悄然为我们打开一扇通往广阔天地的大门。",
+        "paragraph2": "这一切，往往始于一个最简单的问题：\"为什么这面旗长这样？\"——从颜色到图案，从历史传说到文化象征，问题一个接一个，如锁链般自然延展：这个国家在哪里？他们说什么语言？有过怎样的英雄与传说？山川何名？饮食何味？节日何欢？这些由一面旗引发的追问，悄然形成了一条<span class=\"philosophy-highlight\">由点及面、由表及里、由具体到抽象</span>的认知路径。",
+        "paragraph3": "如果世界是一座庞大复杂的信息库，国旗，就像贴在每扇国门前的<span class=\"philosophy-highlight\">\"二维码\"</span>。扫描它，便能链接并加载出一个国家的地理、历史、语言、文化与生活。它让我们从符号走进内涵，从旗帜看见山河，从图案读懂史诗。",
+        "paragraph4": "更重要的是，在这一过程中，我们不仅认识了世界，更学会了<span class=\"philosophy-highlight\">如何理解世界</span>。我们看见不同国家旗帜背后的共性与个性，理解文化之间的差异与尊重，并在这种理解中，逐渐构建起一种真正的<span class=\"philosophy-highlight\">全球视野</span>——既懂自己，也懂他人；既知局部，也知整体。这正是人类命运共同体时代所呼唤的认知方式：不固守一隅，不偏见一方，而是以开放之心，从微观走向宏观。"
+      },
       "footer": [
         "🌟 从常见国家到冷门地区，从基础认知到专业掌握",
         "📚 系统化学习路径，让你成为真正的国旗专家"
@@ -317,7 +324,7 @@
       "features": {
         "browse": {
           "title": "Flag Browser",
-          "description": "Explore 200 countries and territories flags"
+          "description": "Explore 193 countries and territories flags"
         },
         "memory": {
           "title": "Memory Training",
@@ -333,6 +340,13 @@
         "countries": "Countries",
         "features": "Features",
         "continents": "Continents"
+      },
+      "philosophy": {
+        "title": "Understanding the World, Starting with National Flags",
+        "paragraph1": "In this interconnected era of globalization, \"understanding the world\" seems like a vast and distant proposition. Yet we often overlook the fact that the best starting point lies hidden in those fluttering flags. A <span class=\"philosophy-highlight\">national flag</span> is more than just a piece of cloth, a few colors, or some patterns—it is a condensed symbol of a nation, and also a lightweight yet profound key that quietly opens a door to a vast world for us.",
+        "paragraph2": "It all often begins with a simple question: \"Why does this flag look like this?\"—from colors to patterns, from historical legends to cultural symbols, questions follow one after another, naturally extending like a chain: Where is this country? What language do they speak? What heroes and legends have they had? What are their mountains and rivers called? What are their foods like? How do they celebrate their festivals? These inquiries sparked by a single flag quietly form a cognitive path that <span class=\"philosophy-highlight\">spans from point to surface, from exterior to interior, from concrete to abstract</span>.",
+        "paragraph3": "If the world is a vast and complex information database, then national flags are like <span class=\"philosophy-highlight\">\"QR codes\"</span> posted on every national door. Scanning them allows us to link and load a country's geography, history, language, culture, and life. They let us move from symbols to substance, from flags to landscapes, from patterns to epic stories.",
+        "paragraph4": "More importantly, in this process, we not only understand the world, but also learn <span class=\"philosophy-highlight\">how to understand the world</span>. We see the commonalities and individualities behind different countries' flags, understand cultural differences and respect, and through this understanding, gradually build a true <span class=\"philosophy-highlight\">global perspective</span>—understanding both ourselves and others, knowing both parts and the whole. This is precisely the cognitive approach called for in the era of a community with a shared future for mankind: not confining oneself to one corner, not being biased toward one side, but moving from micro to macro with an open mind."
       },
       "footer": [
         "🌟 From common nations to rare territories, from basic to expert knowledge",

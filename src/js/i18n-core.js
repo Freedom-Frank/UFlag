@@ -272,7 +272,12 @@ class UnifiedI18n {
             const key = element.getAttribute('data-i18n');
             const translation = this.t(key);
             if (translation && translation !== key) {
-                element.textContent = translation;
+                // 检查是否是需要HTML渲染的理念阐释内容
+                if (key.startsWith('welcome.philosophy.') || element.classList.contains('philosophy-paragraph') || element.classList.contains('philosophy-title')) {
+                    element.innerHTML = translation;
+                } else {
+                    element.textContent = translation;
+                }
             }
         });
 
