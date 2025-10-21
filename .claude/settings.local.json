@@ -45,7 +45,9 @@
       "Bash(npx -y http-server -p 8000 -c-1)",
       "Bash(start http://localhost:8000)",
       "Bash(tree -L 3 -I 'node_modules|.git' --dirsfirst)",
-      "Bash(git remote:*)"
+      "Bash(git remote:*)",
+      "Bash(start http://localhost:8000/src/pages/homepage.html)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []

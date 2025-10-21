@@ -539,6 +539,98 @@
         <div class="popup-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999;"></div>
     </template>
 
+    <!-- 国家详情模态窗口 -->
+    <div id="country-detail-modal" class="country-modal" style="display: none;">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+
+            <div class="modal-header">
+                <img class="modal-flag" src="" alt="">
+                <div class="modal-title">
+                    <h2 class="modal-country-name-primary"></h2>
+                    <p class="modal-country-name-secondary"></p>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <!-- 基本信息卡片 -->
+                <div class="info-section">
+                    <h3 class="section-title" data-i18n="countryDetail.basicInfo">基本信息</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-icon">🏛️</span>
+                            <div class="info-content">
+                                <div class="info-label" data-i18n="countryDetail.capital">首都</div>
+                                <div class="info-value" data-field="capital">-</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">👥</span>
+                            <div class="info-content">
+                                <div class="info-label" data-i18n="countryDetail.population">人口</div>
+                                <div class="info-value" data-field="population">-</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">📏</span>
+                            <div class="info-content">
+                                <div class="info-label" data-i18n="countryDetail.area">面积</div>
+                                <div class="info-value" data-field="area">-</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">💰</span>
+                            <div class="info-content">
+                                <div class="info-label" data-i18n="countryDetail.currency">货币</div>
+                                <div class="info-value" data-field="currency">-</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">🗣️</span>
+                            <div class="info-content">
+                                <div class="info-label" data-i18n="countryDetail.language">语言</div>
+                                <div class="info-value" data-field="language">-</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">📊</span>
+                            <div class="info-content">
+                                <div class="info-label" data-i18n="countryDetail.gdp">GDP</div>
+                                <div class="info-value" data-field="gdp">-</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 国家简介 -->
+                <div class="info-section">
+                    <h3 class="section-title" data-i18n="countryDetail.introduction">国家简介</h3>
+                    <p class="country-description">-</p>
+                </div>
+
+                <!-- 有趣的事实 -->
+                <div class="info-section fun-facts-section">
+                    <h3 class="section-title" data-i18n="countryDetail.funFacts">有趣的事实</h3>
+                    <ul class="fun-facts-list"></ul>
+                </div>
+
+                <!-- 了解更多按钮 -->
+                <div class="info-section">
+                    <button class="learn-more-btn">
+                        <span data-i18n="countryDetail.learnMore">📖 从维基百科了解更多</span>
+                    </button>
+                    <div class="wiki-content" style="display: none;">
+                        <div class="loading-spinner">
+                            <div class="spinner"></div>
+                            <p data-i18n="countryDetail.loading">正在加载详细信息...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- 统一翻译核心模块 -->
     <script src="../js/i18n-core.js"></script>
     <!-- 主应用脚本 -->
