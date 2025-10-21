@@ -33,7 +33,7 @@
 ## 项目结构
 
 ```
-FlagLore/
+UFlag/
 ├── index.html                 # 入口着陆页
 ├── src/                       # 源代码目录
 │   ├── pages/                 # HTML 页面

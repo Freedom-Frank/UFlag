@@ -44,7 +44,8 @@
       "Bash(mv world_simple.geojson assets/geo/)",
       "Bash(npx -y http-server -p 8000 -c-1)",
       "Bash(start http://localhost:8000)",
-      "Bash(tree -L 3 -I 'node_modules|.git' --dirsfirst)"
+      "Bash(tree -L 3 -I 'node_modules|.git' --dirsfirst)",
+      "Bash(git remote:*)"
     ],
     "deny": [],
     "ask": []
