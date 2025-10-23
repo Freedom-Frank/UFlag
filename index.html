@@ -235,8 +235,8 @@
         }
 
         .philosophy-paragraph {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.92);
+            font-size: 1.08rem;
             line-height: 2;
             margin-bottom: 20px;
             text-indent: 2em;
@@ -248,18 +248,17 @@
             margin-bottom: 0;
         }
 
-        /* 首段特殊样式 */
-        .philosophy-paragraph:first-child::first-line {
-            font-size: 1.15rem;
-            font-weight: normal;
-            color: white;
-        }
-
-        /* 关键词高亮 */
+        /* 关键词高亮 - 统一字体大小，使用醒目样式突出重点 */
         .philosophy-highlight {
-            color: white;
-            font-weight: normal;
-            text-shadow: none;
+            background: linear-gradient(135deg, #E8A848 0%, #E28031 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            font-size: 1.08rem;
+            text-shadow: 0 2px 8px rgba(232, 168, 72, 0.3);
+            padding: 0 2px;
+            position: relative;
         }
 
         /* 进入按钮 */
@@ -410,8 +409,12 @@
             }
 
             .philosophy-paragraph {
-                font-size: 1rem;
+                font-size: 1.05rem;
                 line-height: 1.9;
+            }
+
+            .philosophy-highlight {
+                font-size: 1.05rem;
             }
 
             .enter-button {
@@ -454,9 +457,13 @@
             }
 
             .philosophy-paragraph {
-                font-size: 0.95rem;
+                font-size: 1rem;
                 line-height: 1.8;
                 text-indent: 1.5em;
+            }
+
+            .philosophy-highlight {
+                font-size: 1rem;
             }
 
             .enter-button {
