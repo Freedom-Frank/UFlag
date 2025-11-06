@@ -7,12 +7,35 @@ export default defineConfig({
     {
       name: 'copy-static-assets',
       closeBundle() {
+        const fs = require('fs');
+
         // 复制 data 目录到 dist
         cpSync('data', 'dist/data', { recursive: true, force: true });
         // 复制 assets 目录到 dist（但排除已经被 Vite 处理的文件）
         cpSync('assets/images', 'dist/assets/images', { recursive: true, force: true });
         cpSync('assets/geo', 'dist/assets/geo', { recursive: true, force: true });
         console.log('✅ 静态资源已复制到 dist 目录');
+
+        // 移动 homepage.html 到 dist 根目录并修正路径
+        const homepageSrc = 'dist/src/pages/homepage.html';
+        const homepageDest = 'dist/homepage.html';
+
+        if (fs.existsSync(homepageSrc)) {
+          let content = fs.readFileSync(homepageSrc, 'utf-8');
+          // 修正资源路径：从 ../../assets/ 改为 ./assets/
+          content = content.replace(/\.\.\/\.\.\/assets\//g, './assets/');
+          fs.writeFileSync(homepageDest, content);
+          console.log('✅ homepage.html 已移动到 dist 根目录并修正路径');
+
+          // 删除旧的目录结构
+          try {
+            fs.rmSync('dist/src', { recursive: true, force: true });
+            console.log('✅ 已清理临时目录');
+          } catch (e: unknown) {
+            const error = e as Error;
+            console.log('⚠️  清理临时目录失败:', error.message || e);
+          }
+        }
       }
     }
   ],
