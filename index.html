@@ -568,6 +568,19 @@
         async function loadI18nData() {
             try {
                 console.log('Loading i18n data for index.html...');
+
+                // 等待 i18n 模块加载完成
+                let retries = 0;
+                while (!window.i18n && retries < 50) {
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                    retries++;
+                }
+
+                if (!window.i18n) {
+                    console.error('i18n module failed to load');
+                    return;
+                }
+
                 const response = await fetch('data/i18n/i18n.json?t=' + Date.now());
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -576,19 +589,19 @@
                 console.log('i18n data loaded successfully for index.html');
 
                 // 设置翻译数据到 i18n 系统
-                i18n.setTranslations(translations);
+                window.i18n.setTranslations(translations);
 
                 // 恢复语言偏好
                 const savedLang = localStorage.getItem('preferredLanguage') ||
                                 sessionStorage.getItem('currentLanguage') ||
                                 'zh';
                 console.log(`Setting language to: ${savedLang}`);
-                i18n.setLanguage(savedLang);
+                window.i18n.setLanguage(savedLang);
 
                 // 订阅语言变化，自动更新界面
-                i18n.subscribe((newLang) => {
+                window.i18n.subscribe((newLang) => {
                     console.log(`Language changed to: ${newLang}`);
-                    i18n.updateDOM();
+                    window.i18n.updateDOM();
 
                     // 更新语言按钮状态
                     document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -597,11 +610,11 @@
                 });
 
                 // 立即执行一次更新
-                i18n.updateDOM();
+                window.i18n.updateDOM();
 
                 // 初始化语言按钮状态
                 document.querySelectorAll('.lang-btn').forEach(btn => {
-                    btn.classList.toggle('active', btn.getAttribute('data-lang') === i18n.getCurrentLanguage());
+                    btn.classList.toggle('active', btn.getAttribute('data-lang') === window.i18n.getCurrentLanguage());
                 });
 
                 console.log('Modern i18n system initialized successfully for index.html');
@@ -615,8 +628,14 @@
             if (e.target.classList.contains('lang-btn')) {
                 const lang = e.target.getAttribute('data-lang');
 
+                // 安全检查 i18n 对象
+                if (!window.i18n) {
+                    console.warn('i18n not loaded yet');
+                    return;
+                }
+
                 // 如果语言没有变化，直接返回
-                if (i18n.getCurrentLanguage() === lang) {
+                if (window.i18n.getCurrentLanguage() === lang) {
                     return;
                 }
 
@@ -627,7 +646,7 @@
                 }
 
                 // 使用新的 i18n 系统切换语言
-                if (i18n.setLanguage(lang)) {
+                if (window.i18n.setLanguage(lang)) {
                     console.log(`Language switched to: ${lang}`);
 
                     // 移除切换动画
@@ -668,8 +687,10 @@
 
             // 延迟跳转，添加过渡效果
             setTimeout(() => {
-                // 传递当前语言到主页面
-                const currentLang = i18n.getCurrentLanguage();
+                // 传递当前语言到主页面（安全检查 i18n 对象）
+                const currentLang = (window.i18n && window.i18n.getCurrentLanguage)
+                    ? window.i18n.getCurrentLanguage()
+                    : (localStorage.getItem('preferredLanguage') || 'zh');
                 localStorage.setItem('preferredLanguage', currentLang);
                 sessionStorage.setItem('currentLanguage', currentLang);
                 console.log(`Passing language "${currentLang}" to homepage.html`);
