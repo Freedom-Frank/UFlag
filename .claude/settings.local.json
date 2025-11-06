@@ -48,7 +48,21 @@
       "Bash(git remote:*)",
       "Bash(start http://localhost:8000/src/pages/homepage.html)",
       "Bash(cat:*)",
-      "Bash(findstr:*)"
+      "Bash(findstr:*)",
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "Bash(npm config set:*)",
+      "Bash(npx husky init)",
+      "Bash(npm run dev:*)",
+      "Bash(npm run build)",
+      "Bash(mkdir:*)",
+      "Bash(\"E:\\Users\\Meng\\Projects\\VScodeProjects\\UFlag\\src\\modules\\quiz.ts\")",
+      "Bash(\"E:\\Users\\Meng\\Projects\\VScodeProjects\\UFlag\\src\\modules\\country-detail.ts\")",
+      "Bash(\"E:\\Users\\Meng\\Projects\\VScodeProjects\\UFlag\\src\\modules\\stats.ts\")",
+      "Bash(\"E:\\Users\\Meng\\Projects\\VScodeProjects\\UFlag\\src\\app.ts\")",
+      "Bash(npx tsc --noEmit)",
+      "Bash(npm run lint:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []
