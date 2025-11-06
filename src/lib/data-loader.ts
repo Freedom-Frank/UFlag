@@ -44,7 +44,7 @@ export async function loadTranslations(): Promise<Translations> {
  */
 export async function loadCountryList(filename: string): Promise<string[]> {
   try {
-    const response = await fetch(`../../data/lists/${filename}`);
+    const response = await fetch(`./data/lists/${filename}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -64,7 +64,7 @@ export async function loadCountryList(filename: string): Promise<string[]> {
  */
 export async function loadGeoJSON(filename: string): Promise<any> {
   try {
-    const response = await fetch(`../../assets/geo/${filename}`);
+    const response = await fetch(`./assets/geo/${filename}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -92,7 +92,7 @@ export function preloadImage(src: string): Promise<HTMLImageElement> {
  */
 export async function preloadFlags(countryCodes: string[]): Promise<void> {
   const imagePromises = countryCodes.map((code) =>
-    preloadImage(`../../assets/images/flags/${code}.png`).catch((error) => {
+    preloadImage(`./assets/images/flags/${code}.png`).catch((error) => {
       console.warn(`Failed to preload flag for ${code}:`, error);
     })
   );
@@ -109,7 +109,7 @@ export async function preloadFlags(countryCodes: string[]): Promise<void> {
  * 获取国旗图片URL
  */
 export function getFlagImageUrl(countryCode: string): string {
-  return `../../assets/images/flags/${countryCode}.png`;
+  return `./assets/images/flags/${countryCode}.png`;
 }
 
 /**

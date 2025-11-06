@@ -176,10 +176,10 @@ export const DEFAULT_DIFFICULTY = 'easy';
 export const QUIZ_COUNT_OPTIONS = [10, 20, 30, 50] as const;
 
 /** 图片资源路径前缀 */
-export const FLAG_IMAGE_PATH = '../../assets/images/flags/';
+export const FLAG_IMAGE_PATH = './assets/images/flags/';
 
 /** 数据文件路径 */
 export const DATA_PATHS = {
-  countries: '../../data/countries/countries_un.json',
-  i18n: '../../data/i18n/i18n.json',
+  countries: './data/countries/countries_un.json',
+  i18n: './data/i18n/i18n.json',
 } as const;
