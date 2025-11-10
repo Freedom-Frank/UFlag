@@ -209,8 +209,13 @@ class App {
   private onSectionHide(section: Section): void {
     switch (section) {
       case 'globe':
-        // 暂停 globe 渲染以节省资源
+        // 暂停 globe 渲染并清理弹窗
         globeModule.pause();
+        break;
+
+      case 'memory':
+        // 清理记忆训练模块的动态元素
+        memoryModule.cleanup();
         break;
 
       // 其他模块目前不需要特殊清理

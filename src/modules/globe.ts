@@ -1094,6 +1094,13 @@ export class GlobeModule {
    */
   pause(): void {
     this.isAnimating = false;
+
+    // 清理可能存在的弹窗
+    const popup = document.querySelector('.globe-flag-popup');
+    const overlay = document.querySelector('.popup-overlay');
+    if (popup) popup.remove();
+    if (overlay) overlay.remove();
+
     console.log('⏸️ Globe渲染已暂停');
   }
 

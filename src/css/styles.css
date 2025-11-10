@@ -200,6 +200,19 @@ nav {
   /* box-shadow: var(--shadow-elevated); */
   min-height: 600px;
   padding: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 确保各个模块 section 完全独立且不互相干扰 */
+#browse-section,
+#memory-section,
+#quiz-section,
+#globe-section,
+#stats-section {
+  width: 100%;
+  position: relative;
+  min-height: 400px;
 }
 
 /* Filter Section - Institutional Layout */

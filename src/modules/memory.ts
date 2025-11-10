@@ -1509,6 +1509,23 @@ class MemoryModule {
     }
     return shuffled;
   }
+
+  /**
+   * 清理模块（切换到其他模块时调用）
+   */
+  cleanup(): void {
+    // 清理可能存在的消息提示
+    const messages = document.querySelectorAll('.message-popup');
+    messages.forEach((msg) => msg.remove());
+
+    // 清理可能存在的确认对话框
+    const dialogs = document.querySelectorAll('[style*="z-index: 10000"]');
+    dialogs.forEach((dialog) => {
+      if (dialog.textContent?.includes('确认') || dialog.textContent?.includes('取消')) {
+        dialog.remove();
+      }
+    });
+  }
 }
 
 // 创建单例实例
