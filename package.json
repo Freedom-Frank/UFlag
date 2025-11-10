@@ -1,8 +1,8 @@
 {
-  "name": "uflag",
+  "name": "flagstar",
   "version": "1.0.0",
   "type": "module",
-  "description": "> 认识世界，从认识国旗开始",
+  "description": "FlagStar 国旗之星 - 认识世界，从认识国旗开始 | Developed by UFlag team",
   "main": "index.js",
   "scripts": {
     "dev": "vite",

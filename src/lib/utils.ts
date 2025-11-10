@@ -1,5 +1,6 @@
 /**
- * UFlag 工具函数集合
+ * FlagStar 国旗之星 - 工具函数集合
+ * Developed by UFlag team
  */
 
 import type { Country } from '../types';

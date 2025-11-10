@@ -1,6 +1,8 @@
-# UFlag 开发文档
+# FlagStar 开发文档
 
-欢迎来到 UFlag 项目的开发文档！
+欢迎来到 FlagStar（国旗之星）项目的开发文档！
+
+**开发团队**: UFlag team
 
 ## 📚 文档索引
 
@@ -247,7 +249,7 @@ document.querySelectorAll('.my-module-element')
 
 - [项目概览 (CLAUDE.md)](../CLAUDE.md)
 - [模块独立性最佳实践 (MODULE_ISOLATION.md)](MODULE_ISOLATION.md)
-- [提交记录](https://github.com/Freedom-Frank/UFlag/commits)
+- [提交记录](https://github.com/Freedom-Frank/FlagStar/commits)
 
 ## 📞 获取帮助
 

@@ -1,6 +1,8 @@
 # 如何使用 TypeScript 模块
 
-本文档说明如何在 UFlag 项目中使用已迁移的 TypeScript 模块。
+本文档说明如何在 FlagStar（国旗之星）项目中使用已迁移的 TypeScript 模块。
+
+**开发团队**: UFlag team
 
 ## 项目结构
 

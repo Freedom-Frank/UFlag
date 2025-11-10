@@ -2,7 +2,9 @@
 
 ## 概述
 
-本文档记录 UFlag 项目从 JavaScript 到 TypeScript 的迁移进度。
+本文档记录 FlagStar（国旗之星）项目从 JavaScript 到 TypeScript 的迁移进度。
+
+**开发团队**: UFlag team
 
 ## 迁移策略
 
