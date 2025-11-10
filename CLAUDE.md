@@ -149,3 +149,74 @@ UFlag/
 - 客户端数据处理
 - 图片延迟加载
 - 本地存储用户偏好设置
+
+## 模块独立性与隔离（重要！）
+
+**必读文档**: [`docs/MODULE_ISOLATION.md`](docs/MODULE_ISOLATION.md)
+
+### 核心要求
+
+在开发或修改任何模块时，**必须遵循**以下原则：
+
+#### 1. 防止重复初始化
+```typescript
+// ✅ 每个模块都必须有初始化标志
+let moduleInitialized = false;
+
+export function initModule(): void {
+  if (moduleInitialized) return;
+
+  // 绑定事件监听器...
+
+  moduleInitialized = true;
+}
+```
+
+#### 2. 实现清理方法
+如果模块会创建动态元素（弹窗、消息、页面等），**必须**实现 `cleanup()` 方法：
+
+```typescript
+cleanup(): void {
+  // 清理所有动态创建的元素
+  const popup = document.querySelector('.my-popup');
+  if (popup) popup.remove();
+
+  // 隐藏动态页面
+  const dynamicSection = document.getElementById('dynamic-section');
+  if (dynamicSection) dynamicSection.style.display = 'none';
+}
+```
+
+#### 3. 在 App 中注册清理
+在 `src/app.ts` 的 `onSectionHide()` 方法中调用模块的清理方法：
+
+```typescript
+private onSectionHide(section: Section): void {
+  switch (section) {
+    case 'my-module':
+      myModule.cleanup();
+      break;
+  }
+}
+```
+
+### 检查清单（新建/修改模块时）
+
+- [ ] 添加初始化标志，防止重复初始化
+- [ ] 事件监听器只在 `initModule()` 中绑定一次
+- [ ] 动态元素优先在模块 section 内创建
+- [ ] 如果添加到 `document.body` 或 `.content`，必须实现 `cleanup()`
+- [ ] 在 `app.ts` 中注册清理方法
+- [ ] 测试模块切换，确保无残留内容
+
+### 常见问题
+
+**问题**：模块切换后，上一个模块内容仍然显示
+**原因**：动态元素未清理
+**解决**：参考 [`docs/MODULE_ISOLATION.md`](docs/MODULE_ISOLATION.md) 的"常见问题排查"章节
+
+### 相关提交记录
+
+- `a54ff93` - 确保各模块相互独立，防止干扰
+- `60e1a8a` - 修复模块切换后上一个模块仍显示的问题
+- `9e9959b` - 修复记忆训练的学习页面出现在其他模块下方的问题
