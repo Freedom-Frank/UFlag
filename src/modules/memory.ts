@@ -1525,6 +1525,12 @@ class MemoryModule {
         dialog.remove();
       }
     });
+
+    // 隐藏学习页面（study-section 被添加到了 .content 容器）
+    const studySection = document.getElementById('study-section');
+    if (studySection) {
+      studySection.style.display = 'none';
+    }
   }
 }
 
