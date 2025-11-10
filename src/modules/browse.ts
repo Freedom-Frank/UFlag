@@ -216,10 +216,18 @@ function showCountryDetail(country: Country): void {
   countryDetailModule.showCountryDetail(country);
 }
 
+// 初始化标志
+let browseModuleInitialized = false;
+
 /**
  * 初始化浏览模块的事件监听
  */
 export function initBrowseModule(): void {
+  // 防止重复初始化
+  if (browseModuleInitialized) {
+    return;
+  }
+
   // 搜索输入
   const searchInput = document.getElementById('searchInput') as HTMLInputElement;
   if (searchInput) {
@@ -293,6 +301,7 @@ export function initBrowseModule(): void {
   // 应用初始筛选（使用HTML中设置的默认值）
   applyFilters();
 
+  browseModuleInitialized = true;
   console.log('✅ Browse module initialized');
 }
 

@@ -362,7 +362,15 @@ export const countryDetailModule = new CountryDetailModule();
 /**
  * 初始化国家详情模块
  */
+// 初始化标志
+let countryDetailModuleInitialized = false;
+
 export function initCountryDetailModule(): void {
+  // 防止重复初始化
+  if (countryDetailModuleInitialized) {
+    return;
+  }
+
   const modal = document.getElementById('country-detail-modal');
   if (!modal) {
     console.warn('国家详情模态窗口元素未找到');
@@ -391,6 +399,7 @@ export function initCountryDetailModule(): void {
   // 加载本地存储的缓存
   countryDetailModule.loadWikiFromLocalStorage();
 
+  countryDetailModuleInitialized = true;
   console.log('✅ 国家详情模态窗口初始化完成');
 }
 

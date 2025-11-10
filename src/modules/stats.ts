@@ -309,10 +309,18 @@ class StatsModule {
 // 创建单例实例
 export const statsModule = new StatsModule();
 
+// 初始化标志
+let statsModuleInitialized = false;
+
 /**
  * 初始化统计模块
  */
 export function initStatsModule(): void {
+  // 防止重复初始化
+  if (statsModuleInitialized) {
+    return;
+  }
+
   // 重置按钮
   const resetBtn = document.getElementById('reset-stats-btn');
   if (resetBtn) {
@@ -339,6 +347,7 @@ export function initStatsModule(): void {
     });
   }
 
+  statsModuleInitialized = true;
   console.log('✅ Stats module initialized');
 }
 

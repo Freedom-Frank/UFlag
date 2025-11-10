@@ -179,6 +179,9 @@ class App {
    * 显示指定区域
    */
   showSection(section: Section): void {
+    // 在切换前清理当前模块
+    this.onSectionHide(this.currentSection);
+
     // 隐藏所有区域
     const sections = ['browse', 'quiz', 'memory', 'globe', 'stats'];
     sections.forEach((s) => {
@@ -198,6 +201,22 @@ class App {
     this.onSectionShow(section);
 
     console.log(`📍 Switched to section: ${section}`);
+  }
+
+  /**
+   * 当区域隐藏时触发（清理资源）
+   */
+  private onSectionHide(section: Section): void {
+    switch (section) {
+      case 'globe':
+        // 暂停 globe 渲染以节省资源
+        globeModule.pause();
+        break;
+
+      // 其他模块目前不需要特殊清理
+      default:
+        break;
+    }
   }
 
   /**
@@ -222,10 +241,16 @@ class App {
         break;
 
       case 'globe':
-        // 3D地球仪：初始化地球仪
-        globeModule.init(getAllCountries()).catch((error) => {
-          console.error('Failed to initialize globe module:', error);
-        });
+        // 3D地球仪：初始化或恢复地球仪
+        globeModule
+          .init(getAllCountries())
+          .then(() => {
+            // 初始化成功后恢复渲染
+            globeModule.resume();
+          })
+          .catch((error) => {
+            console.error('Failed to initialize globe module:', error);
+          });
         break;
 
       case 'quiz':

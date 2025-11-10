@@ -1514,11 +1514,20 @@ class MemoryModule {
 // 创建单例实例
 export const memoryModule = new MemoryModule();
 
+// 初始化标志
+let memoryModuleInitialized = false;
+
 /**
  * 初始化记忆训练模块
  */
 export function initMemoryModule(): void {
+  // 防止重复初始化
+  if (memoryModuleInitialized) {
+    return;
+  }
+
   memoryModule.init();
+  memoryModuleInitialized = true;
   console.log('✅ Memory module initialized');
 }
 

@@ -132,6 +132,7 @@ export class GlobeModule {
   private initialized = false;
   private autoRotateEnabled = true;
   private isDragging = false;
+  private isAnimating = false;
 
   // 惯性旋转函数
   private applyInertia: (() => void) | null = null;
@@ -214,6 +215,7 @@ export class GlobeModule {
       this.addEventListeners();
 
       // 开始渲染循环
+      this.isAnimating = true;
       this.animate();
 
       // 隐藏加载状态
@@ -1051,7 +1053,7 @@ export class GlobeModule {
    * 地球仪渲染循环
    */
   private animate = (): void => {
-    if (!this.renderer || !this.scene || !this.camera) return;
+    if (!this.renderer || !this.scene || !this.camera || !this.isAnimating) return;
 
     requestAnimationFrame(this.animate);
 
@@ -1086,6 +1088,24 @@ export class GlobeModule {
     // 渲染场景
     this.renderer.render(this.scene, this.camera);
   };
+
+  /**
+   * 暂停渲染（切换到其他模块时调用）
+   */
+  pause(): void {
+    this.isAnimating = false;
+    console.log('⏸️ Globe渲染已暂停');
+  }
+
+  /**
+   * 恢复渲染（切换回globe模块时调用）
+   */
+  resume(): void {
+    if (!this.initialized) return;
+    this.isAnimating = true;
+    this.animate();
+    console.log('▶️ Globe渲染已恢复');
+  }
 
   /**
    * 处理窗口大小变化

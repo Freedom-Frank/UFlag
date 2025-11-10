@@ -566,10 +566,18 @@ class QuizModule {
 // 创建单例实例
 export const quizModule = new QuizModule();
 
+// 初始化标志
+let quizModuleInitialized = false;
+
 /**
  * 初始化测验模块的事件监听
  */
 export function initQuizModule(): void {
+  // 防止重复初始化
+  if (quizModuleInitialized) {
+    return;
+  }
+
   // 测验类型选择
   const quizTypeCards = document.querySelectorAll('.quiz-type-card[data-type]');
   const startQuizBtn = document.getElementById('startQuizBtn');
@@ -634,6 +642,7 @@ export function initQuizModule(): void {
     });
   }
 
+  quizModuleInitialized = true;
   console.log('✅ Quiz module initialized');
 }
 
