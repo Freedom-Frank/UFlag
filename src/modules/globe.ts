@@ -437,7 +437,7 @@ export class GlobeModule {
       try {
         response = await fetch('/assets/geo/world_detailed.geojson');
         if (!response.ok) throw new Error('详细地图数据不存在');
-      } catch (e) {
+      } catch {
         console.log('📍 使用简化地图数据...');
         response = await fetch('/assets/geo/world_simple.geojson');
       }

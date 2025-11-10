@@ -1259,7 +1259,7 @@ class MemoryModule {
   private saveProgress(): void {
     try {
       localStorage.setItem('enhancedMemoryProgress', JSON.stringify(this.progress));
-    } catch (error) {
+    } catch {
       console.warn('记忆进度保存失败');
     }
   }
@@ -1270,7 +1270,7 @@ class MemoryModule {
   private saveCategoryProgress(): void {
     try {
       localStorage.setItem('categoryProgress', JSON.stringify(this.categoryProgress));
-    } catch (error) {
+    } catch {
       console.warn('分类进度保存失败');
     }
   }
@@ -1281,7 +1281,7 @@ class MemoryModule {
   private saveLearningState(): void {
     try {
       localStorage.setItem('learningState', JSON.stringify(this.learningState));
-    } catch (error) {
+    } catch {
       console.warn('学习状态保存失败');
     }
   }
