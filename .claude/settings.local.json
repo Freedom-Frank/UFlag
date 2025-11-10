@@ -62,7 +62,17 @@
       "Bash(\"E:\\Users\\Meng\\Projects\\VScodeProjects\\UFlag\\src\\app.ts\")",
       "Bash(npx tsc --noEmit)",
       "Bash(npm run lint:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git log:*)",
+      "Bash(tree:*)",
+      "Bash(npm run preview:*)",
+      "WebFetch(domain:flaglore.pages.dev)",
+      "mcp__ide__getDiagnostics",
+      "Bash(npm run lint:fix:*)",
+      "Bash(netstat:*)",
+      "Bash(powershell -Command \"Start-Process ''http://localhost:8000''\")",
+      "Bash(git rm:*)"
     ],
     "deny": [],
     "ask": []

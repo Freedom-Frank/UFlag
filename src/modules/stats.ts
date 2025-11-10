@@ -173,9 +173,7 @@ class StatsModule {
     } catch (error) {
       console.error('导出统计数据失败:', error);
       alert(
-        i18n.getCurrentLanguage() === 'en'
-          ? 'Failed to export statistics!'
-          : '导出统计数据失败！'
+        i18n.getCurrentLanguage() === 'en' ? 'Failed to export statistics!' : '导出统计数据失败！'
       );
     }
   }
@@ -232,9 +230,7 @@ class StatsModule {
     icon: string;
   }[] {
     const stats = getStats();
-    const progress: LearningProgress = JSON.parse(
-      localStorage.getItem('learningProgress') || '{}'
-    );
+    const progress: LearningProgress = JSON.parse(localStorage.getItem('learningProgress') || '{}');
     const learnedCount = Object.values(progress).filter((p) => p.learned).length;
 
     return [

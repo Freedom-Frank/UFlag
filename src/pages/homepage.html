@@ -1,636 +1,1054 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title data-i18n="siteName">认识国旗</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/earcut@2.2.4/dist/earcut.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <!-- 语言切换器 -->
-            <div class="language-switcher">
-                <button class="lang-btn active" data-lang="zh">中文</button>
-                <button class="lang-btn" data-lang="en">English</button>
-            </div>
-
-            <h1><span class="emoji">🌍</span> <span data-i18n="siteName">认识国旗</span></h1>
-            <p class="subtitle" data-i18n="siteSubtitle">理解世界，从认识国旗开始✨</p>
-            <div class="sponsor-badge" data-i18n-title="sponsorBadge.title">
-                <img class="sponsor-logo" src="../../assets/images/ASIASIM.png" alt="亚洲仿真联盟支持">
-            </div>
-        </header>
-
-        <nav>
-            <button class="nav-btn active" id="browseBtn" data-i18n="nav.browse">国旗浏览</button>
-            <button class="nav-btn" id="memoryBtn" data-i18n="nav.memory">记忆训练</button>
-            <button class="nav-btn" id="quizBtn" data-i18n="nav.quiz">知识测试</button>
-            <button class="nav-btn" id="globeBtn" data-i18n="nav.globe">3D地球仪</button>
-            <button class="nav-btn" id="statsBtn" data-i18n="nav.stats">测试统计</button>
-        </nav>
-
-        <div class="content">
-            <!-- 浏览模式 -->
-            <div id="browse-section">
-                <div class="search-box">
-                    <input type="text" class="search-input" id="searchInput" data-i18n-placeholder="browse.searchPlaceholder" placeholder="搜索国家名称...">
-                </div>
-
-                <div class="filter-section">
-                    <div class="filter-row">
-                        <div class="filter-group">
-                            <div class="filter-title" data-i18n="browse.dataSource">数据来源</div>
-                            <select class="filter-select" id="dataSourceSelect">
-                                <!-- <option value="all" selected data-i18n="dataSources.all">全部国家和国际组织</option> -->
-                                <option value="un" selected data-i18n="dataSources.un">联合国会员国</option>
-                                <option value="g20" data-i18n="dataSources.g20">二十国集团</option>
-                                <option value="euu" data-i18n="dataSources.eu">欧洲联盟</option>
-                                <option value="auu" data-i18n="dataSources.au">非洲联盟</option>
-                                <option value="china_diplomatic" data-i18n="dataSources.chinaDiplomatic">与中华人民共和国建交的国家</option>
-                                <option value="asiasim" data-i18n="dataSources.asiasim">亚洲仿真联盟</option>
-                            </select>
-                        </div>
-
-                        <div class="filter-group">
-                            <div class="filter-title" data-i18n="browse.continent">大洲筛选</div>
-                            <select class="filter-select" id="continentSelect">
-                                <option value="all" selected data-i18n="continents.all">全部</option>
-                                <option value="亚洲" data-i18n="continents.asia">亚洲</option>
-                                <option value="欧洲" data-i18n="continents.europe">欧洲</option>
-                                <option value="非洲" data-i18n="continents.africa">非洲</option>
-                                <option value="北美洲" data-i18n="continents.northAmerica">北美洲</option>
-                                <option value="南美洲" data-i18n="continents.southAmerica">南美洲</option>
-                                <option value="大洋洲" data-i18n="continents.oceania">大洋洲</option>
-                                <option value="南极洲" data-i18n="continents.antarctica">南极洲</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="filter-group">
-                        <div class="filter-title" data-i18n="browse.features">特征筛选（可多选）</div>
-                        <div class="style-buttons-container">
-                            <button class="style-btn" data-style="星星" data-i18n="features.stars">星星</button>
-                            <button class="style-btn" data-style="十字" data-i18n="features.cross">十字</button>
-                            <button class="style-btn" data-style="月牙" data-i18n="features.crescent">月牙</button>
-                            <button class="style-btn" data-style="太阳" data-i18n="features.sun">太阳</button>
-                            <button class="style-btn" data-style="动物" data-i18n="features.animals">动物</button>
-                            <button class="style-btn" data-style="植物" data-i18n="features.plants">植物</button>
-                            <button class="style-btn" data-style="几何图形" data-i18n="features.geometric">几何图形</button>
-                            <button class="style-btn" data-style="水平条纹" data-i18n="features.horizontalStripes">水平条纹</button>
-                            <button class="style-btn" data-style="垂直条纹" data-i18n="features.verticalStripes">垂直条纹</button>
-                            <button class="style-btn" data-style="对角条纹" data-i18n="features.diagonalStripes">对角条纹</button>
-                            <button class="style-btn" data-style="联合杰克" data-i18n="features.unionJack">联合杰克</button>
-                            <button class="style-btn" data-style="泛非色彩" data-i18n="features.panAfrican">泛非色彩</button>
-                            <button class="style-btn" data-style="泛阿拉伯色彩" data-i18n="features.panArab">泛阿拉伯色彩</button>
-                            <button class="style-btn" data-style="北欧十字" data-i18n="features.nordicCross">北欧十字</button>
-                            <button class="style-btn" data-style="纯色" data-i18n="features.solid">纯色</button>
-                            <button class="style-btn" data-style="复杂徽章" data-i18n="features.complexEmblem">复杂徽章</button>
-                        </div>
-                    </div>
-
-                    <div class="filter-group">
-                        <div class="filter-title" data-i18n="browse.sortMethod">排序方式</div>
-                        <div class="filter-buttons">
-                            <button class="filter-btn active" data-sort="name" data-i18n="browse.sortOptions.name">默认</button>
-                            <button class="filter-btn" data-sort="continent" data-i18n="browse.sortOptions.continent">大洲</button>
-                            <button class="filter-btn" data-sort="random" data-i18n="browse.sortOptions.random">随机</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="stats">
-                    <div class="stat-card">
-                        <div class="stat-number" id="totalCount">0</div>
-                        <div class="stat-label" data-i18n="browse.stats.total">数据来源总数</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="filteredCount">0</div>
-                        <div class="stat-label" data-i18n="browse.stats.filtered">当前显示</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="continentCount">7</div>
-                        <div class="stat-label" data-i18n="browse.stats.continents">大洲</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="styleCount">16</div>
-                        <div class="stat-label" data-i18n="browse.stats.features">特征分类</div>
-                    </div>
-                </div>
-
-                <div id="flags-container" class="flags-grid">
-                    <div class="loading">
-                        <div class="spinner"></div>
-                        <p data-i18n="browse.loading">正在加载国旗数据...</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 记忆训练模式 -->
-            <div id="memory-section" style="display: none;">
-                <div style="text-align: center; padding: 40px;">
-                    <!-- <h2>🧠 记忆训练功能</h2>
-                    <p>记忆训练功能正在加载中...</p> -->
-                    <div id="simpleMemoryContainer"></div>
-                </div>
-            </div>
-
-            <!-- 测试模式 -->
-            <div id="quiz-section" style="display: none;">
-                <div class="quiz-container">
-                    <div id="quiz-start" class="quiz-start">
-                        <h2 data-i18n="quiz.title">选择测试模式</h2>
-                        <div class="quiz-types">
-                            <div class="quiz-type-card" data-type="flag-to-country">
-                                <div class="quiz-icon">🏳️‍🌈</div>
-                                <h3 data-i18n="quiz.flagToCountry.title">看国旗选国家</h3>
-                                <p data-i18n="quiz.flagToCountry.description">根据显示的国旗选择对应的国家</p>
-                            </div>
-                            <div class="quiz-type-card" data-type="country-to-flag">
-                                <div class="quiz-icon">🌍</div>
-                                <h3 data-i18n="quiz.countryToFlag.title">看国家选国旗</h3>
-                                <p data-i18n="quiz.countryToFlag.description">根据国家名称选择对应的国旗</p>
-                            </div>
-                        </div>
-
-                        <div class="difficulty-selector">
-                            <button class="difficulty-btn selected" data-difficulty="easy" data-i18n="quiz.difficulty.easy">简单 (5题)</button>
-                            <button class="difficulty-btn" data-difficulty="medium" data-i18n="quiz.difficulty.medium">中等 (10题)</button>
-                            <button class="difficulty-btn" data-difficulty="hard" data-i18n="quiz.difficulty.hard">困难 (20题)</button>
-                        </div>
-
-                        <div class="start-quiz-wrapper" style="text-align: center; margin-top: 20px;">
-                            <button class="btn btn-primary" id="startQuizBtn" style="display: none;" data-i18n="quiz.startButton">开始测试</button>
-                        </div>
-                    </div>
-
-                    <div id="quiz-game" style="display: none;">
-                        <div class="quiz-header">
-                            <button class="return-to-quiz-btn" id="backToQuizBtn">
-                                <span class="btn-icon">←</span>
-                                <span class="btn-text" data-i18n="quiz.backToQuiz">返回知识测试</span>
-                            </button>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="progressFill"></div>
-                        </div>
-                        <div class="question-container">
-                            <div class="question-header">
-                                <span class="question-number" id="questionNumber">第 1 / 5 题</span>
-                                <span class="question-timer" id="timer">⏱️ 00:00</span>
-                            </div>
-                            <div id="questionContent" class="question-content"></div>
-                            <div id="optionsContainer" class="options-grid"></div>
-                        </div>
-                    </div>
-
-                    <div id="quiz-result" style="display: none;">
-                        <div class="results-container">
-                            <h2 data-i18n="quiz.completed">测试完成！</h2>
-                            <div class="score-display" id="scoreDisplay">0/0</div>
-                            <div class="result-message" id="resultMessage"></div>
-                            <div class="result-details">
-                                <div class="result-stat">
-                                    <div class="stat-number" id="correctCount">0</div>
-                                    <div class="stat-label" data-i18n="quiz.stats.correct">正确</div>
-                                </div>
-                                <div class="result-stat">
-                                    <div class="stat-number" id="wrongCount">0</div>
-                                    <div class="stat-label" data-i18n="quiz.stats.wrong">错误</div>
-                                </div>
-                                <div class="result-stat">
-                                    <div class="stat-number" id="accuracyRate">0%</div>
-                                    <div class="stat-label" data-i18n="quiz.stats.accuracy">准确率</div>
-                                </div>
-                                <div class="result-stat">
-                                    <div class="stat-number" id="timeSpent">00:00</div>
-                                    <div class="stat-label" data-i18n="quiz.stats.timeSpent">用时</div>
-                                </div>
-                            </div>
-                            
-                            <!-- 错题详情区域 -->
-                            <div id="wrong-answers-section" style="display: none;">
-                                <h3 style="color: var(--danger-color); margin-bottom: 20px; text-align: center;" data-i18n="quiz.wrongAnswers.title">错题详情</h3>
-                                <div id="wrong-answers-container" class="wrong-answers-container">
-                                    <!-- 错题详情将在这里动态生成 -->
-                                </div>
-                            </div>
-                            
-                            <div style="display: flex; gap: 10px; justify-content: center;">
-                                <button class="btn btn-primary" id="retryBtn" data-i18n="quiz.retry">再测一次</button>
-                                <button class="btn btn-secondary" id="backBtn" data-i18n="quiz.back">返回</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 3D地球仪模式 -->
-            <div id="globe-section" style="display: none;">
-                <div class="globe-container">
-                    <div class="globe-header">
-                        <h2 data-i18n="globe.title">3D地球仪</h2>
-                        <p data-i18n="globe.description">在3D地球仪上探索世界各国，点击任意国家查看其国旗</p>
-                    </div>
-                    <div class="globe-controls">
-                        <div class="control-group">
-                            <label data-i18n="globe.controls.rotate">旋转：</label>
-                            <span data-i18n="globe.controls.rotateHelp">鼠标拖拽</span>
-                        </div>
-                        <div class="control-group">
-                            <label data-i18n="globe.controls.zoom">缩放：</label>
-                            <span data-i18n="globe.controls.zoomHelp">滚轮</span>
-                        </div>
-                        <div class="control-group">
-                            <label data-i18n="globe.controls.select">选择国家：</label>
-                            <span data-i18n="globe.controls.selectHelp">点击</span>
-                        </div>
-                    </div>
-                    <div id="globe-canvas-container">
-                        <!-- Three.js canvas will be inserted here -->
-                    </div>
-                    <div id="globe-loading" class="loading">
-                        <div class="spinner"></div>
-                        <p data-i18n="globe.loading">正在加载3D地球仪...</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 统计模式 -->
-            <div id="stats-section" style="display: none;">
-                <div class="stats-container">
-                    <h2 data-i18n="stats.title">学习统计</h2>
-                    <div class="stats">
-                        <div class="stat-card">
-                            <div class="stat-number" id="totalTests">0</div>
-                            <div class="stat-label" data-i18n="stats.totalTests">总测试次数</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number" id="totalQuestions">0</div>
-                            <div class="stat-label" data-i18n="stats.totalQuestions">总答题数</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number" id="overallAccuracy">0%</div>
-                            <div class="stat-label" data-i18n="stats.overallAccuracy">总体准确率</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number" id="bestScore">0</div>
-                            <div class="stat-label" data-i18n="stats.bestScore">最高分</div>
-                        </div>
-                    </div>
-                    <div style="text-align: center; margin-top: 30px;">
-                        <button class="btn btn-secondary" id="clearStatsBtn" data-i18n="stats.clearStats">清除统计</button>
-                    </div>
-                </div>
-            </div>
+      <header>
+        <!-- 语言切换器 -->
+        <div class="language-switcher">
+          <button class="lang-btn active" data-lang="zh">中文</button>
+          <button class="lang-btn" data-lang="en">English</button>
         </div>
+
+        <h1><span class="emoji">🌍</span> <span data-i18n="siteName">认识国旗</span></h1>
+        <p class="subtitle" data-i18n="siteSubtitle">理解世界，从认识国旗开始✨</p>
+        <div class="sponsor-badge" data-i18n-title="sponsorBadge.title">
+          <img class="sponsor-logo" src="/assets/images/ASIASIM.png" alt="亚洲仿真联盟支持" />
+        </div>
+      </header>
+
+      <nav>
+        <button class="nav-btn active" id="browseBtn" data-i18n="nav.browse">国旗浏览</button>
+        <button class="nav-btn" id="memoryBtn" data-i18n="nav.memory">记忆训练</button>
+        <button class="nav-btn" id="quizBtn" data-i18n="nav.quiz">知识测试</button>
+        <button class="nav-btn" id="globeBtn" data-i18n="nav.globe">3D地球仪</button>
+        <button class="nav-btn" id="statsBtn" data-i18n="nav.stats">测试统计</button>
+      </nav>
+
+      <div class="content">
+        <!-- 浏览模式 -->
+        <div id="browse-section">
+          <div class="search-box">
+            <input
+              type="text"
+              class="search-input"
+              id="searchInput"
+              data-i18n-placeholder="browse.searchPlaceholder"
+              placeholder="搜索国家名称..."
+            />
+          </div>
+
+          <div class="filter-section">
+            <div class="filter-row">
+              <div class="filter-group">
+                <div class="filter-title" data-i18n="browse.dataSource">数据来源</div>
+                <select class="filter-select" id="dataSourceSelect">
+                  <!-- <option value="all" selected data-i18n="dataSources.all">全部国家和国际组织</option> -->
+                  <option value="un" selected data-i18n="dataSources.un">联合国会员国</option>
+                  <option value="g20" data-i18n="dataSources.g20">二十国集团</option>
+                  <option value="euu" data-i18n="dataSources.eu">欧洲联盟</option>
+                  <option value="auu" data-i18n="dataSources.au">非洲联盟</option>
+                  <option value="china_diplomatic" data-i18n="dataSources.chinaDiplomatic">
+                    与中华人民共和国建交的国家
+                  </option>
+                  <option value="asiasim" data-i18n="dataSources.asiasim">亚洲仿真联盟</option>
+                </select>
+              </div>
+
+              <div class="filter-group">
+                <div class="filter-title" data-i18n="browse.continent">大洲筛选</div>
+                <select class="filter-select" id="continentSelect">
+                  <option value="all" selected data-i18n="continents.all">全部</option>
+                  <option value="亚洲" data-i18n="continents.asia">亚洲</option>
+                  <option value="欧洲" data-i18n="continents.europe">欧洲</option>
+                  <option value="非洲" data-i18n="continents.africa">非洲</option>
+                  <option value="北美洲" data-i18n="continents.northAmerica">北美洲</option>
+                  <option value="南美洲" data-i18n="continents.southAmerica">南美洲</option>
+                  <option value="大洋洲" data-i18n="continents.oceania">大洋洲</option>
+                  <option value="南极洲" data-i18n="continents.antarctica">南极洲</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <div class="filter-title" data-i18n="browse.features">特征筛选（可多选）</div>
+              <div class="style-buttons-container">
+                <button class="style-btn" data-style="星星" data-i18n="features.stars">星星</button>
+                <button class="style-btn" data-style="十字" data-i18n="features.cross">十字</button>
+                <button class="style-btn" data-style="月牙" data-i18n="features.crescent">
+                  月牙
+                </button>
+                <button class="style-btn" data-style="太阳" data-i18n="features.sun">太阳</button>
+                <button class="style-btn" data-style="动物" data-i18n="features.animals">
+                  动物
+                </button>
+                <button class="style-btn" data-style="植物" data-i18n="features.plants">
+                  植物
+                </button>
+                <button class="style-btn" data-style="几何图形" data-i18n="features.geometric">
+                  几何图形
+                </button>
+                <button
+                  class="style-btn"
+                  data-style="水平条纹"
+                  data-i18n="features.horizontalStripes"
+                >
+                  水平条纹
+                </button>
+                <button
+                  class="style-btn"
+                  data-style="垂直条纹"
+                  data-i18n="features.verticalStripes"
+                >
+                  垂直条纹
+                </button>
+                <button
+                  class="style-btn"
+                  data-style="对角条纹"
+                  data-i18n="features.diagonalStripes"
+                >
+                  对角条纹
+                </button>
+                <button class="style-btn" data-style="联合杰克" data-i18n="features.unionJack">
+                  联合杰克
+                </button>
+                <button class="style-btn" data-style="泛非色彩" data-i18n="features.panAfrican">
+                  泛非色彩
+                </button>
+                <button class="style-btn" data-style="泛阿拉伯色彩" data-i18n="features.panArab">
+                  泛阿拉伯色彩
+                </button>
+                <button class="style-btn" data-style="北欧十字" data-i18n="features.nordicCross">
+                  北欧十字
+                </button>
+                <button class="style-btn" data-style="纯色" data-i18n="features.solid">纯色</button>
+                <button class="style-btn" data-style="复杂徽章" data-i18n="features.complexEmblem">
+                  复杂徽章
+                </button>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <div class="filter-title" data-i18n="browse.sortMethod">排序方式</div>
+              <div class="filter-buttons">
+                <button
+                  class="filter-btn active"
+                  data-sort="name"
+                  data-i18n="browse.sortOptions.name"
+                >
+                  默认
+                </button>
+                <button
+                  class="filter-btn"
+                  data-sort="continent"
+                  data-i18n="browse.sortOptions.continent"
+                >
+                  大洲
+                </button>
+                <button class="filter-btn" data-sort="random" data-i18n="browse.sortOptions.random">
+                  随机
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="stats">
+            <div class="stat-card">
+              <div class="stat-number" id="totalCount">0</div>
+              <div class="stat-label" data-i18n="browse.stats.total">数据来源总数</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" id="filteredCount">0</div>
+              <div class="stat-label" data-i18n="browse.stats.filtered">当前显示</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" id="continentCount">7</div>
+              <div class="stat-label" data-i18n="browse.stats.continents">大洲</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" id="styleCount">16</div>
+              <div class="stat-label" data-i18n="browse.stats.features">特征分类</div>
+            </div>
+          </div>
+
+          <div id="flags-container" class="flags-grid">
+            <div class="loading">
+              <div class="spinner"></div>
+              <p data-i18n="browse.loading">正在加载国旗数据...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 记忆训练模式 -->
+        <div id="memory-section" style="display: none">
+          <div style="text-align: center; padding: 40px">
+            <!-- <h2>🧠 记忆训练功能</h2>
+                    <p>记忆训练功能正在加载中...</p> -->
+            <div id="simpleMemoryContainer"></div>
+          </div>
+        </div>
+
+        <!-- 测试模式 -->
+        <div id="quiz-section" style="display: none">
+          <div class="quiz-container">
+            <div id="quiz-start" class="quiz-start">
+              <h2 data-i18n="quiz.title">选择测试模式</h2>
+              <div class="quiz-types">
+                <div class="quiz-type-card" data-type="flag-to-country">
+                  <div class="quiz-icon">🏳️‍🌈</div>
+                  <h3 data-i18n="quiz.flagToCountry.title">看国旗选国家</h3>
+                  <p data-i18n="quiz.flagToCountry.description">根据显示的国旗选择对应的国家</p>
+                </div>
+                <div class="quiz-type-card" data-type="country-to-flag">
+                  <div class="quiz-icon">🌍</div>
+                  <h3 data-i18n="quiz.countryToFlag.title">看国家选国旗</h3>
+                  <p data-i18n="quiz.countryToFlag.description">根据国家名称选择对应的国旗</p>
+                </div>
+              </div>
+
+              <div class="difficulty-selector">
+                <button
+                  class="difficulty-btn selected"
+                  data-difficulty="easy"
+                  data-i18n="quiz.difficulty.easy"
+                >
+                  简单 (5题)
+                </button>
+                <button
+                  class="difficulty-btn"
+                  data-difficulty="medium"
+                  data-i18n="quiz.difficulty.medium"
+                >
+                  中等 (10题)
+                </button>
+                <button
+                  class="difficulty-btn"
+                  data-difficulty="hard"
+                  data-i18n="quiz.difficulty.hard"
+                >
+                  困难 (20题)
+                </button>
+              </div>
+
+              <div class="start-quiz-wrapper" style="text-align: center; margin-top: 20px">
+                <button
+                  class="btn btn-primary"
+                  id="startQuizBtn"
+                  style="display: none"
+                  data-i18n="quiz.startButton"
+                >
+                  开始测试
+                </button>
+              </div>
+            </div>
+
+            <div id="quiz-game" style="display: none">
+              <div class="quiz-header">
+                <button class="return-to-quiz-btn" id="backToQuizBtn">
+                  <span class="btn-icon">←</span>
+                  <span class="btn-text" data-i18n="quiz.backToQuiz">返回知识测试</span>
+                </button>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+              <div class="question-container">
+                <div class="question-header">
+                  <span class="question-number" id="questionNumber">第 1 / 5 题</span>
+                  <span class="question-timer" id="timer">⏱️ 00:00</span>
+                </div>
+                <div id="questionContent" class="question-content"></div>
+                <div id="optionsContainer" class="options-grid"></div>
+              </div>
+            </div>
+
+            <div id="quiz-result" style="display: none">
+              <div class="results-container">
+                <h2 data-i18n="quiz.completed">测试完成！</h2>
+                <div class="score-display" id="scoreDisplay">0/0</div>
+                <div class="result-message" id="resultMessage"></div>
+                <div class="result-details">
+                  <div class="result-stat">
+                    <div class="stat-number" id="correctCount">0</div>
+                    <div class="stat-label" data-i18n="quiz.stats.correct">正确</div>
+                  </div>
+                  <div class="result-stat">
+                    <div class="stat-number" id="wrongCount">0</div>
+                    <div class="stat-label" data-i18n="quiz.stats.wrong">错误</div>
+                  </div>
+                  <div class="result-stat">
+                    <div class="stat-number" id="accuracyRate">0%</div>
+                    <div class="stat-label" data-i18n="quiz.stats.accuracy">准确率</div>
+                  </div>
+                  <div class="result-stat">
+                    <div class="stat-number" id="timeSpent">00:00</div>
+                    <div class="stat-label" data-i18n="quiz.stats.timeSpent">用时</div>
+                  </div>
+                </div>
+
+                <!-- 错题详情区域 -->
+                <div id="wrong-answers-section" style="display: none">
+                  <h3
+                    style="color: var(--danger-color); margin-bottom: 20px; text-align: center"
+                    data-i18n="quiz.wrongAnswers.title"
+                  >
+                    错题详情
+                  </h3>
+                  <div id="wrong-answers-container" class="wrong-answers-container">
+                    <!-- 错题详情将在这里动态生成 -->
+                  </div>
+                </div>
+
+                <div style="display: flex; gap: 10px; justify-content: center">
+                  <button class="btn btn-primary" id="retryBtn" data-i18n="quiz.retry">
+                    再测一次
+                  </button>
+                  <button class="btn btn-secondary" id="backBtn" data-i18n="quiz.back">返回</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D地球仪模式 -->
+        <div id="globe-section" style="display: none">
+          <div class="globe-container">
+            <div class="globe-header">
+              <h2 data-i18n="globe.title">3D地球仪</h2>
+              <p data-i18n="globe.description">在3D地球仪上探索世界各国，点击任意国家查看其国旗</p>
+            </div>
+            <div class="globe-controls">
+              <div class="control-group">
+                <label data-i18n="globe.controls.rotate">旋转：</label>
+                <span data-i18n="globe.controls.rotateHelp">鼠标拖拽</span>
+              </div>
+              <div class="control-group">
+                <label data-i18n="globe.controls.zoom">缩放：</label>
+                <span data-i18n="globe.controls.zoomHelp">滚轮</span>
+              </div>
+              <div class="control-group">
+                <label data-i18n="globe.controls.select">选择国家：</label>
+                <span data-i18n="globe.controls.selectHelp">点击</span>
+              </div>
+            </div>
+            <div id="globe-canvas-container">
+              <!-- Three.js canvas will be inserted here -->
+            </div>
+            <div id="globe-loading" class="loading">
+              <div class="spinner"></div>
+              <p data-i18n="globe.loading">正在加载3D地球仪...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 统计模式 -->
+        <div id="stats-section" style="display: none">
+          <div class="stats-container">
+            <h2 data-i18n="stats.title">学习统计</h2>
+            <div class="stats">
+              <div class="stat-card">
+                <div class="stat-number" id="totalTests">0</div>
+                <div class="stat-label" data-i18n="stats.totalTests">总测试次数</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number" id="totalQuestions">0</div>
+                <div class="stat-label" data-i18n="stats.totalQuestions">总答题数</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number" id="overallAccuracy">0%</div>
+                <div class="stat-label" data-i18n="stats.overallAccuracy">总体准确率</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number" id="bestScore">0</div>
+                <div class="stat-label" data-i18n="stats.bestScore">最高分</div>
+              </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px">
+              <button class="btn btn-secondary" id="clearStatsBtn" data-i18n="stats.clearStats">
+                清除统计
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- 模板区域 -->
     <template id="flag-card-template">
-        <div class="flag-card">
-            <img class="flag-img" alt="">
-            <div class="flag-info">
-                <div class="flag-name-cn"></div>
-                <div class="flag-name-en"></div>
-                <div class="flag-tags">
-                    <span class="flag-tag continent-tag"></span>
-                    <span class="flag-tag style-tag"></span>
-                </div>
-            </div>
+      <div class="flag-card">
+        <img class="flag-img" alt="" />
+        <div class="flag-info">
+          <div class="flag-name-cn"></div>
+          <div class="flag-name-en"></div>
+          <div class="flag-tags">
+            <span class="flag-tag continent-tag"></span>
+            <span class="flag-tag style-tag"></span>
+          </div>
         </div>
+      </div>
     </template>
 
     <template id="empty-state-template">
-        <div class="empty-state" style="grid-column: 1/-1;">
-            <div class="empty-icon">🔍</div>
-            <h3 data-i18n="browse.noResults.title">没有找到匹配的国旗</h3>
-            <p data-i18n="browse.noResults.description">请尝试调整筛选条件</p>
-        </div>
+      <div class="empty-state" style="grid-column: 1/-1">
+        <div class="empty-icon">🔍</div>
+        <h3 data-i18n="browse.noResults.title">没有找到匹配的国旗</h3>
+        <p data-i18n="browse.noResults.description">请尝试调整筛选条件</p>
+      </div>
     </template>
 
     <template id="question-flag-template">
-        <img class="question-flag" alt="国旗">
-        <p class="question-text" data-i18n="quiz.flagQuestion">这是哪个国家的国旗？</p>
+      <img class="question-flag" alt="国旗" />
+      <p class="question-text" data-i18n="quiz.flagQuestion">这是哪个国家的国旗？</p>
     </template>
 
     <template id="question-country-template">
-        <p class="question-text">
-            <span data-i18n="quiz.countryQuestion">请选择</span>
-            <span class="country-name"></span>
-            <span data-i18n="quiz.countryQuestionFlag">的国旗</span>
-        </p>
+      <p class="question-text">
+        <span data-i18n="quiz.countryQuestion">请选择</span>
+        <span class="country-name"></span>
+        <span data-i18n="quiz.countryQuestionFlag">的国旗</span>
+      </p>
     </template>
 
     <template id="option-button-template">
-        <button class="option-btn">
-            <span class="option-text"></span>
-        </button>
+      <button class="option-btn">
+        <span class="option-text"></span>
+      </button>
     </template>
 
     <template id="option-flag-template">
-        <button class="option-btn">
-            <div class="option-flag-container">
-                <img class="option-flag" alt="">
-            </div>
-        </button>
+      <button class="option-btn">
+        <div class="option-flag-container">
+          <img class="option-flag" alt="" />
+        </div>
+      </button>
     </template>
 
     <template id="wrong-answer-flag-template">
-        <div class="wrong-answer-item">
-            <div class="wrong-question-header">
-                <span class="wrong-question-number"></span>
-                <span class="wrong-question-type" data-i18n="quiz.wrongAnswers.flagToCountry">看国旗选国家</span>
-            </div>
-            <div class="wrong-question-content">
-                <img class="wrong-flag" alt="国旗">
-                <div class="wrong-answer-info">
-                    <div class="correct-answer">
-                        <span class="answer-label" data-i18n="quiz.wrongAnswers.correctAnswer">正确答案：</span>
-                        <span class="answer-text correct"></span>
-                    </div>
-                    <div class="wrong-answer">
-                        <span class="answer-label" data-i18n="quiz.wrongAnswers.yourAnswer">你的答案：</span>
-                        <span class="answer-text wrong"></span>
-                    </div>
-                </div>
-            </div>
+      <div class="wrong-answer-item">
+        <div class="wrong-question-header">
+          <span class="wrong-question-number"></span>
+          <span class="wrong-question-type" data-i18n="quiz.wrongAnswers.flagToCountry"
+            >看国旗选国家</span
+          >
         </div>
+        <div class="wrong-question-content">
+          <img class="wrong-flag" alt="国旗" />
+          <div class="wrong-answer-info">
+            <div class="correct-answer">
+              <span class="answer-label" data-i18n="quiz.wrongAnswers.correctAnswer"
+                >正确答案：</span
+              >
+              <span class="answer-text correct"></span>
+            </div>
+            <div class="wrong-answer">
+              <span class="answer-label" data-i18n="quiz.wrongAnswers.yourAnswer">你的答案：</span>
+              <span class="answer-text wrong"></span>
+            </div>
+          </div>
+        </div>
+      </div>
     </template>
 
     <template id="wrong-answer-country-template">
-        <div class="wrong-answer-item">
-            <div class="wrong-question-header">
-                <span class="wrong-question-number"></span>
-                <span class="wrong-question-type" data-i18n="quiz.wrongAnswers.countryToFlag">看国家选国旗</span>
-            </div>
-            <div class="wrong-question-content">
-                <div class="country-name"></div>
-                <div class="flags-comparison">
-                    <div class="flag-option correct">
-                        <div class="flag-label" data-i18n="quiz.correctFlag">正确答案</div>
-                        <img class="comparison-flag" alt="正确国旗">
-                    </div>
-                    <div class="flag-option wrong">
-                        <div class="flag-label" data-i18n="quiz.wrongFlag">错误答案</div>
-                        <img class="comparison-flag" alt="错误国旗">
-                    </div>
-                </div>
-            </div>
+      <div class="wrong-answer-item">
+        <div class="wrong-question-header">
+          <span class="wrong-question-number"></span>
+          <span class="wrong-question-type" data-i18n="quiz.wrongAnswers.countryToFlag"
+            >看国家选国旗</span
+          >
         </div>
+        <div class="wrong-question-content">
+          <div class="country-name"></div>
+          <div class="flags-comparison">
+            <div class="flag-option correct">
+              <div class="flag-label" data-i18n="quiz.correctFlag">正确答案</div>
+              <img class="comparison-flag" alt="正确国旗" />
+            </div>
+            <div class="flag-option wrong">
+              <div class="flag-label" data-i18n="quiz.wrongFlag">错误答案</div>
+              <img class="comparison-flag" alt="错误国旗" />
+            </div>
+          </div>
+        </div>
+      </div>
     </template>
 
     <template id="study-flag-template">
-        <div style="background: white; border-radius: 15px; padding: 30px; text-align: center; box-shadow: 0 8px 25px rgba(0,0,0,0.1); max-width: 600px; margin: 0 auto;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 12px; background: #f8fafc; border-radius: 10px;">
-                <div style="font-size: 14px; color: #6b7280;">
-                    <span class="session-type"></span> | 进度: <span class="progress-text"></span>
-                </div>
-                <div style="font-size: 14px; color: #6b7280;">
-                    ⏱️ <span class="session-time"></span>
-                </div>
-            </div>
-            <div style="background: #e5e7eb; height: 8px; border-radius: 4px; overflow: hidden; margin-bottom: 25px;">
-                <div class="progress-fill" style="background: linear-gradient(90deg, #0179C8, #23457C); height: 100%; width: 0%; transition: width 0.3s;"></div>
-            </div>
-            <div style="margin-bottom: 25px; position: relative;">
-                <img class="study-flag-img" alt="" style="max-width: 300px; width: 100%; height: auto; max-height: 200px; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); object-fit: contain; background: #f8f9fa;">
-                <div class="learned-indicator" style="position: absolute; top: -8px; right: -8px; background: #0179C8; color: white; border-radius: 50%; width: 28px; height: 28px; display: none; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; border: 3px solid white;">
-                    ✓
-                </div>
-            </div>
-            <div style="margin-bottom: 25px;">
-                <h3 style="margin: 0 0 8px 0; font-size: 1.5rem; color: #1f2937;" class="country-name-cn"></h3>
-                <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 1rem;" class="country-name-en"></p>
-                <p style="margin: 0; color: #3b82f6; font-weight: 500;" class="country-continent"></p>
-            </div>
-            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                <button class="study-btn-prev" style="background: #6b7280; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.3s;" data-i18n="memory.previous">
-                    ← 上一个
-                </button>
-                <button class="study-btn-next" style="background: #3b82f6; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.3s;" data-i18n="memory.next">
-                    下一个 →
-                </button>
-            </div>
+      <div
+        style="
+          background: white;
+          border-radius: 15px;
+          padding: 30px;
+          text-align: center;
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+          max-width: 600px;
+          margin: 0 auto;
+        "
+      >
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 10px;
+          "
+        >
+          <div style="font-size: 14px; color: #6b7280">
+            <span class="session-type"></span> | 进度: <span class="progress-text"></span>
+          </div>
+          <div style="font-size: 14px; color: #6b7280">⏱️ <span class="session-time"></span></div>
         </div>
+        <div
+          style="
+            background: #e5e7eb;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 25px;
+          "
+        >
+          <div
+            class="progress-fill"
+            style="
+              background: linear-gradient(90deg, #0179c8, #23457c);
+              height: 100%;
+              width: 0%;
+              transition: width 0.3s;
+            "
+          ></div>
+        </div>
+        <div style="margin-bottom: 25px; position: relative">
+          <img
+            class="study-flag-img"
+            alt=""
+            style="
+              max-width: 300px;
+              width: 100%;
+              height: auto;
+              max-height: 200px;
+              border-radius: 12px;
+              box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+              object-fit: contain;
+              background: #f8f9fa;
+            "
+          />
+          <div
+            class="learned-indicator"
+            style="
+              position: absolute;
+              top: -8px;
+              right: -8px;
+              background: #0179c8;
+              color: white;
+              border-radius: 50%;
+              width: 28px;
+              height: 28px;
+              display: none;
+              align-items: center;
+              justify-content: center;
+              font-size: 12px;
+              font-weight: bold;
+              border: 3px solid white;
+            "
+          >
+            ✓
+          </div>
+        </div>
+        <div style="margin-bottom: 25px">
+          <h3
+            style="margin: 0 0 8px 0; font-size: 1.5rem; color: #1f2937"
+            class="country-name-cn"
+          ></h3>
+          <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 1rem" class="country-name-en"></p>
+          <p style="margin: 0; color: #3b82f6; font-weight: 500" class="country-continent"></p>
+        </div>
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap">
+          <button
+            class="study-btn-prev"
+            style="
+              background: #6b7280;
+              color: white;
+              border: none;
+              padding: 12px 20px;
+              border-radius: 8px;
+              cursor: pointer;
+              font-size: 14px;
+              font-weight: 500;
+              transition: all 0.3s;
+            "
+            data-i18n="memory.previous"
+          >
+            ← 上一个
+          </button>
+          <button
+            class="study-btn-next"
+            style="
+              background: #3b82f6;
+              color: white;
+              border: none;
+              padding: 12px 20px;
+              border-radius: 8px;
+              cursor: pointer;
+              font-size: 14px;
+              font-weight: 500;
+              transition: all 0.3s;
+            "
+            data-i18n="memory.next"
+          >
+            下一个 →
+          </button>
+        </div>
+      </div>
     </template>
 
     <template id="memory-main-template">
-        <div style="max-width: 900px; margin: 0 auto;">
-            <!-- 头部统计 -->
-            <div style="background: linear-gradient(135deg, #002B7D 0%, #0179C8 100%); color: white; padding: 25px; border-radius: 15px; margin-bottom: 25px; text-align: center;">
-                <h2 style="margin: 0 0 15px 0; font-size: 1.8rem;" data-i18n="memory.overviewTitle">📚 学习概览</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 15px; margin-bottom: 20px;">
-                    <div>
-                        <div style="font-size: 1.5rem; font-weight: bold;" class="learned-count">0</div>
-                        <div style="font-size: 0.9rem; opacity: 0.9;" data-i18n="memory.stats.learned">已学习</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.5rem; font-weight: bold;" class="total-count">0</div>
-                        <div style="font-size: 0.9rem; opacity: 0.9;" data-i18n="memory.stats.total">总数量</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.5rem; font-weight: bold;" class="progress-percent">0%</div>
-                        <div style="font-size: 0.9rem; opacity: 0.9;" data-i18n="memory.stats.progress">完成度</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 1.5rem; font-weight: bold;" class="today-count">0</div>
-                        <div style="font-size: 0.9rem; opacity: 0.9;" data-i18n="memory.stats.today">今日学习</div>
-                    </div>
-                </div>
-                
-                <!-- 总体进度 -->
-                <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <span data-i18n="memory.progressLabel">学习进度</span>
-                        <span class="total-progress-text">0/0</span>
-                    </div>
-                    <div style="background: rgba(255,255,255,0.3); height: 8px; border-radius: 4px; overflow: hidden;">
-                        <div class="total-progress-fill" style="background: #0179C8; height: 100%; width: 0%; transition: width 0.3s;"></div>
-                    </div>
-                    <div class="overall-complete" style="margin-top: 8px; font-size: 0.9rem; display: none;" data-i18n="memory.allFlagsMastered">🎉 太棒了！你已掌握所有国旗</div>
-                </div>
-                
-                <!-- 开始学习按钮 -->
-                <div style="margin-top: 25px; text-align: center;">
-                    <button id="startLearningBtn" class="start-learning-btn" style="background: linear-gradient(135deg, #E8A848 0%, #E28031 100%); color: white; border: none; padding: 16px 32px; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; transition: all 0.3s; box-shadow: 0 8px 25px rgba(226, 128, 49, 0.3); min-width: 200px;">
-                        <span class="btn-icon">🚀</span>
-                        <span class="btn-text" data-i18n="memory.startButton">开始学习</span>
-                    </button>
-                    <div style="margin-top: 12px; font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.4;" class="learning-hint">
-                        💡 <span data-i18n="memory.systemSmartHint">系统会智能选择最适合的学习分类，每次专注一个关卡</span>
-                    </div>
+      <div style="max-width: 900px; margin: 0 auto">
+        <!-- 头部统计 -->
+        <div
+          style="
+            background: linear-gradient(135deg, #002b7d 0%, #0179c8 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+          "
+        >
+          <h2 style="margin: 0 0 15px 0; font-size: 1.8rem" data-i18n="memory.overviewTitle">
+            📚 学习概览
+          </h2>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+              gap: 15px;
+              margin-bottom: 20px;
+            "
+          >
+            <div>
+              <div style="font-size: 1.5rem; font-weight: bold" class="learned-count">0</div>
+              <div style="font-size: 0.9rem; opacity: 0.9" data-i18n="memory.stats.learned">
+                已学习
+              </div>
+            </div>
+            <div>
+              <div style="font-size: 1.5rem; font-weight: bold" class="total-count">0</div>
+              <div style="font-size: 0.9rem; opacity: 0.9" data-i18n="memory.stats.total">
+                总数量
+              </div>
+            </div>
+            <div>
+              <div style="font-size: 1.5rem; font-weight: bold" class="progress-percent">0%</div>
+              <div style="font-size: 0.9rem; opacity: 0.9" data-i18n="memory.stats.progress">
+                完成度
+              </div>
+            </div>
+            <div>
+              <div style="font-size: 1.5rem; font-weight: bold" class="today-count">0</div>
+              <div style="font-size: 0.9rem; opacity: 0.9" data-i18n="memory.stats.today">
+                今日学习
+              </div>
+            </div>
+          </div>
 
-                    <!-- 清除学习进度按钮 -->
-                    <div style="margin-top: 20px;">
-                        <button id="clearMemoryProgressBtn" class="clear-memory-btn" style="background: rgba(239, 68, 68, 0.8); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; transition: all 0.3s; opacity: 0.8;">
-                             <span data-i18n="memory.clearProgress"> 清除学习进度</span>
-                        </button>
-                        <div style="margin-top: 8px; font-size: 12px; color: rgba(255,255,255,0.6);">
-                             <span data-i18n="memory.clearWarning"> 此操作将清除所有学习记录和进度，无法恢复</span>
-                        </div>
-                    </div>
-                </div>
+          <!-- 总体进度 -->
+          <div style="background: rgba(255, 255, 255, 0.2); padding: 15px; border-radius: 10px">
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 8px;
+              "
+            >
+              <span data-i18n="memory.progressLabel">学习进度</span>
+              <span class="total-progress-text">0/0</span>
+            </div>
+            <div
+              style="
+                background: rgba(255, 255, 255, 0.3);
+                height: 8px;
+                border-radius: 4px;
+                overflow: hidden;
+              "
+            >
+              <div
+                class="total-progress-fill"
+                style="background: #0179c8; height: 100%; width: 0%; transition: width 0.3s"
+              ></div>
+            </div>
+            <div
+              class="overall-complete"
+              style="margin-top: 8px; font-size: 0.9rem; display: none"
+              data-i18n="memory.allFlagsMastered"
+            >
+              🎉 太棒了！你已掌握所有国旗
+            </div>
+          </div>
+
+          <!-- 开始学习按钮 -->
+          <div style="margin-top: 25px; text-align: center">
+            <button
+              id="startLearningBtn"
+              class="start-learning-btn"
+              style="
+                background: linear-gradient(135deg, #e8a848 0%, #e28031 100%);
+                color: white;
+                border: none;
+                padding: 16px 32px;
+                border-radius: 12px;
+                font-size: 18px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s;
+                box-shadow: 0 8px 25px rgba(226, 128, 49, 0.3);
+                min-width: 200px;
+              "
+            >
+              <span class="btn-icon">🚀</span>
+              <span class="btn-text" data-i18n="memory.startButton">开始学习</span>
+            </button>
+            <div
+              style="
+                margin-top: 12px;
+                font-size: 14px;
+                color: rgba(255, 255, 255, 0.8);
+                line-height: 1.4;
+              "
+              class="learning-hint"
+            >
+              💡
+              <span data-i18n="memory.systemSmartHint"
+                >系统会智能选择最适合的学习分类，每次专注一个关卡</span
+              >
             </div>
 
-            <!-- 分类学习 -->
-            <h3 style="margin-bottom: 20px; color: #1f2937;" data-i18n="memory.categories">📂 分类学习</h3>
-            <div class="categories-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 30px;">
-                <!-- 分类卡片将在这里动态生成 -->
+            <!-- 清除学习进度按钮 -->
+            <div style="margin-top: 20px">
+              <button
+                id="clearMemoryProgressBtn"
+                class="clear-memory-btn"
+                style="
+                  background: rgba(239, 68, 68, 0.8);
+                  color: white;
+                  border: none;
+                  padding: 10px 20px;
+                  border-radius: 8px;
+                  cursor: pointer;
+                  font-size: 14px;
+                  transition: all 0.3s;
+                  opacity: 0.8;
+                "
+              >
+                <span data-i18n="memory.clearProgress"> 清除学习进度</span>
+              </button>
+              <div style="margin-top: 8px; font-size: 12px; color: rgba(255, 255, 255, 0.6)">
+                <span data-i18n="memory.clearWarning">
+                  此操作将清除所有学习记录和进度，无法恢复</span
+                >
+              </div>
             </div>
-            
-            
-            <!-- 学习区域 -->
-            <div class="study-area" style="display: none;"></div>
+          </div>
         </div>
+
+        <!-- 分类学习 -->
+        <h3 style="margin-bottom: 20px; color: #1f2937" data-i18n="memory.categories">
+          📂 分类学习
+        </h3>
+        <div
+          class="categories-container"
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+          "
+        >
+          <!-- 分类卡片将在这里动态生成 -->
+        </div>
+
+        <!-- 学习区域 -->
+        <div class="study-area" style="display: none"></div>
+      </div>
     </template>
 
     <template id="study-complete-template">
-        <div style="background: linear-gradient(135deg, #0179C8 0%, #23457C 100%); color: white; border-radius: 20px; padding: 40px; text-align: center; box-shadow: 0 15px 35px rgba(1, 121, 200, 0.3); max-width: 600px; margin: 0 auto;">
-            <div style="font-size: 4rem; margin-bottom: 20px; animation: bounce 1s ease-in-out;">🎊</div>
-            <h3 style="margin: 0 0 15px 0; font-size: 2rem;" data-i18n="memory.studyComplete">学习完成！</h3>
-            <p style="margin: 0 0 30px 0; font-size: 1.1rem; opacity: 0.95;" class="session-type-text" data-i18n="memory.studyCompleteMessage">太棒了！你完成了学习</p>
+      <div
+        style="
+          background: linear-gradient(135deg, #0179c8 0%, #23457c 100%);
+          color: white;
+          border-radius: 20px;
+          padding: 40px;
+          text-align: center;
+          box-shadow: 0 15px 35px rgba(1, 121, 200, 0.3);
+          max-width: 600px;
+          margin: 0 auto;
+        "
+      >
+        <div style="font-size: 4rem; margin-bottom: 20px; animation: bounce 1s ease-in-out">🎊</div>
+        <h3 style="margin: 0 0 15px 0; font-size: 2rem" data-i18n="memory.studyComplete">
+          学习完成！
+        </h3>
+        <p
+          style="margin: 0 0 30px 0; font-size: 1.1rem; opacity: 0.95"
+          class="session-type-text"
+          data-i18n="memory.studyCompleteMessage"
+        >
+          太棒了！你完成了学习
+        </p>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 20px; margin-bottom: 30px;">
-                <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 12px;">
-                    <div style="font-size: 2rem; font-weight: bold; margin-bottom: 5px;" class="total-learned">0</div>
-                    <div style="font-size: 0.9rem; opacity: 0.9;" data-i18n="memory.statsLearned">学习数量</div>
-                </div>
-                <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 12px;">
-                    <div style="font-size: 2rem; font-weight: bold; margin-bottom: 5px;" class="new-learned">0</div>
-                    <div style="font-size: 0.9rem; opacity: 0.9;" data-i18n="memory.statsNew">新掌握</div>
-                </div>
-                <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 12px;">
-                    <div style="font-size: 2rem; font-weight: bold; margin-bottom: 5px;" class="session-time">00:00</div>
-                    <div style="font-size: 0.9rem; opacity: 0.9;" data-i18n="memory.statsTime">用时</div>
-                </div>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+          "
+        >
+          <div style="background: rgba(255, 255, 255, 0.2); padding: 20px; border-radius: 12px">
+            <div
+              style="font-size: 2rem; font-weight: bold; margin-bottom: 5px"
+              class="total-learned"
+            >
+              0
             </div>
-
-            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                <button class="return-home-btn" style="background: rgba(255,255,255,0.9); color: #23457C; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: bold;">
-                    <span class="btn-icon">🏠</span>
-                    <span class="btn-text" data-i18n="memory.returnHome">返回首页</span>
-                </button>
-                <button class="continue-study-btn" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: bold;">
-                    <span class="btn-icon">🎲</span>
-                    <span class="btn-text" data-i18n="memory.continueStudy">继续学习</span>
-                </button>
+            <div style="font-size: 0.9rem; opacity: 0.9" data-i18n="memory.statsLearned">
+              学习数量
             </div>
-
-            <style>
-                @keyframes bounce {
-                    0%, 100% { transform: translateY(0); }
-                    50% { transform: translateY(-10px); }
-                }
-            </style>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.2); padding: 20px; border-radius: 12px">
+            <div style="font-size: 2rem; font-weight: bold; margin-bottom: 5px" class="new-learned">
+              0
+            </div>
+            <div style="font-size: 0.9rem; opacity: 0.9" data-i18n="memory.statsNew">新掌握</div>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.2); padding: 20px; border-radius: 12px">
+            <div
+              style="font-size: 2rem; font-weight: bold; margin-bottom: 5px"
+              class="session-time"
+            >
+              00:00
+            </div>
+            <div style="font-size: 0.9rem; opacity: 0.9" data-i18n="memory.statsTime">用时</div>
+          </div>
         </div>
+
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap">
+          <button
+            class="return-home-btn"
+            style="
+              background: rgba(255, 255, 255, 0.9);
+              color: #23457c;
+              border: none;
+              padding: 12px 25px;
+              border-radius: 8px;
+              cursor: pointer;
+              font-weight: bold;
+            "
+          >
+            <span class="btn-icon">🏠</span>
+            <span class="btn-text" data-i18n="memory.returnHome">返回首页</span>
+          </button>
+          <button
+            class="continue-study-btn"
+            style="
+              background: rgba(255, 255, 255, 0.2);
+              color: white;
+              border: 2px solid white;
+              padding: 12px 25px;
+              border-radius: 8px;
+              cursor: pointer;
+              font-weight: bold;
+            "
+          >
+            <span class="btn-icon">🎲</span>
+            <span class="btn-text" data-i18n="memory.continueStudy">继续学习</span>
+          </button>
+        </div>
+
+        <style>
+          @keyframes bounce {
+            0%,
+            100% {
+              transform: translateY(0);
+            }
+            50% {
+              transform: translateY(-10px);
+            }
+          }
+        </style>
+      </div>
     </template>
 
     <template id="globe-flag-popup-template">
-        <div class="globe-flag-popup" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border-radius: 15px; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); z-index: 1000; max-width: 400px; text-align: center;">
-            <button class="close-popup-btn" style="position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666;">&times;</button>
-            <img class="popup-flag-img" style="max-width: 200px; width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px;" alt="">
-            <h3 class="popup-country-name-cn" style="margin: 0 0 8px 0; color: #1f2937; font-size: 1.5rem;"></h3>
-            <p class="popup-country-name-en" style="margin: 0 0 8px 0; color: #6b7280; font-size: 1rem;"></p>
-            <p class="popup-country-continent" style="margin: 0; color: #3b82f6; font-weight: 500;"></p>
-        </div>
-        <div class="popup-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999;"></div>
+      <div
+        class="globe-flag-popup"
+        style="
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: white;
+          border-radius: 15px;
+          padding: 30px;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+          z-index: 1000;
+          max-width: 400px;
+          text-align: center;
+        "
+      >
+        <button
+          class="close-popup-btn"
+          style="
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+          "
+        >
+          &times;
+        </button>
+        <img
+          class="popup-flag-img"
+          style="
+            max-width: 200px;
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+          "
+          alt=""
+        />
+        <h3
+          class="popup-country-name-cn"
+          style="margin: 0 0 8px 0; color: #1f2937; font-size: 1.5rem"
+        ></h3>
+        <p
+          class="popup-country-name-en"
+          style="margin: 0 0 8px 0; color: #6b7280; font-size: 1rem"
+        ></p>
+        <p class="popup-country-continent" style="margin: 0; color: #3b82f6; font-weight: 500"></p>
+      </div>
+      <div
+        class="popup-overlay"
+        style="
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.5);
+          z-index: 999;
+        "
+      ></div>
     </template>
 
     <!-- 国家详情模态窗口 -->
-    <div id="country-detail-modal" class="country-modal" style="display: none;">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <button class="modal-close">&times;</button>
+    <div id="country-detail-modal" class="country-modal" style="display: none">
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+        <button class="modal-close">&times;</button>
 
-            <div class="modal-header">
-                <img class="modal-flag" src="" alt="">
-                <div class="modal-title">
-                    <h2 class="modal-country-name-primary"></h2>
-                    <p class="modal-country-name-secondary"></p>
-                </div>
-            </div>
-
-            <div class="modal-body">
-                <!-- 基本信息卡片 -->
-                <div class="info-section">
-                    <h3 class="section-title" data-i18n="countryDetail.basicInfo">基本信息</h3>
-                    <div class="info-grid">
-                        <div class="info-item">
-                            <span class="info-icon">🏛️</span>
-                            <div class="info-content">
-                                <div class="info-label" data-i18n="countryDetail.capital">首都</div>
-                                <div class="info-value" data-field="capital">-</div>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-icon">👥</span>
-                            <div class="info-content">
-                                <div class="info-label" data-i18n="countryDetail.population">人口</div>
-                                <div class="info-value" data-field="population">-</div>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-icon">📏</span>
-                            <div class="info-content">
-                                <div class="info-label" data-i18n="countryDetail.area">面积</div>
-                                <div class="info-value" data-field="area">-</div>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-icon">💰</span>
-                            <div class="info-content">
-                                <div class="info-label" data-i18n="countryDetail.currency">货币</div>
-                                <div class="info-value" data-field="currency">-</div>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-icon">🗣️</span>
-                            <div class="info-content">
-                                <div class="info-label" data-i18n="countryDetail.language">语言</div>
-                                <div class="info-value" data-field="language">-</div>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-icon">📊</span>
-                            <div class="info-content">
-                                <div class="info-label" data-i18n="countryDetail.gdp">GDP</div>
-                                <div class="info-value" data-field="gdp">-</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 国家简介 -->
-                <div class="info-section">
-                    <h3 class="section-title" data-i18n="countryDetail.introduction">国家简介</h3>
-                    <p class="country-description">-</p>
-                </div>
-
-                <!-- 有趣的事实 -->
-                <div class="info-section fun-facts-section">
-                    <h3 class="section-title" data-i18n="countryDetail.funFacts">有趣的事实</h3>
-                    <ul class="fun-facts-list"></ul>
-                </div>
-
-                <!-- 了解更多按钮 -->
-                <div class="info-section">
-                    <button class="learn-more-btn">
-                        <span data-i18n="countryDetail.learnMore">📖 从维基百科了解更多</span>
-                    </button>
-                    <div class="wiki-content" style="display: none;">
-                        <div class="loading-spinner">
-                            <div class="spinner"></div>
-                            <p data-i18n="countryDetail.loading">正在加载详细信息...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="modal-header">
+          <img class="modal-flag" src="" alt="" />
+          <div class="modal-title">
+            <h2 class="modal-country-name-primary"></h2>
+            <p class="modal-country-name-secondary"></p>
+          </div>
         </div>
+
+        <div class="modal-body">
+          <!-- 基本信息卡片 -->
+          <div class="info-section">
+            <h3 class="section-title" data-i18n="countryDetail.basicInfo">基本信息</h3>
+            <div class="info-grid">
+              <div class="info-item">
+                <span class="info-icon">🏛️</span>
+                <div class="info-content">
+                  <div class="info-label" data-i18n="countryDetail.capital">首都</div>
+                  <div class="info-value" data-field="capital">-</div>
+                </div>
+              </div>
+              <div class="info-item">
+                <span class="info-icon">👥</span>
+                <div class="info-content">
+                  <div class="info-label" data-i18n="countryDetail.population">人口</div>
+                  <div class="info-value" data-field="population">-</div>
+                </div>
+              </div>
+              <div class="info-item">
+                <span class="info-icon">📏</span>
+                <div class="info-content">
+                  <div class="info-label" data-i18n="countryDetail.area">面积</div>
+                  <div class="info-value" data-field="area">-</div>
+                </div>
+              </div>
+              <div class="info-item">
+                <span class="info-icon">💰</span>
+                <div class="info-content">
+                  <div class="info-label" data-i18n="countryDetail.currency">货币</div>
+                  <div class="info-value" data-field="currency">-</div>
+                </div>
+              </div>
+              <div class="info-item">
+                <span class="info-icon">🗣️</span>
+                <div class="info-content">
+                  <div class="info-label" data-i18n="countryDetail.language">语言</div>
+                  <div class="info-value" data-field="language">-</div>
+                </div>
+              </div>
+              <div class="info-item">
+                <span class="info-icon">📊</span>
+                <div class="info-content">
+                  <div class="info-label" data-i18n="countryDetail.gdp">GDP</div>
+                  <div class="info-value" data-field="gdp">-</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 国家简介 -->
+          <div class="info-section">
+            <h3 class="section-title" data-i18n="countryDetail.introduction">国家简介</h3>
+            <p class="country-description">-</p>
+          </div>
+
+          <!-- 有趣的事实 -->
+          <div class="info-section fun-facts-section">
+            <h3 class="section-title" data-i18n="countryDetail.funFacts">有趣的事实</h3>
+            <ul class="fun-facts-list"></ul>
+          </div>
+
+          <!-- 了解更多按钮 -->
+          <div class="info-section">
+            <button class="learn-more-btn">
+              <span data-i18n="countryDetail.learnMore">📖 从维基百科了解更多</span>
+            </button>
+            <div class="wiki-content" style="display: none">
+              <div class="loading-spinner">
+                <div class="spinner"></div>
+                <p data-i18n="countryDetail.loading">正在加载详细信息...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Vite 模块化入口 -->
-    <script type="module" src="../main.ts"></script>
-</body>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>

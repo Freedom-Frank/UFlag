@@ -9,6 +9,7 @@ import { DATA_SOURCES } from '../lib/constants';
 import { safeSetText } from '../lib/utils';
 import { i18n } from '../lib/i18n-core';
 import { getFlagImageUrl } from '../lib/data-loader';
+import { countryDetailModule } from './country-detail';
 
 /**
  * 应用筛选逻辑
@@ -30,8 +31,7 @@ export function applyFilters(): void {
     const searchLower = state.searchTerm.toLowerCase();
     filtered = filtered.filter(
       (c) =>
-        c.nameCN.toLowerCase().includes(searchLower) ||
-        c.nameEN.toLowerCase().includes(searchLower)
+        c.nameCN.toLowerCase().includes(searchLower) || c.nameEN.toLowerCase().includes(searchLower)
     );
   }
 
@@ -212,15 +212,8 @@ function createCountryCard(country: Country, template: HTMLTemplateElement): Doc
  * 显示国家详情
  */
 function showCountryDetail(country: Country): void {
-  // 触发国家详情模态窗口
-  const event = new CustomEvent('show-country-detail', {
-    detail: { country },
-  });
-  window.dispatchEvent(event);
-
-  // TODO: 这里需要实现详情模态窗口的逻辑
-  // 暂时保留原有的实现方式
-  console.log('Show country detail:', country);
+  // 直接调用国家详情模块显示详情
+  countryDetailModule.showCountryDetail(country);
 }
 
 /**
@@ -240,6 +233,12 @@ export function initBrowseModule(): void {
   // 数据源选择
   const dataSourceSelect = document.getElementById('dataSourceSelect') as HTMLSelectElement;
   if (dataSourceSelect) {
+    // 初始化时同步HTML的默认值到state
+    const initialSource = dataSourceSelect.value as any;
+    if (initialSource) {
+      appState.setDataSource(initialSource);
+    }
+
     dataSourceSelect.addEventListener('change', (e) => {
       const source = (e.target as HTMLSelectElement).value as any;
       appState.setDataSource(source);
@@ -247,20 +246,21 @@ export function initBrowseModule(): void {
     });
   }
 
-  // 大洲筛选
-  const continentButtons = document.querySelectorAll('.continent-btn');
-  continentButtons.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      const continent = (e.target as HTMLElement).dataset.continent || 'all';
+  // 大洲筛选（使用下拉框）
+  const continentSelect = document.getElementById('continentSelect') as HTMLSelectElement;
+  if (continentSelect) {
+    // 初始化时同步HTML的默认值到state
+    const initialContinent = continentSelect.value;
+    if (initialContinent) {
+      appState.setSelectedContinent(initialContinent);
+    }
+
+    continentSelect.addEventListener('change', (e) => {
+      const continent = (e.target as HTMLSelectElement).value;
       appState.setSelectedContinent(continent);
-
-      // 更新按钮状态
-      continentButtons.forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
-
       applyFilters();
     });
-  });
+  }
 
   // 特征筛选按钮
   const styleButtons = document.querySelectorAll('.style-btn');
@@ -276,7 +276,7 @@ export function initBrowseModule(): void {
   });
 
   // 排序按钮
-  const sortButtons = document.querySelectorAll('.sort-btn');
+  const sortButtons = document.querySelectorAll('[data-sort]');
   sortButtons.forEach((btn) => {
     btn.addEventListener('click', (e) => {
       const method = (e.target as HTMLElement).dataset.sort || 'name';
@@ -289,6 +289,9 @@ export function initBrowseModule(): void {
       applyFilters();
     });
   });
+
+  // 应用初始筛选（使用HTML中设置的默认值）
+  applyFilters();
 
   console.log('✅ Browse module initialized');
 }

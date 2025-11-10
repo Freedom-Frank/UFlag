@@ -8,6 +8,7 @@ import { i18n } from '../lib/i18n-core';
 import { getAllCountries } from '../lib/state';
 import { getStats, saveStats } from '../lib/storage';
 import { safeSetText, safeSetDisplay, formatTime } from '../lib/utils';
+import { getFlagImageUrl } from '../lib/data-loader';
 
 /**
  * 测验类型（别名）
@@ -110,11 +111,12 @@ class QuizModule {
       return;
     }
 
-    const questionCount = {
-      easy: 5,
-      medium: 10,
-      hard: 20,
-    }[this.state.difficulty] || 5;
+    const questionCount =
+      {
+        easy: 5,
+        medium: 10,
+        hard: 20,
+      }[this.state.difficulty] || 5;
 
     this.state.questions = this.generateQuestions(questionCount);
     this.state.currentQuestion = 0;
@@ -212,7 +214,7 @@ class QuizModule {
       const templateContent = flagTemplate.content.cloneNode(true) as DocumentFragment;
       const img = templateContent.querySelector('.question-flag') as HTMLImageElement;
       if (img) {
-        img.src = `../../assets/images/flags/${q.correct.code}.png`;
+        img.src = getFlagImageUrl(q.correct.code);
         img.alt = '国旗';
         img.onerror = function (this: HTMLImageElement) {
           this.src = `https://via.placeholder.com/360x240/f0f0f0/999?text=${q.correct.code.toUpperCase()}`;
@@ -257,7 +259,9 @@ class QuizModule {
     optionsContainer: HTMLElement
   ): void {
     // 使用国家到国旗模板
-    const countryTemplate = document.getElementById('question-country-template') as HTMLTemplateElement;
+    const countryTemplate = document.getElementById(
+      'question-country-template'
+    ) as HTMLTemplateElement;
     if (countryTemplate) {
       questionContent.innerHTML = '';
       const templateContent = countryTemplate.content.cloneNode(true) as DocumentFragment;
@@ -287,7 +291,7 @@ class QuizModule {
         if (button && img) {
           button.onclick = () => this.checkAnswer(opt.code, q.correct.code);
           button.dataset.code = opt.code;
-          img.src = `../../assets/images/flags/${opt.code}.png`;
+          img.src = getFlagImageUrl(opt.code);
           img.alt = opt.nameCN;
           img.onerror = function (this: HTMLImageElement) {
             this.src = `https://via.placeholder.com/200x120/f0f0f0/999?text=${opt.code.toUpperCase()}`;
@@ -434,8 +438,13 @@ class QuizModule {
   /**
    * 显示"国旗到国家"错题
    */
-  private displayFlagToCountryWrongAnswer(wrong: InternalWrongAnswer, container: HTMLElement): void {
-    const flagTemplate = document.getElementById('wrong-answer-flag-template') as HTMLTemplateElement;
+  private displayFlagToCountryWrongAnswer(
+    wrong: InternalWrongAnswer,
+    container: HTMLElement
+  ): void {
+    const flagTemplate = document.getElementById(
+      'wrong-answer-flag-template'
+    ) as HTMLTemplateElement;
     if (!flagTemplate) return;
 
     const templateContent = flagTemplate.content.cloneNode(true) as DocumentFragment;
@@ -444,13 +453,16 @@ class QuizModule {
     const questionNumber = templateContent.querySelector('.wrong-question-number');
     const questionTemplate = i18n.t('quiz.questionNumber', { index: wrong.questionIndex });
     if (questionNumber) {
-      questionNumber.textContent = questionTemplate.replace('{index}', wrong.questionIndex.toString());
+      questionNumber.textContent = questionTemplate.replace(
+        '{index}',
+        wrong.questionIndex.toString()
+      );
     }
 
     // 设置国旗图片
     const flagImg = templateContent.querySelector('.wrong-flag') as HTMLImageElement;
     if (flagImg) {
-      flagImg.src = `../../assets/images/flags/${wrong.correctCountry.code}.png`;
+      flagImg.src = getFlagImageUrl(wrong.correctCountry.code);
       flagImg.alt = '国旗';
       flagImg.onerror = function (this: HTMLImageElement) {
         this.src = `https://via.placeholder.com/200x120/f0f0f0/999?text=${wrong.correctCountry.code.toUpperCase()}`;
@@ -475,8 +487,13 @@ class QuizModule {
   /**
    * 显示"国家到国旗"错题
    */
-  private displayCountryToFlagWrongAnswer(wrong: InternalWrongAnswer, container: HTMLElement): void {
-    const countryTemplate = document.getElementById('wrong-answer-country-template') as HTMLTemplateElement;
+  private displayCountryToFlagWrongAnswer(
+    wrong: InternalWrongAnswer,
+    container: HTMLElement
+  ): void {
+    const countryTemplate = document.getElementById(
+      'wrong-answer-country-template'
+    ) as HTMLTemplateElement;
     if (!countryTemplate) return;
 
     const templateContent = countryTemplate.content.cloneNode(true) as DocumentFragment;
@@ -495,14 +512,14 @@ class QuizModule {
     // 设置正确国旗
     const correctFlag = templateContent.querySelector('.correct-flag-img') as HTMLImageElement;
     if (correctFlag) {
-      correctFlag.src = `../../assets/images/flags/${wrong.correctCountry.code}.png`;
+      correctFlag.src = getFlagImageUrl(wrong.correctCountry.code);
       correctFlag.alt = i18n.getCountryName(wrong.correctCountry);
     }
 
     // 设置用户选择的国旗
     const yourFlag = templateContent.querySelector('.your-flag-img') as HTMLImageElement;
     if (yourFlag && wrong.selectedCountry) {
-      yourFlag.src = `../../assets/images/flags/${wrong.selectedCountry.code}.png`;
+      yourFlag.src = getFlagImageUrl(wrong.selectedCountry.code);
       yourFlag.alt = i18n.getCountryName(wrong.selectedCountry);
     }
 
@@ -554,15 +571,22 @@ export const quizModule = new QuizModule();
  */
 export function initQuizModule(): void {
   // 测验类型选择
-  const quizTypeButtons = document.querySelectorAll('[data-quiz-type]');
-  quizTypeButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const type = (btn as HTMLElement).dataset.quizType as QuizType;
+  const quizTypeCards = document.querySelectorAll('.quiz-type-card[data-type]');
+  const startQuizBtn = document.getElementById('startQuizBtn');
+
+  quizTypeCards.forEach((card) => {
+    card.addEventListener('click', () => {
+      const type = (card as HTMLElement).dataset.type as QuizType;
       quizModule.setQuizType(type);
 
-      // 更新按钮状态
-      quizTypeButtons.forEach((b) => b.classList.remove('selected'));
-      btn.classList.add('selected');
+      // 更新卡片选中状态
+      quizTypeCards.forEach((c) => c.classList.remove('selected'));
+      card.classList.add('selected');
+
+      // 显示开始测验按钮
+      if (startQuizBtn) {
+        (startQuizBtn as HTMLElement).style.display = 'inline-block';
+      }
     });
   });
 
@@ -580,26 +604,33 @@ export function initQuizModule(): void {
   });
 
   // 开始测验按钮
-  const startQuizBtn = document.getElementById('start-quiz-btn');
   if (startQuizBtn) {
     startQuizBtn.addEventListener('click', () => {
       quizModule.startQuiz();
     });
   }
 
-  // 返回按钮
-  const backToQuizBtn = document.getElementById('back-to-quiz-btn');
+  // 测验进行中的返回按钮
+  const backToQuizBtn = document.getElementById('backToQuizBtn');
   if (backToQuizBtn) {
     backToQuizBtn.addEventListener('click', () => {
       quizModule.backToQuiz();
     });
   }
 
-  // 重新测验按钮
-  const retakeQuizBtn = document.getElementById('retake-quiz-btn');
-  if (retakeQuizBtn) {
-    retakeQuizBtn.addEventListener('click', () => {
+  // 结果页面的"再测一次"按钮
+  const retryBtn = document.getElementById('retryBtn');
+  if (retryBtn) {
+    retryBtn.addEventListener('click', () => {
       quizModule.startQuiz();
+    });
+  }
+
+  // 结果页面的"返回"按钮
+  const backBtn = document.getElementById('backBtn');
+  if (backBtn) {
+    backBtn.addEventListener('click', () => {
+      quizModule.backToQuiz();
     });
   }
 

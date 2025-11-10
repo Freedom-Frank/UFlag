@@ -780,7 +780,8 @@ class MemoryModule {
         flagImg.src = getFlagImageUrl(flagCode);
         flagImg.alt = countryInfo?.nameCN || flagCode.toUpperCase();
         flagImg.onerror = function () {
-          (this as HTMLImageElement).src = `https://via.placeholder.com/300x200/f0f0f0/999?text=${flagCode.toUpperCase()}`;
+          (this as HTMLImageElement).src =
+            `https://via.placeholder.com/300x200/f0f0f0/999?text=${flagCode.toUpperCase()}`;
         };
       }
 
@@ -861,12 +862,16 @@ class MemoryModule {
         // 显示名称
         if (countryNameCN) {
           countryNameCN.style.display = '';
-          const plc = countryNameCN.parentNode?.querySelector('.name-placeholder-cn') as HTMLElement;
+          const plc = countryNameCN.parentNode?.querySelector(
+            '.name-placeholder-cn'
+          ) as HTMLElement;
           if (plc) plc.style.display = 'none';
         }
         if (countryNameEN) {
           countryNameEN.style.display = '';
-          const ple = countryNameEN.parentNode?.querySelector('.name-placeholder-en') as HTMLElement;
+          const ple = countryNameEN.parentNode?.querySelector(
+            '.name-placeholder-en'
+          ) as HTMLElement;
           if (ple) ple.style.display = 'none';
         }
 

@@ -5,6 +5,7 @@
 
 import type { Country } from '../types';
 import { i18n } from '../lib/i18n-core';
+import { getFlagImageUrl } from '../lib/data-loader';
 
 /**
  * 国家详细信息接口
@@ -57,7 +58,7 @@ class CountryDetailModule {
     }
 
     try {
-      const response = await fetch('../../data/countries/countries_info.json');
+      const response = await fetch('/data/countries/countries_info.json');
       if (!response.ok) {
         throw new Error('Failed to load countries info');
       }
@@ -106,7 +107,7 @@ class CountryDetailModule {
     const secondaryName = modal.querySelector('.modal-country-name-secondary');
 
     if (modalFlag) {
-      modalFlag.src = `../../assets/images/flags/${country.code}.png`;
+      modalFlag.src = getFlagImageUrl(country.code);
       modalFlag.alt = country.nameCN;
     }
 
@@ -254,7 +255,8 @@ class CountryDetailModule {
 
       // 添加维基百科链接
       const wikiUrlLang = lang as 'zh' | 'en';
-      const wikiUrl = countryInfo?.wikiUrl?.[wikiUrlLang] || data.content_urls?.desktop?.page || '#';
+      const wikiUrl =
+        countryInfo?.wikiUrl?.[wikiUrlLang] || data.content_urls?.desktop?.page || '#';
       contentHtml += `
         <a href="${wikiUrl}"
            target="_blank"

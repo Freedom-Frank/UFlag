@@ -77,13 +77,16 @@ const WORLD_MAP_COLOR_PALETTE = [
   // 黄色系
   0xffeb3b, 0xffd54f, 0xffc107, 0xffb300, 0xfdd835,
   // 绿色系
-  0x66bb6a, 0x4caf50, 0x43a047, 0x2e7d32, 0x1b5e20, 0x81c784, 0x66bb6a, 0x4caf50, 0x388e3c, 0x2e7d32,
+  0x66bb6a, 0x4caf50, 0x43a047, 0x2e7d32, 0x1b5e20, 0x81c784, 0x66bb6a, 0x4caf50, 0x388e3c,
+  0x2e7d32,
   // 青色系
   0x26c6da, 0x00bcd4, 0x00acc1, 0x0097a7, 0x00838f,
   // 蓝色系
-  0x42a5f5, 0x2196f3, 0x1e88e5, 0x1976d2, 0x1565c0, 0x5c6bc0, 0x3f51b5, 0x3949ab, 0x303f9f, 0x283593,
+  0x42a5f5, 0x2196f3, 0x1e88e5, 0x1976d2, 0x1565c0, 0x5c6bc0, 0x3f51b5, 0x3949ab, 0x303f9f,
+  0x283593,
   // 紫色系
-  0xab47bc, 0x9c27b0, 0x8e24aa, 0x7b1fa2, 0x6a1b9a, 0xba68c8, 0xab47bc, 0x9c27b0, 0x8e24aa, 0x7b1fa2,
+  0xab47bc, 0x9c27b0, 0x8e24aa, 0x7b1fa2, 0x6a1b9a, 0xba68c8, 0xab47bc, 0x9c27b0, 0x8e24aa,
+  0x7b1fa2,
   // 粉色系
   0xec407a, 0xe91e63, 0xd81b60, 0xc2185b, 0xad1457,
   // 深粉色
@@ -432,19 +435,15 @@ export class GlobeModule {
       // 优先尝试加载详细地图数据
       let response: Response;
       try {
-        response = await fetch('../../assets/geo/world_detailed.geojson');
+        response = await fetch('/assets/geo/world_detailed.geojson');
         if (!response.ok) throw new Error('详细地图数据不存在');
       } catch (e) {
         console.log('📍 使用简化地图数据...');
-        response = await fetch('../../assets/geo/world_simple.geojson');
+        response = await fetch('/assets/geo/world_simple.geojson');
       }
 
       this.worldData = await response.json();
-      console.log(
-        '🗺️ 世界地图数据加载完成:',
-        this.worldData?.features?.length || 0,
-        '个国家/地区'
-      );
+      console.log('🗺️ 世界地图数据加载完成:', this.worldData?.features?.length || 0, '个国家/地区');
 
       // 创建国家填充
       this.createCountryMeshes();
@@ -524,13 +523,10 @@ export class GlobeModule {
       }
 
       const countryProps: CountryProps = {
-        name:
-          feature.properties.name || feature.properties.NAME || feature.properties.NAME_EN,
+        name: feature.properties.name || feature.properties.NAME || feature.properties.NAME_EN,
         code: rawCode,
         name_cn:
-          feature.properties.cname ||
-          feature.properties.NAME_CN ||
-          feature.properties.name_cn,
+          feature.properties.cname || feature.properties.NAME_CN || feature.properties.name_cn,
         name_en:
           feature.properties.name ||
           feature.properties.NAME_EN ||
@@ -1007,9 +1003,7 @@ export class GlobeModule {
     }
 
     // 创建弹窗
-    const template = document.getElementById(
-      'globe-flag-popup-template'
-    ) as HTMLTemplateElement;
+    const template = document.getElementById('globe-flag-popup-template') as HTMLTemplateElement;
     if (!template) return;
 
     const popup = template.content.cloneNode(true) as DocumentFragment;

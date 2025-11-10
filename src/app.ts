@@ -124,11 +124,11 @@ class App {
    */
   private setupNavigationListeners(): void {
     const navButtons = {
-      browse: document.getElementById('nav-browse'),
-      quiz: document.getElementById('nav-quiz'),
-      memory: document.getElementById('nav-memory'),
-      globe: document.getElementById('nav-globe'),
-      stats: document.getElementById('nav-stats'),
+      browse: document.getElementById('browseBtn'),
+      quiz: document.getElementById('quizBtn'),
+      memory: document.getElementById('memoryBtn'),
+      globe: document.getElementById('globeBtn'),
+      stats: document.getElementById('statsBtn'),
     };
 
     Object.entries(navButtons).forEach(([section, button]) => {
@@ -241,7 +241,7 @@ class App {
     const navButtons = document.querySelectorAll('.nav-btn');
     navButtons.forEach((btn) => {
       btn.classList.remove('active');
-      if (btn.id === `nav-${activeSection}`) {
+      if (btn.id === `${activeSection}Btn`) {
         btn.classList.add('active');
       }
     });

@@ -1,14 +1,12 @@
 import { defineConfig } from 'vitest/config';
 import path from 'path';
-import { cpSync } from 'fs';
+import { cpSync, existsSync, readFileSync, writeFileSync, rmSync } from 'fs';
 
 export default defineConfig({
   plugins: [
     {
       name: 'copy-static-assets',
       closeBundle() {
-        const fs = require('fs');
-
         // 复制 data 目录到 dist
         cpSync('data', 'dist/data', { recursive: true, force: true });
         // 复制 assets 目录到 dist（但排除已经被 Vite 处理的文件）
@@ -20,24 +18,24 @@ export default defineConfig({
         const homepageSrc = 'dist/src/pages/homepage.html';
         const homepageDest = 'dist/homepage.html';
 
-        if (fs.existsSync(homepageSrc)) {
-          let content = fs.readFileSync(homepageSrc, 'utf-8');
+        if (existsSync(homepageSrc)) {
+          let content = readFileSync(homepageSrc, 'utf-8');
           // 修正资源路径：从 ../../assets/ 改为 ./assets/
           content = content.replace(/\.\.\/\.\.\/assets\//g, './assets/');
-          fs.writeFileSync(homepageDest, content);
+          writeFileSync(homepageDest, content);
           console.log('✅ homepage.html 已移动到 dist 根目录并修正路径');
 
           // 删除旧的目录结构
           try {
-            fs.rmSync('dist/src', { recursive: true, force: true });
+            rmSync('dist/src', { recursive: true, force: true });
             console.log('✅ 已清理临时目录');
           } catch (e: unknown) {
             const error = e as Error;
             console.log('⚠️  清理临时目录失败:', error.message || e);
           }
         }
-      }
-    }
+      },
+    },
   ],
   // 测试配置
   test: {

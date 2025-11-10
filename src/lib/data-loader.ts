@@ -15,7 +15,8 @@ export async function loadCountries(): Promise<Country[]> {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    return data as Country[];
+    // 数据文件格式为 { "countries": [...] }
+    return (data.countries || data) as Country[];
   } catch (error) {
     console.error('Failed to load countries data:', error);
     return [];
@@ -44,7 +45,7 @@ export async function loadTranslations(): Promise<Translations> {
  */
 export async function loadCountryList(filename: string): Promise<string[]> {
   try {
-    const response = await fetch(`./data/lists/${filename}`);
+    const response = await fetch(`/data/lists/${filename}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -64,7 +65,7 @@ export async function loadCountryList(filename: string): Promise<string[]> {
  */
 export async function loadGeoJSON(filename: string): Promise<any> {
   try {
-    const response = await fetch(`./assets/geo/${filename}`);
+    const response = await fetch(`/assets/geo/${filename}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -109,7 +110,7 @@ export async function preloadFlags(countryCodes: string[]): Promise<void> {
  * 获取国旗图片URL
  */
 export function getFlagImageUrl(countryCode: string): string {
-  return `./assets/images/flags/${countryCode}.png`;
+  return `/assets/images/flags/${countryCode}.png`;
 }
 
 /**

@@ -76,10 +76,9 @@ export class UnifiedI18n {
   private getNestedTranslation(obj: TranslationData, path: string): string | undefined {
     const result = path
       .split('.')
-      .reduce<TranslationData | string | undefined>(
-        (current, key) => (current && typeof current === 'object' ? current[key] : undefined),
-        obj
-      );
+      .reduce<
+        TranslationData | string | undefined
+      >((current, key) => (current && typeof current === 'object' ? current[key] : undefined), obj);
     return typeof result === 'string' ? result : undefined;
   }
 
@@ -549,10 +548,7 @@ export class UnifiedI18n {
   /** 翻译测验错题卡片 */
   private translateQuizWrongAnswers(): void {
     const wrongAnswersSection = document.getElementById('wrong-answers-section');
-    if (
-      !wrongAnswersSection ||
-      (wrongAnswersSection as HTMLElement).style.display === 'none'
-    )
+    if (!wrongAnswersSection || (wrongAnswersSection as HTMLElement).style.display === 'none')
       return;
 
     const allAnswerLabels = wrongAnswersSection.querySelectorAll('.answer-label');

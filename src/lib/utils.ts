@@ -37,11 +37,7 @@ export function safeSetDisplay(id: string, display: string): void {
 /**
  * 安全地添加事件监听器
  */
-export function safeAddEventListener(
-  id: string,
-  event: string,
-  handler: EventListener
-): void {
+export function safeAddEventListener(id: string, event: string, handler: EventListener): void {
   const element = document.getElementById(id);
   if (element) {
     element.addEventListener(event, handler);
