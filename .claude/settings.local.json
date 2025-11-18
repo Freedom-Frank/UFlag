@@ -48,7 +48,10 @@
       "Bash(git remote:*)",
       "Bash(start http://localhost:8000/src/pages/homepage.html)",
       "Bash(cat:*)",
-      "Bash(findstr:*)"
+      "Bash(findstr:*)",
+      "Bash(jq:*)",
+      "Bash(comm:*)",
+      "Bash(temp_clean.json)"
     ],
     "deny": [],
     "ask": []

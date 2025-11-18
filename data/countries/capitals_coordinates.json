@@ -1,0 +1,1162 @@
+{
+  "capitals": [
+    {
+      "code": "cn",
+      "name": {"zh": "北京", "en": "Beijing"},
+      "lat": 39.9042,
+      "lng": 116.4074
+    },
+    {
+      "code": "us",
+      "name": {"zh": "华盛顿", "en": "Washington"},
+      "lat": 38.9072,
+      "lng": -77.0369
+    },
+    {
+      "code": "jp",
+      "name": {"zh": "东京", "en": "Tokyo"},
+      "lat": 35.6762,
+      "lng": 139.6503
+    },
+    {
+      "code": "gb",
+      "name": {"zh": "伦敦", "en": "London"},
+      "lat": 51.5074,
+      "lng": -0.1278
+    },
+    {
+      "code": "fr",
+      "name": {"zh": "巴黎", "en": "Paris"},
+      "lat": 48.8566,
+      "lng": 2.3522
+    },
+    {
+      "code": "de",
+      "name": {"zh": "柏林", "en": "Berlin"},
+      "lat": 52.5200,
+      "lng": 13.4050
+    },
+    {
+      "code": "ru",
+      "name": {"zh": "莫斯科", "en": "Moscow"},
+      "lat": 55.7558,
+      "lng": 37.6176
+    },
+    {
+      "code": "in",
+      "name": {"zh": "新德里", "en": "New Delhi"},
+      "lat": 28.6139,
+      "lng": 77.2090
+    },
+    {
+      "code": "br",
+      "name": {"zh": "巴西利亚", "en": "Brasília"},
+      "lat": -15.8267,
+      "lng": -47.9218
+    },
+    {
+      "code": "ca",
+      "name": {"zh": "渥太华", "en": "Ottawa"},
+      "lat": 45.4215,
+      "lng": -75.6972
+    },
+    {
+      "code": "au",
+      "name": {"zh": "堪培拉", "en": "Canberra"},
+      "lat": -35.2802,
+      "lng": 149.1300
+    },
+    {
+      "code": "kr",
+      "name": {"zh": "首尔", "en": "Seoul"},
+      "lat": 37.5665,
+      "lng": 126.9780
+    },
+    {
+      "code": "it",
+      "name": {"zh": "罗马", "en": "Rome"},
+      "lat": 41.9028,
+      "lng": 12.4964
+    },
+    {
+      "code": "es",
+      "name": {"zh": "马德里", "en": "Madrid"},
+      "lat": 40.4168,
+      "lng": -3.7038
+    },
+    {
+      "code": "mx",
+      "name": {"zh": "墨西哥城", "en": "Mexico City"},
+      "lat": 19.4326,
+      "lng": -99.1332
+    },
+    {
+      "code": "ar",
+      "name": {"zh": "布宜诺斯艾利斯", "en": "Buenos Aires"},
+      "lat": -34.6037,
+      "lng": -58.3816
+    },
+    {
+      "code": "za",
+      "name": {"zh": "开普敦", "en": "Cape Town"},
+      "lat": -33.9249,
+      "lng": 18.4241
+    },
+    {
+      "code": "eg",
+      "name": {"zh": "开罗", "en": "Cairo"},
+      "lat": 30.0444,
+      "lng": 31.2357
+    },
+    {
+      "code": "ng",
+      "name": {"zh": "阿布贾", "en": "Abuja"},
+      "lat": 9.0765,
+      "lng": 7.3986
+    },
+    {
+      "code": "ke",
+      "name": {"zh": "内罗毕", "en": "Nairobi"},
+      "lat": -1.2921,
+      "lng": 36.8219
+    },
+    {
+      "code": "th",
+      "name": {"zh": "曼谷", "en": "Bangkok"},
+      "lat": 13.7563,
+      "lng": 100.5018
+    },
+    {
+      "code": "sg",
+      "name": {"zh": "新加坡", "en": "Singapore"},
+      "lat": 1.3521,
+      "lng": 103.8198
+    },
+    {
+      "code": "my",
+      "name": {"zh": "吉隆坡", "en": "Kuala Lumpur"},
+      "lat": 3.1390,
+      "lng": 101.6869
+    },
+    {
+      "code": "ph",
+      "name": {"zh": "马尼拉", "en": "Manila"},
+      "lat": 14.5995,
+      "lng": 120.9842
+    },
+    {
+      "code": "vn",
+      "name": {"zh": "河内", "en": "Hanoi"},
+      "lat": 21.0285,
+      "lng": 105.8542
+    },
+    {
+      "code": "id",
+      "name": {"zh": "雅加达", "en": "Jakarta"},
+      "lat": -6.2088,
+      "lng": 106.8456
+    },
+    {
+      "code": "pk",
+      "name": {"zh": "伊斯兰堡", "en": "Islamabad"},
+      "lat": 33.6844,
+      "lng": 73.0479
+    },
+    {
+      "code": "bd",
+      "name": {"zh": "达卡", "en": "Dhaka"},
+      "lat": 23.8103,
+      "lng": 90.4125
+    },
+    {
+      "code": "lk",
+      "name": {"zh": "科伦坡", "en": "Colombo"},
+      "lat": 6.9271,
+      "lng": 79.8612
+    },
+    {
+      "code": "np",
+      "name": {"zh": "加德满都", "en": "Kathmandu"},
+      "lat": 27.7172,
+      "lng": 85.3240
+    },
+    {
+      "code": "mm",
+      "name": {"zh": "内比都", "en": "Naypyidaw"},
+      "lat": 19.7633,
+      "lng": 96.0785
+    },
+    {
+      "code": "kh",
+      "name": {"zh": "金边", "en": "Phnom Penh"},
+      "lat": 11.5564,
+      "lng": 104.9282
+    },
+    {
+      "code": "la",
+      "name": {"zh": "万象", "en": "Vientiane"},
+      "lat": 17.9757,
+      "lng": 102.6101
+    },
+    {
+      "code": "mn",
+      "name": {"zh": "乌兰巴托", "en": "Ulaanbaatar"},
+      "lat": 47.8864,
+      "lng": 106.9057
+    },
+    {
+      "code": "kz",
+      "name": {"zh": "努尔苏丹", "en": "Nur-Sultan"},
+      "lat": 51.1605,
+      "lng": 71.4704
+    },
+    {
+      "code": "uz",
+      "name": {"zh": "塔什干", "en": "Tashkent"},
+      "lat": 41.2995,
+      "lng": 69.2401
+    },
+    {
+      "code": "af",
+      "name": {"zh": "喀布尔", "en": "Kabul"},
+      "lat": 34.5205,
+      "lng": 69.1778
+    },
+    {
+      "code": "ir",
+      "name": {"zh": "德黑兰", "en": "Tehran"},
+      "lat": 35.6892,
+      "lng": 51.3890
+    },
+    {
+      "code": "iq",
+      "name": {"zh": "巴格达", "en": "Baghdad"},
+      "lat": 33.3152,
+      "lng": 44.3661
+    },
+    {
+      "code": "sa",
+      "name": {"zh": "利雅得", "en": "Riyadh"},
+      "lat": 24.7136,
+      "lng": 46.6753
+    },
+    {
+      "code": "tr",
+      "name": {"zh": "安卡拉", "en": "Ankara"},
+      "lat": 39.9334,
+      "lng": 32.8597
+    },
+    {
+      "code": "pl",
+      "name": {"zh": "华沙", "en": "Warsaw"},
+      "lat": 52.2297,
+      "lng": 21.0122
+    },
+    {
+      "code": "ua",
+      "name": {"zh": "基辅", "en": "Kyiv"},
+      "lat": 50.4501,
+      "lng": 30.5234
+    },
+    {
+      "code": "se",
+      "name": {"zh": "斯德哥尔摩", "en": "Stockholm"},
+      "lat": 59.3293,
+      "lng": 18.0686
+    },
+    {
+      "code": "no",
+      "name": {"zh": "奥斯陆", "en": "Oslo"},
+      "lat": 59.9139,
+      "lng": 10.7522
+    },
+    {
+      "code": "dk",
+      "name": {"zh": "哥本哈根", "en": "Copenhagen"},
+      "lat": 55.6761,
+      "lng": 12.5683
+    },
+    {
+      "code": "fi",
+      "name": {"zh": "赫尔辛基", "en": "Helsinki"},
+      "lat": 60.1699,
+      "lng": 24.9384
+    },
+    {
+      "code": "nl",
+      "name": {"zh": "阿姆斯特丹", "en": "Amsterdam"},
+      "lat": 52.3676,
+      "lng": 4.9041
+    },
+    {
+      "code": "be",
+      "name": {"zh": "布鲁塞尔", "en": "Brussels"},
+      "lat": 50.8503,
+      "lng": 4.3517
+    },
+    {
+      "code": "ch",
+      "name": {"zh": "伯尔尼", "en": "Bern"},
+      "lat": 46.9481,
+      "lng": 7.4474
+    },
+    {
+      "code": "at",
+      "name": {"zh": "维也纳", "en": "Vienna"},
+      "lat": 48.2082,
+      "lng": 16.3738
+    },
+    {
+      "code": "cz",
+      "name": {"zh": "布拉格", "en": "Prague"},
+      "lat": 50.0755,
+      "lng": 14.4378
+    },
+    {
+      "code": "sk",
+      "name": {"zh": "布拉迪斯拉发", "en": "Bratislava"},
+      "lat": 48.1486,
+      "lng": 17.1077
+    },
+    {
+      "code": "hu",
+      "name": {"zh": "布达佩斯", "en": "Budapest"},
+      "lat": 47.4979,
+      "lng": 19.0402
+    },
+    {
+      "code": "ro",
+      "name": {"zh": "布加勒斯特", "en": "Bucharest"},
+      "lat": 44.4268,
+      "lng": 26.1025
+    },
+    {
+      "code": "bg",
+      "name": {"zh": "索非亚", "en": "Sofia"},
+      "lat": 42.6977,
+      "lng": 23.3219
+    },
+    {
+      "code": "gr",
+      "name": {"zh": "雅典", "en": "Athens"},
+      "lat": 37.9838,
+      "lng": 23.7275
+    },
+    {
+      "code": "pt",
+      "name": {"zh": "里斯本", "en": "Lisbon"},
+      "lat": 38.7223,
+      "lng": -9.1393
+    },
+    {
+      "code": "ie",
+      "name": {"zh": "都柏林", "en": "Dublin"},
+      "lat": 53.3498,
+      "lng": -6.2603
+    },
+    {
+      "code": "is",
+      "name": {"zh": "雷克雅未克", "en": "Reykjavik"},
+      "lat": 64.1466,
+      "lng": -21.9426
+    },
+    {
+      "code": "li",
+      "name": {"zh": "瓦杜兹", "en": "Vaduz"},
+      "lat": 47.1410,
+      "lng": 9.5215
+    },
+    {
+      "code": "lu",
+      "name": {"zh": "卢森堡", "en": "Luxembourg"},
+      "lat": 49.6116,
+      "lng": 6.1319
+    },
+    {
+      "code": "mt",
+      "name": {"zh": "瓦莱塔", "en": "Valletta"},
+      "lat": 35.8989,
+      "lng": 14.5146
+    },
+    {
+      "code": "cy",
+      "name": {"zh": "尼科西亚", "en": "Nicosia"},
+      "lat": 35.1856,
+      "lng": 33.3823
+    },
+    {
+      "code": "si",
+      "name": {"zh": "卢布尔雅那", "en": "Ljubljana"},
+      "lat": 46.0569,
+      "lng": 14.5058
+    },
+    {
+      "code": "hr",
+      "name": {"zh": "萨格勒布", "en": "Zagreb"},
+      "lat": 45.8150,
+      "lng": 15.9785
+    },
+    {
+      "code": "ba",
+      "name": {"zh": "萨拉热窝", "en": "Sarajevo"},
+      "lat": 43.8563,
+      "lng": 18.4131
+    },
+    {
+      "code": "mk",
+      "name": {"zh": "斯科普里", "en": "Skopje"},
+      "lat": 42.0024,
+      "lng": 21.4361
+    },
+    {
+      "code": "al",
+      "name": {"zh": "地拉那", "en": "Tirana"},
+      "lat": 41.3275,
+      "lng": 19.8187
+    },
+    {
+      "code": "me",
+      "name": {"zh": "波德戈里察", "en": "Podgorica"},
+      "lat": 42.4441,
+      "lng": 19.2575
+    },
+    {
+      "code": "rs",
+      "name": {"zh": "贝尔格莱德", "en": "Belgrade"},
+      "lat": 44.8125,
+      "lng": 20.4612
+    },
+    {
+      "code": "ad",
+      "name": {"zh": "安道尔", "en": "Andorra"},
+      "lat": 42.5063,
+      "lng": 1.5218
+    },
+    {
+      "code": "mc",
+      "name": {"zh": "摩纳哥", "en": "Monaco"},
+      "lat": 43.7347,
+      "lng": 7.4206
+    },
+    {
+      "code": "sm",
+      "name": {"zh": "圣马力诺", "en": "San Marino"},
+      "lat": 43.9424,
+      "lng": 12.4578
+    },
+    {
+      "code": "il",
+      "name": {"zh": "耶路撒冷", "en": "Jerusalem"},
+      "lat": 31.7683,
+      "lng": 35.2137
+    },
+    {
+      "code": "jo",
+      "name": {"zh": "安曼", "en": "Amman"},
+      "lat": 31.9539,
+      "lng": 35.9106
+    },
+    {
+      "code": "sy",
+      "name": {"zh": "大马士革", "en": "Damascus"},
+      "lat": 33.5138,
+      "lng": 36.2765
+    },
+    {
+      "code": "lb",
+      "name": {"zh": "贝鲁特", "en": "Beirut"},
+      "lat": 33.8938,
+      "lng": 35.5018
+    },
+    {
+      "code": "ae",
+      "name": {"zh": "阿布扎比", "en": "Abu Dhabi"},
+      "lat": 24.2639,
+      "lng": 54.6348
+    },
+    {
+      "code": "qa",
+      "name": {"zh": "多哈", "en": "Doha"},
+      "lat": 25.2854,
+      "lng": 51.5310
+    },
+    {
+      "code": "kw",
+      "name": {"zh": "科威特城", "en": "Kuwait City"},
+      "lat": 29.3759,
+      "lng": 47.9774
+    },
+    {
+      "code": "bh",
+      "name": {"zh": "麦纳麦", "en": "Manama"},
+      "lat": 26.0667,
+      "lng": 50.5577
+    },
+    {
+      "code": "om",
+      "name": {"zh": "马斯喀特", "en": "Muscat"},
+      "lat": 23.5859,
+      "lng": 58.4059
+    },
+    {
+      "code": "ye",
+      "name": {"zh": "萨那", "en": "Sana'a"},
+      "lat": 15.3694,
+      "lng": 44.1910
+    },
+    {
+      "code": "dz",
+      "name": {"zh": "阿尔及尔", "en": "Algiers"},
+      "lat": 36.7538,
+      "lng": 3.0588
+    },
+    {
+      "code": "ma",
+      "name": {"zh": "拉巴特", "en": "Rabat"},
+      "lat": 34.0209,
+      "lng": -6.8416
+    },
+    {
+      "code": "tn",
+      "name": {"zh": "突尼斯", "en": "Tunis"},
+      "lat": 36.8065,
+      "lng": 10.1815
+    },
+    {
+      "code": "ly",
+      "name": {"zh": "的黎波里", "en": "Tripoli"},
+      "lat": 32.8872,
+      "lng": 13.1913
+    },
+    {
+      "code": "sd",
+      "name": {"zh": "喀土穆", "en": "Khartoum"},
+      "lat": 15.5007,
+      "lng": 32.5599
+    },
+    {
+      "code": "et",
+      "name": {"zh": "亚的斯亚贝巴", "en": "Addis Ababa"},
+      "lat": 9.1450,
+      "lng": 38.7617
+    },
+    {
+      "code": "ug",
+      "name": {"zh": "坎帕拉", "en": "Kampala"},
+      "lat": 0.3476,
+      "lng": 32.5825
+    },
+    {
+      "code": "tz",
+      "name": {"zh": "多多马", "en": "Dodoma"},
+      "lat": -6.1620,
+      "lng": 35.7516
+    },
+    {
+      "code": "zm",
+      "name": {"zh": "卢萨卡", "en": "Lusaka"},
+      "lat": -15.3875,
+      "lng": 28.3228
+    },
+    {
+      "code": "mw",
+      "name": {"zh": "利隆圭", "en": "Lilongwe"},
+      "lat": -13.9899,
+      "lng": 33.7703
+    },
+    {
+      "code": "ao",
+      "name": {"zh": "罗安达", "en": "Luanda"},
+      "lat": -8.8392,
+      "lng": 13.2894
+    },
+    {
+      "code": "na",
+      "name": {"zh": "温得和克", "en": "Windhoek"},
+      "lat": -22.5609,
+      "lng": 17.0658
+    },
+    {
+      "code": "bw",
+      "name": {"zh": "哈博罗内", "en": "Gaborone"},
+      "lat": -24.6541,
+      "lng": 25.9087
+    },
+    {
+      "code": "sz",
+      "name": {"zh": "姆巴巴纳", "en": "Mbabane"},
+      "lat": -26.3054,
+      "lng": 31.1367
+    },
+    {
+      "code": "ls",
+      "name": {"zh": "马塞卢", "en": "Maseru"},
+      "lat": -29.3632,
+      "lng": 27.5144
+    },
+    {
+      "code": "mg",
+      "name": {"zh": "塔那那利佛", "en": "Antananarivo"},
+      "lat": -18.8792,
+      "lng": 47.5079
+    },
+    {
+      "code": "mu",
+      "name": {"zh": "路易港", "en": "Port Louis"},
+      "lat": -20.1609,
+      "lng": 57.5012
+    },
+    {
+      "code": "sc",
+      "name": {"zh": "维多利亚", "en": "Victoria"},
+      "lat": -4.6236,
+      "lng": 55.4544
+    },
+    {
+      "code": "km",
+      "name": {"zh": "莫罗尼", "en": "Moroni"},
+      "lat": -11.7045,
+      "lng": 43.2519
+    },
+    {
+      "code": "cl",
+      "name": {"zh": "圣地亚哥", "en": "Santiago"},
+      "lat": -33.4489,
+      "lng": -70.6693
+    },
+    {
+      "code": "ve",
+      "name": {"zh": "加拉加斯", "en": "Caracas"},
+      "lat": 10.4806,
+      "lng": -66.9036
+    },
+    {
+      "code": "co",
+      "name": {"zh": "波哥大", "en": "Bogotá"},
+      "lat": 4.7110,
+      "lng": -74.0721
+    },
+    {
+      "code": "pe",
+      "name": {"zh": "利马", "en": "Lima"},
+      "lat": -12.0464,
+      "lng": -77.0428
+    },
+    {
+      "code": "ec",
+      "name": {"zh": "基多", "en": "Quito"},
+      "lat": -0.1807,
+      "lng": -78.4678
+    },
+    {
+      "code": "bo",
+      "name": {"zh": "拉巴斯", "en": "La Paz"},
+      "lat": -16.4897,
+      "lng": -68.1193
+    },
+    {
+      "code": "py",
+      "name": {"zh": "亚松森", "en": "Asunción"},
+      "lat": -25.2637,
+      "lng": -57.5759
+    },
+    {
+      "code": "uy",
+      "name": {"zh": "蒙得维的亚", "en": "Montevideo"},
+      "lat": -34.9011,
+      "lng": -56.1645
+    },
+    {
+      "code": "gy",
+      "name": {"zh": "乔治敦", "en": "Georgetown"},
+      "lat": 6.8013,
+      "lng": -58.1551
+    },
+    {
+      "code": "sr",
+      "name": {"zh": "帕拉马里博", "en": "Paramaribo"},
+      "lat": 5.8520,
+      "lng": -55.2038
+    },
+    {
+      "code": "nz",
+      "name": {"zh": "惠灵顿", "en": "Wellington"},
+      "lat": -41.2865,
+      "lng": 174.7762
+    },
+    {
+      "code": "fj",
+      "name": {"zh": "苏瓦", "en": "Suva"},
+      "lat": -18.1248,
+      "lng": 178.4501
+    },
+    {
+      "code": "pg",
+      "name": {"zh": "莫尔兹比港", "en": "Port Moresby"},
+      "lat": -9.4438,
+      "lng": 147.1803
+    },
+    {
+      "code": "sb",
+      "name": {"zh": "霍尼亚拉", "en": "Honiara"},
+      "lat": -9.4336,
+      "lng": 159.9552
+    },
+    {
+      "code": "vu",
+      "name": {"zh": "维拉港", "en": "Port Vila"},
+      "lat": -17.7334,
+      "lng": 168.3219
+    },
+    {
+      "code": "ws",
+      "name": {"zh": "阿皮亚", "en": "Apia"},
+      "lat": -13.8506,
+      "lng": -171.7513
+    },
+    {
+      "code": "to",
+      "name": {"zh": "努库阿洛法", "en": "Nuku'alofa"},
+      "lat": -21.1789,
+      "lng": -175.1982
+    },
+    {
+      "code": "ki",
+      "name": {"zh": "塔拉瓦", "en": "Tarawa"},
+      "lat": 1.3278,
+      "lng": 172.9784
+    },
+    {
+      "code": "tv",
+      "name": {"zh": "富纳富提", "en": "Funafuti"},
+      "lat": -8.5167,
+      "lng": 179.2167
+    },
+    {
+      "code": "nr",
+      "name": {"zh": "亚伦", "en": "Yaren"},
+      "lat": -0.5477,
+      "lng": 166.9310
+    },
+    {
+      "code": "pw",
+      "name": {"zh": "梅莱凯奥克", "en": "Melekeok"},
+      "lat": 7.5004,
+      "lng": 134.6233
+    },
+    {
+      "code": "fm",
+      "name": {"zh": "帕利基尔", "en": "Palikir"},
+      "lat": 6.9226,
+      "lng": 158.1612
+    },
+    {
+      "code": "mh",
+      "name": {"zh": "马朱罗", "en": "Majuro"},
+      "lat": 7.0954,
+      "lng": 171.3809
+    },
+    {
+      "code": "do",
+      "name": {"zh": "圣多明各", "en": "Santo Domingo"},
+      "lat": 18.4861,
+      "lng": -69.9312
+    },
+    {
+      "code": "ht",
+      "name": {"zh": "太子港", "en": "Port-au-Prince"},
+      "lat": 18.5944,
+      "lng": -72.3074
+    },
+    {
+      "code": "jm",
+      "name": {"zh": "金斯敦", "en": "Kingston"},
+      "lat": 18.0179,
+      "lng": -76.8099
+    },
+    {
+      "code": "bb",
+      "name": {"zh": "布里奇顿", "en": "Bridgetown"},
+      "lat": 13.1066,
+      "lng": -59.6131
+    },
+    {
+      "code": "tt",
+      "name": {"zh": "西班牙港", "en": "Port of Spain"},
+      "lat": 10.6515,
+      "lng": -61.2225
+    },
+    {
+      "code": "gd",
+      "name": {"zh": "圣乔治", "en": "St. George's"},
+      "lat": 12.0456,
+      "lng": -61.7477
+    },
+    {
+      "code": "lc",
+      "name": {"zh": "卡斯特里", "en": "Castries"},
+      "lat": 13.9957,
+      "lng": -60.9969
+    },
+    {
+      "code": "vc",
+      "name": {"zh": "金斯敦", "en": "Kingstown"},
+      "lat": 13.1562,
+      "lng": -61.2279
+    },
+    {
+      "code": "ag",
+      "name": {"zh": "圣约翰斯", "en": "St. John's"},
+      "lat": 17.1205,
+      "lng": -61.8436
+    },
+    {
+      "code": "dm",
+      "name": {"zh": "罗索", "en": "Roseau"},
+      "lat": 15.3014,
+      "lng": -61.3881
+    },
+    {
+      "code": "kn",
+      "name": {"zh": "巴斯特尔", "en": "Basseterre"},
+      "lat": 17.2953,
+      "lng": -62.6140
+    },
+    {
+      "code": "bs",
+      "name": {"zh": "拿骚", "en": "Nassau"},
+      "lat": 25.0343,
+      "lng": -77.3963
+    },
+    {
+      "code": "bz",
+      "name": {"zh": "贝尔莫潘", "en": "Belmopan"},
+      "lat": 17.2510,
+      "lng": -88.7668
+    },
+    {
+      "code": "gt",
+      "name": {"zh": "危地马拉城", "en": "Guatemala City"},
+      "lat": 14.6349,
+      "lng": -90.5069
+    },
+    {
+      "code": "sv",
+      "name": {"zh": "圣萨尔瓦多", "en": "San Salvador"},
+      "lat": 13.6989,
+      "lng": -89.2037
+    },
+    {
+      "code": "hn",
+      "name": {"zh": "特古西加尔巴", "en": "Tegucigalpa"},
+      "lat": 14.0723,
+      "lng": -87.1921
+    },
+    {
+      "code": "ni",
+      "name": {"zh": "马那瓜", "en": "Managua"},
+      "lat": 12.1146,
+      "lng": -86.2362
+    },
+    {
+      "code": "cr",
+      "name": {"zh": "圣何塞", "en": "San José"},
+      "lat": 9.9281,
+      "lng": -84.0907
+    },
+    {
+      "code": "pa",
+      "name": {"zh": "巴拿马城", "en": "Panama City"},
+      "lat": 8.9824,
+      "lng": -79.5199
+    },
+    {
+      "code": "am",
+      "name": {"zh": "埃里温", "en": "Yerevan"},
+      "lat": 40.1792,
+      "lng": 44.4991
+    },
+    {
+      "code": "az",
+      "name": {"zh": "巴库", "en": "Baku"},
+      "lat": 40.4093,
+      "lng": 49.8671
+    },
+    {
+      "code": "bf",
+      "name": {"zh": "瓦加杜古", "en": "Ouagadougou"},
+      "lat": 12.3714,
+      "lng": -1.5197
+    },
+    {
+      "code": "bi",
+      "name": {"zh": "布琼布拉", "en": "Bujumbura"},
+      "lat": -3.3614,
+      "lng": 29.3599
+    },
+    {
+      "code": "bj",
+      "name": {"zh": "波多诺伏", "en": "Porto-Novo"},
+      "lat": 6.4967,
+      "lng": 2.6289
+    },
+    {
+      "code": "bn",
+      "name": {"zh": "斯里巴加湾市", "en": "Bandar Seri Begawan"},
+      "lat": 4.9403,
+      "lng": 114.9483
+    },
+    {
+      "code": "bt",
+      "name": {"zh": "廷布", "en": "Thimphu"},
+      "lat": 27.4728,
+      "lng": 89.6393
+    },
+    {
+      "code": "by",
+      "name": {"zh": "明斯克", "en": "Minsk"},
+      "lat": 53.9045,
+      "lng": 27.5615
+    },
+    {
+      "code": "cd",
+      "name": {"zh": "金沙萨", "en": "Kinshasa"},
+      "lat": -4.4419,
+      "lng": 15.2663
+    },
+    {
+      "code": "cf",
+      "name": {"zh": "班吉", "en": "Bangui"},
+      "lat": 4.3947,
+      "lng": 18.5583
+    },
+    {
+      "code": "cg",
+      "name": {"zh": "布拉柴维尔", "en": "Brazzaville"},
+      "lat": -4.2634,
+      "lng": 15.2429
+    },
+    {
+      "code": "ci",
+      "name": {"zh": "亚穆苏克罗", "en": "Yamoussoukro"},
+      "lat": 6.8276,
+      "lng": -5.2893
+    },
+    {
+      "code": "cm",
+      "name": {"zh": "雅温得", "en": "Yaoundé"},
+      "lat": 3.8480,
+      "lng": 11.5021
+    },
+    {
+      "code": "cu",
+      "name": {"zh": "哈瓦那", "en": "Havana"},
+      "lat": 23.1136,
+      "lng": -82.3666
+    },
+    {
+      "code": "cv",
+      "name": {"zh": "普拉亚", "en": "Praia"},
+      "lat": 14.9330,
+      "lng": -23.5133
+    },
+    {
+      "code": "dj",
+      "name": {"zh": "吉布提市", "en": "Djibouti"},
+      "lat": 11.5950,
+      "lng": 43.1481
+    },
+    {
+      "code": "ee",
+      "name": {"zh": "塔林", "en": "Tallinn"},
+      "lat": 59.4370,
+      "lng": 24.7536
+    },
+    {
+      "code": "er",
+      "name": {"zh": "阿斯马拉", "en": "Asmara"},
+      "lat": 15.3225,
+      "lng": 38.9253
+    },
+    {
+      "code": "ga",
+      "name": {"zh": "利伯维尔", "en": "Libreville"},
+      "lat": 0.3915,
+      "lng": 9.4444
+    },
+    {
+      "code": "ge",
+      "name": {"zh": "第比利斯", "en": "Tbilisi"},
+      "lat": 41.7151,
+      "lng": 44.8278
+    },
+    {
+      "code": "gh",
+      "name": {"zh": "阿克拉", "en": "Accra"},
+      "lat": 5.6037,
+      "lng": -0.1870
+    },
+    {
+      "code": "gm",
+      "name": {"zh": "班珠尔", "en": "Banjul"},
+      "lat": 13.4531,
+      "lng": -16.5775
+    },
+    {
+      "code": "gn",
+      "name": {"zh": "科纳克里", "en": "Conakry"},
+      "lat": 9.6412,
+      "lng": -13.5784
+    },
+    {
+      "code": "gq",
+      "name": {"zh": "马拉博", "en": "Malabo"},
+      "lat": 3.7504,
+      "lng": 8.7371
+    },
+    {
+      "code": "gw",
+      "name": {"zh": "比绍", "en": "Bissau"},
+      "lat": 11.8594,
+      "lng": -15.5875
+    },
+    {
+      "code": "kg",
+      "name": {"zh": "比什凯克", "en": "Bishkek"},
+      "lat": 42.8746,
+      "lng": 74.5698
+    },
+    {
+      "code": "kp",
+      "name": {"zh": "平壤", "en": "Pyongyang"},
+      "lat": 39.0392,
+      "lng": 125.7625
+    },
+    {
+      "code": "lr",
+      "name": {"zh": "蒙罗维亚", "en": "Monrovia"},
+      "lat": 6.2907,
+      "lng": -10.7603
+    },
+    {
+      "code": "lt",
+      "name": {"zh": "维尔纽斯", "en": "Vilnius"},
+      "lat": 54.6872,
+      "lng": 25.2797
+    },
+    {
+      "code": "lv",
+      "name": {"zh": "里加", "en": "Riga"},
+      "lat": 56.9496,
+      "lng": 24.1052
+    },
+    {
+      "code": "md",
+      "name": {"zh": "基希讷乌", "en": "Chișinău"},
+      "lat": 47.0105,
+      "lng": 28.8638
+    },
+    {
+      "code": "ml",
+      "name": {"zh": "巴马科", "en": "Bamako"},
+      "lat": 12.6392,
+      "lng": -8.0029
+    },
+    {
+      "code": "mr",
+      "name": {"zh": "努瓦克肖特", "en": "Nouakchott"},
+      "lat": 18.0735,
+      "lng": -15.9582
+    },
+    {
+      "code": "mv",
+      "name": {"zh": "马累", "en": "Malé"},
+      "lat": 4.1755,
+      "lng": 73.5093
+    },
+    {
+      "code": "mz",
+      "name": {"zh": "马普托", "en": "Maputo"},
+      "lat": -25.9692,
+      "lng": 32.5732
+    },
+    {
+      "code": "ne",
+      "name": {"zh": "尼亚美", "en": "Niamey"},
+      "lat": 13.5137,
+      "lng": 2.1098
+    },
+    {
+      "code": "rw",
+      "name": {"zh": "基加利", "en": "Kigali"},
+      "lat": -1.9403,
+      "lng": 30.0588
+    },
+    {
+      "code": "sl",
+      "name": {"zh": "弗里敦", "en": "Freetown"},
+      "lat": 8.4657,
+      "lng": -13.2317
+    },
+    {
+      "code": "sn",
+      "name": {"zh": "达喀尔", "en": "Dakar"},
+      "lat": 14.6928,
+      "lng": -17.4467
+    },
+    {
+      "code": "so",
+      "name": {"zh": "摩加迪沙", "en": "Mogadishu"},
+      "lat": 2.0469,
+      "lng": 45.3182
+    },
+    {
+      "code": "ss",
+      "name": {"zh": "朱巴", "en": "Juba"},
+      "lat": 4.8472,
+      "lng": 31.5781
+    },
+    {
+      "code": "st",
+      "name": {"zh": "圣多美", "en": "São Tomé"},
+      "lat": 0.3361,
+      "lng": 6.6329
+    },
+    {
+      "code": "td",
+      "name": {"zh": "恩贾梅纳", "en": "N'Djamena"},
+      "lat": 12.1348,
+      "lng": 15.0557
+    },
+    {
+      "code": "tg",
+      "name": {"zh": "洛美", "en": "Lomé"},
+      "lat": 6.1319,
+      "lng": 1.2220
+    },
+    {
+      "code": "tj",
+      "name": {"zh": "杜尚别", "en": "Dushanbe"},
+      "lat": 38.5598,
+      "lng": 68.7870
+    },
+    {
+      "code": "tl",
+      "name": {"zh": "帝力", "en": "Dili"},
+      "lat": -8.5567,
+      "lng": 125.5773
+    },
+    {
+      "code": "tm",
+      "name": {"zh": "阿什哈巴德", "en": "Ashgabat"},
+      "lat": 37.9601,
+      "lng": 58.3261
+    },
+    {
+      "code": "zw",
+      "name": {"zh": "哈拉雷", "en": "Harare"},
+      "lat": -17.8252,
+      "lng": 31.0335
+    }
+  ]
+}

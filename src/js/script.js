@@ -5482,6 +5482,18 @@ let idCanvasCtx = null;
 let countryIdMap = {}; // ID颜色 -> 国家代码映射
 let idCounter = 1; // ID计数器
 
+// 国旗标记相关变量
+let flagTextures = {}; // 国家代码 -> 国旗纹理映射
+let flagSprites = []; // 国旗精灵数组
+let capitalData = null; // 首都数据
+let flagTextureLoader = null; // 国旗纹理加载器
+let flagGroup = null; // 国旗对象组
+let flagScale = 0.15; // 国旗缩放比例
+let flagMinScale = 0.05; // 最小缩放比例
+let flagMaxScale = 0.3; // 最大缩放比例
+let flagsEnabled = true; // 国旗显示开关
+let capitalHighlightMaterial = null; // 首都高亮材质
+
 // 世界地图配色方案 - 参考世界地图，每个国家使用单一鲜艳颜色
 const worldMapColorPalette = [
     // 鲜艳的红色系
@@ -5553,6 +5565,360 @@ function getHoverColor(originalColor) {
     return color.getHex();
 }
 
+// 球面坐标转换函数 - 将经纬度转换为3D球面坐标
+function latLngToVector3(lat, lng, radius) {
+    const phi = (90 - lat) * (Math.PI / 180); // 纬度转换为极角
+    const theta = (lng + 180) * (Math.PI / 180); // 经度转换为方位角
+
+    const x = -(radius * Math.sin(phi) * Math.cos(theta));
+    const z = radius * Math.sin(phi) * Math.sin(theta);
+    const y = radius * Math.cos(phi);
+
+    return new THREE.Vector3(x, y, z);
+}
+
+// 加载首都数据
+async function loadCapitalData() {
+    try {
+        const response = await fetch('../../data/countries/capitals_coordinates.json');
+        if (!response.ok) {
+            throw new Error('无法加载首都坐标数据');
+        }
+        const data = await response.json();
+        capitalData = data.capitals;
+        console.log(`🏛️ 成功加载 ${capitalData.length} 个首都坐标数据`);
+        return capitalData;
+    } catch (error) {
+        console.error('❌ 加载首都数据失败:', error);
+        return [];
+    }
+}
+
+// 预加载国旗纹理
+async function loadFlagTextures() {
+    console.log('🚩 开始预加载国旗纹理...');
+
+    flagTextureLoader = new THREE.TextureLoader();
+    const flagPromises = [];
+
+    // 创建默认国旗纹理（白色方块）
+    const defaultCanvas = document.createElement('canvas');
+    defaultCanvas.width = 64;
+    defaultCanvas.height = 64;
+    const defaultCtx = defaultCanvas.getContext('2d');
+    defaultCtx.fillStyle = '#ffffff';
+    defaultCtx.fillRect(0, 0, 64, 64);
+    defaultCtx.strokeStyle = '#cccccc';
+    defaultCtx.strokeRect(0, 0, 64, 64);
+
+    const defaultTexture = new THREE.CanvasTexture(defaultCanvas);
+
+    // 为每个首都创建国旗纹理
+    capitalData.forEach(capital => {
+        const flagPromise = new Promise((resolve) => {
+            const flagPath = `../../assets/images/flags/${capital.code}.png`;
+
+            flagTextureLoader.load(
+                flagPath,
+                (texture) => {
+                    // 设置纹理参数
+                    texture.needsUpdate = true;
+                    texture.minFilter = THREE.LinearFilter;
+                    texture.magFilter = THREE.LinearFilter;
+                    texture.generateMipmaps = false;
+
+                    // 确保纹理比例正确且旗帜不会拉伸
+                    // 添加安全检查，确保image对象存在且有宽高属性
+                    let aspectRatio = 1.5; // 默认宽高比
+                    if (texture.image && texture.image.width && texture.image.height) {
+                        aspectRatio = texture.image.width / texture.image.height;
+                    }
+
+                    // 初始化userData对象（如果不存在）
+                    if (!texture.userData) {
+                        texture.userData = {};
+                    }
+                    texture.userData.aspectRatio = aspectRatio;
+
+                    flagTextures[capital.code] = texture;
+                    resolve();
+                },
+                undefined,
+                (error) => {
+                    // 使用默认纹理
+                    const defaultClone = defaultTexture.clone();
+                    defaultClone.userData = { aspectRatio: 1.0 }; // 为默认纹理设置宽高比
+                    flagTextures[capital.code] = defaultClone;
+                    console.warn(`⚠️ 无法加载 ${capital.name.zh || capital.name.en} 的国旗，使用默认图标`);
+                    resolve();
+                }
+            );
+        });
+
+        flagPromises.push(flagPromise);
+    });
+
+    try {
+        await Promise.all(flagPromises);
+        console.log(`✅ 成功加载 ${Object.keys(flagTextures).length} 个国旗纹理`);
+    } catch (error) {
+        console.error('❌ 国旗纹理加载失败:', error);
+    }
+}
+
+// 创建首都国旗标记
+function createCapitalFlags() {
+    if (!capitalData || !flagTextures) {
+        console.error('❌ 首都数据或国旗纹理未准备好');
+        return;
+    }
+
+    console.log('🏁 开始创建首都国旗标记...');
+
+    // 创建国旗组
+    flagGroup = new THREE.Group();
+    flagGroup.name = 'capitalFlags';
+
+    // 为每个首都创建国旗精灵
+    capitalData.forEach((capital, index) => {
+        const flagTexture = flagTextures[capital.code];
+        if (!flagTexture) return;
+
+        // 将经纬度转换为3D坐标
+        const position = latLngToVector3(capital.lat, capital.lng, 2.1);
+
+        // 创建首都光点效果
+        const capitalLight = createCapitalLight(position);
+        flagGroup.add(capitalLight);
+
+        // 创建国旗材质
+        const flagMaterial = new THREE.SpriteMaterial({
+            map: flagTexture,
+            transparent: true,
+            alphaTest: 0.1,
+            side: THREE.DoubleSide,
+            opacity: 0.9
+        });
+
+        // 创建国旗精灵
+        const flagSprite = new THREE.Sprite(flagMaterial);
+
+        // 设置精灵大小（基于纹理宽高比）
+        let aspectRatio = 1.5; // 默认宽高比
+        if (flagTexture.userData && flagTexture.userData.aspectRatio) {
+            aspectRatio = flagTexture.userData.aspectRatio;
+        }
+        const baseSize = flagScale;
+
+        if (aspectRatio > 1) {
+            // 宽旗
+            flagSprite.scale.set(baseSize, baseSize / aspectRatio, 1);
+        } else {
+            // 高旗
+            flagSprite.scale.set(baseSize * aspectRatio, baseSize, 1);
+        }
+
+        // 设置位置（稍微偏移，避免与光点重合）
+        flagSprite.position.copy(position);
+        flagSprite.position.multiplyScalar(1.02);
+
+        // 添加动画参数
+        flagSprite.userData = {
+            capitalCode: capital.code,
+            capitalName: capital.name,
+            lat: capital.lat,
+            lng: capital.lng,
+            originalScale: baseSize,
+            animationPhase: Math.random() * Math.PI * 2, // 随机相位
+            animationSpeed: 0.5 + Math.random() * 0.5 // 随机速度
+        };
+
+        // 添加到组和数组
+        flagGroup.add(flagSprite);
+        flagSprites.push(flagSprite);
+    });
+
+    // 添加到地球（而不是直接添加到场景），这样国旗会跟随地球旋转
+    earth.add(flagGroup);
+    console.log(`✅ 成功创建 ${flagSprites.length} 个首都国旗标记（已附加到地球）`);
+}
+
+// 创建首都光点效果
+function createCapitalLight(position) {
+    // 创建光点几何体
+    const lightGeometry = new THREE.CircleGeometry(0.02, 16);
+
+    // 创建光点材质
+    const lightMaterial = new THREE.MeshBasicMaterial({
+        color: 0xffdd44,
+        transparent: true,
+        opacity: 0.8,
+        side: THREE.DoubleSide
+    });
+
+    const lightMesh = new THREE.Mesh(lightGeometry, lightMaterial);
+    lightMesh.position.copy(position);
+
+    // 让光点始终面向相机（如果相机存在）
+    if (globeCamera) {
+        lightMesh.lookAt(globeCamera.position);
+    }
+
+    // 添加标记，用于后续动画更新
+    lightMesh.userData.isCapitalLight = true;
+
+    return lightMesh;
+}
+
+// 更新国旗动画效果
+function updateFlagAnimations() {
+    if (!flagSprites.length || !flagsEnabled) return;
+
+    const time = Date.now() * 0.001; // 转换为秒
+
+    flagSprites.forEach(flagSprite => {
+        if (!flagSprite.visible) return;
+
+        const userData = flagSprite.userData;
+        const originalScale = userData.originalScale;
+        const phase = userData.animationPhase;
+        const speed = userData.animationSpeed;
+
+        // 计算缩放动画（轻微的呼吸效果）
+        const breatheScale = 1 + Math.sin(time * speed + phase) * 0.05;
+
+        // 应用动画缩放（保持宽高比）
+        const animatedScale = originalScale * breatheScale;
+        const aspectRatio = flagSprite.material.map ?
+            (flagSprite.material.map.userData.aspectRatio || 1.5) : 1.5;
+
+        if (aspectRatio > 1) {
+            // 宽旗
+            flagSprite.scale.set(animatedScale, animatedScale / aspectRatio, 1);
+        } else {
+            // 高旗
+            flagSprite.scale.set(animatedScale * aspectRatio, animatedScale, 1);
+        }
+    });
+}
+
+// 更新首都光点闪烁效果
+function updateCapitalLights() {
+    if (!flagGroup) return;
+
+    const time = Date.now() * 0.001;
+
+    flagGroup.children.forEach(child => {
+        // 只更新首都光点（不是国旗精灵）
+        if (child.userData && child.userData.isCapitalLight && child.material) {
+            // 闪烁效果
+            const intensity = 0.6 + Math.sin(time * 2 + child.position.x) * 0.4;
+            child.material.opacity = Math.max(0.2, Math.min(1.0, intensity));
+
+            // 光点现在是地球的子对象，会自动跟随地球旋转，不需要手动设置朝向
+            // 但我们仍然希望光点面向相机
+            if (globeCamera) {
+                // 计算光点在世界空间中的位置
+                const worldPosition = new THREE.Vector3();
+                child.getWorldPosition(worldPosition);
+                child.lookAt(globeCamera.position);
+            }
+        }
+    });
+}
+
+// 更新国旗可见性（基于距离的LOD系统）
+function updateFlagVisibility() {
+    if (!flagSprites.length || !globeCamera) return;
+
+    const cameraPosition = globeCamera.position;
+    const maxDistance = 15; // 最大可见距离
+    const minDistance = 3;  // 最小距离
+
+    flagSprites.forEach(flagSprite => {
+        // 计算国旗在世界空间中的位置
+        const worldPosition = new THREE.Vector3();
+        flagSprite.getWorldPosition(worldPosition);
+
+        const distance = cameraPosition.distanceTo(worldPosition);
+
+        if (distance > maxDistance) {
+            // 太远，隐藏
+            flagSprite.visible = false;
+        } else {
+            // 在可见范围内，根据距离调整大小和透明度
+            flagSprite.visible = flagsEnabled;
+
+            // 计算距离因子 (0-1)
+            const distanceFactor = Math.max(0, Math.min(1, (distance - minDistance) / (maxDistance - minDistance)));
+
+            // 距离越远，国旗越小，透明度越低
+            const scale = flagMaxScale * (1 - distanceFactor * 0.8) + flagMinScale;
+            const opacity = 1 - distanceFactor * 0.6;
+
+            // 更新缩放（保持原有的动画系统）
+            const userData = flagSprite.userData;
+            if (userData && userData.originalScale) {
+                // 基础缩放加上距离调整
+                const baseScale = userData.originalScale;
+                const finalScale = baseScale * scale / flagScale;
+
+                const aspectRatio = flagSprite.material.map ?
+                    (flagSprite.material.map.userData.aspectRatio || 1.5) : 1.5;
+
+                if (aspectRatio > 1) {
+                    // 宽旗
+                    flagSprite.scale.set(finalScale, finalScale / aspectRatio, 1);
+                } else {
+                    // 高旗
+                    flagSprite.scale.set(finalScale * aspectRatio, finalScale, 1);
+                }
+            }
+
+            // 更新透明度
+            flagSprite.material.opacity = opacity * (flagsEnabled ? 1 : 0);
+        }
+    });
+}
+
+// 切换国旗显示
+function toggleFlags() {
+    flagsEnabled = !flagsEnabled;
+    if (flagGroup) {
+        flagGroup.visible = flagsEnabled;
+    }
+    return flagsEnabled;
+}
+
+// 全局国旗开关函数（供HTML调用）
+function toggleGlobeFlags() {
+    const isEnabled = toggleFlags();
+    const btn = document.getElementById('toggle-flags-btn');
+    const btnText = btn.querySelector('.btn-text');
+
+    if (isEnabled) {
+        btn.classList.add('active');
+        btnText.textContent = '显示';
+    } else {
+        btn.classList.remove('active');
+        btnText.textContent = '隐藏';
+    }
+}
+
+// 获取指定点的国家代码（用于首都标记交互）
+function getCountryCodeAtPosition(position) {
+    // 将3D位置转换为屏幕坐标
+    const screenPosition = position.clone();
+    screenPosition.project(globeCamera);
+
+    // 转换为Canvas坐标
+    const canvasX = Math.floor((screenPosition.x + 1) * worldCanvas.width / 2);
+    const canvasY = Math.floor((1 - screenPosition.y) * worldCanvas.height / 2);
+
+    // 检查像素映射
+    return countryPixelMap[`${canvasX},${canvasY}`] || null;
+}
+
 // 初始化3D地球仪
 async function initGlobe() {
     if (globeInitialized) return;
@@ -5600,6 +5966,15 @@ async function initGlobe() {
 
         // 加载世界地图数据
         await loadWorldData();
+
+        // 加载首都数据
+        await loadCapitalData();
+
+        // 加载国旗纹理
+        await loadFlagTextures();
+
+        // 创建首都国旗标记
+        createCapitalFlags();
 
         // 添加控制器并保存惯性函数
         applyGlobeInertia = addGlobeControls();
@@ -6192,12 +6567,30 @@ function addGlobeEventListeners() {
 
     // 鼠标点击事件
     canvas.addEventListener('click', (event) => {
-        // 射线检测地球表面
+        // 射线检测国旗标记
         globeRaycaster.setFromCamera(globeMousePosition, globeCamera);
-        const intersects = globeRaycaster.intersectObject(earth);
 
-        if (intersects.length > 0) {
-            const uv = intersects[0].uv;
+        // 首先检测国旗标记
+        const flagIntersects = globeRaycaster.intersectObjects(flagSprites);
+        if (flagIntersects.length > 0) {
+            const flagSprite = flagIntersects[0].object;
+            const userData = flagSprite.userData;
+
+            // 创建国家数据对象
+            const countryData = {
+                code: userData.capitalCode,
+                name: userData.capitalName,
+                isCapitalClick: true
+            };
+
+            showCountryFlag(countryData);
+            return;
+        }
+
+        // 如果没有点击国旗，检测地球表面
+        const earthIntersects = globeRaycaster.intersectObject(earth);
+        if (earthIntersects.length > 0) {
+            const uv = earthIntersects[0].uv;
             const countryData = getCountryFromUV(uv);
 
             if (countryData) {
@@ -6414,6 +6807,15 @@ function animateGlobe() {
     if (applyGlobeInertia) {
         applyGlobeInertia();
     }
+
+    // 更新国旗可见性和LOD
+    updateFlagVisibility();
+
+    // 更新国旗动画效果
+    updateFlagAnimations();
+
+    // 更新首都光点闪烁效果
+    updateCapitalLights();
 
     // 仅在地球仪section可见时渲染
     if (currentSection === 'globe') {

@@ -294,7 +294,8 @@
         "zoom": "缩放：",
         "zoomHelp": "滚轮",
         "select": "选择国家：",
-        "selectHelp": "点击"
+        "selectHelp": "点击",
+        "flags": "首都国旗："
       },
       "loading": "正在加载3D地球仪..."
     },
@@ -608,7 +609,8 @@
         "zoom": "Zoom: ",
         "zoomHelp": "Mouse wheel",
         "select": "Select country: ",
-        "selectHelp": "Click"
+        "selectHelp": "Click",
+        "flags": "Capital Flags: "
       },
       "loading": "Loading 3D globe..."
     },
