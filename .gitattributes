@@ -3,3 +3,12 @@
 
 # 确保 Claude 配置文件使用 LF 换行符
 .claude/** text eol=lf
+
+# 确保所有 TypeScript 文件使用 LF 换行符
+*.ts text eol=lf
+*.tsx text eol=lf
+
+# 确保所有 JavaScript 文件使用 LF 换行符
+*.js text eol=lf
+*.mjs text eol=lf
+*.cjs text eol=lf

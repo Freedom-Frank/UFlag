@@ -1,733 +1,783 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title data-i18n="siteName">认识国旗 - 从国旗认识世界</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: "Segoe UI Emoji", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #002B7D 0%, #0179C8 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
+      body {
+        font-family:
+          'Segoe UI Emoji',
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          Roboto,
+          'Helvetica Neue',
+          Arial,
+          sans-serif;
+        background: linear-gradient(135deg, #002b7d 0%, #0179c8 100%);
+        min-height: 100vh;
+        overflow-x: hidden;
+        position: relative;
+      }
 
-        /* 主容器 */
-        .welcome-container {
-            position: relative;
-            z-index: 1;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
+      /* 主容器 */
+      .welcome-container {
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+      }
 
-        /* 主标题区域 */
-        .hero-section {
-            margin-bottom: 40px;
-            animation: fadeInUp 1s ease-out;
-        }
+      /* 主标题区域 */
+      .hero-section {
+        margin-bottom: 40px;
+        animation: fadeInUp 1s ease-out;
+      }
 
-        .title-row {
-            display: inline-flex;
-            align-items: center;
-            gap: 16px;
-        }
+      .title-row {
+        display: inline-flex;
+        align-items: center;
+        gap: 16px;
+      }
 
+      .main-title {
+        font-size: 4rem;
+        font-weight: bold;
+        background: linear-gradient(135deg, #ffffff 0%, #e8eef7 50%, #d9e6f7 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 20px;
+        text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        position: relative;
+      }
+
+      /* 语言切换器 */
+      .language-switcher {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+      }
+
+      .lang-btn {
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .lang-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.6s;
+      }
+
+      .lang-btn:hover::before {
+        left: 100%;
+      }
+
+      .lang-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .lang-btn.active {
+        background: rgba(232, 168, 72, 0.8);
+        border-color: #e8a848;
+        box-shadow: 0 4px 12px rgba(232, 168, 72, 0.4);
+      }
+
+      .lang-btn:active {
+        transform: translateY(0) scale(0.95);
+      }
+
+      /* 语言切换动画 */
+      .language-switching {
+        opacity: 0.7;
+        transition: opacity 0.3s ease;
+      }
+
+      .emoji-globe {
+        font-size: 5rem;
+        margin-bottom: 20px;
+        animation: spin 20s linear infinite;
+        display: inline-block;
+        filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .subtitle {
+        font-size: 1.5rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 30px;
+        font-weight: 300;
+        letter-spacing: 1px;
+      }
+
+      /* 标语区域 */
+      .slogan-section {
+        margin-bottom: 50px;
+        animation: fadeInUp 1s ease-out 0.3s both;
+      }
+
+      .feature-slogans {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin: 30px 0;
+        max-width: 900px;
+      }
+
+      .feature-card {
+        background: rgba(255, 255, 255, 0.15);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        padding: 25px 20px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.8s;
+      }
+
+      .feature-card:hover::before {
+        left: 100%;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        background: rgba(255, 255, 255, 0.25);
+      }
+
+      .feature-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        display: block;
+      }
+
+      .feature-title {
+        font-size: 1.2rem;
+        color: white;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .feature-desc {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      /* 理念阐释区域 */
+      .philosophy-section {
+        max-width: 900px;
+        margin: 50px auto 50px;
+        animation: fadeInUp 1s ease-out 0.5s both;
+      }
+
+      .philosophy-title {
+        font-size: 2rem;
+        color: white;
+        margin-bottom: 30px;
+        font-weight: 600;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .philosophy-content {
+        background: rgba(255, 255, 255, 0.12);
+        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 20px;
+        padding: 35px 30px;
+        text-align: left;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        transition: all 0.4s ease;
+      }
+
+      .philosophy-content:hover {
+        background: rgba(255, 255, 255, 0.18);
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+        transform: translateY(-5px);
+      }
+
+      .philosophy-paragraph {
+        color: rgba(255, 255, 255, 0.92);
+        font-size: 1.08rem;
+        line-height: 2;
+        margin-bottom: 20px;
+        text-indent: 2em;
+        letter-spacing: 0.5px;
+        position: relative;
+      }
+
+      .philosophy-paragraph:last-child {
+        margin-bottom: 0;
+      }
+
+      /* 关键词高亮 - 统一字体大小，使用醒目样式突出重点 */
+      .philosophy-highlight {
+        background: linear-gradient(135deg, #e8a848 0%, #e28031 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 600;
+        font-size: 1.08rem;
+        text-shadow: 0 2px 8px rgba(232, 168, 72, 0.3);
+        padding: 0 2px;
+        position: relative;
+      }
+
+      /* 进入按钮 */
+      .enter-section {
+        animation: fadeInUp 1s ease-out 0.8s both;
+      }
+
+      .enter-button {
+        background: linear-gradient(135deg, #e8a848 0%, #e28031 100%);
+        color: white;
+        border: none;
+        padding: 20px 50px;
+        font-size: 1.3rem;
+        font-weight: bold;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 30px rgba(226, 128, 49, 0.4);
+        position: relative;
+        overflow: hidden;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 25px;
+      }
+
+      .enter-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.8s;
+      }
+
+      .enter-button:hover::before {
+        left: 100%;
+      }
+
+      .enter-button:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 20px 50px rgba(226, 128, 49, 0.6);
+        background: linear-gradient(135deg, #ffc868 0%, #e28031 100%);
+      }
+
+      .enter-button:active {
+        transform: translateY(-2px) scale(1.02);
+      }
+
+      .button-icon {
+        font-size: 1.5rem;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+      /* 底部信息 */
+      .footer-info {
+        margin-top: 40px;
+        animation: fadeInUp 1s ease-out 0.9s both;
+      }
+
+      .stats-preview {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+
+      .stat-item {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .stat-number {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 5px;
+        background: linear-gradient(135deg, #e8a848, #e28031);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .stat-label {
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+
+      .welcome-footer {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        margin-top: 30px;
+      }
+
+      /* 动画定义 */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* 响应式设计 */
+      @media (max-width: 768px) {
         .main-title {
-            font-size: 4rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, #ffffff 0%, #E8EEF7 50%, #D9E6F7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-
-        /* 语言切换器 */
-        .language-switcher {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .lang-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .lang-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.6s;
-        }
-
-        .lang-btn:hover::before {
-            left: 100%;
-        }
-
-        .lang-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .lang-btn.active {
-            background: rgba(232, 168, 72, 0.8);
-            border-color: #E8A848;
-            box-shadow: 0 4px 12px rgba(232, 168, 72, 0.4);
-        }
-
-        .lang-btn:active {
-            transform: translateY(0) scale(0.95);
-        }
-
-        /* 语言切换动画 */
-        .language-switching {
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
+          font-size: 2.8rem;
         }
 
         .emoji-globe {
-            font-size: 5rem;
-            margin-bottom: 20px;
-            animation: spin 20s linear infinite;
-            display: inline-block;
-            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+          font-size: 4rem;
         }
 
         .subtitle {
-            font-size: 1.5rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 30px;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-
-        /* 标语区域 */
-        .slogan-section {
-            margin-bottom: 50px;
-            animation: fadeInUp 1s ease-out 0.3s both;
+          font-size: 1.2rem;
         }
 
         .feature-slogans {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-            max-width: 900px;
+          grid-template-columns: 1fr;
+          gap: 15px;
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.15);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            padding: 25px 20px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+          padding: 20px 15px;
         }
 
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.8s;
-        }
-
-        .feature-card:hover::before {
-            left: 100%;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .feature-title {
-            font-size: 1.2rem;
-            color: white;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .feature-desc {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        /* 理念阐释区域 */
         .philosophy-section {
-            max-width: 900px;
-            margin: 50px auto 50px;
-            animation: fadeInUp 1s ease-out 0.5s both;
+          margin: 40px auto;
         }
 
         .philosophy-title {
-            font-size: 2rem;
-            color: white;
-            margin-bottom: 30px;
-            font-weight: 600;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+          font-size: 1.6rem;
         }
 
         .philosophy-content {
-            background: rgba(255, 255, 255, 0.12);
-            -webkit-backdrop-filter: blur(15px);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 20px;
-            padding: 35px 30px;
-            text-align: left;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-            transition: all 0.4s ease;
-        }
-
-        .philosophy-content:hover {
-            background: rgba(255, 255, 255, 0.18);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
-            transform: translateY(-5px);
+          padding: 25px 20px;
         }
 
         .philosophy-paragraph {
-            color: rgba(255, 255, 255, 0.92);
-            font-size: 1.08rem;
-            line-height: 2;
-            margin-bottom: 20px;
-            text-indent: 2em;
-            letter-spacing: 0.5px;
-            position: relative;
+          font-size: 1.05rem;
+          line-height: 1.9;
         }
 
-        .philosophy-paragraph:last-child {
-            margin-bottom: 0;
-        }
-
-        /* 关键词高亮 - 统一字体大小，使用醒目样式突出重点 */
         .philosophy-highlight {
-            background: linear-gradient(135deg, #E8A848 0%, #E28031 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 600;
-            font-size: 1.08rem;
-            text-shadow: 0 2px 8px rgba(232, 168, 72, 0.3);
-            padding: 0 2px;
-            position: relative;
-        }
-
-        /* 进入按钮 */
-        .enter-section {
-            animation: fadeInUp 1s ease-out 0.8s both;
+          font-size: 1.05rem;
         }
 
         .enter-button {
-            background: linear-gradient(135deg, #E8A848 0%, #E28031 100%);
-            color: white;
-            border: none;
-            padding: 20px 50px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 30px rgba(226, 128, 49, 0.4);
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
-
-        .enter-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.8s;
-        }
-
-        .enter-button:hover::before {
-            left: 100%;
-        }
-
-        .enter-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 50px rgba(226, 128, 49, 0.6);
-            background: linear-gradient(135deg, #FFC868 0%, #E28031 100%);
-        }
-
-        .enter-button:active {
-            transform: translateY(-2px) scale(1.02);
-        }
-
-        .button-icon {
-            font-size: 1.5rem;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        /* 底部信息 */
-        .footer-info {
-            margin-top: 40px;
-            animation: fadeInUp 1s ease-out 0.9s both;
+          padding: 16px 35px;
+          font-size: 1.1rem;
         }
 
         .stats-preview {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.9);
+          gap: 25px;
         }
 
         .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 5px;
-            background: linear-gradient(135deg, #E8A848, #E28031);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+          font-size: 1.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .welcome-container {
+          padding: 15px;
         }
 
-        .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.8;
+        .main-title {
+          font-size: 2.2rem;
         }
 
-        .welcome-footer {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            margin-top: 30px;
+        .emoji-globe {
+          font-size: 3rem;
         }
 
-        /* 动画定义 */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .philosophy-section {
+          margin: 30px auto;
         }
 
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .main-title {
-                font-size: 2.8rem;
-            }
-
-            .emoji-globe {
-                font-size: 4rem;
-            }
-
-            .subtitle {
-                font-size: 1.2rem;
-            }
-
-            .feature-slogans {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .feature-card {
-                padding: 20px 15px;
-            }
-
-            .philosophy-section {
-                margin: 40px auto;
-            }
-
-            .philosophy-title {
-                font-size: 1.6rem;
-            }
-
-            .philosophy-content {
-                padding: 25px 20px;
-            }
-
-            .philosophy-paragraph {
-                font-size: 1.05rem;
-                line-height: 1.9;
-            }
-
-            .philosophy-highlight {
-                font-size: 1.05rem;
-            }
-
-            .enter-button {
-                padding: 16px 35px;
-                font-size: 1.1rem;
-            }
-
-            .stats-preview {
-                gap: 25px;
-            }
-
-            .stat-number {
-                font-size: 1.5rem;
-            }
+        .philosophy-title {
+          font-size: 1.4rem;
         }
 
-        @media (max-width: 480px) {
-            .welcome-container {
-                padding: 15px;
-            }
-
-            .main-title {
-                font-size: 2.2rem;
-            }
-
-            .emoji-globe {
-                font-size: 3rem;
-            }
-
-            .philosophy-section {
-                margin: 30px auto;
-            }
-
-            .philosophy-title {
-                font-size: 1.4rem;
-            }
-
-            .philosophy-content {
-                padding: 20px 15px;
-            }
-
-            .philosophy-paragraph {
-                font-size: 1rem;
-                line-height: 1.8;
-                text-indent: 1.5em;
-            }
-
-            .philosophy-highlight {
-                font-size: 1rem;
-            }
-
-            .enter-button {
-                padding: 14px 30px;
-                font-size: 1rem;
-            }
+        .philosophy-content {
+          padding: 20px 15px;
         }
 
+        .philosophy-paragraph {
+          font-size: 1rem;
+          line-height: 1.8;
+          text-indent: 1.5em;
+        }
+
+        .philosophy-highlight {
+          font-size: 1rem;
+        }
+
+        .enter-button {
+          padding: 14px 30px;
+          font-size: 1rem;
+        }
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="welcome-container">
-        <!-- 语言切换器 -->
-        <div class="language-switcher">
-            <button class="lang-btn active" data-lang="zh">中文</button>
-            <button class="lang-btn" data-lang="en">English</button>
-        </div>
+      <!-- 语言切换器 -->
+      <div class="language-switcher">
+        <button class="lang-btn active" data-lang="zh">中文</button>
+        <button class="lang-btn" data-lang="en">English</button>
+      </div>
 
-        <!-- 主标题区域 -->
-        <div class="hero-section">
-            <div class="title-row">
-                <div class="emoji-globe">🌍</div>
-                <h1 class="main-title" data-i18n="welcome.title">认识国旗</h1>
-            </div>
-            <p class="subtitle" data-i18n="welcome.subtitle">从国旗开始，探索全世界</p>
+      <!-- 主标题区域 -->
+      <div class="hero-section">
+        <div class="title-row">
+          <div class="emoji-globe">🌍</div>
+          <h1 class="main-title" data-i18n="welcome.title">认识国旗</h1>
         </div>
+        <p class="subtitle" data-i18n="welcome.subtitle">从国旗开始，探索全世界</p>
+      </div>
 
-        <div class="feature-slogans">
-            <div class="feature-card">
-                <span class="feature-icon">🏳️‍🌈</span>
-                <h3 class="feature-title" data-i18n="welcome.features.browse.title">国旗浏览</h3>
-                <p class="feature-desc" data-i18n="welcome.features.browse.description">轻松掌握193个国家和地区国旗</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🧠</span>
-                <h3 class="feature-title" data-i18n="welcome.features.memory.title">记忆训练</h3>
-                <p class="feature-desc" data-i18n="welcome.features.memory.description">分类记忆国旗，让学习更高效持久</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🎮</span>
-                <h3 class="feature-title" data-i18n="welcome.features.quiz.title">知识测试</h3>
-                <p class="feature-desc" data-i18n="welcome.features.quiz.description">自定义测试，在游戏中提升知识水平</p>
-            </div>
+      <div class="feature-slogans">
+        <div class="feature-card">
+          <span class="feature-icon">🏳️‍🌈</span>
+          <h3 class="feature-title" data-i18n="welcome.features.browse.title">国旗浏览</h3>
+          <p class="feature-desc" data-i18n="welcome.features.browse.description">
+            轻松掌握193个国家和地区国旗
+          </p>
         </div>
+        <div class="feature-card">
+          <span class="feature-icon">🧠</span>
+          <h3 class="feature-title" data-i18n="welcome.features.memory.title">记忆训练</h3>
+          <p class="feature-desc" data-i18n="welcome.features.memory.description">
+            分类记忆国旗，让学习更高效持久
+          </p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🎮</span>
+          <h3 class="feature-title" data-i18n="welcome.features.quiz.title">知识测试</h3>
+          <p class="feature-desc" data-i18n="welcome.features.quiz.description">
+            自定义测试，在游戏中提升知识水平
+          </p>
+        </div>
+      </div>
 
-        <!-- 理念阐释 -->
-        <div class="philosophy-section">
-            <h2 class="philosophy-title" data-i18n="welcome.philosophy.title"></h2>
-            <div class="philosophy-content">
-                <p class="philosophy-paragraph" data-i18n="welcome.philosophy.paragraph1"></p>
-                <p class="philosophy-paragraph" data-i18n="welcome.philosophy.paragraph2"></p>
-                <p class="philosophy-paragraph" data-i18n="welcome.philosophy.paragraph3"></p>
-                <p class="philosophy-paragraph" data-i18n="welcome.philosophy.paragraph4"></p>
-            </div>
+      <!-- 理念阐释 -->
+      <div class="philosophy-section">
+        <h2 class="philosophy-title" data-i18n="welcome.philosophy.title"></h2>
+        <div class="philosophy-content">
+          <p class="philosophy-paragraph" data-i18n="welcome.philosophy.paragraph1"></p>
+          <p class="philosophy-paragraph" data-i18n="welcome.philosophy.paragraph2"></p>
+          <p class="philosophy-paragraph" data-i18n="welcome.philosophy.paragraph3"></p>
+          <p class="philosophy-paragraph" data-i18n="welcome.philosophy.paragraph4"></p>
         </div>
+      </div>
 
-        <!-- 进入按钮 -->
-        <div class="enter-section">
-            <button class="enter-button" id="enterButton">
-                <span class="button-icon">🚀</span>
-                <span data-i18n="welcome.enterButton">开启探索之旅</span>
-            </button>
-            
-            <!-- 统计预览 -->
-            <div class="stats-preview">
-                <div class="stat-item">
-                    <div class="stat-number">193</div>
-                    <div class="stat-label" data-i18n="welcome.stats.countries">国家地区</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">16</div>
-                    <div class="stat-label" data-i18n="welcome.stats.features">特征分类</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">7</div>
-                    <div class="stat-label" data-i18n="welcome.stats.continents">大洲分类</div>
-                </div>
-            </div>
-        </div>
+      <!-- 进入按钮 -->
+      <div class="enter-section">
+        <button class="enter-button" id="enterButton">
+          <span class="button-icon">🚀</span>
+          <span data-i18n="welcome.enterButton">开启探索之旅</span>
+        </button>
 
-        <!-- 底部信息 -->
-        <div class="footer-info">
-            <div class="welcome-footer">
-                <p data-i18n="welcome.footer.0">🌟 从常见国家到冷门地区，从基础认知到专业掌握</p>
-                <p data-i18n="welcome.footer.1">📚 系统化学习路径，让你成为真正的国旗专家</p>
-            </div>
+        <!-- 统计预览 -->
+        <div class="stats-preview">
+          <div class="stat-item">
+            <div class="stat-number">193</div>
+            <div class="stat-label" data-i18n="welcome.stats.countries">国家地区</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">16</div>
+            <div class="stat-label" data-i18n="welcome.stats.features">特征分类</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">7</div>
+            <div class="stat-label" data-i18n="welcome.stats.continents">大洲分类</div>
+          </div>
         </div>
+      </div>
+
+      <!-- 底部信息 -->
+      <div class="footer-info">
+        <div class="welcome-footer">
+          <p data-i18n="welcome.footer.0">🌟 从常见国家到冷门地区，从基础认知到专业掌握</p>
+          <p data-i18n="welcome.footer.1">📚 系统化学习路径，让你成为真正的国旗专家</p>
+        </div>
+      </div>
     </div>
 
-    <!-- 引入统一的国际化核心模块 -->
-    <script src="src/js/i18n-core.js"></script>
+    <!-- Vite 模块化入口 -->
+    <script type="module" src="/src/index-entry.ts"></script>
 
     <script>
-        // ===== 使用统一的国际化系统 =====
-        // i18n 实例已经在 i18n-core.js 中创建
+      // ===== 使用统一的国际化系统 =====
+      // i18n 实例已经在 i18n-core.js 中创建
 
-        // i18n 和 t 函数已经在 i18n-core.js 中全局定义
-        // 无需重复创建实例
+      // i18n 和 t 函数已经在 i18n-core.js 中全局定义
+      // 无需重复创建实例
 
-        // 加载国际化数据
-        async function loadI18nData() {
-            try {
-                console.log('Loading i18n data for index.html...');
-                const response = await fetch('data/i18n/i18n.json?t=' + Date.now());
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const translations = await response.json();
-                console.log('i18n data loaded successfully for index.html');
+      // 加载国际化数据
+      async function loadI18nData() {
+        try {
+          console.log('Loading i18n data for index.html...');
 
-                // 设置翻译数据到 i18n 系统
-                i18n.setTranslations(translations);
+          // 等待 i18n 模块加载完成
+          let retries = 0;
+          while (!window.i18n && retries < 50) {
+            await new Promise((resolve) => setTimeout(resolve, 100));
+            retries++;
+          }
 
-                // 恢复语言偏好
-                const savedLang = localStorage.getItem('preferredLanguage') ||
-                                sessionStorage.getItem('currentLanguage') ||
-                                'zh';
-                console.log(`Setting language to: ${savedLang}`);
-                i18n.setLanguage(savedLang);
+          if (!window.i18n) {
+            console.error('i18n module failed to load');
+            return;
+          }
 
-                // 订阅语言变化，自动更新界面
-                i18n.subscribe((newLang) => {
-                    console.log(`Language changed to: ${newLang}`);
-                    i18n.updateDOM();
+          const response = await fetch('/data/i18n/i18n.json?t=' + Date.now());
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const translations = await response.json();
+          console.log('i18n data loaded successfully for index.html');
 
-                    // 更新语言按钮状态
-                    document.querySelectorAll('.lang-btn').forEach(btn => {
-                        btn.classList.toggle('active', btn.getAttribute('data-lang') === newLang);
-                    });
-                });
+          // 设置翻译数据到 i18n 系统
+          window.i18n.setTranslations(translations);
 
-                // 立即执行一次更新
-                i18n.updateDOM();
+          // 恢复语言偏好
+          const savedLang =
+            localStorage.getItem('preferredLanguage') ||
+            sessionStorage.getItem('currentLanguage') ||
+            'zh';
+          console.log(`Setting language to: ${savedLang}`);
+          window.i18n.setLanguage(savedLang);
 
-                // 初始化语言按钮状态
-                document.querySelectorAll('.lang-btn').forEach(btn => {
-                    btn.classList.toggle('active', btn.getAttribute('data-lang') === i18n.getCurrentLanguage());
-                });
+          // 订阅语言变化，自动更新界面
+          window.i18n.subscribe((newLang) => {
+            console.log(`Language changed to: ${newLang}`);
+            window.i18n.updateDOM();
 
-                console.log('Modern i18n system initialized successfully for index.html');
-            } catch (error) {
-                console.error('Failed to load i18n data:', error);
-            }
+            // 更新语言按钮状态
+            document.querySelectorAll('.lang-btn').forEach((btn) => {
+              btn.classList.toggle('active', btn.getAttribute('data-lang') === newLang);
+            });
+          });
+
+          // 立即执行一次更新
+          window.i18n.updateDOM();
+
+          // 初始化语言按钮状态
+          document.querySelectorAll('.lang-btn').forEach((btn) => {
+            btn.classList.toggle(
+              'active',
+              btn.getAttribute('data-lang') === window.i18n.getCurrentLanguage()
+            );
+          });
+
+          console.log('Modern i18n system initialized successfully for index.html');
+        } catch (error) {
+          console.error('Failed to load i18n data:', error);
         }
+      }
 
-        // 语言切换事件（优化版）
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('lang-btn')) {
-                const lang = e.target.getAttribute('data-lang');
+      // 语言切换事件（优化版）
+      document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('lang-btn')) {
+          const lang = e.target.getAttribute('data-lang');
 
-                // 如果语言没有变化，直接返回
-                if (i18n.getCurrentLanguage() === lang) {
-                    return;
-                }
+          // 安全检查 i18n 对象
+          if (!window.i18n) {
+            console.warn('i18n not loaded yet');
+            return;
+          }
 
-                // 添加视觉反馈
-                const welcomeContainer = document.querySelector('.welcome-container');
-                if (welcomeContainer) {
-                    welcomeContainer.classList.add('language-switching');
-                }
+          // 如果语言没有变化，直接返回
+          if (window.i18n.getCurrentLanguage() === lang) {
+            return;
+          }
 
-                // 使用新的 i18n 系统切换语言
-                if (i18n.setLanguage(lang)) {
-                    console.log(`Language switched to: ${lang}`);
+          // 添加视觉反馈
+          const welcomeContainer = document.querySelector('.welcome-container');
+          if (welcomeContainer) {
+            welcomeContainer.classList.add('language-switching');
+          }
 
-                    // 移除切换动画
-                    setTimeout(() => {
-                        if (welcomeContainer) {
-                            welcomeContainer.classList.remove('language-switching');
-                        }
-                    }, 300);
-                }
-            }
-        });
+          // 使用新的 i18n 系统切换语言
+          if (window.i18n.setLanguage(lang)) {
+            console.log(`Language switched to: ${lang}`);
 
-        // 页面加载时初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            loadI18nData();
-        });
-
-        // i18n 和 t 已经在 i18n-core.js 中暴露到全局
-        // 无需重复暴露
-
-        // 页面加载完成后隐藏加载页面
-        window.addEventListener('load', function() {
+            // 移除切换动画
             setTimeout(() => {
-                const loadingOverlay = document.getElementById('loadingOverlay');
-                if (loadingOverlay) {
-                    loadingOverlay.classList.add('hidden');
-                }
-            }, 1000);
+              if (welcomeContainer) {
+                welcomeContainer.classList.remove('language-switching');
+              }
+            }, 300);
+          }
+        }
+      });
+
+      // 页面加载时初始化
+      document.addEventListener('DOMContentLoaded', function () {
+        loadI18nData();
+      });
+
+      // i18n 和 t 已经在 i18n-core.js 中暴露到全局
+      // 无需重复暴露
+
+      // 页面加载完成后隐藏加载页面
+      window.addEventListener('load', function () {
+        setTimeout(() => {
+          const loadingOverlay = document.getElementById('loadingOverlay');
+          if (loadingOverlay) {
+            loadingOverlay.classList.add('hidden');
+          }
+        }, 1000);
+      });
+
+      // 进入按钮点击事件
+      document.getElementById('enterButton').addEventListener('click', function () {
+        // 添加点击动画效果
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 150);
+
+        // 延迟跳转，添加过渡效果
+        setTimeout(() => {
+          // 传递当前语言到主页面（安全检查 i18n 对象）
+          const currentLang =
+            window.i18n && window.i18n.getCurrentLanguage
+              ? window.i18n.getCurrentLanguage()
+              : localStorage.getItem('preferredLanguage') || 'zh';
+          localStorage.setItem('preferredLanguage', currentLang);
+          sessionStorage.setItem('currentLanguage', currentLang);
+          console.log(`Passing language "${currentLang}" to homepage.html`);
+
+          // 或者显示一个过渡动画
+          document.body.style.opacity = '0';
+          document.body.style.transition = 'opacity 0.8s ease-out';
+
+          setTimeout(() => {
+            // 实际跳转逻辑
+            window.location.href = 'src/pages/homepage.html';
+
+            // 恢复页面显示（演示用）
+            document.body.style.opacity = '1';
+          }, 800);
+        }, 200);
+      });
+
+      // 添加鼠标移动视差效果
+      document.addEventListener('mousemove', function (e) {
+        const floatingFlags = document.querySelectorAll('.floating-flag');
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+
+        floatingFlags.forEach((flag, index) => {
+          const speed = (index + 1) * 0.02;
+          const x = (e.clientX - centerX) * speed;
+          const y = (e.clientY - centerY) * speed;
+
+          flag.style.transform = `translate(${x}px, ${y}px)`;
         });
+      });
 
-        // 进入按钮点击事件
-        document.getElementById('enterButton').addEventListener('click', function() {
-            // 添加点击动画效果
-            this.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                this.style.transform = '';
-            }, 150);
+      // 添加键盘快捷键支持
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          document.getElementById('enterButton').click();
+        }
+      });
 
-            // 延迟跳转，添加过渡效果
-            setTimeout(() => {
-                // 传递当前语言到主页面
-                const currentLang = i18n.getCurrentLanguage();
-                localStorage.setItem('preferredLanguage', currentLang);
-                sessionStorage.setItem('currentLanguage', currentLang);
-                console.log(`Passing language "${currentLang}" to homepage.html`);
-
-                // 或者显示一个过渡动画
-                document.body.style.opacity = '0';
-                document.body.style.transition = 'opacity 0.8s ease-out';
-
+      // 添加随机闪烁效果到浮动国旗
+      function addTwinkleEffect() {
+        const flags = document.querySelectorAll('.floating-flag');
+        flags.forEach((flag) => {
+          setInterval(
+            () => {
+              if (Math.random() > 0.7) {
+                flag.style.opacity = '0.3';
                 setTimeout(() => {
-                    // 实际跳转逻辑
-                    window.location.href = 'src/pages/homepage.html';
-
-                    // 恢复页面显示（演示用）
-                    document.body.style.opacity = '1';
-                }, 800);
-            }, 200);
+                  flag.style.opacity = '0.1';
+                }, 300);
+              }
+            },
+            3000 + Math.random() * 2000
+          );
         });
+      }
 
-        // 添加鼠标移动视差效果
-        document.addEventListener('mousemove', function(e) {
-            const floatingFlags = document.querySelectorAll('.floating-flag');
-            const centerX = window.innerWidth / 2;
-            const centerY = window.innerHeight / 2;
-            
-            floatingFlags.forEach((flag, index) => {
-                const speed = (index + 1) * 0.02;
-                const x = (e.clientX - centerX) * speed;
-                const y = (e.clientY - centerY) * speed;
-                
-                flag.style.transform = `translate(${x}px, ${y}px)`;
-            });
-        });
-
-        // 添加键盘快捷键支持
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                document.getElementById('enterButton').click();
-            }
-        });
-
-        // 添加随机闪烁效果到浮动国旗
-        function addTwinkleEffect() {
-            const flags = document.querySelectorAll('.floating-flag');
-            flags.forEach(flag => {
-                setInterval(() => {
-                    if (Math.random() > 0.7) {
-                        flag.style.opacity = '0.3';
-                        setTimeout(() => {
-                            flag.style.opacity = '0.1';
-                        }, 300);
-                    }
-                }, 3000 + Math.random() * 2000);
-            });
-        }
-
-        // 页面加载完成后启动闪烁效果
-        window.addEventListener('load', addTwinkleEffect);
+      // 页面加载完成后启动闪烁效果
+      window.addEventListener('load', addTwinkleEffect);
     </script>
-</body>
+  </body>
 </html>

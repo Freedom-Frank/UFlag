@@ -27,6 +27,13 @@ UFlag 是一个专注于世界各国国旗学习的交互式网络应用程序�
 - **即时反馈**：答题后立即显示正确答案和解析
 - **成绩统计**：详细的测验结果分析
 
+### 🌐 3D地球仪
+- **交互式地球**：基于 Three.js 的3D地球仪渲染
+- **星空背景**：15000个闪烁星星营造太空氛围
+- **精确检测**：鼠标悬停和点击国家即可查看详情
+- **流畅交互**：支持拖拽旋转、滚轮缩放、惯性旋转
+- **自动旋转**：静止后自动旋转展示
+
 ### 📊 统计分析
 - **学习进度**：可视化展示学习完成度
 - **数据报告**：按大洲、组织等维度生成统计图表
@@ -35,19 +42,28 @@ UFlag 是一个专注于世界各国国旗学习的交互式网络应用程序�
 ## 技术架构
 
 ### 前端技术
+- **TypeScript 5.9+**：完整的类型安全和现代化开发体验
+- **Vite 7.2**：快速的开发服务器和构建工具
+- **Three.js 0.181**：3D图形渲染引擎
 - **HTML5**：语义化标记结构
 - **CSS3**：现代化样式设计，支持响应式布局
-- **原生JavaScript (ES6+)**：无框架依赖的纯净实现
 
 ### 数据管理
 - **JSON格式**：结构化存储国家信息
 - **本地存储**：使用 LocalStorage 保存用户学习进度
 - **多数据源**：支持联合国、G20、欧盟、非盟等多个国际组织数据
+- **GeoJSON**：标准地理数据格式用于3D地球仪
+
+### 工程化
+- **模块化架构**：ES6 模块系统
+- **代码规范**：ESLint + Prettier
+- **Git 钩子**：Husky + lint-staged
+- **类型检查**：完整的 TypeScript 类型定义
 
 ### 设计特点
 - **移动优先**：适配各种屏幕尺寸
 - **离线可用**：静态资源，无需服务器
-- **性能优化**：图片懒加载、客户端数据处理
+- **性能优化**：图片懒加载、代码分割、客户端数据处理
 
 ## 项目结构
 
@@ -55,13 +71,29 @@ UFlag 是一个专注于世界各国国旗学习的交互式网络应用程序�
 UFlag/
 ├── index.html                 # 入口着陆页
 ├── src/                       # 源代码目录
+│   ├── types/                 # TypeScript 类型定义
+│   │   └── index.ts
+│   ├── lib/                   # 核心库
+│   │   ├── i18n-core.ts       # 国际化核心模块
+│   │   ├── constants.ts       # 常量定义
+│   │   ├── utils.ts           # 工具函数
+│   │   ├── storage.ts         # 本地存储管理
+│   │   ├── data-loader.ts     # 数据加载
+│   │   └── state.ts           # 状态管理
+│   ├── modules/               # 功能模块
+│   │   ├── browse.ts          # 浏览功能
+│   │   ├── quiz.ts            # 知识测验
+│   │   ├── memory.ts          # 记忆训练
+│   │   ├── stats.ts           # 统计分析
+│   │   ├── country-detail.ts  # 国家详情
+│   │   └── globe.ts           # 3D地球仪
 │   ├── pages/                 # HTML 页面
 │   │   └── homepage.html      # 主应用程序
-│   ├── js/                    # JavaScript 文件
-│   │   ├── script.js          # 核心应用逻辑
-│   │   └── i18n-core.js       # 国际化核心模块
-│   └── css/                   # 样式文件
-│       └── styles.css         # 主样式表
+│   ├── css/                   # 样式文件
+│   │   └── styles.css         # 主样式表
+│   ├── app.ts                 # 主应用协调器
+│   ├── main.ts                # 主入口
+│   └── index-entry.ts         # 首页入口
 ├── data/                      # 数据文件
 │   ├── countries/             # 国家数据
 │   │   ├── countries_un.json  # 联合国成员国
@@ -74,12 +106,15 @@ UFlag/
 │       ├── eu_list.txt        # 欧盟成员
 │       ├── au_list.txt        # 非盟成员
 │       └── cn_diplomatic.txt  # 中国外交关系国家
-└── assets/                    # 静态资源
-    ├── images/                # 图片资源
-    │   └── flags/             # 国旗图片 (200+ PNG)
-    └── geo/                   # 地理数据
-        ├── world_detailed.geojson
-        └── world_simple.geojson
+├── assets/                    # 静态资源
+│   ├── images/                # 图片资源
+│   │   └── flags/             # 国旗图片 (200+ PNG)
+│   └── geo/                   # 地理数据
+│       ├── world_detailed.geojson
+│       └── world_simple.geojson
+├── tsconfig.json              # TypeScript 配置
+├── vite.config.ts             # Vite 构建配置
+└── package.json               # 项目依赖配置
 ```
 
 ## 快速开始
@@ -87,7 +122,7 @@ UFlag/
 ### 在线访问
 直接访问部署的网页版本（GitHub Pages / 其他托管平台）
 
-### 本地运行
+### 本地开发
 
 1. **克隆项目**
 ```bash
@@ -95,19 +130,30 @@ git clone https://github.com/your-username/UFlag.git
 cd UFlag
 ```
 
-2. **启动服务**
+2. **安装依赖**
 ```bash
-# 方式一：使用 Python 内置服务器
-python -m http.server 8000
-
-# 方式二：使用 Node.js http-server
-npx http-server -p 8000 -c-1
+npm install
 ```
 
-3. **访问应用**
-在浏览器中打开：`http://localhost:8000/src/pages/homepage.html`
+3. **启动开发服务器**
+```bash
+npm run dev
+```
 
-> **提示**：也可以直接在浏览器中打开 `index.html` 文件，但部分功能可能因浏览器安全策略受限。
+4. **访问应用**
+在浏览器中打开：`http://localhost:8000/`
+
+### 生产构建
+
+```bash
+# 构建生产版本
+npm run build
+
+# 预览生产构建
+npm run preview
+```
+
+构建产物将输出到 `dist/` 目录，可直接部署到静态托管服务。
 
 ## 数据说明
 
@@ -138,19 +184,24 @@ npx http-server -p 8000 -c-1
 
 ## 浏览器兼容性
 
-- ✅ Chrome 90+
+- ✅ Chrome 90+（推荐，完整支持WebGL）
 - ✅ Firefox 88+
 - ✅ Safari 14+
 - ✅ Edge 90+
 - ❌ Internet Explorer（不支持）
 
+> **注意**：3D地球仪功能需要浏览器支持 WebGL
+
 ## 开发计划
 
-- [ ] 添加多语言支持（英语、西班牙语等）
+- [x] TypeScript 完整迁移
+- [x] 3D交互式地球仪
+- [x] 多语言支持（中文、英文）
 - [ ] 增加音频发音功能
 - [ ] 实现社交分享功能
 - [ ] 开发移动端原生应用
 - [ ] 添加更多国际组织数据
+- [ ] 添加单元测试覆盖
 
 ## 贡献指南
 
