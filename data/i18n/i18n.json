@@ -44,7 +44,7 @@
       "memory": "记忆训练",
       "quiz": "知识测试",
       "globe": "3D地球仪",
-      "stats": "测试统计"
+      "tools": "实用工具"
     },
     "browse": {
       "searchPlaceholder": "搜索国家名称...",
@@ -71,6 +71,10 @@
     },
     "quiz": {
       "title": "选择测试模式",
+      "nav": {
+        "quizMode": "知识测试",
+        "statistics": "测试统计"
+      },
       "flagToCountry": {
         "title": "看国旗选国家",
         "description": "根据显示的国旗选择对应的国家"
@@ -233,12 +237,50 @@
       }
     },
     "stats": {
-      "title": "学习统计",
+      "title": "测试统计",
       "totalTests": "总测试次数",
       "totalQuestions": "总答题数",
-      "overallAccuracy": "总体准确率",
+      "correctAnswers": "正确答案",
       "bestScore": "最高分",
+      "accuracy": "准确率",
+      "accuracyProgress": "准确率等级",
+      "grade": {
+        "excellent": "优秀",
+        "good": "良好",
+        "average": "中等",
+        "fair": "及格",
+        "needImprovement": "需加强"
+      },
+      "reset": "重置统计",
+      "export": "导出数据",
+      "import": "导入数据",
       "clearStats": "清除统计"
+    },
+    "achievements": {
+      "firstTest": {
+        "name": "初次尝试",
+        "desc": "完成第一次测验"
+      },
+      "tenTests": {
+        "name": "勤学苦练",
+        "desc": "完成10次测验"
+      },
+      "perfectScore": {
+        "name": "满分大师",
+        "desc": "获得一次满分"
+      },
+      "highAccuracy": {
+        "name": "准确率达人",
+        "desc": "单次测验准确率达到90%以上"
+      },
+      "persistent": {
+        "name": "坚持不懈",
+        "desc": "完成50次测验"
+      },
+      "master": {
+        "name": "测验大师",
+        "desc": "完成100次测验"
+      }
     },
     "continents": {
       "all": "全部",
@@ -359,7 +401,7 @@
       "memory": "Memory",
       "quiz": "Quiz",
       "globe": "3D Globe",
-      "stats": "Statistics"
+      "tools": "Tools"
     },
     "browse": {
       "searchPlaceholder": "Search country name...",
@@ -386,6 +428,10 @@
     },
     "quiz": {
       "title": "Select Quiz Mode",
+      "nav": {
+        "quizMode": "Quiz Mode",
+        "statistics": "Statistics"
+      },
       "flagToCountry": {
         "title": "Flag to Country",
         "description": "Choose the correct country for the displayed flag"
@@ -548,12 +594,50 @@
       }
     },
     "stats": {
-      "title": "Learning Statistics",
+      "title": "Test Statistics",
       "totalTests": "Total Tests",
       "totalQuestions": "Total Questions",
-      "overallAccuracy": "Overall Accuracy",
+      "correctAnswers": "Correct Answers",
       "bestScore": "Best Score",
+      "accuracy": "Accuracy",
+      "accuracyProgress": "Accuracy Level",
+      "grade": {
+        "excellent": "Excellent",
+        "good": "Good",
+        "average": "Average",
+        "fair": "Fair",
+        "needImprovement": "Need Improvement"
+      },
+      "reset": "Reset Statistics",
+      "export": "Export Data",
+      "import": "Import Data",
       "clearStats": "Clear Statistics"
+    },
+    "achievements": {
+      "firstTest": {
+        "name": "First Attempt",
+        "desc": "Complete your first quiz"
+      },
+      "tenTests": {
+        "name": "Dedicated Learner",
+        "desc": "Complete 10 quizzes"
+      },
+      "perfectScore": {
+        "name": "Perfect Score Master",
+        "desc": "Achieve a perfect score once"
+      },
+      "highAccuracy": {
+        "name": "Accuracy Expert",
+        "desc": "Achieve 90%+ accuracy in a single quiz"
+      },
+      "persistent": {
+        "name": "Persistent",
+        "desc": "Complete 50 quizzes"
+      },
+      "master": {
+        "name": "Quiz Master",
+        "desc": "Complete 100 quizzes"
+      }
     },
     "continents": {
       "all": "All",
@@ -644,6 +728,14 @@
         "euu": "European Union",
         "auu": "African Union",
         "china_diplomatic": "Countries with Diplomatic Relations with China"
+      }
+    },
+    "tools": {
+      "title": "Useful Tools",
+      "description": "Some practical flag learning tools",
+      "comingSoon": {
+        "title": "Under Development",
+        "description": "More practical tools coming soon, stay tuned!"
       }
     }
   }

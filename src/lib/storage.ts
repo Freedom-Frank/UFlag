@@ -33,6 +33,7 @@ export function getStats(): QuizStats {
     accuracy: 0,
     averageTime: 0,
     bestScore: 0,
+    bestAccuracy: 0,
   };
 }
 

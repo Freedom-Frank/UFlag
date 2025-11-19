@@ -7,9 +7,8 @@ import { i18n } from './lib/i18n-core';
 import { loadCountries, loadTranslations } from './lib/data-loader';
 import { appState, getAllCountries } from './lib/state';
 import { initBrowseModule, displayFlags, rerenderBrowseCards } from './modules/browse';
-import { initQuizModule } from './modules/quiz';
+import { initQuizModule, quizModule } from './modules/quiz';
 import { initCountryDetailModule } from './modules/country-detail';
-import { initStatsModule, statsModule } from './modules/stats';
 import { initMemoryModule, memoryModule } from './modules/memory';
 import { globeModule } from './modules/globe';
 import { safeSetDisplay } from './lib/utils';
@@ -17,7 +16,7 @@ import { safeSetDisplay } from './lib/utils';
 /**
  * 当前显示的区域
  */
-type Section = 'browse' | 'quiz' | 'memory' | 'globe' | 'stats';
+type Section = 'browse' | 'quiz' | 'memory' | 'globe' | 'tools';
 
 /**
  * 应用类
@@ -86,7 +85,6 @@ class App {
     initBrowseModule();
     initQuizModule();
     initCountryDetailModule();
-    initStatsModule();
     initMemoryModule();
     // Globe模块延迟初始化，当用户切换到globe页面时才初始化
 
@@ -131,7 +129,7 @@ class App {
       quiz: document.getElementById('quizBtn'),
       memory: document.getElementById('memoryBtn'),
       globe: document.getElementById('globeBtn'),
-      stats: document.getElementById('statsBtn'),
+      tools: document.getElementById('toolsBtn'),
     };
 
     Object.entries(navButtons).forEach(([section, button]) => {
@@ -169,7 +167,7 @@ class App {
       // Ctrl/Cmd + 数字键切换页面
       if ((e.ctrlKey || e.metaKey) && e.key >= '1' && e.key <= '5') {
         e.preventDefault();
-        const sections: Section[] = ['browse', 'quiz', 'memory', 'globe', 'stats'];
+        const sections: Section[] = ['browse', 'quiz', 'memory', 'globe', 'tools'];
         const index = parseInt(e.key) - 1;
         if (sections[index]) {
           this.showSection(sections[index]);
@@ -223,7 +221,7 @@ class App {
     this.onSectionHide(this.currentSection);
 
     // 隐藏所有区域
-    const sections = ['browse', 'quiz', 'memory', 'globe', 'stats'];
+    const sections = ['browse', 'quiz', 'memory', 'globe', 'tools'];
     sections.forEach((s) => {
       safeSetDisplay(`${s}-section`, 'none');
     });
@@ -274,12 +272,6 @@ class App {
         displayFlags();
         break;
 
-      case 'stats':
-        // 统计模式：更新统计数据
-        statsModule.showStats();
-        statsModule.displayAchievements();
-        break;
-
       case 'memory':
         // 记忆训练：显示记忆训练界面
         memoryModule.showMemory();
@@ -299,7 +291,12 @@ class App {
         break;
 
       case 'quiz':
-        // 测验模式：无需特殊处理
+        // 测验模式：显示统计页面
+        quizModule.showStats();
+        break;
+
+      case 'tools':
+        // 实用工具：无需特殊处理
         break;
     }
   }

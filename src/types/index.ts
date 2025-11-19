@@ -187,6 +187,7 @@ export interface QuizStats {
   accuracy: number;
   averageTime: number;
   bestScore: number;
+  bestAccuracy: number; // 单次测验最高准确率
 }
 
 // ========== 全局窗口对象扩展 ==========

@@ -28,7 +28,7 @@
         <button class="nav-btn" id="memoryBtn" data-i18n="nav.memory">记忆训练</button>
         <button class="nav-btn" id="quizBtn" data-i18n="nav.quiz">知识测试</button>
         <button class="nav-btn" id="globeBtn" data-i18n="nav.globe">3D地球仪</button>
-        <button class="nav-btn" id="statsBtn" data-i18n="nav.stats">测试统计</button>
+        <button class="nav-btn" id="toolsBtn" data-i18n="nav.tools">实用工具</button>
       </nav>
 
       <div class="content">
@@ -197,8 +197,16 @@
         <!-- 测试模式 -->
         <div id="quiz-section" style="display: none">
           <div class="quiz-container">
+            <!-- 测试模式选择 -->
             <div id="quiz-start" class="quiz-start">
-              <h2 data-i18n="quiz.title">选择测试模式</h2>
+              <div class="quiz-nav">
+                <button class="quiz-nav-btn active" id="quiz-mode-btn" data-i18n="quiz.nav.quizMode">知识测试</button>
+                <button class="quiz-nav-btn" id="quiz-stats-btn" data-i18n="quiz.nav.statistics">测试统计</button>
+              </div>
+
+              <!-- 知识测试内容 -->
+              <div id="quiz-mode-content">
+                <h2 data-i18n="quiz.title">选择测试模式</h2>
               <div class="quiz-types">
                 <div class="quiz-type-card" data-type="flag-to-country">
                   <div class="quiz-icon">🏳️‍🌈</div>
@@ -245,6 +253,76 @@
                 >
                   开始测试
                 </button>
+              </div>
+              </div>
+
+              <!-- 测试统计内容 -->
+              <div id="quiz-stats-content" style="display: none">
+                <h2 data-i18n="stats.title">测试统计</h2>
+
+                <!-- 基本统计信息 -->
+                <div class="stats-overview">
+                  <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-info">
+                      <div class="stat-number" id="stats-total-tests">0</div>
+                      <div class="stat-label" data-i18n="stats.totalTests">总测试次数</div>
+                    </div>
+                  </div>
+                  <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-info">
+                      <div class="stat-number" id="stats-correct-answers">0</div>
+                      <div class="stat-label" data-i18n="stats.correctAnswers">正确答案</div>
+                    </div>
+                  </div>
+                  <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-info">
+                      <div class="stat-number" id="stats-best-score">0</div>
+                      <div class="stat-label" data-i18n="stats.bestScore">最高分</div>
+                    </div>
+                  </div>
+                  <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-info">
+                      <div class="stat-number" id="stats-best-accuracy">0%</div>
+                      <div class="stat-label">最高准确率</div>
+                    </div>
+                  </div>
+                  <div class="stat-card">
+                    <div class="stat-icon">📈</div>
+                    <div class="stat-info">
+                      <div class="stat-number" id="stats-accuracy">0%</div>
+                      <div class="stat-label" data-i18n="stats.accuracy">总体准确率</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 准确率进度条 -->
+                <div class="accuracy-progress">
+                  <h3 data-i18n="stats.accuracyProgress">准确率等级</h3>
+                  <div class="progress-container">
+                    <div class="progress-bar-bg">
+                      <div class="progress-bar-fill" id="stats-accuracy-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="accuracy-grade" id="stats-accuracy-grade">--</div>
+                  </div>
+                </div>
+
+                
+                <!-- 成就徽章 -->
+                <div class="achievements-container" id="achievements-container">
+                  <!-- 成就徽章将在这里动态生成 -->
+                </div>
+
+                <!-- 操作按钮 -->
+                <div class="stats-actions">
+                  <button class="btn btn-secondary" id="reset-stats-btn" data-i18n="stats.reset">重置统计</button>
+                  <button class="btn btn-primary" id="export-stats-btn" data-i18n="stats.export">导出数据</button>
+                  <button class="btn btn-primary" id="import-stats-btn" data-i18n="stats.import">导入数据</button>
+                  <input type="file" id="import-stats-input" accept=".json" style="display: none">
+                </div>
               </div>
             </div>
 
@@ -353,37 +431,25 @@
           </div>
         </div>
 
-        <!-- 统计模式 -->
-        <div id="stats-section" style="display: none">
-          <div class="stats-container">
-            <h2 data-i18n="stats.title">学习统计</h2>
-            <div class="stats">
-              <div class="stat-card">
-                <div class="stat-number" id="totalTests">0</div>
-                <div class="stat-label" data-i18n="stats.totalTests">总测试次数</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-number" id="totalQuestions">0</div>
-                <div class="stat-label" data-i18n="stats.totalQuestions">总答题数</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-number" id="overallAccuracy">0%</div>
-                <div class="stat-label" data-i18n="stats.overallAccuracy">总体准确率</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-number" id="bestScore">0</div>
-                <div class="stat-label" data-i18n="stats.bestScore">最高分</div>
-              </div>
-            </div>
-            <div style="text-align: center; margin-top: 30px">
-              <button class="btn btn-secondary" id="clearStatsBtn" data-i18n="stats.clearStats">
-                清除统计
-              </button>
+        </div>
+    </div>
+
+      <!-- 实用工具模式 -->
+      <div id="tools-section" style="display: none">
+        <div class="tools-container">
+          <h2 data-i18n="tools.title">实用工具</h2>
+          <p class="tools-description" data-i18n="tools.description">一些实用的国旗学习小工具</p>
+
+          <div class="tools-grid">
+            <!-- 工具卡片将在后续开发中添加 -->
+            <div class="tool-card coming-soon">
+              <div class="tool-icon">🔧</div>
+              <h3 data-i18n="tools.comingSoon.title">功能开发中</h3>
+              <p data-i18n="tools.comingSoon.description">更多实用工具即将上线，敬请期待！</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
     <!-- 模板区域 -->
     <template id="flag-card-template">

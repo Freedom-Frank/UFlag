@@ -1,9 +1,9 @@
 /**
  * 测验模块
- * 负责知识测验功能，包括题目生成、答案检查、结果显示等
+ * 负责知识测验功能，包括题目生成、答案检查、结果显示和统计数据等
  */
 
-import type { Country } from '../types';
+import type { Country, QuizStats } from '../types';
 import { i18n } from '../lib/i18n-core';
 import { getAllCountries } from '../lib/state';
 import { getStats, saveStats } from '../lib/storage';
@@ -361,9 +361,21 @@ class QuizModule {
     stats.totalTests++;
     stats.totalQuestions += this.state.questions.length;
     stats.correctAnswers += this.state.score;
+
+    // 更新最高分
     if (this.state.score > stats.bestScore) {
       stats.bestScore = this.state.score;
     }
+
+    // 更新总体准确率
+    stats.accuracy = Math.round((stats.correctAnswers / stats.totalQuestions) * 100);
+
+    // 更新最高准确率（基于单次测验）
+    const currentAccuracy = Math.round((this.state.score / this.state.questions.length) * 100);
+    if (currentAccuracy > stats.bestAccuracy) {
+      stats.bestAccuracy = currentAccuracy;
+    }
+
     saveStats(stats);
 
     safeSetDisplay('quiz-game', 'none');
@@ -561,6 +573,254 @@ class QuizModule {
   getState(): Readonly<QuizState> {
     return { ...this.state };
   }
+
+  /**
+   * 显示统计页面
+   */
+  showStats(): void {
+    this.updateQuizStats();
+    this.displayAchievements();
+  }
+
+  /**
+   * 更新测验统计显示
+   */
+  private updateQuizStats(): void {
+    const stats = getStats();
+
+    // 显示基本统计
+    safeSetText('stats-total-tests', stats.totalTests.toString());
+    safeSetText('stats-total-questions', stats.totalQuestions.toString());
+    safeSetText('stats-correct-answers', stats.correctAnswers.toString());
+    safeSetText('stats-best-score', stats.bestScore.toString());
+    safeSetText('stats-best-accuracy', `${stats.bestAccuracy}%`);
+
+    // 计算总体准确率
+    const accuracy =
+      stats.totalQuestions > 0
+        ? Math.round((stats.correctAnswers / stats.totalQuestions) * 100)
+        : 0;
+    safeSetText('stats-accuracy', `${accuracy}%`);
+
+    // 显示准确率等级
+    const accuracyGrade = this.getAccuracyGrade(accuracy);
+    safeSetText('stats-accuracy-grade', accuracyGrade);
+
+    // 更新进度条
+    const progressBar = document.getElementById('stats-accuracy-bar') as HTMLElement;
+    if (progressBar) {
+      progressBar.style.width = `${accuracy}%`;
+      progressBar.style.backgroundColor = this.getAccuracyColor(accuracy);
+    }
+  }
+
+  
+  /**
+   * 获取准确率等级
+   */
+  private getAccuracyGrade(accuracy: number): string {
+    if (accuracy >= 90) return i18n.t('stats.grade.excellent') || '优秀';
+    if (accuracy >= 80) return i18n.t('stats.grade.good') || '良好';
+    if (accuracy >= 70) return i18n.t('stats.grade.average') || '中等';
+    if (accuracy >= 60) return i18n.t('stats.grade.fair') || '及格';
+    return i18n.t('stats.grade.needImprovement') || '需加强';
+  }
+
+  /**
+   * 获取准确率对应的颜色
+   */
+  private getAccuracyColor(accuracy: number): string {
+    if (accuracy >= 90) return '#22c55e'; // 绿色
+    if (accuracy >= 80) return '#3b82f6'; // 蓝色
+    if (accuracy >= 70) return '#eab308'; // 黄色
+    if (accuracy >= 60) return '#f59e0b'; // 橙色
+    return '#ef4444'; // 红色
+  }
+
+  /**
+   * 重置统计数据
+   */
+  resetStats(): void {
+    const confirmed = confirm(
+      i18n.getCurrentLanguage() === 'en'
+        ? 'Are you sure you want to reset all statistics? This action cannot be undone.'
+        : '确定要重置所有统计数据吗？此操作无法撤销。'
+    );
+
+    if (!confirmed) return;
+
+    const emptyStats: QuizStats = {
+      totalTests: 0,
+      totalQuestions: 0,
+      correctAnswers: 0,
+      accuracy: 0,
+      averageTime: 0,
+      bestScore: 0,
+      bestAccuracy: 0,
+    };
+
+    localStorage.setItem('quizStats', JSON.stringify(emptyStats));
+    this.updateQuizStats();
+
+    alert(
+      i18n.getCurrentLanguage() === 'en'
+        ? 'Statistics have been reset successfully!'
+        : '统计数据已重置成功！'
+    );
+  }
+
+  /**
+   * 导出统计数据
+   */
+  exportStats(): void {
+    try {
+      const stats = getStats();
+
+      const exportData = {
+        quizStats: stats,
+        exportDate: new Date().toISOString(),
+        version: '1.0',
+      };
+
+      const dataStr = JSON.stringify(exportData, null, 2);
+      const dataBlob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(dataBlob);
+
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `flagstar-stats-${new Date().toISOString().split('T')[0]}.json`;
+      link.click();
+
+      URL.revokeObjectURL(url);
+
+      console.log('✅ 统计数据导出成功');
+    } catch (error) {
+      console.error('导出统计数据失败:', error);
+      alert(
+        i18n.getCurrentLanguage() === 'en' ? 'Failed to export statistics!' : '导出统计数据失败！'
+      );
+    }
+  }
+
+  /**
+   * 导入统计数据
+   */
+  importStats(file: File): void {
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      try {
+        const data = JSON.parse(e.target?.result as string);
+
+        if (data.quizStats) {
+          localStorage.setItem('quizStats', JSON.stringify(data.quizStats));
+        }
+
+        this.updateQuizStats();
+
+        alert(
+          i18n.getCurrentLanguage() === 'en'
+            ? 'Statistics imported successfully!'
+            : '统计数据导入成功！'
+        );
+
+        console.log('✅ 统计数据导入成功');
+      } catch (error) {
+        console.error('导入统计数据失败:', error);
+        alert(
+          i18n.getCurrentLanguage() === 'en'
+            ? 'Failed to import statistics! Invalid file format.'
+            : '导入统计数据失败！文件格式无效。'
+        );
+      }
+    };
+
+    reader.readAsText(file);
+  }
+
+  /**
+   * 获取成就徽章
+   */
+  private getAchievements(): {
+    id: string;
+    name: string;
+    description: string;
+    unlocked: boolean;
+    icon: string;
+  }[] {
+    const stats = getStats();
+
+    return [
+      {
+        id: 'first_test',
+        name: i18n.t('achievements.firstTest.name') || '初次尝试',
+        description: i18n.t('achievements.firstTest.desc') || '完成第一次测验',
+        unlocked: stats.totalTests >= 1,
+        icon: '🎯',
+      },
+      {
+        id: 'ten_tests',
+        name: i18n.t('achievements.tenTests.name') || '勤学苦练',
+        description: i18n.t('achievements.tenTests.desc') || '完成10次测验',
+        unlocked: stats.totalTests >= 10,
+        icon: '📚',
+      },
+      {
+        id: 'perfect_score',
+        name: i18n.t('achievements.perfectScore.name') || '满分大师',
+        description: i18n.t('achievements.perfectScore.desc') || '获得一次满分',
+        unlocked: stats.bestScore >= 100,
+        icon: '🏆',
+      },
+      {
+        id: 'high_accuracy',
+        name: i18n.t('achievements.highAccuracy.name') || '准确率达人',
+        description: i18n.t('achievements.highAccuracy.desc') || '单次测验准确率达到90%以上',
+        unlocked: stats.bestAccuracy >= 90,
+        icon: '🎯',
+      },
+      {
+        id: 'persistent',
+        name: i18n.t('achievements.persistent.name') || '坚持不懈',
+        description: i18n.t('achievements.persistent.desc') || '完成50次测验',
+        unlocked: stats.totalTests >= 50,
+        icon: '💪',
+      },
+      {
+        id: 'master',
+        name: i18n.t('achievements.master.name') || '测验大师',
+        description: i18n.t('achievements.master.desc') || '完成100次测验',
+        unlocked: stats.totalTests >= 100,
+        icon: '👑',
+      },
+    ];
+  }
+
+  /**
+   * 显示成就徽章
+   */
+  private displayAchievements(): void {
+    const achievements = this.getAchievements();
+    const container = document.getElementById('achievements-container');
+
+    if (!container) return;
+
+    container.innerHTML = '';
+
+    achievements.forEach((achievement) => {
+      const card = document.createElement('div');
+      card.className = `achievement-card ${achievement.unlocked ? 'unlocked' : 'locked'}`;
+      card.innerHTML = `
+        <div class="achievement-icon">${achievement.icon}</div>
+        <div class="achievement-info">
+          <h4 class="achievement-name">${achievement.name}</h4>
+          <p class="achievement-desc">${achievement.description}</p>
+        </div>
+        ${achievement.unlocked ? '<div class="achievement-badge">✓</div>' : ''}
+      `;
+      container.appendChild(card);
+    });
+  }
 }
 
 // 创建单例实例
@@ -576,6 +836,33 @@ export function initQuizModule(): void {
   // 防止重复初始化
   if (quizModuleInitialized) {
     return;
+  }
+
+  // 测验导航切换
+  const quizModeBtn = document.getElementById('quiz-mode-btn');
+  const quizStatsBtn = document.getElementById('quiz-stats-btn');
+  const quizModeContent = document.getElementById('quiz-mode-content');
+  const quizStatsContent = document.getElementById('quiz-stats-content');
+
+  if (quizModeBtn && quizStatsBtn && quizModeContent && quizStatsContent) {
+    quizModeBtn.addEventListener('click', () => {
+      // 切换到知识测试模式
+      quizModeBtn.classList.add('active');
+      quizStatsBtn.classList.remove('active');
+      quizModeContent.style.display = 'block';
+      quizStatsContent.style.display = 'none';
+    });
+
+    quizStatsBtn.addEventListener('click', () => {
+      // 切换到统计模式
+      quizModeBtn.classList.remove('active');
+      quizStatsBtn.classList.add('active');
+      quizModeContent.style.display = 'none';
+      quizStatsContent.style.display = 'block';
+
+      // 显示统计数据
+      quizModule.showStats();
+    });
   }
 
   // 测验类型选择
@@ -639,6 +926,30 @@ export function initQuizModule(): void {
   if (backBtn) {
     backBtn.addEventListener('click', () => {
       quizModule.backToQuiz();
+    });
+  }
+
+  // 统计相关按钮事件监听
+  const resetStatsBtn = document.getElementById('reset-stats-btn');
+  if (resetStatsBtn) {
+    resetStatsBtn.addEventListener('click', () => quizModule.resetStats());
+  }
+
+  const exportStatsBtn = document.getElementById('export-stats-btn');
+  if (exportStatsBtn) {
+    exportStatsBtn.addEventListener('click', () => quizModule.exportStats());
+  }
+
+  const importStatsBtn = document.getElementById('import-stats-btn');
+  const importStatsInput = document.getElementById('import-stats-input') as HTMLInputElement;
+
+  if (importStatsBtn && importStatsInput) {
+    importStatsBtn.addEventListener('click', () => importStatsInput.click());
+    importStatsInput.addEventListener('change', (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (file) {
+        quizModule.importStats(file);
+      }
     });
   }
 
