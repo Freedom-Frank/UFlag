@@ -41,10 +41,20 @@ coverage/
 *.tmp
 *.temp
 
-# 指南文档（个人使用，不提交到仓库）
+# Claude Code 配置
+.claude/
+
+# 指南文档
 *_GUIDE.md
 GUIDE_*.md
+CLAUDE_*.md
 
-# Claude Code 配置文件（个人使用）
-.claude/git-commit-rules.md
-.claude/settings.local.json
+# 文档目录
+docs/
+
+/*.md
+!README.md
+
+# 备份文件
+*.backup
+*.bak

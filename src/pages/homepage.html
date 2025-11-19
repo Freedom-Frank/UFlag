@@ -17,7 +17,7 @@
         </div>
 
         <h1><span class="emoji">🌍</span> <span data-i18n="siteName">FlagStar 国旗之星</span></h1>
-        <p class="subtitle" data-i18n="siteSubtitle">理解世界，从认识国旗开始✨</p>
+        <p class="subtitle" data-i18n="siteSubtitle">国旗之星点亮世界！</p>
         <div class="sponsor-badge" data-i18n-title="sponsorBadge.title">
           <img class="sponsor-logo" src="/assets/images/ASIASIM.png" alt="亚洲仿真联盟支持" />
         </div>
@@ -447,6 +447,14 @@
             </div>
 
             <!-- 其他工具占位符 -->
+            <!-- 座位排位工具卡片 -->
+            <div class="tool-card" id="seating-tool-card">
+              <div class="tool-icon">🪑</div>
+              <h3>国旗座位排位</h3>
+              <p>为国际场合提供专业的国旗座位排位方案，支持多种排序规则和布局</p>
+            </div>
+
+            <!-- 更多工具卡片（开发中） -->
             <div class="tool-card coming-soon">
               <div class="tool-icon">🔧</div>
               <h3 data-i18n="tools.comingSoon.title">更多工具</h3>
@@ -495,6 +503,98 @@
                 <button class="stop-btn" id="stop-camera-btn">
                   <span class="btn-icon">⏹️</span>
                   <span data-i18n="recognition.stopCamera">停止</span>
+      <!-- 座位排位详细页面 -->
+      <div id="seating-detail-section" style="display: none">
+        <div class="tools-container">
+          <!-- 返回按钮 -->
+          <button class="back-to-tools-btn" id="backToToolsBtn">
+            <span class="btn-icon">←</span>
+            <span class="btn-text">返回工具列表</span>
+          </button>
+
+          <!-- 座位排位工具 -->
+          <div class="seating-tool">
+            <h3 class="seating-title">🪑 国旗座位排位</h3>
+            <p class="seating-subtitle">为国际场合提供专业的国旗座位排位方案</p>
+
+            <!-- 快速模板 -->
+            <div class="seating-templates">
+              <div class="templates-header">
+                <span>⚡ 快速模板</span>
+                <span class="templates-subtitle">一键应用常见场景配置</span>
+              </div>
+              <div class="templates-grid" id="templates-grid">
+                <!-- 模板将在这里动态生成 -->
+              </div>
+            </div>
+
+            <!-- 配置区域 -->
+            <div class="seating-config-section">
+              <div class="config-group">
+                <label class="config-label">选择国家范围</label>
+                <select id="seating-source-select" class="seating-select">
+                  <option value="un">联合国会员国（193个）</option>
+                  <option value="g20">二十国集团（G20）</option>
+                  <option value="euu">欧洲联盟（EU）</option>
+                  <option value="auu">非洲联盟（AU）</option>
+                  <option value="china_diplomatic">与中国建交国家</option>
+                  <option value="asiasim">亚洲仿真联盟</option>
+                  <option value="current">当前浏览筛选结果</option>
+                </select>
+              </div>
+
+              <div class="config-group">
+                <label class="config-label">排序规则</label>
+                <select id="seating-rule-select" class="seating-select">
+                  <option value="alphabetical-en">英文字母顺序（联合国标准）</option>
+                  <option value="alphabetical-cn">中文拼音顺序</option>
+                  <option value="alphabetical-fr">法文字母顺序</option>
+                  <option value="host-first">主办国优先</option>
+                  <option value="olympic">奥运会模式</option>
+                  <option value="diplomatic-time">按建交时间（与中国）</option>
+                  <option value="continent-group">按大洲分组</option>
+                </select>
+              </div>
+
+              <div class="config-group" id="host-config" style="display: none">
+                <label class="config-label">主办国代码（如：cn）</label>
+                <input
+                  type="text"
+                  id="seating-host-input"
+                  class="seating-input"
+                  placeholder="请输入国家代码"
+                />
+              </div>
+
+              <div class="config-group">
+                <label class="config-label">布局方式</label>
+                <div class="layout-buttons">
+                  <button class="layout-btn active" data-layout="linear">
+                    <span class="layout-icon">━</span>
+                    <span>线性排列</span>
+                  </button>
+                  <button class="layout-btn" data-layout="double-column">
+                    <span class="layout-icon">║</span>
+                    <span>双列对称</span>
+                  </button>
+                  <button class="layout-btn" data-layout="circular">
+                    <span class="layout-icon">○</span>
+                    <span>圆桌环形</span>
+                  </button>
+                  <button class="layout-btn" data-layout="u-shape">
+                    <span class="layout-icon">U</span>
+                    <span>U型布局</span>
+                  </button>
+                  <button class="layout-btn" data-layout="grid">
+                    <span class="layout-icon">▦</span>
+                    <span>网格布局</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="config-group">
+                <button id="generate-seating-btn" class="btn btn-primary seating-generate-btn">
+                  生成排位方案
                 </button>
               </div>
             </div>
@@ -532,6 +632,31 @@
             <!-- 识别结果 -->
             <div class="recognition-results" id="recognition-results" style="display: none;">
               <!-- 结果将动态插入这里 -->
+            <!-- 说明区域 -->
+            <div class="seating-help">
+              <h4>💡 使用说明</h4>
+              <ol>
+                <li>选择国家范围（预设数据源或当前浏览筛选结果）</li>
+                <li>选择排序规则和布局方式</li>
+                <li>点击"生成排位方案"查看结果</li>
+                <li>可导出为文本或复制到剪贴板</li>
+              </ol>
+            </div>
+
+            <!-- 结果显示区域 -->
+            <div id="seating-result-section" style="display: none">
+              <div class="seating-result-header">
+                <h3>排位结果</h3>
+                <div class="seating-result-actions">
+                  <button id="export-text-btn" class="btn btn-secondary">
+                    📄 导出文本
+                  </button>
+                  <button id="copy-seating-btn" class="btn btn-secondary">
+                    📋 复制列表
+                  </button>
+                </div>
+              </div>
+              <div id="seating-display-container" class="seating-display"></div>
             </div>
           </div>
         </div>

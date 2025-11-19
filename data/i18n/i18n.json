@@ -1,12 +1,12 @@
 {
   "zh": {
     "siteName": "FlagStar 国旗之星",
-    "siteSubtitle": "理解世界，从认识国旗开始",
+    "siteSubtitle": "国旗之星点亮世界！",
     "uflagName": "FlagStar",
     "uflagSubtitle": "Developed by UFlag team",
     "welcome": {
       "title": "FlagStar 国旗之星",
-      "subtitle": "理解世界，从认识国旗开始",
+      "subtitle": "国旗之星点亮世界！",
       "features": {
         "browse": {
           "title": "国旗浏览",
@@ -393,12 +393,12 @@
   },
   "en": {
     "siteName": "FlagStar",
-    "siteSubtitle": "Understanding the world, start with the national flags",
+    "siteSubtitle": "FlagStar Lights the World!",
     "uflagName": "FlagStar",
     "uflagSubtitle": "Developed by UFlag team",
     "welcome": {
       "title": "FlagStar",
-      "subtitle": "Understanding the world, start with the national flags",
+      "subtitle": "FlagStar Lights the World!",
       "features": {
         "browse": {
           "title": "Flag Browser",
