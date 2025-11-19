@@ -2,7 +2,7 @@
  * 数据加载模块
  */
 
-import type { Country, Translations } from '../types';
+import type { Country, Translations, FlagFeaturesData, ColorFeature } from '../types';
 import { DATA_PATHS } from './constants';
 
 /**
@@ -123,4 +123,98 @@ export async function checkResourceAvailable(url: string): Promise<boolean> {
   } catch {
     return false;
   }
+}
+
+// ========== 国旗特征相关功能 ==========
+
+// 缓存特征数据
+let flagFeaturesCache: FlagFeaturesData | null = null;
+
+/**
+ * 加载国旗特征数据
+ */
+export async function loadFlagFeatures(): Promise<FlagFeaturesData> {
+  if (flagFeaturesCache) {
+    return flagFeaturesCache;
+  }
+
+  try {
+    const response = await fetch('/data/flag-features.json');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    flagFeaturesCache = data as FlagFeaturesData;
+
+    console.log(`已加载 ${Object.keys(data.features).length} 个国旗特征`);
+    return flagFeaturesCache;
+  } catch (error) {
+    console.warn('加载国旗特征数据失败，将使用实时计算:', error);
+    // 返回空的特征数据，识别模块会回退到实时计算
+    return {
+      metadata: {
+        generatedAt: new Date().toISOString(),
+        totalCountries: 0,
+        processedCount: 0,
+        errorCount: 0,
+        version: '1.0.0'
+      },
+      features: {}
+    };
+  }
+}
+
+/**
+ * 获取指定国家的国旗特征
+ */
+export async function getFlagFeature(countryCode: string): Promise<ColorFeature | null> {
+  if (!flagFeaturesCache) {
+    await loadFlagFeatures();
+  }
+
+  if (flagFeaturesCache && flagFeaturesCache.features[countryCode]) {
+    const feature = flagFeaturesCache.features[countryCode];
+    return {
+      dominant: feature.dominant,
+      distribution: feature.distribution,
+      layout: feature.layout as 'horizontal' | 'vertical' | 'complex' | 'unknown'
+    };
+  }
+
+  return null;
+}
+
+/**
+ * 获取所有已加载的国旗特征
+ */
+export function getAllFlagFeatures(): Record<string, ColorFeature> {
+  if (!flagFeaturesCache) {
+    return {};
+  }
+
+  const result: Record<string, ColorFeature> = {};
+  for (const [code, feature] of Object.entries(flagFeaturesCache.features)) {
+    result[code] = {
+      dominant: feature.dominant,
+      distribution: feature.distribution,
+      layout: feature.layout as 'horizontal' | 'vertical' | 'complex' | 'unknown'
+    };
+  }
+
+  return result;
+}
+
+/**
+ * 检查特征数据是否已加载
+ */
+export function isFlagFeaturesLoaded(): boolean {
+  return flagFeaturesCache !== null;
+}
+
+/**
+ * 清除特征数据缓存
+ */
+export function clearFlagFeaturesCache(): void {
+  flagFeaturesCache = null;
 }

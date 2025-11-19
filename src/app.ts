@@ -11,6 +11,7 @@ import { initQuizModule, quizModule } from './modules/quiz';
 import { initCountryDetailModule } from './modules/country-detail';
 import { initMemoryModule, memoryModule } from './modules/memory';
 import { globeModule } from './modules/globe';
+import { flagRecognitionModule } from './modules/flag-recognition';
 import { safeSetDisplay } from './lib/utils';
 
 /**
@@ -87,6 +88,7 @@ class App {
     initCountryDetailModule();
     initMemoryModule();
     // Globe模块延迟初始化，当用户切换到globe页面时才初始化
+    // FlagRecognition模块延迟初始化，当用户切换到tools页面时才初始化
 
     // 订阅语言变化
     i18n.subscribe(() => {
@@ -256,6 +258,11 @@ class App {
         memoryModule.cleanup();
         break;
 
+      case 'tools':
+        // 清理国旗识别模块和返回工具列表
+        flagRecognitionModule.backToTools();
+        break;
+
       // 其他模块目前不需要特殊清理
       default:
         break;
@@ -296,7 +303,10 @@ class App {
         break;
 
       case 'tools':
-        // 实用工具：无需特殊处理
+        // 实用工具：初始化国旗识别模块
+        flagRecognitionModule.initModule().catch((error) => {
+          console.error('Failed to initialize flag recognition module:', error);
+        });
         break;
     }
   }

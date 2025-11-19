@@ -53,7 +53,9 @@
       "mcp__ide__getDiagnostics",
       "Bash(npm run lint:fix:*)",
       "Bash(netstat:*)",
-      "Bash(powershell -Command \"Start-Process ''http://localhost:8000''\")"
+      "Bash(powershell -Command \"Start-Process ''http://localhost:8000''\")",
+      "Bash(\"d:\\CODE\\FlagLore\\src\\css\\styles.css\")",
+      "Bash(start http://localhost:8001)"
     ],
     "deny": [],
     "ask": []

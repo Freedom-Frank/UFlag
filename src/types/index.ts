@@ -192,6 +192,46 @@ export interface QuizStats {
 
 // ========== 全局窗口对象扩展 ==========
 
+// ========== 国旗特征相关类型 ==========
+
+/** 国旗颜色特征 */
+export interface ColorFeature {
+  /** 主要颜色 */
+  dominant: string[];
+  /** 颜色分布 */
+  distribution: number[];
+  /** 布局类型 */
+  layout: 'horizontal' | 'vertical' | 'complex' | 'unknown';
+}
+
+/** 国旗特征数据 */
+export interface FlagFeature {
+  /** 颜色特征 */
+  dominant: string[];
+  /** 颜色分布 */
+  distribution: number[];
+  /** 布局类型 */
+  layout: string;
+  /** 国家信息 */
+  country: {
+    code: string;
+    nameCN: string;
+    nameEN: string;
+  };
+}
+
+/** 特征数据文件结构 */
+export interface FlagFeaturesData {
+  metadata: {
+    generatedAt: string;
+    totalCountries: number;
+    processedCount: number;
+    errorCount: number;
+    version: string;
+  };
+  features: Record<string, FlagFeature>;
+}
+
 declare global {
   interface Window {
     i18n?: any; // 将在迁移后改为具体类型

@@ -354,6 +354,41 @@
       "learnMore": "📖 从维基百科了解更多",
       "loading": "正在加载详细信息...",
       "collapse": "🔼 收起详细信息"
+    },
+    "tools": {
+      "title": "实用工具",
+      "description": "一些实用的国旗学习小工具",
+      "flagRecognition": {
+        "title": "国旗识别",
+        "description": "拍照或上传图片，智能识别国旗所属国家"
+      },
+      "comingSoon": {
+        "title": "更多工具",
+        "description": "更多实用工具即将上线，敬请期待！"
+      }
+    },
+    "recognition": {
+      "startCamera": "拍照识别",
+      "uploadPhoto": "上传图片",
+      "capture": "拍照",
+      "stopCamera": "停止",
+      "retry": "重新拍摄",
+      "analyzing": "正在分析图片...",
+      "results": "识别结果",
+      "match": "匹配度",
+      "noResults": {
+        "title": "未识别到国旗",
+        "description": "请尝试使用更清晰、光线更好的图片"
+      },
+      "errors": {
+        "cameraPermission": "无法访问摄像头，请检查权限设置",
+        "fileType": "请选择图片文件",
+        "fileSize": "图片文件过大，请选择小于10MB的图片",
+        "processing": "图片处理失败，请重试",
+        "recognition": "识别失败，请尝试使用更清晰的图片",
+        "initialization": "初始化失败，请刷新页面重试"
+      },
+      "backToTools": "返回工具列表"
     }
   },
   "en": {
@@ -733,10 +768,37 @@
     "tools": {
       "title": "Useful Tools",
       "description": "Some practical flag learning tools",
+      "flagRecognition": {
+        "title": "Flag Recognition",
+        "description": "Take a photo or upload an image to intelligently identify the flag's country"
+      },
       "comingSoon": {
-        "title": "Under Development",
+        "title": "More Tools",
         "description": "More practical tools coming soon, stay tuned!"
       }
+    },
+    "recognition": {
+      "startCamera": "Take Photo",
+      "uploadPhoto": "Upload Image",
+      "capture": "Capture",
+      "stopCamera": "Stop",
+      "retry": "Retake",
+      "analyzing": "Analyzing image...",
+      "results": "Recognition Results",
+      "match": "Match",
+      "noResults": {
+        "title": "No flag detected",
+        "description": "Please try using a clearer, well-lit image"
+      },
+      "errors": {
+        "cameraPermission": "Unable to access camera, please check permissions",
+        "fileType": "Please select an image file",
+        "fileSize": "Image file too large, please select a file smaller than 10MB",
+        "processing": "Image processing failed, please try again",
+        "recognition": "Recognition failed, please try using a clearer image",
+        "initialization": "Initialization failed, please refresh the page and try again"
+      },
+      "backToTools": "Back to Tools"
     }
   }
 }

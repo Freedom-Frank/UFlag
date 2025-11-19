@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>国旗特征生成器 (完整版 - 193个国家)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .progress {
+            margin: 20px 0;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background-color: #4CAF50;
+            transition: width 0.3s ease;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .status.success { background-color: #d4edda; color: #155724; }
+        .status.error { background-color: #f8d7da; color: #721c24; }
+        .status.info { background-color: #d1ecf1; color: #0c5460; }
+        .status.warning { background-color: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
+        #results {
+            margin-top: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover { background-color: #0056b3; }
+        button:disabled { background-color: #6c757d; cursor: not-allowed; }
+        .test-section {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        .test-image {
+            max-width: 100px;
+            max-height: 75px;
+            border: 1px solid #ddd;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌍 国旗特征生成器 (完整版 - 193个国家)</h1>
+        <p>这个工具将生成全部193个联合国成员国的国旗特征数据，用于极速识别功能。</p>
+
+        <div class="status warning">
+            <strong>⚠️ 重要提醒：</strong><br>
+            • 处理全部193个国家预计需要3-5分钟<br>
+            • 请保持页面活跃，不要切换标签页<br>
+            • 处理过程中浏览器可能会有些卡顿，这是正常的<br>
+            • 如果失败，请刷新页面重试
+        </div>
+
+        <div class="test-section">
+            <h3>🧪 测试图片加载</h3>
+            <p>检查国旗图片是否能正常加载：</p>
+            <div id="testImages">
+                <img src="/assets/images/flags/cn.png" class="test-image" alt="中国" onerror="this.style.border='2px solid red'">
+                <img src="/assets/images/flags/us.png" class="test-image" alt="美国" onerror="this.style.border='2px solid red'">
+                <img src="/assets/images/flags/jp.png" class="test-image" alt="日本" onerror="this.style.border='2px solid red'">
+                <img src="/assets/images/flags/fr.png" class="test-image" alt="法国" onerror="this.style.border='2px solid red'">
+                <img src="/assets/images/flags/de.png" class="test-image" alt="德国" onerror="this.style.border='2px solid red'">
+            </div>
+            <div id="testStatus"></div>
+        </div>
+
+        <div class="status info">
+            <strong>使用步骤：</strong><br>
+            1. 首先点击"测试图片加载"检查国旗图片是否可访问<br>
+            2. 如果图片正常加载，再点击"开始生成全部193个国家特征"<br>
+            3. 此过程预计需要3-5分钟，请耐心等待<br>
+            4. 完成后下载特征文件到data目录
+        </div>
+
+        <button id="testBtn" onclick="testImageLoading()">🧪 测试图片加载</button>
+        <button id="startBtn" onclick="startGeneration()" disabled>🚀 开始生成全部193个国家特征</button>
+        <button id="downloadBtn" onclick="downloadResults()" style="display: none;">下载特征文件</button>
+        <button id="copyBtn" onclick="copyToClipboard()" style="display: none;">复制到剪贴板</button>
+
+        <div class="progress" id="progressContainer" style="display: none;">
+            <div>进度: <span id="progressText">0/0</span></div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+            <div>当前处理: <span id="currentCountry">-</span></div>
+            <div>成功: <span id="successCount">0</span> | 失败: <span id="errorCount">0</span></div>
+        </div>
+
+        <div id="results"></div>
+    </div>
+
+    <script>
+        /**
+         * 简化的特征提取器
+         */
+        class SimpleFlagFeatureExtractor {
+            constructor() {
+                this.targetWidth = 150;
+                this.targetHeight = 100;
+            }
+
+            async extractFeatures(imgElement) {
+                try {
+                    // 创建canvas并绘制图像
+                    const canvas = document.createElement('canvas');
+                    canvas.width = this.targetWidth;
+                    canvas.height = this.targetHeight;
+                    const ctx = canvas.getContext('2d');
+
+                    // 设置背景色为白色（处理透明图片）
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(0, 0, this.targetWidth, this.targetHeight);
+
+                    // 缩放图像到目标尺寸
+                    ctx.drawImage(imgElement, 0, 0, this.targetWidth, this.targetHeight);
+
+                    // 获取图像数据
+                    const imageData = ctx.getImageData(0, 0, this.targetWidth, this.targetHeight);
+
+                    // 分析特征
+                    return this.analyzeColorFeatures(imageData);
+                } catch (error) {
+                    console.warn(`提取图像特征失败:`, error);
+                    // 返回默认特征
+                    return {
+                        dominant: ['rgb(128,128,128)'],
+                        distribution: [1.0],
+                        layout: 'unknown'
+                    };
+                }
+            }
+
+            analyzeColorFeatures(imageData) {
+                const data = imageData.data;
+                const colorMap = new Map();
+
+                // 分析颜色分布
+                for (let i = 0; i < data.length; i += 4) {
+                    const r = Math.floor(data[i] / 32) * 32; // 更粗的颜色量化
+                    const g = Math.floor(data[i + 1] / 32) * 32;
+                    const b = Math.floor(data[i + 2] / 32) * 32;
+                    const color = `${r},${g},${b}`;
+
+                    colorMap.set(color, (colorMap.get(color) || 0) + 1);
+                }
+
+                // 获取主要颜色
+                const sortedColors = Array.from(colorMap.entries())
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 3) // 只取前3个主要颜色
+                    .map(([color]) => `rgb(${color})`);
+
+                // 计算颜色分布百分比
+                const totalPixels = imageData.width * imageData.height;
+                const distribution = Array.from(colorMap.values())
+                    .sort((a, b) => b - a)
+                    .slice(0, 3)
+                    .map(count => count / totalPixels);
+
+                // 简化的布局检测
+                const layout = this.detectLayout(imageData);
+
+                return {
+                    dominant: sortedColors,
+                    distribution: distribution,
+                    layout: layout
+                };
+            }
+
+            detectLayout(imageData) {
+                const { data, width, height } = imageData;
+
+                // 简单的水平条纹检测
+                const topHalf = [];
+                const bottomHalf = [];
+
+                for (let i = 0; i < data.length; i += 4) {
+                    const pixelIndex = Math.floor(i / 4);
+                    const y = Math.floor(pixelIndex / width);
+
+                    if (y < height / 2) {
+                        topHalf.push(`${data[i]},${data[i+1]},${data[i+2]}`);
+                    } else {
+                        bottomHalf.push(`${data[i]},${data[i+1]},${data[i+2]}`);
+                    }
+                }
+
+                const topColors = new Set(topHalf).size;
+                const bottomColors = new Set(bottomHalf).size;
+
+                if (topColors < 50 && bottomColors < 50 && topColors !== bottomColors) {
+                    return 'horizontal';
+                }
+
+                return 'complex';
+            }
+        }
+
+        // 全局变量
+        let countries = [];
+        let flagFeatures = {};
+        let extractor = new SimpleFlagFeatureExtractor();
+
+        // 测试图片加载
+        async function testImageLoading() {
+            const testBtn = document.getElementById('testBtn');
+            const testStatus = document.getElementById('testStatus');
+            const startBtn = document.getElementById('startBtn');
+
+            testBtn.disabled = true;
+            testStatus.innerHTML = '<div class="status info">正在测试图片加载...</div>';
+
+            try {
+                // 测试几个关键国家的图片加载
+                const testCountries = ['cn', 'us', 'jp', 'fr', 'de'];
+                let successCount = 0;
+                let errorCount = 0;
+
+                for (const code of testCountries) {
+                    try {
+                        const img = new Image();
+                        img.crossOrigin = 'anonymous';
+                        await new Promise((resolve, reject) => {
+                            img.onload = resolve;
+                            img.onerror = reject;
+                            img.src = `../assets/images/flags/${code}.png`;
+                        });
+                        successCount++;
+                    } catch (error) {
+                        errorCount++;
+                        console.error(`Failed to load ${code}:`, error);
+                    }
+                }
+
+                if (successCount > 0) {
+                    testStatus.innerHTML = `<div class="status success">✅ 图片加载测试通过！成功: ${successCount}, 失败: ${errorCount}</div>`;
+                    startBtn.disabled = false;
+                } else {
+                    testStatus.innerHTML = `<div class="status error">❌ 图片加载失败，请检查assets/images/flags目录是否存在</div>`;
+                }
+
+            } catch (error) {
+                testStatus.innerHTML = `<div class="status error">❌ 测试失败: ${error.message}</div>`;
+            }
+
+            testBtn.disabled = false;
+        }
+
+        // 加载国家数据
+        async function loadCountries() {
+            try {
+                const response = await fetch('../data/countries/countries_un.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                countries = data.countries || data;
+                log(`已加载 ${countries.length} 个国家/地区数据`);
+                return true;
+            } catch (error) {
+                log(`加载国家数据失败: ${error.message}`, 'error');
+                return false;
+            }
+        }
+
+        // 生成特征
+        async function startGeneration() {
+            const startBtn = document.getElementById('startBtn');
+            const progressContainer = document.getElementById('progressContainer');
+            const resultsDiv = document.getElementById('results');
+
+            startBtn.disabled = true;
+            progressContainer.style.display = 'block';
+            resultsDiv.innerHTML = '';
+
+            log('开始生成国旗特征...', 'info');
+
+            // 加载国家数据
+            if (!await loadCountries()) {
+                startBtn.disabled = false;
+                return;
+            }
+
+            const totalCountries = countries.length; // 处理全部国家
+            let processedCount = 0;
+            let successCount = 0;
+            let errorCount = 0;
+
+            // 更新进度显示
+            updateProgress(0, totalCountries, 0, 0);
+
+            // 处理每个国家
+            for (let i = 0; i < totalCountries; i++) {
+                const country = countries[i];
+
+                try {
+                    document.getElementById('currentCountry').textContent =
+                        `${country.nameCN} (${country.code})`;
+
+                    // 创建图片元素
+                    const img = new Image();
+                    img.crossOrigin = 'anonymous';
+
+                    try {
+                        await new Promise((resolve, reject) => {
+                            img.onload = resolve;
+                            img.onerror = reject;
+                            img.src = `/assets/images/flags/${country.code.toLowerCase()}.png`;
+                        });
+
+                        // 提取特征
+                        const features = await extractor.extractFeatures(img);
+
+                        // 保存特征
+                        flagFeatures[country.code] = {
+                            dominant: features.dominant,
+                            distribution: features.distribution,
+                            layout: features.layout,
+                            country: {
+                                code: country.code,
+                                nameCN: country.nameCN,
+                                nameEN: country.nameEN
+                            }
+                        };
+
+                        successCount++;
+                        log(`✅ ${country.nameCN} - 特征提取完成`);
+
+                    } catch (imgError) {
+                        errorCount++;
+                        log(`❌ ${country.nameCN} - 图片加载失败: ${imgError.message}`, 'error');
+                    }
+
+                    processedCount++;
+
+                } catch (error) {
+                    errorCount++;
+                    log(`❌ ${country.nameCN} - 处理失败: ${error.message}`, 'error');
+                }
+
+                // 更新进度
+                updateProgress(processedCount, totalCountries, successCount, errorCount);
+
+                // 添加小延迟，避免阻塞UI
+                if (i % 5 === 0) {
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+            }
+
+            // 完成处理
+            const outputData = {
+                metadata: {
+                    generatedAt: new Date().toISOString(),
+                    totalCountries: countries.length,
+                    processedCount: successCount,
+                    errorCount: errorCount,
+                    version: '1.0.0',
+                    note: '完整版生成器 - 处理全部193个联合国成员国'
+                },
+                features: flagFeatures
+            };
+
+            // 保存结果
+            window.flagFeaturesResult = JSON.stringify(outputData, null, 2);
+
+            // 显示下载按钮
+            document.getElementById('downloadBtn').style.display = 'inline-block';
+            document.getElementById('copyBtn').style.display = 'inline-block';
+
+            log(`🎉 特征生成完成！`, 'success');
+            log(`📊 处理结果:`, 'info');
+            log(`   - 总国家数: ${countries.length}`, 'info');
+            log(`   - 成功处理: ${successCount}`, 'success');
+            log(`   - 处理失败: ${errorCount}`, errorCount > 0 ? 'error' : 'info');
+            log(`   - JSON大小: ${(window.flagFeaturesResult.length / 1024).toFixed(2)} KB`, 'info');
+
+            startBtn.disabled = false;
+        }
+
+        // 更新进度
+        function updateProgress(current, total, success, error) {
+            const percentage = Math.round((current / total) * 100);
+            document.getElementById('progressText').textContent = `${current}/${total}`;
+            document.getElementById('progressFill').style.width = `${percentage}%`;
+            document.getElementById('successCount').textContent = success;
+            document.getElementById('errorCount').textContent = error;
+        }
+
+        // 下载结果
+        function downloadResults() {
+            if (!window.flagFeaturesResult) return;
+
+            const blob = new Blob([window.flagFeaturesResult], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'flag-features.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            log('📁 特征文件已下载', 'success');
+        }
+
+        // 复制到剪贴板
+        async function copyToClipboard() {
+            if (!window.flagFeaturesResult) return;
+
+            try {
+                await navigator.clipboard.writeText(window.flagFeaturesResult);
+                log('📋 特征数据已复制到剪贴板', 'success');
+            } catch (error) {
+                log(`复制失败: ${error.message}`, 'error');
+            }
+        }
+
+        // 记录日志
+        function log(message, type = 'info') {
+            const resultsDiv = document.getElementById('results');
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = document.createElement('div');
+            logEntry.className = `status ${type}`;
+            logEntry.innerHTML = `<strong>[${timestamp}]</strong> ${message}`;
+            resultsDiv.appendChild(logEntry);
+            resultsDiv.scrollTop = resultsDiv.scrollHeight;
+        }
+
+        // 页面加载完成后的初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            log('🌍 完整版特征生成器已就绪 - 准备处理193个国家', 'info');
+            log('请先点击"测试图片加载"确保国旗图片可访问', 'info');
+        });
+    </script>
+</body>
+</html>

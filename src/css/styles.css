@@ -209,10 +209,17 @@ nav {
 #memory-section,
 #quiz-section,
 #globe-section,
-#stats-section {
+#stats-section,
+#tools-section {
   width: 100%;
   position: relative;
   min-height: 400px;
+}
+
+#tools-section {
+  min-height: auto;
+  padding: 0;
+  margin-top: -32px;
 }
 
 /* Filter Section - Institutional Layout */
@@ -366,6 +373,14 @@ nav {
   border-radius: var(--border-radius-large);
   text-align: center;
   box-shadow: var(--shadow-diplomatic);
+}
+
+.stat-card .stat-number {
+  color: var(--pure-white);
+}
+
+.stat-card .stat-label {
+  color: var(--pure-white);
 }
 
 .stat-number {
@@ -1629,7 +1644,7 @@ nav {
   margin-bottom: 32px;
 }
 
-.stat-card {
+.stats-page-card {
   background: var(--pure-white);
   border: 1px solid var(--border-light);
   border-radius: var(--border-radius-large);
@@ -1641,7 +1656,7 @@ nav {
   transition: var(--transition);
 }
 
-.stat-card:hover {
+.stats-page-card:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-elevated);
 }
@@ -1846,13 +1861,18 @@ nav {
 .tools-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 8px 20px 12px 20px;
+}
+
+.tools-container h2 {
+  margin-top: 0;
+  margin-bottom: 16px;
 }
 
 .tools-description {
   text-align: center;
   color: var(--text-secondary);
-  margin-bottom: 32px;
+  margin-bottom: 16px;
   font-size: var(--font-size-lg);
 }
 
@@ -1860,7 +1880,7 @@ nav {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 24px;
-  margin-top: 32px;
+  margin-top: 8px;
 }
 
 .tool-card {
@@ -1877,6 +1897,18 @@ nav {
 .tool-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-elevated);
+}
+
+.tool-arrow {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-top: 12px;
+  font-weight: bold;
+  transition: var(--transition);
+}
+
+.tool-card:hover .tool-arrow {
+  transform: translateX(4px);
 }
 
 .tool-card.coming-soon {
@@ -1939,5 +1971,433 @@ nav {
 
   .tool-icon {
     font-size: 2rem;
+  }
+}
+
+/* 国旗识别工具样式 */
+.recognition-interface {
+  margin-top: 12px;
+}
+
+.input-methods {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 32px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.method-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px;
+  border: 2px solid var(--border-light);
+  border-radius: var(--border-radius-lg);
+  background: white;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--transition);
+  flex: 1;
+  min-width: 200px;
+  text-decoration: none;
+  height: 140px;
+}
+
+.method-btn:hover {
+  background: var(--primary-light);
+  color: white;
+  border-color: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(1, 121, 200, 0.3);
+}
+
+.method-btn .btn-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+.method-btn span:last-child {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+/* 摄像头区域 */
+.camera-container {
+  position: relative;
+  background: #000;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  margin-bottom: 20px;
+  aspect-ratio: 16/9;
+}
+
+#camera-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.camera-controls {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+}
+
+.capture-btn, .stop-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: var(--border-radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+}
+
+.capture-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.05);
+}
+
+.stop-btn {
+  background: rgba(220, 53, 69, 0.9);
+  color: white;
+}
+
+.stop-btn:hover {
+  background: rgba(220, 53, 69, 1);
+}
+
+/* 图片预览 */
+.preview-container {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.preview-image {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+}
+
+.preview-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.retry-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 2px solid var(--secondary-color);
+  border-radius: var(--border-radius-full);
+  background: white;
+  color: var(--secondary-color);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.retry-btn:hover {
+  background: var(--secondary-color);
+  color: white;
+}
+
+/* 加载状态 */
+.loading-container {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--border-color);
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 错误信息 */
+.error-message {
+  padding: 16px;
+  background: rgba(220, 53, 69, 0.1);
+  border: 2px solid #dc3545;
+  border-radius: var(--border-radius-md);
+  color: #dc3545;
+  text-align: center;
+  margin: 16px 0;
+  font-weight: 500;
+}
+
+/* 无结果 */
+.no-results {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+}
+
+.no-results-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  opacity: 0.6;
+}
+
+.no-results h3 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.no-results p {
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
+
+/* 识别结果 */
+.recognition-results {
+  margin-top: 24px;
+}
+
+.results-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.recognition-result-card {
+  background: white;
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: 16px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.recognition-result-card:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 12px rgba(70, 130, 180, 0.2);
+  transform: translateY(-2px);
+}
+
+.result-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.result-flag {
+  width: 64px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: var(--border-radius-sm);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.result-info {
+  flex: 1;
+}
+
+.result-info h4 {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+}
+
+.confidence-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--border-color);
+  border-radius: var(--border-radius-full);
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.confidence-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--success-color), var(--primary-color));
+  border-radius: var(--border-radius-full);
+  transition: width 0.8s ease-out;
+}
+
+.confidence-text {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.match-reasons {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.match-reason {
+  display: inline-block;
+  padding: 4px 8px;
+  background: rgba(70, 130, 180, 0.1);
+  color: var(--primary-color);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .input-methods {
+    max-width: 400px;
+    gap: 16px;
+    flex-direction: column;
+  }
+
+  .method-btn {
+    min-width: auto;
+    height: 120px;
+    padding: 16px;
+  }
+
+  .method-btn .btn-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+
+  .camera-controls {
+    bottom: 12px;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .capture-btn, .stop-btn {
+    padding: 10px 16px;
+    font-size: var(--font-size-xs);
+  }
+
+  .result-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .result-flag {
+    width: 80px;
+    height: 60px;
+  }
+}
+
+/* 国旗识别详情页面样式 */
+.detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--border-light);
+  position: relative;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--primary-dark);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.back-btn:hover {
+  background: #001a5c;
+  transform: translateY(-2px);
+}
+
+.back-btn .btn-icon {
+  font-size: 1.2rem;
+}
+
+.detail-header h2 {
+  margin: 0;
+  font-size: var(--font-size-2xl);
+  color: var(--text-primary);
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#flag-recognition-detail {
+  min-height: auto;
+  padding: 0;
+}
+
+@media (max-width: 480px) {
+  .recognition-interface {
+    margin-top: 16px;
+  }
+
+  .no-results {
+    padding: 30px 16px;
+  }
+
+  .no-results-icon {
+    font-size: 2.5rem;
+  }
+
+  .recognition-result-card {
+    padding: 12px;
+  }
+
+  .result-flag {
+    width: 72px;
+    height: 54px;
+  }
+
+  .detail-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .detail-header h2 {
+    font-size: var(--font-size-xl);
+    text-align: center;
+    position: static;
+    transform: none;
+    left: auto;
   }
 }

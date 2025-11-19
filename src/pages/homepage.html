@@ -262,35 +262,35 @@
 
                 <!-- 基本统计信息 -->
                 <div class="stats-overview">
-                  <div class="stat-card">
+                  <div class="stats-page-card">
                     <div class="stat-icon">📊</div>
                     <div class="stat-info">
                       <div class="stat-number" id="stats-total-tests">0</div>
                       <div class="stat-label" data-i18n="stats.totalTests">总测试次数</div>
                     </div>
                   </div>
-                  <div class="stat-card">
+                  <div class="stats-page-card">
                     <div class="stat-icon">✅</div>
                     <div class="stat-info">
                       <div class="stat-number" id="stats-correct-answers">0</div>
                       <div class="stat-label" data-i18n="stats.correctAnswers">正确答案</div>
                     </div>
                   </div>
-                  <div class="stat-card">
+                  <div class="stats-page-card">
                     <div class="stat-icon">🎯</div>
                     <div class="stat-info">
                       <div class="stat-number" id="stats-best-score">0</div>
                       <div class="stat-label" data-i18n="stats.bestScore">最高分</div>
                     </div>
                   </div>
-                  <div class="stat-card">
+                  <div class="stats-page-card">
                     <div class="stat-icon">🏆</div>
                     <div class="stat-info">
                       <div class="stat-number" id="stats-best-accuracy">0%</div>
                       <div class="stat-label">最高准确率</div>
                     </div>
                   </div>
-                  <div class="stat-card">
+                  <div class="stats-page-card">
                     <div class="stat-icon">📈</div>
                     <div class="stat-info">
                       <div class="stat-number" id="stats-accuracy">0%</div>
@@ -431,9 +431,6 @@
           </div>
         </div>
 
-        </div>
-    </div>
-
       <!-- 实用工具模式 -->
       <div id="tools-section" style="display: none">
         <div class="tools-container">
@@ -441,11 +438,100 @@
           <p class="tools-description" data-i18n="tools.description">一些实用的国旗学习小工具</p>
 
           <div class="tools-grid">
-            <!-- 工具卡片将在后续开发中添加 -->
+            <!-- 国旗识别工具 -->
+            <div class="tool-card" id="flag-recognition-tool">
+              <div class="tool-icon">📸</div>
+              <h3 data-i18n="tools.flagRecognition.title">国旗识别</h3>
+              <p data-i18n="tools.flagRecognition.description">拍照或上传图片，智能识别国旗所属国家</p>
+              <div class="tool-arrow">→</div>
+            </div>
+
+            <!-- 其他工具占位符 -->
             <div class="tool-card coming-soon">
               <div class="tool-icon">🔧</div>
-              <h3 data-i18n="tools.comingSoon.title">功能开发中</h3>
+              <h3 data-i18n="tools.comingSoon.title">更多工具</h3>
               <p data-i18n="tools.comingSoon.description">更多实用工具即将上线，敬请期待！</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 国旗识别详情页面 -->
+      <div id="flag-recognition-detail" style="display: none">
+        <div class="tools-container">
+          <div class="detail-header">
+            <button class="back-btn" id="back-to-tools-btn">
+              <span class="btn-icon">←</span>
+              <span data-i18n="backToTools">返回工具列表</span>
+            </button>
+            <h2 data-i18n="tools.flagRecognition.title">国旗识别</h2>
+          </div>
+
+          <!-- 识别界面 -->
+          <div class="recognition-interface" id="recognition-interface">
+            <!-- 输入方式选择 -->
+            <div class="input-methods">
+              <button class="method-btn" id="start-camera-btn">
+                <span class="btn-icon">📷</span>
+                <span data-i18n="recognition.startCamera">拍照识别</span>
+              </button>
+              <button class="method-btn" id="upload-photo-btn">
+                <span class="btn-icon">📁</span>
+                <span data-i18n="recognition.uploadPhoto">上传图片</span>
+              </button>
+            </div>
+
+            <!-- 隐藏的文件输入 -->
+            <input type="file" id="file-input" accept="image/*" style="display: none;">
+
+            <!-- 摄像头区域 -->
+            <div class="camera-container" id="camera-container" style="display: none;">
+              <video id="camera-video" autoplay playsinline></video>
+              <div class="camera-controls">
+                <button class="capture-btn" id="capture-photo-btn">
+                  <span class="btn-icon">📸</span>
+                  <span data-i18n="recognition.capture">拍照</span>
+                </button>
+                <button class="stop-btn" id="stop-camera-btn">
+                  <span class="btn-icon">⏹️</span>
+                  <span data-i18n="recognition.stopCamera">停止</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 隐藏的画布用于处理图像 -->
+            <canvas id="photo-canvas" style="display: none;"></canvas>
+
+            <!-- 图片预览区域 -->
+            <div class="preview-container" id="preview-container" style="display: none;">
+              <img id="captured-preview" alt="预览图片" class="preview-image">
+              <div class="preview-actions">
+                <button class="retry-btn" id="retry-btn">
+                  <span class="btn-icon">🔄</span>
+                  <span data-i18n="recognition.retry">重新拍摄</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 加载状态 -->
+            <div class="loading-container" id="recognition-loading" style="display: none;">
+              <div class="loading-spinner"></div>
+              <p data-i18n="recognition.analyzing">正在分析图片...</p>
+            </div>
+
+            <!-- 错误信息 -->
+            <div class="error-message" id="recognition-error" style="display: none;"></div>
+
+            <!-- 无结果提示 -->
+            <div class="no-results" id="no-results" style="display: none;">
+              <div class="no-results-icon">🤷</div>
+              <h3 data-i18n="recognition.noResults.title">未识别到国旗</h3>
+              <p data-i18n="recognition.noResults.description">请尝试使用更清晰、光线更好的图片</p>
+            </div>
+
+            <!-- 识别结果 -->
+            <div class="recognition-results" id="recognition-results" style="display: none;">
+              <!-- 结果将动态插入这里 -->
             </div>
           </div>
         </div>
