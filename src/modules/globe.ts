@@ -133,6 +133,7 @@ export class GlobeModule {
   private autoRotateEnabled = true;
   private isDragging = false;
   private isAnimating = false;
+  private flagsVisible = true; // 国旗显示状态
 
   // 惯性旋转函数
   private applyInertia: (() => void) | null = null;
@@ -160,6 +161,17 @@ export class GlobeModule {
 
   // 国家数据引用(从外部传入)
   private allCountries: Country[] = [];
+
+  // 首都和国旗相关
+  private capitalsData: any = null;
+  private flagImages: Record<string, HTMLImageElement> = {};
+  private flagAspectRatios: Record<string, number> = {}; // 存储国旗宽高比
+  private flagImagesLoaded = false;
+
+  // 3D国旗精灵系统
+  private flagSprites: Record<string, THREE.Sprite> = {};
+  private flagSpriteGroup: THREE.Group | null = null;
+  private flagTextures: Record<string, THREE.Texture> = {};
 
   /**
    * 初始化3D地球仪
@@ -205,8 +217,17 @@ export class GlobeModule {
       // 创建地球
       this.createEarth();
 
+      // 加载首都数据
+      await this.loadCapitalsData();
+
+      // 加载国旗图片
+      await this.loadFlagImages();
+
       // 加载世界地图数据
       await this.loadWorldData();
+
+      // 创建3D国旗精灵
+      this.createFlagSprites();
 
       // 添加控制器并保存惯性函数
       this.applyInertia = this.addControls();
@@ -430,6 +451,217 @@ export class GlobeModule {
   }
 
   /**
+   * 加载首都数据
+   */
+  private async loadCapitalsData(): Promise<void> {
+    try {
+      const response = await fetch('/data/countries/capitals_coordinates.json');
+      if (!response.ok) {
+        throw new Error('首都数据加载失败');
+      }
+
+      const data = await response.json();
+      // 将数组转换为以国家代码为键的对象
+      this.capitalsData = {};
+      if (data.capitals && Array.isArray(data.capitals)) {
+        data.capitals.forEach((capital: any) => {
+          this.capitalsData[capital.code] = {
+            coordinates: [capital.lng, capital.lat], // 注意：经度在前，纬度在后
+            name: capital.name,
+          };
+        });
+      }
+      console.log('🏛️ 首都数据加载完成:', Object.keys(this.capitalsData).length, '个国家');
+    } catch (error) {
+      console.error('❌ 加载首都数据失败:', error);
+      this.capitalsData = {};
+    }
+  }
+
+  /**
+   * 加载国旗图片
+   */
+  private async loadFlagImages(): Promise<void> {
+    try {
+      const flagPromises: Promise<void>[] = [];
+
+      // 遍历所有国家，预加载国旗图片
+      this.allCountries.forEach((country) => {
+        const promise = new Promise<void>((resolve) => {
+          const img = new Image();
+          img.onload = () => {
+            this.flagImages[country.code] = img;
+            // 记录国旗的宽高比
+            this.flagAspectRatios[country.code] = img.width / img.height;
+
+            // 创建Three.js纹理
+            const texture = new THREE.Texture(img);
+            texture.needsUpdate = true;
+            this.flagTextures[country.code] = texture;
+
+            resolve();
+          };
+          img.onerror = () => {
+            console.warn(`⚠️ 国旗图片加载失败: ${country.code}`);
+            resolve(); // 即使失败也继续
+          };
+          img.src = `/assets/images/flags/${country.code}.png`;
+        });
+        flagPromises.push(promise);
+      });
+
+      await Promise.all(flagPromises);
+      this.flagImagesLoaded = true;
+      console.log('🏁 国旗图片加载完成:', Object.keys(this.flagImages).length, '面国旗');
+      console.log('📏 国旗宽高比记录完成:', Object.keys(this.flagAspectRatios).length, '个比例');
+      console.log('🎨 Three.js纹理创建完成:', Object.keys(this.flagTextures).length, '个纹理');
+    } catch (error) {
+      console.error('❌ 加载国旗图片失败:', error);
+      this.flagImagesLoaded = false;
+    }
+  }
+
+  /**
+   * 创建3D国旗精灵
+   */
+  private createFlagSprites(): void {
+    if (!this.flagImagesLoaded || !this.capitalsData) {
+      console.warn('⚠️ 国旗图片或首都数据未加载完成，无法创建3D精灵');
+      return;
+    }
+
+    console.log('🏁 开始创建3D国旗精灵...');
+
+    // 创建国旗精灵组（作为地球的子对象，跟随地球旋转）
+    this.flagSpriteGroup = new THREE.Group();
+    this.flagSpriteGroup.name = 'FlagSprites';
+    this.earth!.add(this.flagSpriteGroup); // 添加为地球的子对象
+
+    // 地球半径
+    const earthRadius = 2;
+    const flagOffset = 0.05; // 国旗悬浮高度（地球表面上方）
+
+    // 基础国旗大小（缩小一些）
+    const baseFlagSize = 0.08;
+
+    // 遍历首都数据，创建国旗精灵
+    Object.entries(this.capitalsData).forEach(([countryCode, capitalInfo]: [string, any]) => {
+      if (!capitalInfo || !capitalInfo.coordinates) return;
+
+      const [lng, lat] = capitalInfo.coordinates;
+      const flagTexture = this.flagTextures[countryCode];
+
+      if (!flagTexture) {
+        console.warn(`⚠️ 国旗纹理不存在: ${countryCode}`);
+        return;
+      }
+
+      // 将经纬度转换为3D球面坐标
+      const phi = (90 - lat) * (Math.PI / 180); // 纬度转φ角
+      const theta = (lng + 180) * (Math.PI / 180); // 经度转θ角
+
+      const x = -(earthRadius + flagOffset) * Math.sin(phi) * Math.cos(theta);
+      const y = (earthRadius + flagOffset) * Math.cos(phi);
+      const z = (earthRadius + flagOffset) * Math.sin(phi) * Math.sin(theta);
+
+      // 获取国旗的宽高比
+      const aspectRatio = this.flagAspectRatios[countryCode] || 1.5;
+
+      // 计算精灵尺寸
+      let spriteWidth, spriteHeight;
+      if (aspectRatio >= 1) {
+        // 横向或正方形国旗
+        spriteHeight = baseFlagSize;
+        spriteWidth = spriteHeight * aspectRatio;
+      } else {
+        // 纵向国旗
+        spriteWidth = baseFlagSize;
+        spriteHeight = spriteWidth / aspectRatio;
+      }
+
+      // 创建精灵材质
+      const spriteMaterial = new THREE.SpriteMaterial({
+        map: flagTexture,
+        transparent: true,
+        alphaTest: 0.01, // 透明度测试，避免完全透明的像素
+        depthWrite: false, // 不写入深度缓冲，确保始终显示
+        depthTest: true, // 进行深度测试
+        side: THREE.DoubleSide,
+      });
+
+      // 创建精灵
+      const sprite = new THREE.Sprite(spriteMaterial);
+      sprite.position.set(x, y, z);
+      sprite.scale.set(spriteWidth, spriteHeight, 1);
+      sprite.renderOrder = 10; // 确保在地球之上渲染
+
+      // 根据当前显示状态设置精灵可见性
+      sprite.visible = this.flagsVisible;
+
+      // 存储精灵引用
+      this.flagSprites[countryCode] = sprite;
+      if (this.flagSpriteGroup) {
+        this.flagSpriteGroup.add(sprite);
+      }
+    });
+
+    console.log(`🏁 3D国旗精灵创建完成: ${Object.keys(this.flagSprites).length} 个国旗`);
+  }
+
+  /**
+   * 切换国旗显示状态
+   */
+  toggleFlags(): void {
+    this.flagsVisible = !this.flagsVisible;
+    this.updateFlagsVisibility();
+    console.log(`🏁 国旗显示状态: ${this.flagsVisible ? '显示' : '隐藏'}`);
+  }
+
+  /**
+   * 设置国旗显示状态
+   */
+  setFlagsVisible(visible: boolean): void {
+    this.flagsVisible = visible;
+    this.updateFlagsVisibility();
+    console.log(`🏁 国旗显示状态设置为: ${visible ? '显示' : '隐藏'}`);
+  }
+
+  /**
+   * 更新所有国旗精灵的可见性
+   */
+  private updateFlagsVisibility(): void {
+    Object.values(this.flagSprites).forEach((sprite) => {
+      sprite.visible = this.flagsVisible;
+    });
+  }
+
+  /**
+   * 获取当前国旗显示状态
+   */
+  areFlagsVisible(): boolean {
+    return this.flagsVisible;
+  }
+
+  /**
+   * 生成独特的国家颜色
+   */
+  private getCountryColor(countryCode: string, index: number): number {
+    // 使用国家代码生成一个稳定的哈希值
+    let hash = 0;
+    const code = countryCode || `country_${index}`;
+    for (let i = 0; i < code.length; i++) {
+      hash = ((hash << 5) - hash + code.charCodeAt(i)) & 0xffffffff;
+    }
+
+    // 确保哈希值为正数
+    hash = Math.abs(hash);
+
+    // 直接从调色板中选择颜色，不做额外变化
+    const colorIndex = hash % WORLD_MAP_COLOR_PALETTE.length;
+    return WORLD_MAP_COLOR_PALETTE[colorIndex];
+  }
+
+  /**
    * 加载世界地图数据
    */
   private async loadWorldData(): Promise<void> {
@@ -455,25 +687,6 @@ export class GlobeModule {
   }
 
   /**
-   * 生成独特的国家颜色
-   */
-  private getCountryColor(countryCode: string, index: number): number {
-    // 使用国家代码生成一个稳定的哈希值
-    let hash = 0;
-    const code = countryCode || `country_${index}`;
-    for (let i = 0; i < code.length; i++) {
-      hash = ((hash << 5) - hash + code.charCodeAt(i)) & 0xffffffff;
-    }
-
-    // 确保哈希值为正数
-    hash = Math.abs(hash);
-
-    // 直接从调色板中选择颜色，不做额外变化
-    const colorIndex = hash % WORLD_MAP_COLOR_PALETTE.length;
-    return WORLD_MAP_COLOR_PALETTE[colorIndex];
-  }
-
-  /**
    * 创建国家填充（在Canvas上绘制）
    */
   private createCountryMeshes(): void {
@@ -482,23 +695,28 @@ export class GlobeModule {
       return;
     }
 
+    if (!this.worldCanvasCtx || !this.worldCanvas || !this.idCanvasCtx || !this.idCanvas) {
+      console.error('❌ Canvas上下文未初始化');
+      return;
+    }
+
     console.log('🎨 开始在Canvas上绘制国家...');
 
     // 清除显示Canvas
-    this.worldCanvasCtx!.fillStyle = '#4488BB';
-    this.worldCanvasCtx!.fillRect(0, 0, this.worldCanvas!.width, this.worldCanvas!.height);
+    this.worldCanvasCtx.fillStyle = '#4488BB';
+    this.worldCanvasCtx.fillRect(0, 0, this.worldCanvas.width, this.worldCanvas.height);
 
     // 清除ID Canvas
-    this.idCanvasCtx!.fillStyle = '#4488BB';
-    this.idCanvasCtx!.fillRect(0, 0, this.idCanvas!.width, this.idCanvas!.height);
+    this.idCanvasCtx.fillStyle = '#4488BB';
+    this.idCanvasCtx.fillRect(0, 0, this.idCanvas.width, this.idCanvas.height);
 
     // 重置映射
     this.countryColorMap = {};
     this.countryIdMap = {};
     this.idCounter = 1;
 
-    const canvasWidth = this.worldCanvas!.width;
-    const canvasHeight = this.worldCanvas!.height;
+    const canvasWidth = this.worldCanvas.width;
+    const canvasHeight = this.worldCanvas.height;
 
     // 坐标转换函数
     const coordsToCanvas = (lon: number, lat: number): [number, number] => {
@@ -597,9 +815,11 @@ export class GlobeModule {
 
       // 绘制多边形到显示Canvas
       const drawPolygonDisplay = (coordinates: number[][][]) => {
-        this.worldCanvasCtx!.fillStyle = displayColor;
-        this.worldCanvasCtx!.strokeStyle = '#333333';
-        this.worldCanvasCtx!.lineWidth = 0.5;
+        if (!this.worldCanvasCtx) return;
+
+        this.worldCanvasCtx.fillStyle = displayColor;
+        this.worldCanvasCtx.strokeStyle = '#333333';
+        this.worldCanvasCtx.lineWidth = 0.5;
 
         coordinates.forEach((ring, ringIndex) => {
           this.worldCanvasCtx!.beginPath();
@@ -616,7 +836,9 @@ export class GlobeModule {
 
       // 绘制多边形到ID Canvas（无抗锯齿，无边框）
       const drawPolygonId = (coordinates: number[][][]) => {
-        this.idCanvasCtx!.fillStyle = idColor;
+        if (!this.idCanvasCtx) return;
+
+        this.idCanvasCtx.fillStyle = idColor;
 
         coordinates.forEach((ring, ringIndex) => {
           this.idCanvasCtx!.beginPath();
@@ -846,15 +1068,27 @@ export class GlobeModule {
     canvas.addEventListener('click', () => {
       // 射线检测地球表面
       this.raycaster.setFromCamera(this.mousePosition, this.camera!);
-      const intersects = this.raycaster.intersectObject(this.earth!);
+      const earthIntersects = this.raycaster.intersectObject(this.earth!);
 
-      if (intersects.length > 0) {
-        const uv = intersects[0].uv;
+      if (earthIntersects.length > 0) {
+        const uv = earthIntersects[0].uv;
         if (!uv) return;
         const countryData = this.getCountryFromUV(uv);
 
         if (countryData) {
           this.showCountryFlag(countryData);
+        }
+      }
+
+      // 射线检测国旗精灵（从场景级别检测，因为精灵是地球的子对象）
+      if (this.flagSpriteGroup) {
+        const spriteIntersects = this.raycaster.intersectObjects(
+          this.flagSpriteGroup.children,
+          true
+        );
+        if (spriteIntersects.length > 0) {
+          const clickedSprite = spriteIntersects[0].object as THREE.Sprite;
+          this.handleFlagSpriteClick(clickedSprite);
         }
       }
     });
@@ -876,8 +1110,10 @@ export class GlobeModule {
     if (!this.worldData || !this.worldCanvas) return;
 
     // 清除Canvas
-    this.worldCanvasCtx!.fillStyle = '#4488BB';
-    this.worldCanvasCtx!.fillRect(0, 0, this.worldCanvas.width, this.worldCanvas.height);
+    if (this.worldCanvasCtx) {
+      this.worldCanvasCtx.fillStyle = '#4488BB';
+      this.worldCanvasCtx.fillRect(0, 0, this.worldCanvas!.width, this.worldCanvas!.height);
+    }
 
     const canvasWidth = this.worldCanvas.width;
     const canvasHeight = this.worldCanvas.height;
@@ -922,15 +1158,17 @@ export class GlobeModule {
 
       // 绘制多边形
       const drawPolygon = (coordinates: number[][][]) => {
-        this.worldCanvasCtx!.fillStyle = fillColor;
+        if (!this.worldCanvasCtx) return;
+
+        this.worldCanvasCtx.fillStyle = fillColor;
 
         // 如果是高亮国家，使用黄色边框
         if (isHighlighted) {
-          this.worldCanvasCtx!.strokeStyle = '#FFFF00';
-          this.worldCanvasCtx!.lineWidth = 2;
+          this.worldCanvasCtx.strokeStyle = '#FFFF00';
+          this.worldCanvasCtx.lineWidth = 2;
         } else {
-          this.worldCanvasCtx!.strokeStyle = '#333333';
-          this.worldCanvasCtx!.lineWidth = 0.5;
+          this.worldCanvasCtx.strokeStyle = '#333333';
+          this.worldCanvasCtx.lineWidth = 0.5;
         }
 
         coordinates.forEach((ring, ringIndex) => {
@@ -966,6 +1204,49 @@ export class GlobeModule {
   }
 
   /**
+   * 更新国旗精灵（移除billboard效果，让国旗自然跟随地球）
+   */
+  private updateFlagSprites(): void {
+    // 国旗作为地球的子对象，会自动跟随地球旋转
+    // 不需要手动调整朝向，让国旗自然贴在地球表面
+  }
+
+  /**
+   * 处理国旗精灵点击
+   */
+  private handleFlagSpriteClick(clickedSprite: THREE.Sprite): void {
+    // 根据精灵找到对应的国家代码
+    const countryCode = Object.keys(this.flagSprites).find(
+      (code) => this.flagSprites[code] === clickedSprite
+    );
+
+    if (!countryCode) {
+      console.warn('⚠️ 无法找到点击的国旗对应的国家代码');
+      return;
+    }
+
+    // 获取首都信息
+    const capitalInfo = this.capitalsData[countryCode];
+    if (!capitalInfo) {
+      console.warn('⚠️ 无法找到国家首都信息:', countryCode);
+      return;
+    }
+
+    console.log('🏁 点击国旗:', countryCode, capitalInfo.name);
+
+    // 构造国家数据
+    const countryData: CountryProps = {
+      code: countryCode,
+      name: capitalInfo.name,
+      name_cn: capitalInfo.name,
+      name_en: capitalInfo.name,
+    };
+
+    // 显示国家信息弹窗
+    this.showCountryFlag(countryData);
+  }
+
+  /**
    * 显示国家国旗弹窗
    */
   private showCountryFlag(countryData: CountryProps): void {
@@ -976,6 +1257,17 @@ export class GlobeModule {
     if (searchCode === 'tw' || searchCode === 'taiwan') {
       searchCode = 'cn';
       console.log('🇨🇳 台湾地区 -> 映射到中国');
+    }
+
+    // 将索马里兰映射到索马里
+    if (
+      searchCode === '-99' &&
+      (countryData.name === 'Somaliland' ||
+        countryData.name_en === 'Somaliland' ||
+        countryData.name_cn === '索马里兰')
+    ) {
+      searchCode = 'so'; // 索马里的ISO代码
+      console.log('🇸🇴 索马里兰 -> 映射到索马里');
     }
 
     // 改进的国家匹配逻辑
@@ -1025,7 +1317,7 @@ export class GlobeModule {
     // 添加到页面
     document.body.appendChild(popup);
 
-    // 添加关闭事件
+    // 添加关闭事件 - 使用刚添加到DOM的元素
     const closeBtn = document.querySelector('.close-popup-btn') as HTMLElement;
     const overlay = document.querySelector('.popup-overlay') as HTMLElement;
 
@@ -1036,8 +1328,20 @@ export class GlobeModule {
       if (overlayElement) overlayElement.remove();
     };
 
-    if (closeBtn) closeBtn.addEventListener('click', closePopup);
-    if (overlay) overlay.addEventListener('click', closePopup);
+    // 确保元素存在再添加事件监听器
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closePopup);
+      console.log('✅ 关闭按钮事件监听器已添加');
+    } else {
+      console.error('❌ 找不到关闭按钮元素');
+    }
+
+    if (overlay) {
+      overlay.addEventListener('click', closePopup);
+      console.log('✅ 遮罩层事件监听器已添加');
+    } else {
+      console.error('❌ 找不到遮罩层元素');
+    }
 
     // ESC键关闭
     const escHandler = (e: KeyboardEvent) => {
@@ -1084,6 +1388,9 @@ export class GlobeModule {
     if (this.applyInertia) {
       this.applyInertia();
     }
+
+    // 更新国旗精灵朝向（始终面向相机）
+    this.updateFlagSprites();
 
     // 渲染场景
     this.renderer.render(this.scene, this.camera);

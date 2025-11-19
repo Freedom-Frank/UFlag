@@ -116,6 +116,9 @@ class App {
     // 键盘快捷键
     this.setupKeyboardShortcuts();
 
+    // 3D地球仪国旗开关
+    this.setupGlobeFlagToggle();
+
     console.log('✅ Event listeners set up');
   }
 
@@ -173,6 +176,43 @@ class App {
         }
       }
     });
+  }
+
+  /**
+   * 设置3D地球仪国旗开关
+   */
+  private setupGlobeFlagToggle(): void {
+    const flagToggleBtn = document.getElementById('flagToggleBtn');
+    if (!flagToggleBtn) {
+      console.warn('⚠️ Flag toggle button not found');
+      return;
+    }
+
+    flagToggleBtn.addEventListener('click', () => {
+      // 切换国旗显示状态
+      globeModule.toggleFlags();
+
+      // 更新按钮状态
+      const isVisible = globeModule.areFlagsVisible();
+      this.updateFlagToggleBtn(flagToggleBtn as HTMLButtonElement, isVisible);
+    });
+
+    // 初始化按钮状态
+    const isVisible = globeModule.areFlagsVisible();
+    this.updateFlagToggleBtn(flagToggleBtn as HTMLButtonElement, isVisible);
+
+    console.log('✅ Globe flag toggle listener set up');
+  }
+
+  /**
+   * 更新国旗开关按钮状态
+   */
+  private updateFlagToggleBtn(button: HTMLButtonElement, isVisible: boolean): void {
+    if (isVisible) {
+      button.classList.add('active');
+    } else {
+      button.classList.remove('active');
+    }
   }
 
   /**

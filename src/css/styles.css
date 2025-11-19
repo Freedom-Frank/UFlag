@@ -1106,54 +1106,77 @@ nav {
   border: 1px solid var(--border-light);
 }
 
-/* 国旗开关按钮样式 */
-.toggle-btn {
-    padding: 4px 12px;
-    background: var(--primary-light);
-    color: var(--pure-white);
-    border: none;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    font-size: var(--font-size-sm);
-    font-weight: 500;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+/* 国旗开关按钮样式 - 滑块开关 */
+.flag-toggle-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.toggle-btn:hover {
-    background: var(--primary-color);
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.3);
+.flag-toggle-btn {
+  position: relative;
+  width: 50px;
+  height: 26px;
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+  overflow: hidden;
 }
 
-.toggle-btn.active {
-    background: var(--secondary-color);
+.flag-toggle-btn:hover {
+  border-color: #cccccc;
 }
 
-.toggle-btn.active:hover {
-    background: var(--secondary-dark);
-    box-shadow: 0 2px 8px rgba(255, 204, 0, 0.3);
+.flag-toggle-btn.active {
+  background: var(--accent-orange);
+  border-color: var(--accent-orange);
 }
 
-.toggle-btn .btn-text {
-    position: relative;
-    z-index: 1;
+.flag-toggle-btn.active:hover {
+  background: #ff8c00;
+  border-color: #ff8c00;
 }
 
-.toggle-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s ease;
+.toggle-slider {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  background: #ffffff;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.toggle-btn:hover::before {
-    left: 100%;
+.flag-toggle-btn.active .toggle-slider {
+  transform: translateX(24px);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .flag-toggle-group {
+    gap: 6px;
+  }
+
+  .flag-toggle-btn {
+    width: 44px;
+    height: 24px;
+  }
+
+  .toggle-slider {
+    width: 16px;
+    height: 16px;
+    top: 4px;
+    left: 4px;
+  }
+
+  .flag-toggle-btn.active .toggle-slider {
+    transform: translateX(20px);
+  }
 }
 
 #globe-canvas-container {
