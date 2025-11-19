@@ -5,38 +5,55 @@ import { cpSync, existsSync, readFileSync, writeFileSync, rmSync } from 'fs';
 export default defineConfig({
   plugins: [
     {
-      name: 'copy-static-assets',
+      name: 'build-optimization',
       closeBundle() {
-        // 复制 data 目录到 dist
+        console.log('📦 开始处理静态资源...');
+
+        // 1. 复制静态数据和资源
         cpSync('data', 'dist/data', { recursive: true, force: true });
-        // 复制 assets 目录到 dist（但排除已经被 Vite 处理的文件）
         cpSync('assets/images', 'dist/assets/images', { recursive: true, force: true });
         cpSync('assets/geo', 'dist/assets/geo', { recursive: true, force: true });
-        console.log('✅ 静态资源已复制到 dist 目录');
+        console.log('✅ 静态资源已复制');
 
-        // 移动 homepage.html 到 dist 根目录并修正路径
+        // 2. 处理 homepage.html
         const homepageSrc = 'dist/src/pages/homepage.html';
         const homepageDest = 'dist/homepage.html';
 
         if (existsSync(homepageSrc)) {
           let content = readFileSync(homepageSrc, 'utf-8');
-          // 修正资源路径：从 ../../assets/ 改为 ./assets/
           content = content.replace(/\.\.\/\.\.\/assets\//g, './assets/');
           writeFileSync(homepageDest, content);
-          console.log('✅ homepage.html 已移动到 dist 根目录并修正路径');
-
-          // 删除旧的目录结构
-          try {
-            rmSync('dist/src', { recursive: true, force: true });
-            console.log('✅ 已清理临时目录');
-          } catch (e: unknown) {
-            const error = e as Error;
-            console.log('⚠️  清理临时目录失败:', error.message || e);
-          }
+          console.log('✅ homepage.html 已处理');
         }
+
+        // 3. 修正 index.html 路径
+        const indexPath = 'dist/index.html';
+        if (existsSync(indexPath)) {
+          let indexContent = readFileSync(indexPath, 'utf-8');
+          indexContent = indexContent.replace(
+            /['"]src\/pages\/homepage\.html['"]/g,
+            "'./homepage.html'"
+          );
+          writeFileSync(indexPath, indexContent);
+          console.log('✅ index.html 路径已修正');
+        }
+
+        // 4. 清理临时目录
+        try {
+          if (existsSync('dist/src')) {
+            rmSync('dist/src', { recursive: true, force: true });
+            console.log('✅ 临时目录已清理');
+          }
+        } catch (e: unknown) {
+          const error = e as Error;
+          console.warn('⚠️ 清理临时目录失败:', error.message);
+        }
+
+        console.log('🎉 构建完成！');
       },
     },
   ],
+
   // 测试配置
   test: {
     globals: true,
@@ -48,7 +65,7 @@ export default defineConfig({
     },
   },
 
-  // 开发服务器配置
+  // 开发服务器
   server: {
     port: 8000,
     open: true,
@@ -60,7 +77,7 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
-    // 多页面应用配置
+    emptyOutDir: true,
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'index.html'),
@@ -78,8 +95,11 @@ export default defineConfig({
     },
   },
 
-  // 公共基础路径
+  // 基础路径（相对路径，适配 Cloudflare Pages）
   base: './',
+
+  // 公共资源目录（_redirects 会自动复制）
+  publicDir: 'public',
 
   // 静态资源处理
   assetsInclude: ['**/*.geojson'],
