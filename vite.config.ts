@@ -31,8 +31,8 @@ export default defineConfig({
         if (existsSync(indexPath)) {
           let indexContent = readFileSync(indexPath, 'utf-8');
           indexContent = indexContent.replace(
-            /['"]src\/pages\/homepage\.html['"]/g,
-            "'./homepage.html'"
+            /window\.location\.href = '\.\/src\/pages\/homepage\.html'/g,
+            "window.location.href = './homepage.html'"
           );
           writeFileSync(indexPath, indexContent);
           console.log('✅ index.html 路径已修正');
