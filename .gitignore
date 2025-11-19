@@ -47,3 +47,4 @@ GUIDE_*.md
 
 # Claude Code 配置文件（个人使用）
 .claude/git-commit-rules.md
+.claude/settings.local.json
