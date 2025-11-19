@@ -53,7 +53,9 @@
       "mcp__ide__getDiagnostics",
       "Bash(npm run lint:fix:*)",
       "Bash(netstat:*)",
-      "Bash(powershell -Command \"Start-Process ''http://localhost:8000''\")"
+      "Bash(powershell -Command \"Start-Process ''http://localhost:8000''\")",
+      "Bash(git rm:*)",
+      "Bash(git check-ignore:*)"
     ],
     "deny": [],
     "ask": []
