@@ -36,7 +36,7 @@ class App {
     }
 
     try {
-      console.log('🚀 Starting UFlag application...');
+      console.log('🚀 Starting FlagStar application...');
 
       // 1. 加载数据
       console.log('🌍 Loading countries data...');

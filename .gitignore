@@ -40,3 +40,10 @@ coverage/
 # 临时文件
 *.tmp
 *.temp
+
+# 指南文档（个人使用，不提交到仓库）
+*_GUIDE.md
+GUIDE_*.md
+
+# Claude Code 配置文件（个人使用）
+.claude/git-commit-rules.md

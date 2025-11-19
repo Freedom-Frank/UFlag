@@ -1,5 +1,6 @@
 /**
- * UFlag 项目类型定义
+ * FlagStar 国旗之星 - 项目类型定义
+ * Developed by UFlag team
  */
 
 // ========== 国家相关类型 ==========

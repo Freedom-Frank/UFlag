@@ -1,5 +1,6 @@
 /**
- * UFlag 应用常量定义
+ * FlagStar 国旗之星 - 应用常量定义
+ * Developed by UFlag team
  */
 
 import type { DataSource } from '../types';

@@ -1,10 +1,12 @@
-# UFlag
+# FlagStar 国旗之星
 
 > 认识世界，从认识国旗开始
 
+**Developed by UFlag team**
+
 ## 项目简介
 
-UFlag 是一个专注于世界各国国旗学习的交互式网络应用程序。通过浏览、记忆训练和知识测试三大核心功能，帮助用户系统性地学习和记忆全球200多个国家和地区的国旗。
+FlagStar（国旗之星）是一个专注于世界各国国旗学习的交互式网络应用程序。通过浏览、记忆训练和知识测试三大核心功能，帮助用户系统性地学习和记忆全球200多个国家和地区的国旗。
 
 ## 功能特性
 
@@ -68,7 +70,7 @@ UFlag 是一个专注于世界各国国旗学习的交互式网络应用程序�
 ## 项目结构
 
 ```
-UFlag/
+FlagStar/
 ├── index.html                 # 入口着陆页
 ├── src/                       # 源代码目录
 │   ├── types/                 # TypeScript 类型定义
@@ -126,8 +128,8 @@ UFlag/
 
 1. **克隆项目**
 ```bash
-git clone https://github.com/your-username/UFlag.git
-cd UFlag
+git clone https://github.com/your-username/FlagStar.git
+cd FlagStar
 ```
 
 2. **安装依赖**
