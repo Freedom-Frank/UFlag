@@ -200,3 +200,14 @@ declare global {
     enhancedMemorySystem?: any;
   }
 }
+
+// ========== 导出座位排位相关类型 ==========
+export type {
+  SeatingRule,
+  SeatingConfig,
+  SeatingArrangement,
+  LayoutType,
+  ExportOptions,
+  DiplomaticRelations,
+  SeatingTemplate,
+} from './seating';

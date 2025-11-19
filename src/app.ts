@@ -11,6 +11,7 @@ import { initQuizModule, quizModule } from './modules/quiz';
 import { initCountryDetailModule } from './modules/country-detail';
 import { initMemoryModule, memoryModule } from './modules/memory';
 import { globeModule } from './modules/globe';
+import { initSeatingModule, seatingModule } from './modules/seating';
 import { safeSetDisplay } from './lib/utils';
 
 /**
@@ -86,6 +87,7 @@ class App {
     initQuizModule();
     initCountryDetailModule();
     initMemoryModule();
+    initSeatingModule();
     // Globe模块延迟初始化，当用户切换到globe页面时才初始化
 
     // 订阅语言变化
@@ -254,6 +256,16 @@ class App {
       case 'memory':
         // 清理记忆训练模块的动态元素
         memoryModule.cleanup();
+        break;
+
+      case 'tools':
+        // 清理座位排位模块，并确保返回工具列表
+        seatingModule.cleanup();
+        // 确保显示工具列表页面
+        const seatingDetail = document.getElementById('seating-detail-section');
+        const toolsMain = document.getElementById('tools-section');
+        if (seatingDetail) seatingDetail.style.display = 'none';
+        if (toolsMain) toolsMain.style.display = 'block';
         break;
 
       // 其他模块目前不需要特殊清理
