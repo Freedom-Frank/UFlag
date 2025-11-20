@@ -2422,7 +2422,17 @@ nav {
     position: static;
     transform: none;
     left: auto;
+  }
+}
+
 /* ==================== 座位排位模块样式 ==================== */
+
+/* 工具容器 */
+.tools-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
 
 /* 返回按钮 */
 .back-to-tools-btn {
@@ -2698,6 +2708,11 @@ nav {
 .rule-meta {
   color: var(--text-muted);
   font-size: var(--font-size-sm);
+}
+
+/* 结果显示容器 */
+#seating-display-container {
+  width: 100%;
 }
 
 /* 座位项通用样式 */
@@ -3059,6 +3074,4 @@ nav {
   .seating-name-en {
     font-size: var(--font-size-sm);
   }
-}
-}
 }
