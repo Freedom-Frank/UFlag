@@ -2204,6 +2204,66 @@ nav {
 /* 识别结果 */
 .recognition-results {
   margin-top: 24px;
+  position: relative;
+  z-index: 10;
+  background: var(--pure-white);
+  border-radius: var(--border-radius-large);
+  padding: 20px;
+  box-shadow: var(--shadow-elevated);
+  border: 1px solid var(--border-light);
+}
+
+/* 确保结果容器在摄像头容器之上 */
+.recognition-results .results-title {
+  color: var(--primary-dark);
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* 修复结果卡片的样式 */
+.recognition-result-card {
+  background: white;
+  border: 2px solid var(--border-light);
+  border-radius: var(--border-radius-large);
+  padding: 16px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: all var(--transition);
+  position: relative;
+  z-index: 5;
+}
+
+.recognition-result-card:hover {
+  border-color: var(--primary-light);
+  box-shadow: 0 4px 12px rgba(1, 121, 200, 0.2);
+  transform: translateY(-2px);
+}
+
+/* 确保摄像头容器不会覆盖结果 */
+.camera-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* 确保预览容器不会覆盖结果 */
+.preview-container {
+  position: relative;
+  z-index: 2;
+}
+
+/* 确保无结果提示正确显示 */
+.no-results {
+  position: relative;
+  z-index: 10;
+  background: var(--pure-white);
+  border-radius: var(--border-radius-large);
+  padding: 40px 20px;
+  margin-top: 24px;
+  box-shadow: var(--shadow-elevated);
+  border: 1px solid var(--border-light);
+  text-align: center;
 }
 
 .results-title {
@@ -3457,6 +3517,7 @@ nav {
     width: 50px;
     height: 33px;
   }
+
 
   .seating-name-cn,
   .seating-name-en {

@@ -11,8 +11,8 @@ import { initQuizModule, quizModule } from './modules/quiz';
 import { initCountryDetailModule } from './modules/country-detail';
 import { initMemoryModule, memoryModule } from './modules/memory';
 import { globeModule } from './modules/globe';
-import { flagRecognitionModule } from './modules/flag-recognition';
-import { initSeatingModule, seatingModule } from './modules/seating';
+import { initSeatingModule } from './modules/seating';
+import { toolManager } from './lib/tool-manager';
 import { safeSetDisplay } from './lib/utils';
 
 /**
@@ -261,15 +261,12 @@ class App {
         break;
 
       case 'tools':
-        // 清理国旗识别模块和返回工具列表
-        flagRecognitionModule.backToTools();
-        // 清理座位排位模块，并确保返回工具列表
-        seatingModule.cleanup();
-        // 确保显示工具列表页面
-        const seatingDetail = document.getElementById('seating-detail-section');
-        const toolsMain = document.getElementById('tools-section');
-        if (seatingDetail) seatingDetail.style.display = 'none';
-        if (toolsMain) toolsMain.style.display = 'block';
+        // 使用工具管理器统一清理当前工具
+        toolManager.cleanupCurrentTool().then(() => {
+          console.log('🛠️ 工具区域已清理');
+        }).catch(error => {
+          console.error('❌ 清理工具失败:', error);
+        });
         break;
 
       // 其他模块目前不需要特殊清理
@@ -312,9 +309,11 @@ class App {
         break;
 
       case 'tools':
-        // 实用工具：初始化国旗识别模块
-        flagRecognitionModule.initModule().catch((error) => {
-          console.error('Failed to initialize flag recognition module:', error);
+        // 实用工具：使用工具管理器初始化
+        toolManager.initializeToolsPage().then(() => {
+          return toolManager.backToToolsList();
+        }).catch((error) => {
+          console.error('Failed to initialize tools section:', error);
         });
         break;
     }

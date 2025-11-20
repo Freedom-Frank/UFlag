@@ -3,8 +3,15 @@
  * 提供国际场合的国旗座位排位功能
  */
 
+<<<<<<< Updated upstream
 import html2canvas from 'html2canvas';
 import type { Country } from '../types';
+=======
+import type { Country, DataSource } from '../types';
+
+// 扩展数据源类型，包含当前浏览筛选结果
+type ExtendedDataSource = DataSource | 'current';
+>>>>>>> Stashed changes
 import type {
   SeatingRule,
   SeatingConfig,
@@ -15,7 +22,12 @@ import type {
 } from '../types/seating';
 import { getAllCountries, getFilteredCountries } from '../lib/state';
 import { DATA_SOURCES } from '../lib/constants';
+<<<<<<< Updated upstream
+=======
+import { safeSetDisplay } from '../lib/utils';
+>>>>>>> Stashed changes
 import { getFlagImageUrl } from '../lib/data-loader';
+import { toolManager } from '../lib/tool-manager';
 
 /**
  * 模块初始化标志
@@ -42,7 +54,7 @@ let currentArrangement: SeatingArrangement | null = null;
 /**
  * 当前选择的数据源
  */
-let currentDataSource: string = 'un';
+let currentDataSource: ExtendedDataSource = 'un';
 
 /**
  * 可选国家列表（根据数据源）
@@ -245,7 +257,7 @@ function renderTemplates(): void {
  */
 function applyTemplate(template: SeatingTemplate): void {
   // 更新数据源
-  currentDataSource = template.dataSource;
+  currentDataSource = template.dataSource as ExtendedDataSource;
   const sourceSelect = document.getElementById('seating-source-select') as HTMLSelectElement;
   if (sourceSelect) {
     sourceSelect.value = template.dataSource;
@@ -299,13 +311,17 @@ function setupEventListeners(): void {
   // 工具卡片点击
   const seatingCard = document.getElementById('seating-tool-card');
   if (seatingCard) {
-    seatingCard.addEventListener('click', showSeatingDetail);
+    seatingCard.addEventListener('click', () => {
+      toolManager.switchToTool('seating');
+    });
   }
 
   // 返回按钮
   const backBtn = document.getElementById('backToToolsBtn');
   if (backBtn) {
-    backBtn.addEventListener('click', backToTools);
+    backBtn.addEventListener('click', () => {
+      toolManager.backToToolsList();
+    });
   }
 
   // 数据源选择
@@ -394,29 +410,27 @@ function showSeatingDetail(): void {
 }
 
 /**
- * 返回工具列表
+ * 导出的显示座位排位详细页面函数
  */
-function backToTools(): void {
-  const toolsSection = document.getElementById('tools-section');
-  const seatingSection = document.getElementById('seating-detail-section');
-
-  if (seatingSection) seatingSection.style.display = 'none';
-  if (toolsSection) toolsSection.style.display = 'block';
-
-  // 清理排位结果
-  cleanup();
+export function showSeatingDetailInterface(): void {
+  showSeatingDetail();
 }
+
 
 /**
  * 处理数据源变更
  */
 function handleSourceChange(e: Event): void {
   const select = e.target as HTMLSelectElement;
+<<<<<<< Updated upstream
   currentDataSource = select.value;
 
   // 更新可选国家列表并渲染选择器
   updateAvailableCountries();
   renderCountrySelector();
+=======
+  currentDataSource = select.value as ExtendedDataSource;
+>>>>>>> Stashed changes
 }
 
 /**
@@ -465,6 +479,7 @@ function toggleConfigOptions(): void {
   const orgConfig = document.getElementById('org-config');
 
   if (hostConfig) {
+<<<<<<< Updated upstream
     const shouldShow = currentConfig.rule === 'host-first' || currentConfig.rule === 'olympic';
     hostConfig.style.display = shouldShow ? 'block' : 'none';
   }
@@ -472,6 +487,16 @@ function toggleConfigOptions(): void {
   if (orgConfig) {
     const shouldShow = currentConfig.rule === 'organization-priority';
     orgConfig.style.display = shouldShow ? 'block' : 'none';
+=======
+    safeSetDisplay(
+      'host-config',
+      currentConfig.rule === 'host-first' || currentConfig.rule === 'olympic' ? 'block' : 'none'
+    );
+  }
+
+  if (orgConfig) {
+    safeSetDisplay('org-config', currentConfig.rule === 'organization-priority' ? 'block' : 'none');
+>>>>>>> Stashed changes
   }
 }
 
@@ -479,10 +504,46 @@ function toggleConfigOptions(): void {
  * 生成座位排位
  */
 function generateSeating(): void {
+<<<<<<< Updated upstream
   // 检查是否有选中的国家
   if (selectedCountryCodes.size === 0) {
     showMessage('请至少选择一个国家参与排位', 'warning');
     return;
+=======
+  // 根据数据源获取国家列表
+  let countries: Country[] = [];
+
+  if (currentDataSource === 'current') {
+    // 使用当前浏览筛选结果
+    countries = getFilteredCountries();
+    if (countries.length === 0) {
+      showMessage('当前浏览没有筛选任何国家，请在"国旗浏览"中筛选或选择其他数据源', 'warning');
+      return;
+    }
+  } else {
+    // 使用选定的数据源
+    const allCountries = getAllCountries();
+
+    // 在这个分支中，currentDataSource 不可能是 'current'
+    // 因为 'current' 的情况已经在前面处理了
+    if (!Object.keys(DATA_SOURCES).includes(currentDataSource)) {
+      showMessage('数据源配置错误', 'error');
+      return;
+    }
+
+    const sourceConfig = DATA_SOURCES[currentDataSource as keyof typeof DATA_SOURCES];
+    if (!sourceConfig || !sourceConfig.countries) {
+      showMessage('数据源配置错误', 'error');
+      return;
+    }
+
+    countries = allCountries.filter((c) => sourceConfig.countries.includes(c.code));
+
+    if (countries.length === 0) {
+      showMessage(`${sourceConfig.name}数据暂无可用国家`, 'warning');
+      return;
+    }
+>>>>>>> Stashed changes
   }
 
   // 使用选中的国家
@@ -1517,6 +1578,7 @@ export function cleanup(): void {
  */
 export const seatingModule = {
   init: initSeatingModule,
+  showDetail: showSeatingDetailInterface,
   cleanup,
   generateSeating,
   exportSeating,

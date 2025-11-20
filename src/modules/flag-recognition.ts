@@ -1,6 +1,7 @@
 import { loadCountries, getFlagImageUrl, loadFlagFeatures, getAllFlagFeatures } from '../lib/data-loader';
 import { Country, ColorFeature } from '../types';
 import { i18n } from '../lib/i18n-core';
+import { toolManager } from '../lib/tool-manager';
 
 interface RecognitionResult {
   country: Country;
@@ -88,18 +89,37 @@ export class FlagRecognitionModule {
     // 返回工具列表按钮
     const backToToolsBtn = document.getElementById('back-to-tools-btn');
     if (backToToolsBtn) {
-      backToToolsBtn.addEventListener('click', () => this.backToTools());
+      backToToolsBtn.addEventListener('click', () => {
+        toolManager.backToToolsList();
+      });
     }
 
     // 国旗识别工具卡片点击事件
     const flagRecognitionTool = document.getElementById('flag-recognition-tool');
     if (flagRecognitionTool) {
-      flagRecognitionTool.addEventListener('click', () => this.showRecognitionDetail());
+      flagRecognitionTool.addEventListener('click', () => {
+        toolManager.switchToTool('flag-recognition');
+      });
     }
   }
 
   async startCamera(): Promise<void> {
     try {
+      // 首先清理之前的识别结果和状态
+      this.clearPreviousResults();
+      
+      // 隐藏预览容器（如果有上传的图片预览）
+      const previewContainer = document.getElementById('preview-container');
+      if (previewContainer) {
+        previewContainer.style.display = 'none';
+      }
+
+      // 重置文件输入
+      const fileInput = document.getElementById('file-input') as HTMLInputElement;
+      if (fileInput) {
+        fileInput.value = '';
+      }
+
       const video = document.getElementById('camera-video') as HTMLVideoElement;
       if (!video) {
         throw new Error('摄像头视频元素未找到');
@@ -257,7 +277,10 @@ export class FlagRecognitionModule {
       // 与所有国旗进行匹配
       const results = await this.matchWithFlags(uploadFeature);
 
-      // 显示识别结果
+      console.log(`🔍 识别结果: 找到 ${results.length} 个匹配项`);
+      console.log('📊 所有结果:', results.map(r => `${r.country.code}: ${Math.round(r.confidence * 100)}%`));
+
+      // 强制显示结果，即使为空也显示提示
       this.displayResults(results);
 
     } catch (error) {
@@ -266,6 +289,34 @@ export class FlagRecognitionModule {
     } finally {
       this.showLoading(false);
     }
+  }
+
+  /**
+   * 清理之前的识别结果和显示状态
+   */
+  private clearPreviousResults(): void {
+    // 隐藏结果和提示
+    const resultsContainer = document.getElementById('recognition-results');
+    const noResults = document.getElementById('no-results');
+    const cameraContainer = document.getElementById('camera-container');
+
+    console.log('🧹 清理之前的识别结果');
+
+    if (resultsContainer) {
+      resultsContainer.style.display = 'none';
+      resultsContainer.innerHTML = ''; // 清空内容
+    }
+    if (noResults) {
+      noResults.style.display = 'none';
+    }
+
+    // 只有在摄像头正在运行时才隐藏摄像头容器
+    if (cameraContainer && this.stream) {
+      console.log('📷 隐藏摄像头容器（摄像头正在运行）');
+      cameraContainer.style.display = 'none';
+    }
+
+    // 注意：不清理 preview-container，因为上传图片的预览应该保持显示
   }
 
   private async extractImageFeatures(imageData: string): Promise<ColorFeature> {
@@ -400,7 +451,8 @@ export class FlagRecognitionModule {
           // 计算相似度
           const confidence = this.calculateSimilarity(uploadFeature, flagFeature);
 
-          if (confidence > 0.3) { // 只保留相似度大于30%的结果
+          if (confidence > 0.1) { // 降低阈值到10%，提高识别率
+            console.log(`🎯 国家 ${country.code}: 相似度 ${Math.round(confidence * 100)}%`);
             results.push({
               country,
               confidence,
@@ -424,7 +476,8 @@ export class FlagRecognitionModule {
           // 计算相似度
           const confidence = this.calculateSimilarity(uploadFeature, flagFeature);
 
-          if (confidence > 0.3) { // 只保留相似度大于30%的结果
+          if (confidence > 0.1) { // 降低阈值到10%，提高识别率
+            console.log(`🎯 国家 ${country.code}: 相似度 ${Math.round(confidence * 100)}%`);
             results.push({
               country,
               confidence,
@@ -492,18 +545,33 @@ export class FlagRecognitionModule {
     const resultsContainer = document.getElementById('recognition-results');
     const noResults = document.getElementById('no-results');
 
-    if (!resultsContainer || !noResults) return;
-
-    if (results.length === 0) {
-      resultsContainer.style.display = 'none';
-      noResults.style.display = 'block';
+    if (!resultsContainer || !noResults) {
+      console.error('❌ 找不到结果显示容器');
       return;
     }
 
+    console.log(`🖼️ 开始显示识别结果: ${results.length} 个结果`);
+
+    // 先清理之前的结果
+    this.clearPreviousResults();
+
+    if (results.length === 0) {
+      console.log('⚠️ 没有找到匹配的国旗');
+      console.log('🔍 调试信息: resultsContainer存在?', !!resultsContainer);
+      console.log('🔍 调试信息: noResults存在?', !!noResults);
+
+      resultsContainer.style.display = 'none';
+      noResults.style.display = 'block';
+
+      console.log('🔍 设置noResults显示后, 实际display:', noResults.style.display);
+      return;
+    }
+
+    // 确保容器可见
     resultsContainer.style.display = 'block';
     noResults.style.display = 'none';
 
-    // 清空之前的结果
+    // 清空之前的结果内容
     resultsContainer.innerHTML = '';
 
     // 添加结果标题
@@ -637,10 +705,15 @@ export class FlagRecognitionModule {
     const previewContainer = document.getElementById('preview-container');
     const resultsContainer = document.getElementById('recognition-results');
     const noResults = document.getElementById('no-results');
+    const cameraContainer = document.getElementById('camera-container');
 
     if (previewContainer) previewContainer.style.display = 'none';
-    if (resultsContainer) resultsContainer.style.display = 'none';
+    if (resultsContainer) {
+      resultsContainer.style.display = 'none';
+      resultsContainer.innerHTML = ''; // 清空内容
+    }
     if (noResults) noResults.style.display = 'none';
+    if (cameraContainer) cameraContainer.style.display = 'none';
 
     // 重置文件输入
     const fileInput = document.getElementById('file-input') as HTMLInputElement;
