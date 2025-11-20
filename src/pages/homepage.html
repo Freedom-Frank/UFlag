@@ -634,6 +634,24 @@
                 </div>
               </div>
 
+              <!-- 国家选择器 -->
+              <div class="config-group" id="country-selector-config">
+                <label class="config-label">
+                  <span>选择参与排位的国家</span>
+                  <span class="selected-count" id="selected-count">(已选 0 个)</span>
+                </label>
+                <div class="country-selector-actions">
+                  <button class="btn btn-secondary btn-sm" id="select-all-btn">全选</button>
+                  <button class="btn btn-secondary btn-sm" id="deselect-all-btn">全不选</button>
+                  <button class="btn btn-secondary btn-sm" id="toggle-selector-btn">
+                    <span id="toggle-selector-text">展开选择</span>
+                  </button>
+                </div>
+                <div class="country-selector" id="country-selector" style="display: none;">
+                  <!-- 国旗列表将在这里动态生成 -->
+                </div>
+              </div>
+
               <div class="config-group">
                 <button id="generate-seating-btn" class="btn btn-primary seating-generate-btn">
                   生成排位方案
@@ -646,6 +664,7 @@
               <h4>💡 使用说明</h4>
               <ol>
                 <li>选择国家范围（预设数据源或当前浏览筛选结果）</li>
+                <li>点击"展开选择"，勾选参与排位的国家（默认全选）</li>
                 <li>选择排序规则和布局方式</li>
                 <li>点击"生成排位方案"查看结果</li>
                 <li>可导出为文本或复制到剪贴板</li>
@@ -657,6 +676,15 @@
               <div class="seating-result-header">
                 <h3>排位结果</h3>
                 <div class="seating-result-actions">
+                  <button id="save-template-btn" class="btn btn-primary">
+                    💾 保存方案
+                  </button>
+                  <button id="load-template-btn" class="btn btn-secondary">
+                    📂 加载方案
+                  </button>
+                  <button id="export-image-btn" class="btn btn-secondary">
+                    🖼️ 导出图片
+                  </button>
                   <button id="export-text-btn" class="btn btn-secondary">
                     📄 导出文本
                   </button>
@@ -665,6 +693,24 @@
                   </button>
                 </div>
               </div>
+
+              <!-- 显示选项 -->
+              <div class="seating-display-options">
+                <label class="option-item">
+                  <input type="checkbox" id="show-numbers-checkbox" checked />
+                  <span>显示编号</span>
+                </label>
+                <label class="option-item">
+                  <input type="checkbox" id="show-names-checkbox" checked />
+                  <span>显示国家名称</span>
+                </label>
+              </div>
+
+              <!-- 统计信息面板 -->
+              <div class="seating-stats" id="seating-stats">
+                <!-- 统计信息将在这里动态生成 -->
+              </div>
+
               <div id="seating-display-container"></div>
             </div>
           </div>
