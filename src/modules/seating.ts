@@ -12,10 +12,8 @@ import type {
   DiplomaticRelations,
   SeatingTemplate,
 } from '../types/seating';
-import { appState, getAllCountries } from '../lib/state';
+import { getAllCountries, getFilteredCountries } from '../lib/state';
 import { DATA_SOURCES } from '../lib/constants';
-import { i18n } from '../lib/i18n-core';
-import { safeSetText, safeSetDisplay } from '../lib/utils';
 import { getFlagImageUrl } from '../lib/data-loader';
 
 /**
@@ -404,14 +402,13 @@ function toggleConfigOptions(): void {
   const orgConfig = document.getElementById('org-config');
 
   if (hostConfig) {
-    safeSetDisplay(
-      hostConfig,
-      currentConfig.rule === 'host-first' || currentConfig.rule === 'olympic'
-    );
+    const shouldShow = currentConfig.rule === 'host-first' || currentConfig.rule === 'olympic';
+    hostConfig.style.display = shouldShow ? 'block' : 'none';
   }
 
   if (orgConfig) {
-    safeSetDisplay(orgConfig, currentConfig.rule === 'organization-priority');
+    const shouldShow = currentConfig.rule === 'organization-priority';
+    orgConfig.style.display = shouldShow ? 'block' : 'none';
   }
 }
 
@@ -424,7 +421,7 @@ function generateSeating(): void {
 
   if (currentDataSource === 'current') {
     // 使用当前浏览筛选结果
-    countries = appState.getFilteredCountries();
+    countries = getFilteredCountries();
     if (countries.length === 0) {
       showMessage('当前浏览没有筛选任何国家，请在"国旗浏览"中筛选或选择其他数据源', 'warning');
       return;
@@ -432,7 +429,7 @@ function generateSeating(): void {
   } else {
     // 使用选定的数据源
     const allCountries = getAllCountries();
-    const sourceConfig = DATA_SOURCES[currentDataSource];
+    const sourceConfig = DATA_SOURCES[currentDataSource as keyof typeof DATA_SOURCES];
 
     if (!sourceConfig || !sourceConfig.countries) {
       showMessage('数据源配置错误', 'error');
@@ -785,7 +782,6 @@ function renderUShapeLayout(container: HTMLElement, countries: Country[]): void 
   const total = countries.length;
   const topCount = Math.ceil(total / 3);
   const leftCount = Math.floor((total - topCount) / 2);
-  const rightCount = total - topCount - leftCount;
 
   countries.forEach((country, index) => {
     const item = createSeatingItem(country, index + 1);
