@@ -467,15 +467,18 @@
       <!-- 国旗识别详情页面 -->
       <div id="flag-recognition-detail" style="display: none">
         <div class="tools-container">
-          <div class="detail-header">
-            <button class="back-btn" id="back-to-tools-btn">
-              <span class="btn-icon">←</span>
-              <span data-i18n="backToTools">返回工具列表</span>
-            </button>
-            <h2 data-i18n="tools.flagRecognition.title">国旗识别</h2>
-          </div>
+          <!-- 返回按钮 -->
+          <button class="back-to-tools-btn" id="back-to-tools-btn">
+            <span class="btn-icon">←</span>
+            <span data-i18n="backToTools">返回工具列表</span>
+          </button>
 
-          <!-- 识别界面 -->
+          <!-- 国旗识别工具 -->
+          <div class="seating-tool">
+            <h3 class="seating-title" data-i18n="tools.flagRecognition.title">国旗识别</h3>
+            <p class="seating-subtitle">拍照或上传图片快速识别国旗</p>
+
+            <!-- 识别界面 -->
           <div class="recognition-interface" id="recognition-interface">
             <!-- 输入方式选择 -->
             <div class="input-methods">
@@ -541,6 +544,7 @@
             <div class="recognition-results" id="recognition-results" style="display: none;">
               <!-- 结果将动态插入这里 -->
             </div>
+          </div>
           </div>
         </div>
       </div>

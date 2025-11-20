@@ -2017,7 +2017,7 @@ nav {
   align-items: center;
   justify-content: center;
   padding: 20px 16px;
-  border: 2px solid var(--border-light);
+  border: none;
   border-radius: var(--border-radius-lg);
   background: white;
   color: var(--text-primary);
@@ -2027,14 +2027,14 @@ nav {
   min-width: 200px;
   text-decoration: none;
   height: 140px;
+  box-shadow: var(--shadow-diplomatic);
 }
 
 .method-btn:hover {
   background: var(--primary-light);
   color: white;
-  border-color: var(--primary-light);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(1, 121, 200, 0.3);
+  box-shadow: var(--shadow-elevated);
 }
 
 .method-btn .btn-icon {
@@ -2396,52 +2396,6 @@ nav {
   }
 }
 
-/* 国旗识别详情页面样式 */
-.detail-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 2px solid var(--border-light);
-  position: relative;
-}
-
-.back-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: var(--primary-dark);
-  color: white;
-  border: none;
-  border-radius: var(--border-radius-full);
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-  text-decoration: none;
-}
-
-.back-btn:hover {
-  background: #001a5c;
-  transform: translateY(-2px);
-}
-
-.back-btn .btn-icon {
-  font-size: 1.2rem;
-}
-
-.detail-header h2 {
-  margin: 0;
-  font-size: var(--font-size-2xl);
-  color: var(--text-primary);
-  text-align: center;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
 
 #flag-recognition-detail {
   min-height: auto;
