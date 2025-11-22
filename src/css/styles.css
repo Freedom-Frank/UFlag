@@ -2587,6 +2587,178 @@ nav {
   font-size: var(--font-size-sm);
 }
 
+/* 国家选择器 */
+.country-selector-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.selected-count {
+  font-weight: 400;
+  color: var(--primary-light);
+  font-size: 14px;
+  margin-left: 8px;
+}
+
+.selector-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: var(--primary-light);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px 8px;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.btn-link:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+.toggle-icon {
+  margin-left: 4px;
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+/* 搜索框 */
+.country-search-box {
+  margin-bottom: 12px;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 国家选择器网格 */
+.country-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 12px;
+  background: var(--pure-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius);
+  animation: slideDown 0.3s ease;
+}
+
+/* 自定义滚动条 */
+.country-selector-grid::-webkit-scrollbar {
+  width: 8px;
+}
+
+.country-selector-grid::-webkit-scrollbar-track {
+  background: var(--diplomatic-gray);
+  border-radius: 4px;
+}
+
+.country-selector-grid::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+  border-radius: 4px;
+}
+
+.country-selector-grid::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* 国家选择项 */
+.country-select-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: var(--diplomatic-gray);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.country-select-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--primary-light);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.country-select-item:hover {
+  border-color: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(1, 121, 200, 0.15);
+}
+
+.country-select-item:hover::before {
+  opacity: 1;
+}
+
+.country-select-item.selected {
+  background: linear-gradient(135deg, rgba(1, 121, 200, 0.1) 0%, rgba(1, 121, 200, 0.05) 100%);
+  border-color: var(--primary-light);
+}
+
+.country-select-item.selected::before {
+  opacity: 1;
+}
+
+.country-select-item.selected::after {
+  content: '✓';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primary-light);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.country-select-flag {
+  width: 40px;
+  height: 27px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s;
+}
+
+.country-select-item:hover .country-select-flag {
+  transform: scale(1.1);
+}
+
+.country-select-name {
+  font-size: 14px;
+  color: var(--text-primary);
+  font-weight: 500;
+  flex: 1;
+}
+
 .seating-select,
 .seating-input {
   width: 100%;
@@ -2865,14 +3037,146 @@ nav {
   gap: 12px;
 }
 
-/* 圆桌布局 */
+/* 圆桌布局（优化版） */
 .seating-circular-layout {
   position: relative;
   margin: 40px auto;
+  background: radial-gradient(
+    circle,
+    rgba(1, 121, 200, 0.03) 0%,
+    rgba(1, 121, 200, 0.01) 50%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  transition: all 0.3s ease;
 }
 
+/* 圆心装饰 */
+.circular-center-dot {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent-gold) 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(1, 121, 200, 0.4), 0 0 40px rgba(1, 121, 200, 0.2);
+  z-index: 1;
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(1, 121, 200, 0.4), 0 0 40px rgba(1, 121, 200, 0.2);
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(1, 121, 200, 0.6), 0 0 60px rgba(1, 121, 200, 0.3);
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+/* 圆桌布局中的座位项（动态宽度由 JS 控制） */
 .seating-circular-layout .seating-item {
-  width: 150px;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 圆桌座位项悬停效果增强 */
+.seating-circular-layout .seating-item:hover {
+  z-index: 100;
+  transform: translate(-50%, -50%) scale(1.15) !important;
+  box-shadow: 0 12px 30px rgba(1, 121, 200, 0.25), 0 0 0 3px var(--primary-light);
+}
+
+/* 不同圈层的国旗项样式差异化 */
+.seating-circular-layout .circle-layer-0 {
+  /* 内圈：金色强调 */
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.seating-circular-layout .circle-layer-1 {
+  /* 中圈：蓝色强调 */
+  border-color: rgba(1, 121, 200, 0.3);
+}
+
+.seating-circular-layout .circle-layer-2 {
+  /* 外圈：灰色 */
+  border-color: rgba(128, 128, 128, 0.2);
+}
+
+/* 布局警告提示 */
+.layout-warning {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, rgba(255, 152, 0, 0.05) 100%);
+  border: 2px solid rgba(255, 193, 7, 0.3);
+  border-radius: 12px;
+  animation: shake-warning 0.5s ease-in-out;
+}
+
+@keyframes shake-warning {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.layout-warning .warning-icon {
+  font-size: 32px;
+  animation: bounce-icon 2s ease-in-out infinite;
+}
+
+@keyframes bounce-icon {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.layout-warning .warning-text strong {
+  display: block;
+  color: var(--primary-dark);
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.layout-warning .warning-text p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* 圆桌布局信息 */
+.circular-layout-info {
+  margin-top: 24px;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--pure-white) 0%, var(--diplomatic-gray) 100%);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.circular-layout-info .layout-info-item {
+  margin: 8px 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.circular-layout-info .layout-info-item strong {
+  color: var(--primary-dark);
+  margin-right: 8px;
 }
 
 /* U型布局 */

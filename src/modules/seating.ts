@@ -358,10 +358,12 @@ function setupEventListeners(): void {
   const toggleSelectorBtn = document.getElementById('toggle-selector-btn');
   const selectAllBtn = document.getElementById('select-all-btn');
   const deselectAllBtn = document.getElementById('deselect-all-btn');
+  const searchInput = document.getElementById('country-search-input') as HTMLInputElement;
 
   if (toggleSelectorBtn) toggleSelectorBtn.addEventListener('click', toggleCountrySelector);
   if (selectAllBtn) selectAllBtn.addEventListener('click', selectAllCountries);
   if (deselectAllBtn) deselectAllBtn.addEventListener('click', deselectAllCountries);
+  if (searchInput) searchInput.addEventListener('input', handleCountrySearch);
 
   // 显示选项复选框
   const showNumbersCheckbox = document.getElementById('show-numbers-checkbox') as HTMLInputElement;
@@ -785,36 +787,156 @@ function renderDoubleColumnLayout(container: HTMLElement, countries: Country[]):
 }
 
 /**
- * 圆桌布局
+ * 圆桌布局（优化版：支持动态半径和多圈布局）
  */
 function renderCircularLayout(container: HTMLElement, countries: Country[]): void {
-  const circle = document.createElement('div');
-  circle.className = 'seating-circular-layout';
+  const totalCountries = countries.length;
 
-  const radius = 200; // 圆的半径
-  const centerX = 250;
-  const centerY = 250;
+  // 智能布局检测：太多国家时提示
+  if (totalCountries > 100) {
+    const warning = document.createElement('div');
+    warning.className = 'layout-warning';
+    warning.innerHTML = `
+      <div class="warning-icon">⚠️</div>
+      <div class="warning-text">
+        <strong>圆桌模式不太适合 ${totalCountries} 个国家</strong>
+        <p>建议切换到「网格布局」或「U型布局」以获得更好的视觉效果</p>
+      </div>
+    `;
+    container.appendChild(warning);
+  }
 
-  countries.forEach((country, index) => {
-    const angle = (index / countries.length) * 2 * Math.PI;
-    const x = centerX + radius * Math.cos(angle);
-    const y = centerY + radius * Math.sin(angle);
+  // 动态计算布局参数
+  const layoutParams = calculateCircularLayoutParams(totalCountries);
+  const { circles, itemSize, containerSize } = layoutParams;
 
-    const item = createSeatingItem(country, index + 1);
-    item.style.position = 'absolute';
-    item.style.left = `${x}px`;
-    item.style.top = `${y}px`;
-    item.style.transform = 'translate(-50%, -50%)';
+  // 创建圆桌容器
+  const circleWrapper = document.createElement('div');
+  circleWrapper.className = 'seating-circular-layout';
+  circleWrapper.style.position = 'relative';
+  circleWrapper.style.width = `${containerSize}px`;
+  circleWrapper.style.height = `${containerSize}px`;
+  circleWrapper.style.margin = '40px auto';
 
-    circle.appendChild(item);
+  // 添加圆心装饰
+  const centerDot = document.createElement('div');
+  centerDot.className = 'circular-center-dot';
+  centerDot.style.position = 'absolute';
+  centerDot.style.left = '50%';
+  centerDot.style.top = '50%';
+  centerDot.style.transform = 'translate(-50%, -50%)';
+  circleWrapper.appendChild(centerDot);
+
+  const centerX = containerSize / 2;
+  const centerY = containerSize / 2;
+
+  let countryIndex = 0;
+
+  // 按圈渲染国家
+  circles.forEach((circleConfig, circleIndex) => {
+    const { radius, count } = circleConfig;
+    const startAngle = -Math.PI / 2; // 从顶部开始
+
+    for (let i = 0; i < count && countryIndex < totalCountries; i++, countryIndex++) {
+      const country = countries[countryIndex];
+      const angle = startAngle + (i / count) * 2 * Math.PI;
+      const x = centerX + radius * Math.cos(angle);
+      const y = centerY + radius * Math.sin(angle);
+
+      const item = createSeatingItem(country, countryIndex + 1);
+      item.style.position = 'absolute';
+      item.style.left = `${x}px`;
+      item.style.top = `${y}px`;
+      item.style.transform = 'translate(-50%, -50%)';
+      item.style.width = `${itemSize}px`;
+      item.dataset.circleIndex = String(circleIndex);
+
+      // 添加圈层标识类名
+      item.classList.add(`circle-layer-${circleIndex}`);
+
+      circleWrapper.appendChild(item);
+    }
   });
 
-  circle.style.position = 'relative';
-  circle.style.width = '500px';
-  circle.style.height = '500px';
-  circle.style.margin = '0 auto';
+  container.appendChild(circleWrapper);
 
-  container.appendChild(circle);
+  // 添加布局说明
+  if (circles.length > 1) {
+    const layoutInfo = document.createElement('div');
+    layoutInfo.className = 'circular-layout-info';
+    layoutInfo.innerHTML = `
+      <div class="layout-info-item">
+        <strong>布局方式：</strong>${circles.length} 圈环形布局
+      </div>
+      <div class="layout-info-item">
+        ${circles.map((c, i) => `第${i + 1}圈: ${c.count}个国家`).join(' | ')}
+      </div>
+    `;
+    container.appendChild(layoutInfo);
+  }
+}
+
+/**
+ * 计算圆桌布局参数（动态算法）
+ */
+function calculateCircularLayoutParams(totalCountries: number): {
+  circles: Array<{ radius: number; count: number }>;
+  itemSize: number;
+  containerSize: number;
+} {
+  const baseItemSize = 150; // 基础国旗项宽度
+  const minSpacing = 10; // 最小间距
+
+  let itemSize = baseItemSize;
+  let circles: Array<{ radius: number; count: number }> = [];
+
+  // 根据国家数量分档处理
+  if (totalCountries <= 20) {
+    // 少量国家：单圈，小半径
+    const radius = 180;
+    const containerSize = radius * 2 + itemSize + 100;
+    circles = [{ radius, count: totalCountries }];
+    return { circles, itemSize, containerSize };
+  } else if (totalCountries <= 40) {
+    // 中等数量：单圈，大半径，缩小国旗项
+    itemSize = 120;
+    const radius = 250;
+    const containerSize = radius * 2 + itemSize + 100;
+    circles = [{ radius, count: totalCountries }];
+    return { circles, itemSize, containerSize };
+  } else if (totalCountries <= 80) {
+    // 较多国家：双圈布局
+    itemSize = 100;
+    const innerRadius = 180;
+    const outerRadius = 300;
+    const innerCount = Math.min(30, totalCountries);
+    const outerCount = totalCountries - innerCount;
+    const containerSize = outerRadius * 2 + itemSize + 100;
+    circles = [
+      { radius: innerRadius, count: innerCount },
+      { radius: outerRadius, count: outerCount },
+    ];
+    return { circles, itemSize, containerSize };
+  } else {
+    // 大量国家：三圈布局
+    itemSize = 90;
+    const innerRadius = 160;
+    const middleRadius = 260;
+    const outerRadius = 360;
+
+    const innerCount = Math.min(25, totalCountries);
+    const middleCount = Math.min(35, totalCountries - innerCount);
+    const outerCount = totalCountries - innerCount - middleCount;
+
+    const containerSize = outerRadius * 2 + itemSize + 120;
+
+    circles = [
+      { radius: innerRadius, count: innerCount },
+      { radius: middleRadius, count: middleCount },
+      { radius: outerRadius, count: outerCount },
+    ];
+    return { circles, itemSize, containerSize };
+  }
 }
 
 /**
@@ -1152,7 +1274,9 @@ function updateSelectedCount(): void {
  */
 function toggleCountrySelector(): void {
   const selector = document.getElementById('country-selector');
+  const searchBox = document.getElementById('country-search-box');
   const toggleText = document.getElementById('toggle-selector-text');
+  const toggleIcon = document.querySelector('.toggle-icon') as HTMLElement;
 
   if (!selector || !toggleText) return;
 
@@ -1160,11 +1284,44 @@ function toggleCountrySelector(): void {
 
   if (isVisible) {
     selector.style.display = 'none';
+    if (searchBox) searchBox.style.display = 'none';
     toggleText.textContent = '展开选择';
+    if (toggleIcon) toggleIcon.textContent = '▼';
   } else {
     selector.style.display = 'grid';
+    if (searchBox) searchBox.style.display = 'block';
     toggleText.textContent = '收起选择';
+    if (toggleIcon) toggleIcon.textContent = '▲';
   }
+}
+
+/**
+ * 处理国家搜索
+ */
+function handleCountrySearch(e: Event): void {
+  const input = e.target as HTMLInputElement;
+  const searchTerm = input.value.toLowerCase().trim();
+
+  const items = document.querySelectorAll('.country-select-item');
+
+  items.forEach((item) => {
+    const countryCode = item.getAttribute('data-country-code');
+    if (!countryCode) return;
+
+    const country = availableCountries.find((c) => c.code === countryCode);
+    if (!country) return;
+
+    // 搜索匹配：中文名、英文名、国家代码
+    const matchesCN = country.nameCN.toLowerCase().includes(searchTerm);
+    const matchesEN = country.nameEN.toLowerCase().includes(searchTerm);
+    const matchesCode = country.code.toLowerCase().includes(searchTerm);
+
+    if (searchTerm === '' || matchesCN || matchesEN || matchesCode) {
+      (item as HTMLElement).style.display = 'flex';
+    } else {
+      (item as HTMLElement).style.display = 'none';
+    }
+  });
 }
 
 /**

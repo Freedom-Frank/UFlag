@@ -589,6 +589,43 @@
                 </select>
               </div>
 
+              <!-- 国家选择器 -->
+              <div class="config-group">
+                <div class="country-selector-header">
+                  <label class="config-label">
+                    选择参与国家
+                    <span id="selected-count" class="selected-count">(已选 0 个)</span>
+                  </label>
+                  <div class="selector-actions">
+                    <button id="select-all-btn" class="btn-link">全选</button>
+                    <button id="deselect-all-btn" class="btn-link">清空</button>
+                    <button id="toggle-selector-btn" class="btn-link">
+                      <span id="toggle-selector-text">展开选择</span>
+                      <span class="toggle-icon">▼</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- 搜索框 -->
+                <div class="country-search-box" id="country-search-box" style="display: none;">
+                  <input
+                    type="text"
+                    id="country-search-input"
+                    class="seating-input"
+                    placeholder="🔍 搜索国家名称..."
+                  />
+                </div>
+
+                <!-- 国家网格 -->
+                <div
+                  id="country-selector"
+                  class="country-selector-grid"
+                  style="display: none;"
+                >
+                  <!-- 国家选择项将在这里动态生成 -->
+                </div>
+              </div>
+
               <div class="config-group">
                 <label class="config-label">排序规则</label>
                 <select id="seating-rule-select" class="seating-select">
