@@ -885,7 +885,6 @@ function calculateCircularLayoutParams(totalCountries: number): {
   containerSize: number;
 } {
   const baseItemSize = 150; // 基础国旗项宽度
-  const minSpacing = 10; // 最小间距
 
   let itemSize = baseItemSize;
   let circles: Array<{ radius: number; count: number }> = [];
