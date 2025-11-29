@@ -178,7 +178,21 @@ export async function getFlagFeature(countryCode: string): Promise<ColorFeature 
     return {
       dominant: feature.dominant,
       distribution: feature.distribution,
-      layout: feature.layout as 'horizontal' | 'vertical' | 'complex' | 'unknown'
+      layout: feature.layout as 'horizontal' | 'vertical' | 'complex' | 'unknown',
+      shapes: feature.shapes || {
+        hasCircle: false,
+        hasStripes: false,
+        hasStar: false,
+        hasCross: false
+      },
+      colorProportions: feature.colorProportions || {
+        mainColorRatio: 1.0,
+        hasThreePlusColors: false,
+        colorBalance: 0,
+        totalColors: 1
+      },
+      newFeatures: feature.newFeatures,
+      preciseColors: feature.preciseColors
     };
   }
 
@@ -198,7 +212,21 @@ export function getAllFlagFeatures(): Record<string, ColorFeature> {
     result[code] = {
       dominant: feature.dominant,
       distribution: feature.distribution,
-      layout: feature.layout as 'horizontal' | 'vertical' | 'complex' | 'unknown'
+      layout: feature.layout as 'horizontal' | 'vertical' | 'complex' | 'unknown',
+      shapes: feature.shapes || {
+        hasCircle: false,
+        hasStripes: false,
+        hasStar: false,
+        hasCross: false
+      },
+      colorProportions: feature.colorProportions || {
+        mainColorRatio: 1.0,
+        hasThreePlusColors: false,
+        colorBalance: 0,
+        totalColors: 1
+      },
+      newFeatures: feature.newFeatures,
+      preciseColors: feature.preciseColors
     };
   }
 

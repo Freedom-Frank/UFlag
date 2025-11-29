@@ -194,14 +194,77 @@ export interface QuizStats {
 
 // ========== 国旗特征相关类型 ==========
 
-/** 国旗颜色特征 */
+/** 增强的形状信息 */
+export interface EnhancedShapeInfo {
+  hasCircle: boolean;
+  hasStripes: boolean;
+  hasStar: boolean;
+  hasCross: boolean;
+  circleInfo?: {
+    centerX: number;
+    centerY: number;
+    radius: number;
+    confidence: number;
+  } | null;
+  stripeInfo?: {
+    type: 'horizontal' | 'vertical';
+    count: number;
+  } | null;
+  starInfo?: {
+    detected: boolean;
+    corners: number;
+    confidence: number;
+  } | null;
+}
+
+/** 新特征维度 */
+export interface NewFeatureDimensions {
+  textureComplexity: number;
+  symmetryScore: {
+    horizontal: number;
+    vertical: number;
+    overall: number;
+  };
+  visualCenter: {
+    x: number;
+    y: number;
+    isCentered: boolean;
+  };
+  gradientStrength: number;
+  edgeComplexity: number;
+  isPureColor: boolean;
+}
+
+/** 精确颜色信息 */
+export interface PreciseColor {
+  rgb: string;
+  ratio: number;
+}
+
+/** 增强的颜色比例特征 */
+export interface EnhancedColorProportions {
+  mainColorRatio: number;
+  hasThreePlusColors: boolean;
+  colorBalance: number;
+  totalColors: number;
+}
+
+/** 2.0版国旗颜色特征 */
 export interface ColorFeature {
-  /** 主要颜色 */
+  /** 主要颜色（HSV格式） */
   dominant: string[];
   /** 颜色分布 */
   distribution: number[];
   /** 布局类型 */
-  layout: 'horizontal' | 'vertical' | 'complex' | 'unknown';
+  layout: 'horizontal' | 'vertical' | 'diagonal' | 'complex' | 'solid' | 'unknown';
+  /** 形状特征（增强版） */
+  shapes: EnhancedShapeInfo;
+  /** 颜色比例特征（增强版） */
+  colorProportions: EnhancedColorProportions;
+  /** 新特征维度 */
+  newFeatures?: NewFeatureDimensions;
+  /** 精确RGB颜色 */
+  preciseColors?: PreciseColor[];
 }
 
 /** 国旗特征数据 */
@@ -212,6 +275,14 @@ export interface FlagFeature {
   distribution: number[];
   /** 布局类型 */
   layout: string;
+  /** 形状特征 */
+  shapes?: EnhancedShapeInfo;
+  /** 颜色比例特征 */
+  colorProportions?: EnhancedColorProportions;
+  /** 新特征维度 */
+  newFeatures?: NewFeatureDimensions;
+  /** 精确RGB颜色 */
+  preciseColors?: PreciseColor[];
   /** 国家信息 */
   country: {
     code: string;

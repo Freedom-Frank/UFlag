@@ -349,55 +349,175 @@ export class FlagRecognitionModule {
   }
 
   private analyzeColorFeatures(imageData: ImageData): ColorFeature {
-    const data = imageData.data;
-    const colorMap = new Map<string, number>();
+    return this.analyzeEnhancedFeatures(imageData);
+  }
 
-    // 分析颜色分布
-    for (let i = 0; i < data.length; i += 4) {
-      const r = Math.floor(data[i] / 51) * 51;  // 简化颜色空间
-      const g = Math.floor(data[i + 1] / 51) * 51;
-      const b = Math.floor(data[i + 2] / 51) * 51;
-      const color = `${r},${g},${b}`;
+  // === 2.0版高精度特征分析算法 ===
 
-      colorMap.set(color, (colorMap.get(color) || 0) + 1);
+  // RGB转HSV颜色空间
+  private rgbToHsv(r: number, g: number, b: number) {
+    r /= 255;
+    g /= 255;
+    b /= 255;
+
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
+    const diff = max - min;
+
+    let h = 0;
+    let s = max === 0 ? 0 : diff / max;
+    let v = max;
+
+    if (diff !== 0) {
+      switch (max) {
+        case r: h = ((g - b) / diff + (g < b ? 6 : 0)) / 6; break;
+        case g: h = ((b - r) / diff + 2) / 6; break;
+        case b: h = ((r - g) / diff + 4) / 6; break;
+      }
     }
 
-    // 获取主要颜色
-    const sortedColors = Array.from(colorMap.entries())
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 5)
-      .map(([color]) => `rgb(${color})`);
-
-    // 计算颜色分布百分比
-    const totalPixels = imageData.width * imageData.height;
-    const distribution = Array.from(colorMap.values())
-      .sort((a, b) => b - a)
-      .slice(0, 5)
-      .map(count => count / totalPixels);
-
-    // 简单的布局检测
-    const layout = this.detectLayout(imageData);
-
     return {
-      dominant: sortedColors,
-      distribution,
-      layout
+      h: Math.round(h * 360),
+      s: Math.round(s * 100),
+      v: Math.round(v * 100)
     };
   }
 
-  private detectLayout(imageData: ImageData): 'horizontal' | 'vertical' | 'complex' | 'unknown' {
+  // HSV量化到指定精度
+  private quantizeHsv(h: number, s: number, v: number) {
+    const hQuant = Math.floor(h / 15) * 15; // 色调15度精度
+    const sQuant = Math.floor(s / 10) * 10; // 饱和度10%精度
+    const vQuant = Math.floor(v / 10) * 10; // 明度10单位精度
+    return `${hQuant},${sQuant},${vQuant}`;
+  }
+
+  private analyzeEnhancedFeatures(imageData: ImageData): ColorFeature {
+    const data = imageData.data;
+    const hsvColorMap = new Map<string, number>();
+    const rgbColorMap = new Map<string, number>();
+    const pixels = [];
+
+    // 分析颜色分布 - 使用HSV颜色空间
+    for (let i = 0; i < data.length; i += 4) {
+      const r = data[i];
+      const g = data[i + 1];
+      const b = data[i + 2];
+
+      // HSV量化
+      const hsv = this.rgbToHsv(r, g, b);
+      const hsvColor = this.quantizeHsv(hsv.h, hsv.s, hsv.v);
+      hsvColorMap.set(hsvColor, (hsvColorMap.get(hsvColor) || 0) + 1);
+
+      // RGB精确值存储（用于纯色匹配）
+      const rgbColor = `${Math.floor(r/10)*10},${Math.floor(g/10)*10},${Math.floor(b/10)*10}`;
+      rgbColorMap.set(rgbColor, (rgbColorMap.get(rgbColor) || 0) + 1);
+
+      pixels.push({
+        x: (i / 4) % imageData.width,
+        y: Math.floor((i / 4) / imageData.width),
+        r, g, b, hsv
+      });
+    }
+
+    // 获取HSV主要颜色
+    const sortedHsvColors = Array.from(hsvColorMap.entries())
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 8);
+
+    const dominant = sortedHsvColors
+      .map(([color]) => `hsv(${color})`);
+
+    // 计算颜色分布百分比
+    const totalPixels = imageData.width * imageData.height;
+    const distribution = sortedHsvColors
+      .map(([_, count]) => count / totalPixels);
+
+    // RGB精确颜色（用于纯色匹配）
+    const preciseColors = Array.from(rgbColorMap.entries())
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3)
+      .map(([color, count]) => ({
+        rgb: `rgb(${color})`,
+        ratio: count / totalPixels
+      }));
+
+    // 增强布局检测
+    const layout = this.detectEnhancedLayout(imageData);
+
+    // 增强形状检测
+    const shapes = this.detectEnhancedShapes(imageData, hsvColorMap, pixels);
+
+    // 颜色比例分析
+    const colorProportions = this.analyzeEnhancedColorProportions(distribution);
+
+    // 新特征维度（简化版本用于实时识别）
+    const newFeatures = this.extractSimplifiedNewFeatures(pixels, imageData, distribution);
+
+    return {
+      dominant: dominant,
+      distribution: distribution,
+      layout: layout,
+      shapes: shapes,
+      colorProportions: colorProportions,
+      newFeatures: newFeatures,
+      preciseColors: preciseColors
+    };
+  }
+
+  // 增强布局检测（简化版）
+  private detectEnhancedLayout(imageData: ImageData): 'horizontal' | 'vertical' | 'diagonal' | 'complex' | 'solid' | 'unknown' {
+    return this.detectLayout(imageData) as 'horizontal' | 'vertical' | 'diagonal' | 'complex' | 'solid' | 'unknown';
+  }
+
+  // 增强形状检测（简化版）
+  private detectEnhancedShapes(imageData: ImageData, hsvColorMap: Map<string, number>, _pixels: any): any {
+    const shapes = this.detectShapes(imageData, hsvColorMap as any);
+    return {
+      hasCircle: shapes.hasCircle || false,
+      hasStripes: shapes.hasStripes || false,
+      hasStar: shapes.hasStar || false,
+      hasCross: shapes.hasCross || false,
+      circleInfo: null,
+      stripeInfo: null,
+      starInfo: null
+    };
+  }
+
+  // 增强颜色比例分析
+  private analyzeEnhancedColorProportions(distribution: number[]) {
+    return {
+      mainColorRatio: distribution[0] || 0,
+      hasThreePlusColors: distribution.length >= 3 && distribution[2] > 0.05,
+      colorBalance: distribution.length > 1 ? Math.min(...distribution.slice(1)) / Math.max(...distribution.slice(1)) : 0,
+      totalColors: distribution.length
+    };
+  }
+
+  // 简化新特征提取
+  private extractSimplifiedNewFeatures(_pixels: any, imageData: ImageData, distribution: number[]) {
+    return {
+      textureComplexity: 0.05,
+      symmetryScore: { horizontal: 0.5, vertical: 0.5, overall: 0.5 },
+      visualCenter: { x: imageData.width / 2, y: imageData.height / 2, isCentered: true },
+      gradientStrength: 25,
+      edgeComplexity: 0.1,
+      isPureColor: distribution[0] > 0.95
+    };
+  }
+
+  private detectLayout(imageData: ImageData): 'horizontal' | 'vertical' | 'diagonal' | 'complex' | 'unknown' {
     const { data, width, height } = imageData;
 
     // 简单的布局检测算法
     // 检查水平条纹
     const horizontalRows = [];
-    for (let y = 0; y < height; y += Math.floor(height / 10)) {
+    for (let y = 0; y < height; y += Math.floor(height / 20)) {  // 增加采样线条数量到20条
       let rowColor = '';
       for (let x = 0; x < width; x++) {
         const i = (y * width + x) * 4;
-        const r = Math.floor(data[i] / 51) * 51;
-        const g = Math.floor(data[i + 1] / 51) * 51;
-        const b = Math.floor(data[i + 2] / 51) * 51;
+        const r = Math.floor(data[i] / 25) * 25;  // 提高颜色精度
+        const g = Math.floor(data[i + 1] / 25) * 25;
+        const b = Math.floor(data[i + 2] / 25) * 25;
         rowColor += `${r},${g},${b},`;
       }
       horizontalRows.push(rowColor);
@@ -411,13 +531,13 @@ export class FlagRecognitionModule {
 
     // 检查垂直条纹
     const verticalCols = [];
-    for (let x = 0; x < width; x += Math.floor(width / 10)) {
+    for (let x = 0; x < width; x += Math.floor(width / 20)) {  // 增加采样线条数量到20条
       let colColor = '';
       for (let y = 0; y < height; y++) {
         const i = (y * width + x) * 4;
-        const r = Math.floor(data[i] / 51) * 51;
-        const g = Math.floor(data[i + 1] / 51) * 51;
-        const b = Math.floor(data[i + 2] / 51) * 51;
+        const r = Math.floor(data[i] / 25) * 25;  // 提高颜色精度
+        const g = Math.floor(data[i + 1] / 25) * 25;
+        const b = Math.floor(data[i + 2] / 25) * 25;
         colColor += `${r},${g},${b},`;
       }
       verticalCols.push(colColor);
@@ -429,11 +549,190 @@ export class FlagRecognitionModule {
       return 'vertical';
     }
 
+    // 检查对角线图案（如十字形）
+    const diagonalColors1 = [];  // 左上到右下对角线
+    const diagonalColors2 = [];  // 右上到左下对角线
+
+    for (let i = 0; i < Math.min(width, height); i += Math.floor(Math.min(width, height) / 10)) {
+      // 左上到右下对角线
+      const index1 = (i * width + i) * 4;
+      const r1 = Math.floor(data[index1] / 25) * 25;
+      const g1 = Math.floor(data[index1 + 1] / 25) * 25;
+      const b1 = Math.floor(data[index1 + 2] / 25) * 25;
+      diagonalColors1.push(`${r1},${g1},${b1}`);
+
+      // 右上到左下对角线
+      const index2 = (i * width + (width - 1 - i)) * 4;
+      const r2 = Math.floor(data[index2] / 25) * 25;
+      const g2 = Math.floor(data[index2 + 1] / 25) * 25;
+      const b2 = Math.floor(data[index2 + 2] / 25) * 25;
+      diagonalColors2.push(`${r2},${g2},${b2}`);
+    }
+
+    const uniqueDiagonal1 = new Set(diagonalColors1).size;
+    const uniqueDiagonal2 = new Set(diagonalColors2).size;
+
+    // 如果对角线颜色变化较少，可能是十字形图案
+    if (uniqueDiagonal1 <= 4 || uniqueDiagonal2 <= 4) {
+      return 'diagonal';
+    }
+
     return 'complex';
   }
 
+  /**
+   * 检测图像中的形状特征
+   */
+  private detectShapes(imageData: ImageData, colorMap: Map<string, number>): ColorFeature['shapes'] {
+    const shapes: ColorFeature['shapes'] = {
+      hasCircle: false,
+      hasStripes: false,
+      hasStar: false,
+      hasCross: false
+    };
+
+    // 获取主要颜色和次要颜色
+    const sortedColors = Array.from(colorMap.entries())
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 2);
+
+    if (sortedColors.length >= 2) {
+      const secondaryColor = sortedColors[1][0];
+
+      // 检测圆形图案（如孟加拉国、日本）
+      shapes.hasCircle = this.detectCircularPattern(imageData, secondaryColor);
+
+      // 检测条纹图案（如埃塞俄比亚、法国）
+      shapes.hasStripes = this.detectStripesPattern(imageData);
+
+      // 检测星形图案（如美国、中国）
+      shapes.hasStar = this.detectStarPattern(imageData);
+
+      // 检测十字图案（如瑞士、英国）
+      shapes.hasCross = this.detectCrossPattern(imageData);
+    }
+
+    return shapes;
+  }
+
+  
+  /**
+   * 检测圆形图案（专门用于区分孟加拉国和埃塞俄比亚）
+   */
+  private detectCircularPattern(imageData: ImageData, secondaryColor: string): boolean {
+    const { data, width, height } = imageData;
+    const centerX = Math.floor(width / 2);
+    const centerY = Math.floor(height / 2);
+    const radius = Math.floor(Math.min(width, height) / 6); // 圆形通常在中心，半径约为1/6
+
+    let secondaryColorPixels = 0;
+    let totalCirclePixels = 0;
+
+    // 检测中心区域是否存在不同颜色的圆形
+    for (let y = centerY - radius; y <= centerY + radius; y++) {
+      for (let x = centerX - radius; x <= centerX + radius; x++) {
+        const distance = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
+        if (distance <= radius) {
+          const i = (y * width + x) * 4;
+          const r = Math.floor(data[i] / 25) * 25;
+          const g = Math.floor(data[i + 1] / 25) * 25;
+          const b = Math.floor(data[i + 2] / 25) * 25;
+          const color = `${r},${g},${b}`;
+
+          totalCirclePixels++;
+          if (color === secondaryColor) {
+            secondaryColorPixels++;
+          }
+        }
+      }
+    }
+
+    // 如果圆形区域内次要颜色占比超过60%，认为是圆形图案
+    const secondaryColorRatio = totalCirclePixels > 0 ? secondaryColorPixels / totalCirclePixels : 0;
+    return secondaryColorRatio > 0.6;
+  }
+
+  /**
+   * 检测条纹图案
+   */
+  private detectStripesPattern(imageData: ImageData): boolean {
+    const layout = this.detectLayout(imageData);
+    return layout === 'horizontal' || layout === 'vertical';
+  }
+
+  /**
+   * 检测星形图案（简化实现）
+   */
+  private detectStarPattern(imageData: ImageData): boolean {
+    // 简化的星形检测：检测角落区域是否有不同颜色的点状图案
+    const { data, width, height } = imageData;
+    const cornerSize = Math.min(width, height) / 8;
+
+    // 检查四个角落区域
+    const corners = [
+      { x: 0, y: 0 },
+      { x: width - cornerSize, y: 0 },
+      { x: 0, y: height - cornerSize },
+      { x: width - cornerSize, y: height - cornerSize }
+    ];
+
+    for (const corner of corners) {
+      let uniqueColors = new Set();
+      for (let y = corner.y; y < corner.y + cornerSize; y += 2) {
+        for (let x = corner.x; x < corner.x + cornerSize; x += 2) {
+          const i = (y * width + x) * 4;
+          const r = Math.floor(data[i] / 25) * 25;
+          const g = Math.floor(data[i + 1] / 25) * 25;
+          const b = Math.floor(data[i + 2] / 25) * 25;
+          uniqueColors.add(`${r},${g},${b}`);
+        }
+      }
+
+      // 如果角落区域颜色多样性高，可能是有星形图案
+      if (uniqueColors.size > 3) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * 检测十字图案
+   */
+  private detectCrossPattern(imageData: ImageData): boolean {
+    const { data, width, height } = imageData;
+    const centerX = Math.floor(width / 2);
+    const centerY = Math.floor(height / 2);
+
+    let crossColorPixels = 0;
+    let centerAreaPixels = 0;
+    const crossWidth = Math.max(3, Math.floor(Math.min(width, height) / 20));
+
+    // 检查中心十字区域
+    // 水平线
+    for (let x = centerX - crossWidth * 3; x <= centerX + crossWidth * 3; x++) {
+      for (let y = centerY - crossWidth; y <= centerY + crossWidth; y++) {
+        if (x >= 0 && x < width && y >= 0 && y < height) {
+          const i = (y * width + x) * 4;
+          const r = data[i];
+          const g = data[i + 1];
+          const b = data[i + 2];
+
+          // 简单检测：白色或明显的对比色十字
+          if ((r > 200 && g > 200 && b > 200) || // 白色十字
+              (r < 50 && g < 50 && b < 50)) {   // 黑色十字
+            crossColorPixels++;
+          }
+          centerAreaPixels++;
+        }
+      }
+    }
+
+    return centerAreaPixels > 0 && crossColorPixels / centerAreaPixels > 0.3;
+  }
+
   private async matchWithFlags(uploadFeature: ColorFeature): Promise<RecognitionResult[]> {
-    const results: RecognitionResult[] = [];
+    let results: RecognitionResult[] = [];
 
     if (this.usePrecomputedFeatures) {
       // 使用预计算特征 - 快速匹配
@@ -451,7 +750,7 @@ export class FlagRecognitionModule {
           // 计算相似度
           const confidence = this.calculateSimilarity(uploadFeature, flagFeature);
 
-          if (confidence > 0.1) { // 降低阈值到10%，提高识别率
+          if (confidence > 0.25) { // 提高阈值到25%，进一步减少误匹配，特别是相似国旗
             console.log(`🎯 国家 ${country.code}: 相似度 ${Math.round(confidence * 100)}%`);
             results.push({
               country,
@@ -476,7 +775,7 @@ export class FlagRecognitionModule {
           // 计算相似度
           const confidence = this.calculateSimilarity(uploadFeature, flagFeature);
 
-          if (confidence > 0.1) { // 降低阈值到10%，提高识别率
+          if (confidence > 0.25) { // 提高阈值到25%，进一步减少误匹配，特别是相似国旗
             console.log(`🎯 国家 ${country.code}: 相似度 ${Math.round(confidence * 100)}%`);
             results.push({
               country,
@@ -490,10 +789,82 @@ export class FlagRecognitionModule {
       }
     }
 
+    // 应用反误匹配规则（特别是针对相似国旗）
+    results = this.applyAntiAmbiguityRules(results, uploadFeature);
+
     // 按相似度排序，返回前5个结果
     return results
       .sort((a, b) => b.confidence - a.confidence)
       .slice(0, 5);
+  }
+
+  /**
+   * 应用反误匹配规则，针对容易混淆的相似国旗
+   */
+  private applyAntiAmbiguityRules(results: RecognitionResult[], uploadFeature: ColorFeature): RecognitionResult[] {
+    // 规则1: 孟加拉国(BD) vs 埃塞俄比亚(ET) - 区分圆形图案和条纹图案
+    const bdResult = results.find(r => r.country.code === 'BD');
+    const etResult = results.find(r => r.country.code === 'ET');
+
+    if (bdResult && etResult) {
+      // 如果检测到圆形图案，提升孟加拉国分数，降低埃塞俄比亚分数
+      if (uploadFeature.shapes?.hasCircle) {
+        bdResult.confidence *= 1.3; // 提升30%置信度
+        etResult.confidence *= 0.7; // 降低30%置信度
+        console.log('🔍 应用反误匹配规则: 检测到圆形图案，提升孟加拉国匹配度');
+      }
+
+      // 如果检测到条纹图案，提升埃塞俄比亚分数，降低孟加拉国分数
+      if (uploadFeature.shapes?.hasStripes) {
+        etResult.confidence *= 1.3;
+        bdResult.confidence *= 0.7;
+        console.log('🔍 应用反误匹配规则: 检测到条纹图案，提升埃塞俄比亚匹配度');
+      }
+
+      // 如果主要颜色占比超过70%，倾向于孟加拉国（绿色背景）
+      if (uploadFeature.colorProportions?.mainColorRatio && uploadFeature.colorProportions.mainColorRatio > 0.7) {
+        bdResult.confidence *= 1.2;
+        etResult.confidence *= 0.8;
+        console.log('🔍 应用反误匹配规则: 主要颜色占比高，倾向于孟加拉国');
+      }
+
+      // 如果有3种以上重要颜色，倾向于埃塞俄比亚（绿黄红三色）
+      if (uploadFeature.colorProportions?.hasThreePlusColors) {
+        etResult.confidence *= 1.2;
+        bdResult.confidence *= 0.8;
+        console.log('🔍 应用反误匹配规则: 多色国旗，倾向于埃塞俄比亚');
+      }
+    }
+
+    // 规则2: 意大利(IT) vs 爱尔兰(IE) vs 匈牙利(HU) - 三色旗区分
+    const itResult = results.find(r => r.country.code === 'IT');
+    const ieResult = results.find(r => r.country.code === 'IE');
+    const huResult = results.find(r => r.country.code === 'HU');
+
+    if ([itResult, ieResult, huResult].filter(Boolean).length > 1) {
+      // 通过具体颜色值区分三色旗
+      const hasOrange = uploadFeature.dominant.some(color => {
+        const rgb = color.match(/\d+/g)?.map(Number) || [0, 0, 0];
+        return rgb[0] > 180 && rgb[1] > 100 && rgb[2] < 100; // 橙色检测
+      });
+
+      const hasGreen = uploadFeature.dominant.some(color => {
+        const rgb = color.match(/\d+/g)?.map(Number) || [0, 0, 0];
+        return rgb[1] > rgb[0] && rgb[1] > rgb[2]; // 绿色检测
+      });
+
+      if (hasOrange && ieResult) {
+        ieResult.confidence *= 1.3; // 爱尔兰有橙色
+        console.log('🔍 应用反误匹配规则: 检测到橙色，倾向于爱尔兰');
+      }
+
+      if (hasGreen && huResult) {
+        huResult.confidence *= 1.2; // 匈牙利有绿色
+        console.log('🔍 应用反误匹配规则: 检测到绿色，倾向于匈牙利');
+      }
+    }
+
+    return results;
   }
 
   private calculateSimilarity(feature1: ColorFeature, feature2: ColorFeature): number {
@@ -501,30 +872,166 @@ export class FlagRecognitionModule {
     let colorScore = 0;
     const maxColors = Math.min(feature1.dominant.length, feature2.dominant.length);
 
+    // 增强的颜色匹配算法
     for (let i = 0; i < maxColors; i++) {
       if (this.isColorSimilar(feature1.dominant[i], feature2.dominant[i])) {
-        colorScore += (maxColors - i) / maxColors;
+        // 主要颜色（前两位）给予更高权重
+        const weight = i < 2 ? 0.8 : 0.4;
+        colorScore += weight;
+      } else {
+        // 部分匹配的分数
+        const similarity = this.getColorSimilarityRatio(feature1.dominant[i], feature2.dominant[i]);
+        if (similarity > 0.5) {
+          colorScore += similarity * 0.3;
+        }
       }
     }
 
-    // 布局相似度
-    const layoutScore = feature1.layout === feature2.layout ? 1 : 0.5;
+    // 归一化颜色分数
+    colorScore = Math.min(colorScore / maxColors, 1);
 
-    // 综合评分
-    return (colorScore * 0.7 + layoutScore * 0.3);
+    // 布局相似度
+    let layoutScore = 1;
+    if (feature1.layout === feature2.layout) {
+      layoutScore = 1;
+    } else if ((feature1.layout === 'complex' && feature2.layout !== 'unknown') ||
+               (feature2.layout === 'complex' && feature1.layout !== 'unknown')) {
+      layoutScore = 0.7; // 复杂图案与简单图案的部分匹配
+    } else if (feature1.layout === 'unknown' || feature2.layout === 'unknown') {
+      layoutScore = 0.5;
+    } else {
+      layoutScore = 0.3; // 完全不匹配的布局
+    }
+
+    // 形状相似度计算（新增）
+    let shapeScore = this.calculateShapeSimilarity(feature1.shapes, feature2.shapes);
+
+    // 颜色比例相似度计算（新增）
+    let proportionScore = this.calculateProportionSimilarity(feature1.colorProportions, feature2.colorProportions);
+
+    // 综合评分 - 调整权重分配
+    return (colorScore * 0.6 + layoutScore * 0.15 + shapeScore * 0.15 + proportionScore * 0.1);
   }
 
-  private isColorSimilar(color1: string, color2: string): boolean {
+  /**
+   * 计算形状相似度
+   */
+  private calculateShapeSimilarity(shapes1: ColorFeature['shapes'], shapes2: ColorFeature['shapes']): number {
+    if (!shapes1 || !shapes2) return 0.5; // 默认分数
+
+    let matches = 0;
+    const totalChecks = 4; // 圆形、条纹、星形、十字
+
+    if (shapes1.hasCircle === shapes2.hasCircle) matches += 1;
+    if (shapes1.hasStripes === shapes2.hasStripes) matches += 1;
+    if (shapes1.hasStar === shapes2.hasStar) matches += 1;
+    if (shapes1.hasCross === shapes2.hasCross) matches += 1;
+
+    return matches / totalChecks;
+  }
+
+  /**
+   * 计算颜色比例相似度
+   */
+  private calculateProportionSimilarity(prop1: ColorFeature['colorProportions'], prop2: ColorFeature['colorProportions']): number {
+    if (!prop1 || !prop2) return 0.5; // 默认分数
+
+    let score = 0;
+
+    // 主要颜色占比相似度
+    if (prop1.mainColorRatio !== undefined && prop2.mainColorRatio !== undefined) {
+      const ratioDiff = Math.abs(prop1.mainColorRatio - prop2.mainColorRatio);
+      score += Math.max(0, 1 - ratioDiff * 2); // 差异越小分数越高
+    }
+
+    // 颜色数量相似度
+    if (prop1.hasThreePlusColors === prop2.hasThreePlusColors) {
+      score += 1;
+    }
+
+    return score / 2; // 归一化到0-1
+  }
+
+  /**
+   * 计算两个颜色的相似度比例（0-1之间）
+   */
+  private getColorSimilarityRatio(color1: string, color2: string): number {
     const rgb1 = color1.match(/\d+/g)?.map(Number) || [0, 0, 0];
     const rgb2 = color2.match(/\d+/g)?.map(Number) || [0, 0, 0];
 
-    const distance = Math.sqrt(
-      Math.pow(rgb1[0] - rgb2[0], 2) +
-      Math.pow(rgb1[1] - rgb2[1], 2) +
-      Math.pow(rgb1[2] - rgb2[2], 2)
+    const maxDistance = Math.sqrt(Math.pow(255 * 0.3, 2) + Math.pow(255 * 0.59, 2) + Math.pow(255 * 0.11, 2));
+    const weightedDistance = Math.sqrt(
+      Math.pow((rgb1[0] - rgb2[0]) * 0.3, 2) +
+      Math.pow((rgb1[1] - rgb2[1]) * 0.59, 2) +
+      Math.pow((rgb1[2] - rgb2[2]) * 0.11, 2)
     );
 
-    return distance < 100; // 颜色距离阈值
+    return Math.max(0, 1 - (weightedDistance / maxDistance));
+  }
+
+  private isColorSimilar(color1: string, color2: string): boolean {
+    // 检查是否为HSV格式
+    if (color1.startsWith('hsv') && color2.startsWith('hsv')) {
+      return this.isHsvSimilar(color1, color2);
+    } else if (color1.startsWith('rgb') && color2.startsWith('rgb')) {
+      return this.isRgbSimilar(color1, color2);
+    } else {
+      // �合格式，都尝试
+      return this.isRgbSimilar(color1, color2) || this.isHsvSimilar(color1, color2);
+    }
+  }
+
+  // HSV颜色相似度比较
+  private isHsvSimilar(color1: string, color2: string): boolean {
+    const hsv1 = this.parseHsvColor(color1);
+    const hsv2 = this.parseHsvColor(color2);
+
+    // 色调差异（考虑环形性质）
+    let hDiff = Math.abs(hsv1.h - hsv2.h);
+    hDiff = Math.min(hDiff, 360 - hDiff); // 环形距离
+
+    // 饱和度和明度差异
+    const sDiff = Math.abs(hsv1.s - hsv2.s);
+    const vDiff = Math.abs(hsv1.v - hsv2.v);
+
+    // HSV空间中的加权距离
+    const hsvDistance = Math.sqrt(
+      Math.pow(hDiff * 0.6, 2) +  // 色调权重
+      Math.pow(sDiff * 0.3, 2) +  // 饱和度权重
+      Math.pow(vDiff * 0.1, 2)   // 明度权重
+    );
+
+    // HSV相似度阈值
+    return hsvDistance < 30;
+  }
+
+  // RGB颜色相似度比较（保留原有逻辑）
+  private isRgbSimilar(color1: string, color2: string): boolean {
+    const rgb1 = color1.match(/\d+/g)?.map(Number) || [0, 0, 0];
+    const rgb2 = color2.match(/\d+/g)?.map(Number) || [0, 0, 0];
+
+    // 使用加权欧几里得距离，考虑人眼对不同颜色的敏感度
+    const weightedDistance = Math.sqrt(
+      Math.pow((rgb1[0] - rgb2[0]) * 0.3, 2) +  // 红色权重
+      Math.pow((rgb1[1] - rgb2[1]) * 0.59, 2) + // 绿色权重（人眼最敏感）
+      Math.pow((rgb1[2] - rgb2[2]) * 0.11, 2)  // 蓝色权重
+    );
+
+    // 调整距离阈值，由于颜色精度提高，需要适当降低阈值
+    return weightedDistance < 40; // 从100调整为40，更严格的匹配
+  }
+
+  // 解析HSV颜色字符串
+  private parseHsvColor(hsvString: string): { h: number; s: number; v: number } {
+    const matches = hsvString.match(/\d+/g);
+    if (matches && matches.length >= 3) {
+      return {
+        h: parseInt(matches[0]),
+        s: parseInt(matches[1]),
+        v: parseInt(matches[2])
+      };
+    }
+    return { h: 0, s: 0, v: 0 };
   }
 
   private getMatchReasons(uploadFeature: ColorFeature, flagFeature: ColorFeature): string[] {
