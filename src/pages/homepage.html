@@ -336,13 +336,31 @@
               <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
               </div>
-              <div class="question-container">
-                <div class="question-header">
-                  <span class="question-number" id="questionNumber">第 1 / 5 题</span>
-                  <span class="question-timer" id="timer">⏱️ 00:00</span>
+              <div class="quiz-content-wrapper">
+                <!-- 左侧预览面板 -->
+                <div class="quiz-preview-panel">
+                  <div class="preview-header">
+                    <h3 data-i18n="quiz.preview.title">答题进度</h3>
+                    <div class="preview-stats">
+                      <span id="answered-count">0</span> / <span id="total-questions">10</span>
+                    </div>
+                  </div>
+                  <div class="preview-list" id="preview-list">
+                    <!-- 动态添加预览项 -->
+                  </div>
                 </div>
-                <div id="questionContent" class="question-content"></div>
-                <div id="optionsContainer" class="options-grid"></div>
+
+                <!-- 右侧主内容区域 -->
+                <div class="quiz-main-content">
+                  <div class="question-container">
+                    <div class="question-header">
+                      <span class="question-number" id="questionNumber">第 1 / 5 题</span>
+                      <span class="question-timer" id="timer">⏱️ 00:00</span>
+                    </div>
+                    <div id="questionContent" class="question-content"></div>
+                    <div id="optionsContainer" class="options-grid"></div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -370,19 +388,7 @@
                   </div>
                 </div>
 
-                <!-- 错题详情区域 -->
-                <div id="wrong-answers-section" style="display: none">
-                  <h3
-                    style="color: var(--danger-color); margin-bottom: 20px; text-align: center"
-                    data-i18n="quiz.wrongAnswers.title"
-                  >
-                    错题详情
-                  </h3>
-                  <div id="wrong-answers-container" class="wrong-answers-container">
-                    <!-- 错题详情将在这里动态生成 -->
-                  </div>
-                </div>
-
+  
                 <div style="display: flex; gap: 10px; justify-content: center">
                   <button class="btn btn-primary" id="retryBtn" data-i18n="quiz.retry">
                     再测一次
@@ -797,56 +803,7 @@
       </button>
     </template>
 
-    <template id="wrong-answer-flag-template">
-      <div class="wrong-answer-item">
-        <div class="wrong-question-header">
-          <span class="wrong-question-number"></span>
-          <span class="wrong-question-type" data-i18n="quiz.wrongAnswers.flagToCountry"
-            >看国旗选国家</span
-          >
-        </div>
-        <div class="wrong-question-content">
-          <img class="wrong-flag" alt="国旗" />
-          <div class="wrong-answer-info">
-            <div class="correct-answer">
-              <span class="answer-label" data-i18n="quiz.wrongAnswers.correctAnswer"
-                >正确答案：</span
-              >
-              <span class="answer-text correct"></span>
-            </div>
-            <div class="wrong-answer">
-              <span class="answer-label" data-i18n="quiz.wrongAnswers.yourAnswer">你的答案：</span>
-              <span class="answer-text wrong"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </template>
-
-    <template id="wrong-answer-country-template">
-      <div class="wrong-answer-item">
-        <div class="wrong-question-header">
-          <span class="wrong-question-number"></span>
-          <span class="wrong-question-type" data-i18n="quiz.wrongAnswers.countryToFlag"
-            >看国家选国旗</span
-          >
-        </div>
-        <div class="wrong-question-content">
-          <div class="country-name"></div>
-          <div class="flags-comparison">
-            <div class="flag-option correct">
-              <div class="flag-label" data-i18n="quiz.correctFlag">正确答案</div>
-              <img class="comparison-flag" alt="正确国旗" />
-            </div>
-            <div class="flag-option wrong">
-              <div class="flag-label" data-i18n="quiz.wrongFlag">错误答案</div>
-              <img class="comparison-flag" alt="错误国旗" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </template>
-
+  
     <template id="study-flag-template">
       <div
         style="
@@ -1322,6 +1279,28 @@
           z-index: 999;
         "
       ></div>
+    </template>
+
+    <!-- 预览项模板 -->
+    <template id="preview-item-template">
+      <div class="preview-item">
+        <div class="preview-question-number">
+          <span data-i18n="quiz.preview.questionLabel">第</span>
+          <span class="number"></span>
+          <span data-i18n="quiz.preview.questionSuffix">题</span>
+        </div>
+        <div class="preview-flag">
+          <img src="" alt="" class="flag-image" onerror="this.src='https://via.placeholder.com/40x30/f0f0f0/999?text=FLAG'">
+        </div>
+        <div class="preview-answer">
+          <div class="correct-answer"></div>
+          <div class="user-answer" style="display: none;"></div>
+        </div>
+        <div class="preview-status">
+          <span class="status-icon correct">✓</span>
+          <span class="status-icon wrong" style="display: none;">✗</span>
+        </div>
+      </div>
     </template>
 
     <!-- 国家详情模态窗口 -->

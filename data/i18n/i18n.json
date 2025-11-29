@@ -123,7 +123,13 @@
       "correctAnswer": "正确答案",
       "wrongAnswer": "错误答案",
       "correctFlag": "正确国旗",
-      "wrongFlag": "错误国旗"
+      "wrongFlag": "错误国旗",
+      "preview": {
+        "title": "答题进度",
+        "questionLabel": "第",
+        "questionSuffix": "题",
+        "yourAnswer": "你的答案"
+      }
     },
     "memory": {
       "overview": "📚 学习概览",
@@ -515,7 +521,13 @@
       "correctAnswer": "Correct Answer",
       "wrongAnswer": "Wrong Answer",
       "correctFlag": "Correct Flag",
-      "wrongFlag": "Wrong Flag"
+      "wrongFlag": "Wrong Flag",
+      "preview": {
+        "title": "Answer Progress",
+        "questionLabel": "Question",
+        "questionSuffix": "",
+        "yourAnswer": "Your Answer"
+      }
     },
     "memory": {
       "overview": "📚 Learning Overview",

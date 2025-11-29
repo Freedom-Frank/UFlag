@@ -28,15 +28,17 @@ interface InternalQuestion {
   options: Country[];
 }
 
+
 /**
- * 内部错题格式（用于向后兼容）
+ * 已答题目格式
  */
-interface InternalWrongAnswer {
+interface AnsweredQuestion {
   questionIndex: number;
   questionType: QuizType;
   correctCountry: Country;
-  selectedCountry: Country;
-  options: Country[];
+  selectedCountry?: Country;
+  isCorrect: boolean;
+  timestamp: number;
 }
 
 /**
@@ -57,8 +59,8 @@ interface QuizState {
   startTime: number | null;
   /** 计时器ID */
   timerInterval: number | null;
-  /** 错题列表 */
-  wrongAnswers: InternalWrongAnswer[];
+  /** 已答题目列表 */
+  answeredQuestions: AnsweredQuestion[];
 }
 
 /**
@@ -76,7 +78,7 @@ class QuizModule {
       score: 0,
       startTime: null,
       timerInterval: null,
-      wrongAnswers: [],
+      answeredQuestions: [],
     };
   }
 
@@ -122,11 +124,14 @@ class QuizModule {
     this.state.currentQuestion = 0;
     this.state.score = 0;
     this.state.startTime = Date.now();
-    this.state.wrongAnswers = [];
+    this.state.answeredQuestions = [];
 
     safeSetDisplay('quiz-start', 'none');
     safeSetDisplay('quiz-game', 'block');
     safeSetDisplay('quiz-result', 'none');
+
+    // 初始化预览面板
+    this.initializePreviewPanel();
 
     this.startTimer();
     this.showQuestion();
@@ -186,6 +191,12 @@ class QuizModule {
       total: total,
     });
     safeSetText('questionNumber', questionTemplate);
+
+    // 设置quiz-game元素的data-quiz-type属性，用于CSS样式调整
+    const quizGame = document.getElementById('quiz-game') as HTMLElement;
+    if (quizGame) {
+      quizGame.setAttribute('data-quiz-type', this.state.quizType);
+    }
 
     const questionContent = document.getElementById('questionContent');
     const optionsContainer = document.getElementById('optionsContainer');
@@ -319,20 +330,15 @@ class QuizModule {
       }
     });
 
+    // 记录已答题目
+    this.recordAnsweredQuestion(selected, correct);
+
     if (selected === correct) {
       this.state.score++;
-    } else {
-      const currentQ = this.state.questions[this.state.currentQuestion];
-      const selectedCountry = currentQ.options.find((opt) => opt.code === selected);
-
-      this.state.wrongAnswers.push({
-        questionIndex: this.state.currentQuestion + 1,
-        questionType: this.state.quizType as QuizType,
-        correctCountry: currentQ.correct,
-        selectedCountry: selectedCountry || currentQ.correct,
-        options: currentQ.options,
-      });
     }
+
+    // 更新预览面板
+    this.updatePreviewPanel();
 
     setTimeout(() => {
       this.state.currentQuestion++;
@@ -342,6 +348,122 @@ class QuizModule {
         this.endQuiz();
       }
     }, 1500);
+  }
+
+  /**
+   * 记录已答题目
+   */
+  private recordAnsweredQuestion(selectedCode: string, correctCode: string): void {
+    const currentQuestion = this.state.questions[this.state.currentQuestion];
+    const selectedCountry = currentQuestion.options.find((opt) => opt.code === selectedCode);
+
+    const answeredQuestion: AnsweredQuestion = {
+      questionIndex: this.state.currentQuestion + 1,
+      questionType: this.state.quizType as QuizType,
+      correctCountry: currentQuestion.correct,
+      selectedCountry: selectedCountry,
+      isCorrect: selectedCode === correctCode,
+      timestamp: Date.now()
+    };
+
+    this.state.answeredQuestions.push(answeredQuestion);
+  }
+
+  /**
+   * 初始化预览面板
+   */
+  private initializePreviewPanel(): void {
+    const previewList = document.getElementById('preview-list');
+    if (previewList) {
+      previewList.innerHTML = '';
+    }
+
+    // 更新总题数
+    const totalQuestions = document.getElementById('total-questions');
+    if (totalQuestions) {
+      totalQuestions.textContent = this.state.questions.length.toString();
+    }
+
+    // 更新已答题数
+    this.updatePreviewStats();
+  }
+
+  /**
+   * 更新预览面板
+   */
+  private updatePreviewPanel(): void {
+    const previewList = document.getElementById('preview-list');
+    const template = document.getElementById('preview-item-template') as HTMLTemplateElement;
+
+    if (!previewList || !template) return;
+
+    // 添加新的预览项
+    const latestAnswer = this.state.answeredQuestions[this.state.answeredQuestions.length - 1];
+    if (latestAnswer) {
+      const newItem = this.createPreviewItem(latestAnswer, template);
+      previewList.appendChild(newItem);
+    }
+
+    // 更新统计信息
+    this.updatePreviewStats();
+  }
+
+  /**
+   * 创建预览项
+   */
+  private createPreviewItem(question: AnsweredQuestion, template: HTMLTemplateElement): HTMLElement {
+    const item = template.content.cloneNode(true) as HTMLElement;
+
+    // 填充题号
+    item.querySelector('.number')!.textContent = question.questionIndex.toString();
+
+    // 设置国旗图片
+    const flagImg = item.querySelector('.flag-image') as HTMLImageElement;
+    if (flagImg) {
+      flagImg.src = this.getFlagImagePath(question.correctCountry.code);
+      flagImg.alt = question.correctCountry.nameCN;
+    }
+
+    // 设置正确答案
+    item.querySelector('.correct-answer')!.textContent = i18n.getCountryName(question.correctCountry);
+
+    // 如果答错了，显示用户答案
+    if (!question.isCorrect && question.selectedCountry) {
+      const userAnswer = item.querySelector('.user-answer') as HTMLElement;
+      userAnswer.style.display = 'block';
+      userAnswer.textContent = `${i18n.t('quiz.preview.yourAnswer') || '你的答案'}: ${i18n.getCountryName(question.selectedCountry)}`;
+
+      // 显示错误图标
+      const correctIcon = item.querySelector('.status-icon.correct') as HTMLElement;
+      const wrongIcon = item.querySelector('.status-icon.wrong') as HTMLElement;
+      correctIcon.style.display = 'none';
+      wrongIcon.style.display = 'inline';
+    }
+
+    return item;
+  }
+
+  /**
+   * 更新预览统计
+   */
+  private updatePreviewStats(): void {
+    const answeredCount = document.getElementById('answered-count');
+    const totalQuestions = document.getElementById('total-questions');
+
+    if (answeredCount) {
+      answeredCount.textContent = this.state.answeredQuestions.length.toString();
+    }
+
+    if (totalQuestions) {
+      totalQuestions.textContent = this.state.questions.length.toString();
+    }
+  }
+
+  /**
+   * 获取国旗图片路径
+   */
+  private getFlagImagePath(countryCode: string): string {
+    return getFlagImageUrl(countryCode);
   }
 
   /**
@@ -404,8 +526,6 @@ class QuizModule {
     }
 
     safeSetText('resultMessage', message);
-
-    this.displayWrongAnswers();
   }
 
   /**
@@ -421,123 +541,7 @@ class QuizModule {
     }, 1000);
   }
 
-  /**
-   * 显示错题详情
-   */
-  private displayWrongAnswers(): void {
-    const wrongSection = document.getElementById('wrong-answers-section');
-    const container = document.getElementById('wrong-answers-container');
-
-    if (!wrongSection || !container) return;
-
-    if (this.state.wrongAnswers.length === 0) {
-      wrongSection.style.display = 'none';
-      return;
-    }
-
-    wrongSection.style.display = 'block';
-    container.innerHTML = '';
-
-    this.state.wrongAnswers.forEach((wrong) => {
-      if (wrong.questionType === 'flag-to-country') {
-        this.displayFlagToCountryWrongAnswer(wrong, container);
-      } else {
-        this.displayCountryToFlagWrongAnswer(wrong, container);
-      }
-    });
-  }
-
-  /**
-   * 显示"国旗到国家"错题
-   */
-  private displayFlagToCountryWrongAnswer(
-    wrong: InternalWrongAnswer,
-    container: HTMLElement
-  ): void {
-    const flagTemplate = document.getElementById(
-      'wrong-answer-flag-template'
-    ) as HTMLTemplateElement;
-    if (!flagTemplate) return;
-
-    const templateContent = flagTemplate.content.cloneNode(true) as DocumentFragment;
-
-    // 设置题号
-    const questionNumber = templateContent.querySelector('.wrong-question-number');
-    const questionTemplate = i18n.t('quiz.questionNumber', { index: wrong.questionIndex });
-    if (questionNumber) {
-      questionNumber.textContent = questionTemplate.replace(
-        '{index}',
-        wrong.questionIndex.toString()
-      );
-    }
-
-    // 设置国旗图片
-    const flagImg = templateContent.querySelector('.wrong-flag') as HTMLImageElement;
-    if (flagImg) {
-      flagImg.src = getFlagImageUrl(wrong.correctCountry.code);
-      flagImg.alt = '国旗';
-      flagImg.onerror = function (this: HTMLImageElement) {
-        this.src = `https://via.placeholder.com/200x120/f0f0f0/999?text=${wrong.correctCountry.code.toUpperCase()}`;
-      };
-    }
-
-    // 设置正确答案
-    const correctAnswer = templateContent.querySelector('.correct-answer-text');
-    if (correctAnswer) {
-      correctAnswer.textContent = i18n.getCountryName(wrong.correctCountry);
-    }
-
-    // 设置用户答案
-    const yourAnswer = templateContent.querySelector('.your-answer-text');
-    if (yourAnswer && wrong.selectedCountry) {
-      yourAnswer.textContent = i18n.getCountryName(wrong.selectedCountry);
-    }
-
-    container.appendChild(templateContent);
-  }
-
-  /**
-   * 显示"国家到国旗"错题
-   */
-  private displayCountryToFlagWrongAnswer(
-    wrong: InternalWrongAnswer,
-    container: HTMLElement
-  ): void {
-    const countryTemplate = document.getElementById(
-      'wrong-answer-country-template'
-    ) as HTMLTemplateElement;
-    if (!countryTemplate) return;
-
-    const templateContent = countryTemplate.content.cloneNode(true) as DocumentFragment;
-
-    // 设置题号和国家名称
-    const questionNumber = templateContent.querySelector('.wrong-question-number');
-    if (questionNumber) {
-      questionNumber.textContent = i18n.t('quiz.questionNumber', { index: wrong.questionIndex });
-    }
-
-    const countryName = templateContent.querySelector('.wrong-country-name');
-    if (countryName) {
-      countryName.textContent = i18n.getCountryName(wrong.correctCountry);
-    }
-
-    // 设置正确国旗
-    const correctFlag = templateContent.querySelector('.correct-flag-img') as HTMLImageElement;
-    if (correctFlag) {
-      correctFlag.src = getFlagImageUrl(wrong.correctCountry.code);
-      correctFlag.alt = i18n.getCountryName(wrong.correctCountry);
-    }
-
-    // 设置用户选择的国旗
-    const yourFlag = templateContent.querySelector('.your-flag-img') as HTMLImageElement;
-    if (yourFlag && wrong.selectedCountry) {
-      yourFlag.src = getFlagImageUrl(wrong.selectedCountry.code);
-      yourFlag.alt = i18n.getCountryName(wrong.selectedCountry);
-    }
-
-    container.appendChild(templateContent);
-  }
-
+  
   /**
    * 返回测验选择页面
    */
@@ -563,7 +567,7 @@ class QuizModule {
       score: 0,
       startTime: null,
       timerInterval: null,
-      wrongAnswers: [],
+      answeredQuestions: [],
     };
   }
 
